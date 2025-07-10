@@ -1,0 +1,52 @@
+
+{
+  "hotels": [
+    { 
+      "category": "Khách sạn (1 đêm)", "icon": "fas fa-hotel", "editable": true, 
+      "options": [
+        { "name": "Khách sạn Merry (3 sao)", "id": "hotel_merry_3star", "prices": { "8 khách": 200000, "10 khách": 200000, "15 khách": 200000, "20 khách": 200000, "25 khách": 200000, "30 khách": 200000, "35 khách": 200000, "45 khách": 200000 } },
+        { "name": "Khách sạn A La Carte (4 sao)", "id": "hotel_alacarte_4star", "prices": { "8 khách": 325000, "10 khách": 300000, "15 khách": 275000, "20 khách": 250000, "25 khách": 225000, "30 khách": 200000, "35 khách": 175000, "45 khách": 175000 } },
+        { "name": "Khách sạn Hyatt Regency (5 sao)", "id": "hotel_hyatt_regency_5star", "prices": { "8 khách": 700000, "10 khách": 700000, "15 khách": 700000, "20 khách": 700000, "25 khách": 700000, "30 khách": 700000, "35 khách": 700000, "45 khách": 700000 } }
+      ],
+      "selected_option_id": "hotel_merry_3star" 
+    }
+  ],
+  "meals": [
+    {
+      "category": "Ăn trưa", "icon": "fas fa-hamburger", "editable": true, 
+      "options": [
+        { "name": "Ăn trưa (Món Việt truyền thống)", "id": "lunch_vietnamese", "prices": { "8 khách": 100000, "10 khách": 100000, "15 khách": 100000, "20 khách": 100000, "25 khách": 100000, "30 khách": 100000, "35 khách": 100000, "45 khách": 100000 } },
+        { "name": "Ăn trưa (Buffet quốc tế)", "id": "lunch_buffet", "prices": { "8 khách": 150000, "10 khách": 140000, "15 khách": 130000, "20 khách": 120000, "25 khách": 110000, "30 khách": 100000, "35 khách": 90000, "45 khách": 90000 } },
+        { "name": "Ăn trưa (Cơm gà Hội An)", "id": "lunch_com_ga", "prices": { "8 khách": 80000, "10 khách": 80000, "15 khách": 80000, "20 khách": 80000, "25 khách": 80000, "30 khách": 80000, "35 khách": 80000, "45 khách": 80000 } },
+        { "name": "Ăn trưa (Lẩu hải sản)", "id": "lunch_lau_hai_san", "prices": { "8 khách": 180000, "10 khách": 180000, "15 khách": 180000, "20 khách": 180000, "25 khách": 180000, "30 khách": 180000, "35 khách": 180000, "45 khách": 180000 } }
+      ],
+      "selected_option_id": "lunch_vietnamese" 
+    },
+    {
+      "category": "Ăn tối", "icon": "fas fa-utensils", "editable": true, 
+      "options": [
+        { "name": "Ăn tối Golden Light (Món Việt)", "id": "dinner_golden_light", "prices": { "8 khách": 100000, "10 khách": 100000, "15 khách": 100000, "20 khách": 100000, "25 khách": 100000, "30 khách": 100000, "35 khách": 100000, "45 khách": 100000 } },
+        { "name": "Ăn tối The Deck House (Hải sản)", "id": "dinner_deck_house", "prices": { "8 khách": 250000, "10 khách": 230000, "15 khách": 210000, "20 khách": 190000, "25 khách": 170000, "30 khách": 150000, "35 khách": 130000, "45 khách": 130000 } },
+        { "name": "Ăn tối Làng Chài (Hải sản tươi sống)", "id": "dinner_lang_chai", "prices": { "8 khách": 300000, "10 khách": 300000, "15 khách": 300000, "20 khách": 300000, "25 khách": 300000, "30 khách": 300000, "35 khách": 300000, "45 khách": 300000 } },
+        { "name": "Ăn tối Long Qiao (Đặc sản)", "id": "dinner_long_qiao", "prices": { "8 khách": 250000, "10 khách": 250000, "15 khách": 250000, "20 khách": 250000, "25 khách": 250000, "30 khách": 250000, "35 khách": 250000, "45 khách": 250000 } },
+        { "name": "Ăn tối Du thuyền sông Hàn", "id": "dinner_han_river_cruise", "prices": { "8 khách": 400000, "10 khách": 380000, "15 khách": 350000, "20 khách": 320000, "25 khách": 300000, "30 khách": 280000, "35 khách": 260000, "45 khách": 260000 } },
+        { "name": "Ăn tối Hải sản Biển Đông", "id": "dinner_bien_dong", "prices": { "8 khách": 350000, "10 khách": 350000, "15 khách": 350000, "20 khách": 350000, "25 khách": 350000, "30 khách": 350000, "35 khách": 350000, "45 khách": 350000 } }
+      ],
+      "selected_option_id": "dinner_golden_light" 
+    }
+  ],
+  "ticketsAndActivities": [
+      { "category": "Vé Hội An", "icon": "fas fa-ticket-alt", "prices": { "8 khách": 120000, "10 khách": 120000, "15 khách": 120000, "20 khách": 120000, "25 khách": 120000, "30 khách": 120000, "35 khách": 120000, "45 khách": 120000 } },
+      { "category": "Rừng Dừa", "icon": "fas fa-tree", "prices": { "8 khách": 50000, "10 khách": 50000, "15 khách": 50000, "20 khách": 50000, "25 khách": 50000, "30 khách": 50000, "35 khách": 50000, "45 khách": 50000 } },
+      { "category": "Vé cáp treo", "icon": "fas fa-mountain", "prices": { "8 khách": 880000, "10 khách": 880000, "15 khách": 880000, "20 khách": 880000, "25 khách": 880000, "30 khách": 880000, "35 khách": 880000, "45 khách": 880000 } },
+      { "category": "Bảo tàng Chăm", "icon": "fas fa-landmark", "prices": { "8 khách": 0, "10 khách": 0, "15 khách": 0, "20 khách": 0, "25 khách": 0, "30 khách": 0, "35 khách": 0, "45 khách": 0 } },
+      { "category": "Vé xem show Ký ức Hội An", "icon": "fas fa-ticket-alt", "prices": { "8 khách": 600000, "10 khách": 550000, "15 khách": 500000, "20 khách": 450000, "25 khách": 400000, "30 khách": 350000, "35 khách": 300000, "45 khách": 280000 } },
+      { "category": "Thuê xe đạp/xích lô (1 buổi)", "icon": "fas fa-bicycle", "prices": { "8 khách": 50000, "10 khách": 45000, "15 khách": 40000, "20 khách": 35000, "25 khách": 30000, "30 khách": 25000, "35 khách": 20000, "45 khách": 18000 } },
+      { "category": "Dịch vụ massage/spa (1 giờ)", "icon": "fas fa-hand-sparkles", "prices": { "8 khách": 250000, "10 khách": 220000, "15 khách": 200000, "20 khách": 180000, "25 khách": 160000, "30 khách": 140000, "35 khách": 120000, "45 khách": 100000 } }
+  ],
+  "others": [
+      { "category": "Bánh Mì", "icon": "fas fa-bread-slice", "prices": { "8 khách": 15000, "10 khách": 15000, "15 khách": 15000, "20 khách": 15000, "25 khách": 15000, "30 khách": 15000, "35 khách": 15000, "45 khách": 15000 } },
+      { "category": "Nước uống giải khát (cả ngày)", "icon": "fas fa-mug-hot", "prices": { "8 khách": 20000, "10 khách": 18000, "15 khách": 15000, "20 khách": 12000, "25 khách": 10000, "30 khách": 8000, "35 khách": 6000, "45 khách": 5000 } },
+      { "category": "Bảo hiểm du lịch (nâng cao)", "icon": "fas fa-shield-alt", "prices": { "8 khách": 30000, "10 khách": 28000, "15 khách": 25000, "20 khách": 22000, "25 khách": 20000, "30 khách": 18000, "35 khách": 15000, "45 khách": 12000 } }
+  ]
+}
