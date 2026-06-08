@@ -26,6 +26,7 @@ import {
 import { regions, tours } from './data/tours.js';
 
 const packageFilters = ['All', 'FIT', 'GIT'];
+const sortModes = ['Popular', 'Price Low', 'Duration'];
 const navItems = [
   { label: 'Sales Kits', icon: FileText },
   { label: 'My Quotes', icon: Copy },
@@ -73,21 +74,31 @@ function getQuoteText(tour) {
 }
 
 function App() {
+  const [activeNav, setActiveNav] = useState('Sales Kits');
+  const [currency, setCurrency] = useState('USD');
+  const [language, setLanguage] = useState('EN');
   const [packageFilter, setPackageFilter] = useState('FIT');
   const [regionFilter, setRegionFilter] = useState('All');
   const [query, setQuery] = useState('');
+  const [sortMode, setSortMode] = useState('Popular');
   const [selectedId, setSelectedId] = useState(tours[0].id);
   const [notice, setNotice] = useState('');
 
   const filteredTours = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    return tours.filter((tour) => {
+    const matches = tours.filter((tour) => {
       const matchesPackage = packageFilter === 'All' || tour.packageType === packageFilter;
       const matchesRegion = regionFilter === 'All' || tour.region === regionFilter;
       const haystack = `${tour.code} ${tour.title} ${tour.route} ${tour.region} ${tour.packageType}`.toLowerCase();
       return matchesPackage && matchesRegion && (!normalized || haystack.includes(normalized));
     });
-  }, [packageFilter, query, regionFilter]);
+
+    return [...matches].sort((a, b) => {
+      if (sortMode === 'Price Low') return a.priceFrom - b.priceFrom;
+      if (sortMode === 'Duration') return a.duration - b.duration || a.priceFrom - b.priceFrom;
+      return tours.findIndex((tour) => tour.id === a.id) - tours.findIndex((tour) => tour.id === b.id);
+    });
+  }, [packageFilter, query, regionFilter, sortMode]);
 
   useEffect(() => {
     if (filteredTours.length && !filteredTours.some((tour) => tour.id === selectedId)) {
@@ -112,6 +123,28 @@ function App() {
     }
   }
 
+  function showNotice(message) {
+    setNotice(message);
+  }
+
+  function cycleSortMode() {
+    const nextMode = sortModes[(sortModes.indexOf(sortMode) + 1) % sortModes.length];
+    setSortMode(nextMode);
+    setNotice(`Sorted by ${nextMode}`);
+  }
+
+  function cycleCurrency() {
+    const nextCurrency = currency === 'USD' ? 'THB' : 'USD';
+    setCurrency(nextCurrency);
+    setNotice(`Currency display set to ${nextCurrency}`);
+  }
+
+  function cycleLanguage() {
+    const nextLanguage = language === 'EN' ? 'TH' : 'EN';
+    setLanguage(nextLanguage);
+    setNotice(`Language preference set to ${nextLanguage}`);
+  }
+
   return (
     <div className="app">
       <header className="topbar">
@@ -124,8 +157,16 @@ function App() {
         </div>
 
         <nav className="main-nav" aria-label="Main navigation">
-          {navItems.map(({ label, icon: Icon }, index) => (
-            <button className={index === 0 ? 'is-active' : ''} key={label} type="button">
+          {navItems.map(({ label, icon: Icon }) => (
+            <button
+              className={label === activeNav ? 'is-active' : ''}
+              key={label}
+              type="button"
+              onClick={() => {
+                setActiveNav(label);
+                setNotice(label === 'Sales Kits' ? 'Sales kit catalog is active' : `${label} workspace is not connected yet`);
+              }}
+            >
               <Icon size={17} />
               {label}
             </button>
@@ -133,16 +174,16 @@ function App() {
         </nav>
 
         <div className="topbar-actions">
-          <button className="select-button" type="button">
-            USD
+          <button className="select-button" type="button" onClick={cycleCurrency}>
+            {currency}
             <ChevronDown size={15} />
           </button>
-          <button className="icon-button" type="button" aria-label="Language">
+          <button className="icon-button" type="button" aria-label="Language" onClick={cycleLanguage}>
             <Globe2 size={18} />
-            EN
+            {language}
             <ChevronDown size={14} />
           </button>
-          <button className="icon-button alert" type="button" aria-label="Notifications">
+          <button className="icon-button alert" type="button" aria-label="Notifications" onClick={() => showNotice('3 sales reminders pending')}>
             <Bell size={18} />
             <span>3</span>
           </button>
@@ -206,13 +247,13 @@ function App() {
                 onChange={(event) => setQuery(event.target.value)}
               />
             </label>
-            <button className="utility-button" type="button">
+            <button className="utility-button" type="button" onClick={() => showNotice(`Active filters: ${packageFilter}, ${regionFilter}`)}>
               <Filter size={18} />
               Filters
             </button>
-            <button className="sort-button" type="button">
+            <button className="sort-button" type="button" onClick={cycleSortMode}>
               <span>Sort by</span>
-              Popular
+              {sortMode}
               <ChevronDown size={15} />
             </button>
           </div>
@@ -236,7 +277,12 @@ function App() {
           </div>
         </section>
 
-        <DetailPanel tour={selectedTour} onCopy={() => copyQuote(selectedTour)} />
+        <DetailPanel
+          tour={selectedTour}
+          onCopy={() => copyQuote(selectedTour)}
+          onClose={() => showNotice('Detail panel stays open on desktop')}
+          onSave={() => showNotice(`Saved ${selectedTour.code} to shortlist`)}
+        />
       </main>
 
       {notice && <div className="toast">{notice}</div>}
@@ -287,10 +333,10 @@ function TourCard({ tour, active, onSelect }) {
   );
 }
 
-function DetailPanel({ tour, onCopy }) {
+function DetailPanel({ tour, onCopy, onClose, onSave }) {
   return (
     <section className="detail-panel">
-      <button className="close-button" type="button" aria-label="Close detail">
+      <button className="close-button" type="button" aria-label="Close detail" onClick={onClose}>
         <X size={22} />
       </button>
 
@@ -341,7 +387,7 @@ function DetailPanel({ tour, onCopy }) {
           <Copy size={17} />
           Copy Quote Notes
         </button>
-        <button className="star-button" type="button" aria-label="Save tour">
+        <button className="star-button" type="button" aria-label="Save tour" onClick={onSave}>
           <Star size={18} />
         </button>
       </div>
