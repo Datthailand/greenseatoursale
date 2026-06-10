@@ -1226,3 +1226,59 @@ td:not(:first-child) {
   border: 1px solid var(--line);
 }
 
+.remarks-card {
+  grid-column: span 3;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-light, #f9fcfb);
+}
+
+.remarks-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.remarks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.remarks-col {
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.remarks-col-title {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.remarks-list {
+  margin: 0;
+  padding-left: 15px;
+  font-size: 12px;
+  color: #4d5a56;
+}
+
+.remarks-list li {
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+@media (max-width: 760px) {
+  .remarks-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+

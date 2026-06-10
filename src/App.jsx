@@ -557,6 +557,33 @@ function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, contai
             ['0 - 6 days prior', '90%'],
           ]}
         />
+        {tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (
+          <div className="remarks-card">
+            <h3>{language === 'TH' ? 'นโยบายหัวหน้าทัวร์' : 'Tour Leader Policy'}</h3>
+            <div className="remarks-grid">
+              {tour.remarksTh.left && tour.remarksTh.left.length > 0 && (
+                <div className="remarks-col">
+                  <span className="remarks-col-title">{tour.remarksTh.left[0]}</span>
+                  <ul className="remarks-list">
+                    {tour.remarksTh.left.slice(1).map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {tour.remarksTh.right && tour.remarksTh.right.length > 0 && (
+                <div className="remarks-col">
+                  <span className="remarks-col-title">{tour.remarksTh.right[0]}</span>
+                  <ul className="remarks-list">
+                    {tour.remarksTh.right.slice(1).map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </section>
     </section>
   );
@@ -672,7 +699,13 @@ function PricePreview({ tour, currency, language }) {
             {tour.pdfPriceLayout && tour.priceExtraRows?.map((row) => (
               <tr className="price-extra-row" key={row.label}>
                 <td className="multiline-cell">{row.label}</td>
-                <td colSpan={bands.length}>{row.merged}</td>
+                {row.cells ? (
+                  row.cells.map((c, i) => (
+                    <td key={i} colSpan={c.colSpan} className="multiline-cell">{c.text}</td>
+                  ))
+                ) : (
+                  <td colSpan={bands.length}>{row.merged}</td>
+                )}
                 <td>{row.single}</td>
               </tr>
             ))}
@@ -688,8 +721,16 @@ function PricePreview({ tour, currency, language }) {
             {tour.pdfPriceLayout && tour.vehicleRows?.map((row) => (
               <tr className="vehicle-table-row" key={row.label}>
                 <td>{row.label}</td>
-                <td className="multiline-cell" colSpan={row.leftSpan || Math.floor((bands.length + 1) / 2)}>{row.left}</td>
-                <td className="multiline-cell" colSpan={row.rightSpan || Math.ceil((bands.length + 1) / 2)}>{row.right}</td>
+                {row.cells ? (
+                  row.cells.map((c, i) => (
+                    <td key={i} colSpan={c.colSpan} className="multiline-cell">{c.text}</td>
+                  ))
+                ) : (
+                  <>
+                    <td className="multiline-cell" colSpan={row.leftSpan || Math.floor((bands.length + 1) / 2)}>{row.left}</td>
+                    <td className="multiline-cell" colSpan={row.rightSpan || Math.ceil((bands.length + 1) / 2)}>{row.right}</td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
