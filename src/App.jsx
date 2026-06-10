@@ -18,7 +18,6 @@ import {
   X,
 } from 'lucide-react';
 import { regions, tours } from './data/tours.js';
-import { pdfExtracts } from './data/pdfExtracts.js';
 
 const packageFilters = ['All', 'FIT', 'GIT'];
 const sortModes = ['Popular', 'Price Low', 'Duration'];
@@ -459,17 +458,12 @@ function TourCard({ tour, active, onSelect, currency, language }) {
 }
 
 function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, containerRef }) {
-  const [showPdfSource, setShowPdfSource] = useState(false);
-  const pdfSource = pdfExtracts[tour.code] || null;
   const inclusions = language === 'TH' && tour.inclusionsTh ? tour.inclusionsTh : tour.inclusions;
   const exclusions = language === 'TH' && tour.exclusionsTh ? tour.exclusionsTh : tour.exclusions;
   const childRates = language === 'TH' && tour.childRatesTh ? tour.childRatesTh : tour.childRates;
   const paymentRows = language === 'TH' && tour.paymentTermsTh ? tour.paymentTermsTh : tour.paymentTermsRows;
   const cancellationRows = language === 'TH' && tour.cancellationPolicyTh ? tour.cancellationPolicyTh : tour.cancellationRows;
 
-  useEffect(() => {
-    setShowPdfSource(false);
-  }, [tour.code]);
 
   return (
     <section className="detail-panel" ref={containerRef}>
@@ -564,60 +558,11 @@ function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, contai
           ]}
         />
       </section>
-
-      <PdfSourceSection
-        tour={tour}
-        language={language}
-        source={pdfSource}
-        status="ready"
-        isOpen={showPdfSource}
-        onToggle={() => setShowPdfSource((isOpen) => !isOpen)}
-      />
     </section>
   );
 }
 
-function PdfSourceSection({ tour, language, source, status, isOpen, onToggle }) {
-  return (
-    <section className={`pdf-source-section ${isOpen ? 'is-open' : ''}`}>
-      <button className="source-toggle" type="button" aria-expanded={isOpen} onClick={onToggle}>
-        <span>
-          <strong>{t('sourcePdf', language)}</strong>
-          <small>{tour.assets.label}</small>
-        </span>
-        <span className="source-toggle-action">
-          {isOpen ? t('hideSource', language) : t('showSource', language)}
-          <ChevronDown size={15} />
-        </span>
-      </button>
 
-      {isOpen && (
-        <div className="source-drawer">
-          {status === 'loading' && <p className="source-state">{t('sourceLoading', language)}</p>}
-          {status === 'error' && <p className="source-state">{t('sourceError', language)}</p>}
-          {status === 'ready' && !source && <p className="source-state">{t('sourceUnavailable', language)}</p>}
-          {status === 'ready' && source && (
-            <>
-              <section className="detail-section source-text-section">
-                <h3>{t('originalProgram', language)} <span>{tour.code} - PDF p{source.itineraryPage}</span></h3>
-                <PdfTextBlock text={source.itineraryText} />
-              </section>
-
-              <section className="detail-section source-text-section">
-                <h3>{t('originalPriceTerms', language)} <span>{tour.code} - PDF p{source.pricePage}</span></h3>
-                <PdfTextBlock text={source.priceText} />
-              </section>
-            </>
-          )}
-        </div>
-      )}
-    </section>
-  );
-}
-
-function PdfTextBlock({ text }) {
-  return <pre className="pdf-text-block">{text}</pre>;
-}
 
 function ItineraryTable({ tour, language }) {
   return (
