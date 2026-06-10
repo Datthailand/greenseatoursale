@@ -9,14 +9,14 @@
 
 - React 19
 - Vite 7
-- No git repo in this folder
+- Git repo present in this folder
 
 ## Commands
 
 ```bash
 cd "/mnt/d/Dat/webapp greensea"
 npm install
-npm run dev -- --host 127.0.0.1 --port 5177
+npm run dev
 npm run build
 ```
 
@@ -47,6 +47,6 @@ Reason: `node_modules` may have been installed from Windows first, so Rollup opt
 
 ## Dev server
 
-Current checked port: `http://127.0.0.1:5177/`
+Current checked port: `http://127.0.0.1:5173/`
 
-Browser tool may block localhost navigation by policy. Use `curl` or Playwright CLI/script if needed.
+Use the Codex in-app Browser plugin first for rendered UI QA when it is available. If Browser cannot attach to the local tab, use Playwright CLI/script as the fallback and record the reason.

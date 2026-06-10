@@ -115,10 +115,63 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBandsSmall, [350, 260, 230, 206, 198, 194], '+70 USD')],
     highlights: ['Golden Bridge and Ba Na Hills overnight', 'Hoi An Ancient Town and basket boat', 'Linh Ung pagoda, Son Tra Marina, Dragon Bridge, Han Market'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Ba Na Hills', notes: ['Airport pickup', 'Cable car to Ba Na Hills', 'Golden Bridge, Fantasy Park, Flower Garden', 'Overnight at Mercure Ba Na Hills'] },
-      { day: 2, title: 'Ba Na Hills - Hoi An - Da Nang', notes: ['Hotel breakfast', 'Hoi An Ancient Town walk', 'Basket boat ride', 'Faifo coffee stop, drinks excluded'] },
-      { day: 3, title: 'Da Nang - Airport', notes: ['Linh Ung pagoda', 'Son Tra Marina photo stop', 'Dragon Bridge and Han Market', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Ba Na Hills',
+            titleTh: 'DA NANG – BA NA HILLS',
+            notes: ['Airport pickup', 'Cable car to Ba Na Hills', 'Golden Bridge, Fantasy Park, Flower Garden', 'Overnight at Mercure Ba Na Hills'],
+            notesTh: ['รับคณะที่สนามบิน ที่สนามบิน', 'ขึ้นกระเช้าบำนำฮิวล์', 'ชมสะพานมือ', 'สวนสนุกบำนำฮิวล์', 'สวนดอกไม้', '*ถ้าใช้หอ้ งFamily Bunk พัก3ท่าน +25$/ห้อ'],
+            lunch: 'Ngon Thi Hoa 11$',
+            dinner: 'Beer plaza buffet',
+            overnightTh: 'พักที่ Mercure Ba Na Hill 6.ผลไม้',
+            lunchMenuTh: ['เฝอไก่', 'เปาะเปี๊ยะกุ้ง หมูสด', 'แหนมเนือง', 'ขนมฮอยหมูยำ่ ง', 'ข้าวผัดไข่', 'ง/คืน'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 2,
+            title: 'Ba Na Hills - Hoi An - Da Nang',
+            titleTh: 'BA NA HILLS – HOI AN – DA NANG',
+            notes: ['Hotel breakfast', 'Hoi An Ancient Town walk', 'Basket boat ride', 'Faifo coffee stop, drinks excluded'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ลงกระเช้า แล้วเดินทางไปฮอยอัน', 'เดินชมเมืองโบราณฮอยอัน', 'นัง่ เรื อกระด้ง', 'ร้านกำแฟ Faifo (ไม่รวมเครื่ องดื่ม)', 'กลับไปดานัง'],
+            lunch: 'Chic Chillax Hoi An 11$',
+            dinner: 'Long Qiao buffet',
+            overnightTh: 'พักที่ Dong Duong Hotel (4 Stars) or similar',
+            lunchMenuTh: ['เปาะเปี๊ยะทอด', 'ยำหัวปลีกงุ้', 'ซุปเห็ด', 'ปลาทับทิมนึ่ง + กะหล่ำปลีห่', 'ไก่ผดั ขิง', 'ผักกวำงตุง้ ผัดกระเทียม', 'ข้าวผัดผักรวม', 'แตงโม'],
+            dinnerMenuTh: ['ของสดนึ่ง', 'หม้อไฟ', 'อเห็ด   รวมกุ้ง มังกรอบเนย ½ ตัว/ท่าน'],
+          },
+      {
+            day: 3,
+            title: 'Da Nang - Airport',
+            titleTh: 'DA NANG - AIRPORT',
+            notes: ['Linh Ung pagoda', 'Son Tra Marina photo stop', 'Dragon Bridge and Han Market', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ไหว้พระวัดลิงอื๋ง', 'Sontra Marina Café (ไม่รวมอาหารและเครื่', 'ถ่ำยรู ปสะพานมังกร', 'ชอปปิ้ งตลาดฮำน', 'ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Madam Lan 12$',
+            dinner: 'Banh mi',
+            overnightTh: '',
+            lunchMenuTh: ['เปาะเปี๊ยะสดกุ้งหมู', 'เปาะเปี๊ยะทะเลทอด', 'องดื่ม)   3.ปลาต้มเค็มหม้อดิน', 'ผัดผักบุง้', 'ข้าว', 'แกงจืดไข่ปู', 'ผลไม้'],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '350', single: '260' },
+      { label: '29/04-02/05/2026', merged: '+18$/pax', single: '+88$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 3 มื้อ + บุฟเ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผ'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fitdad02',
@@ -139,11 +192,75 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBandsSmall, [395, 290, 255, 229, 220, 215], '+80 USD')],
     highlights: ['Ba Na Hills overnight', 'Hoi An Ancient Town and basket boat', 'Da Nang city photos and Han Market shopping'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Ba Na Hills', notes: ['Airport pickup', 'Cable car and Golden Bridge', 'Fantasy Park and Flower Garden'] },
-      { day: 2, title: 'Ba Na Hills - Hoi An - Da Nang', notes: ['Hoi An Ancient Town', 'Basket boat ride', 'Faifo coffee stop, drinks excluded'] },
-      { day: 3, title: 'Da Nang City', notes: ['Linh Ung pagoda', 'Son Tra Marina', 'Dragon Bridge and Love Bridge photo stops'] },
-      { day: 4, title: 'Da Nang - Airport', notes: ['Hotel breakfast', 'Han Market shopping', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Ba Na Hills',
+            titleTh: 'DA NANG – BA NA HILLS',
+            notes: ['Airport pickup', 'Cable car and Golden Bridge', 'Fantasy Park and Flower Garden'],
+            notesTh: ['รับคณะที่สนามบิน ที่สนามบิน', 'ขึ้นกระเช้าบำนำฮิวล์', 'ชมสะพานมือ', 'สวนสนุกบำนำฮิวล์', 'สวนดอกไม้', '*ถ้าใช้หอ้ งFamily Bunk พัก3ท่าน +25$/ห้'],
+            lunch: 'Ngon Thi Hoa',
+            dinner: 'Mercure buffet',
+            overnightTh: 'พักที่ Mercure Bana Hotel (4 Stars) 6.ผลไม้',
+            lunchMenuTh: ['เฝอไก่', 'เปาะเปี๊ยะกุ้ง หมูสด', 'แหนมเนื อง', 'ขนมฮอยหมูย่ำง', 'ข้าวผัดไข่', 'อง/คืน'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 2,
+            title: 'Ba Na Hills - Hoi An - Da Nang',
+            titleTh: 'BA NA HILLS – HOI AN',
+            notes: ['Hoi An Ancient Town', 'Basket boat ride', 'Faifo coffee stop, drinks excluded'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ลงกระเช้า', 'แล้วเดินทางไปฮอยอัน', 'เดินชมเมืองโบราณฮอยอัน', 'นัง่ เรื อกระด้ง', 'ร้านกำแฟ Faifo (ไม่รวมเครื่ องดื่ม)', 'กลับไปดานัง'],
+            lunch: 'Chic Chillax Hoi An',
+            dinner: 'Organic',
+            overnightTh: 'พักที่ Dong Duong Hotel (4 Stars) or similar 5.พุดดิ้งมะพร้ำว',
+            lunchMenuTh: ['เปาะเปี๊ยะทอด', 'ยำหัวปลีกุ้ง', 'ซุ ปเห็ด', 'ปลาทับทิมนึ่ ง + กะหล่ำ', 'ไก่ผดั ขิง', 'ผักกวำงตุง้ ผัดกระเทียม', 'ข้าวผัดผักรวม', 'แตงโม'],
+            dinnerMenuTh: ['ซุ ปไก่เมล็ดบัว', 'เซคบัญ   ๊ ก๊วน (ขนมปำกหม้อ)', 'บัญ๊ ก๊วน', 'ปลีห่อเห็ด   ไก่ซอสเห็ด', 'หมูยอ', 'ไข่', 'เซคทะเลนึ่ ง หอยหลำยชนิ ด', 'ปลาหมึก ข้าวโพด แครอท', 'หม้อไฟทะเล กุ้ง ปลาทะเล หมูสำม', 'ชั้น ทอดมันปลา ทอดมันปลาหมึก', 'เต้ำหู ้ ผัก และเส้นหมี่'],
+          },
+      {
+            day: 3,
+            title: 'Da Nang City',
+            titleTh: 'DA NANG',
+            notes: ['Linh Ung pagoda', 'Son Tra Marina', 'Dragon Bridge and Love Bridge photo stops'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ไหว้พระวัดลิงอื๋ง', 'Sontra Marina Café (ไม่รวมเครื่ องดื่ม', 'ถ่ำยรู ปสะพานมังกร', 'ถ่ำยรู ปที่สะพานแห่งควำมรัก'],
+            lunch: 'Madam Lan',
+            dinner: 'Long Qiao buffet',
+            overnightTh: 'พักที่ Dong Duong Hotel (4 Stars) or similar',
+            lunchMenuTh: ['เปาะเปี๊ยะสดกุ้งหมู', 'เปาะเปี๊ยะทะเลทอด', ')              3.ปลาต้มเค็มหม้อดิน', 'ผัดผักบุง้', 'ข้าว', 'แกงจืดไข่ปู', 'ผลไม้'],
+            dinnerMenuTh: ['ของสดนึ่ง', 'หม้อไฟ', 'รวมกุ้ง มังกรอบเนย ½ ตัว/ท่าน'],
+          },
+      {
+            day: 4,
+            title: 'Da Nang - Airport',
+            titleTh: 'DA NANG - AIRPORT',
+            notes: ['Hotel breakfast', 'Han Market shopping', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ชอปปิ้ งตลาดฮำน', 'ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Banh mi',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '395', single: '290' },
+      { label: '29/04-02/05/2026', merged: '+20$/pax', single: '+100$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผูใ้ หญ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fithan01',
@@ -164,10 +281,63 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBands, [245, 205, 185, 178, 170], '+70 USD')],
     highlights: ['Tam Dao stone church and Quan Gio cafe', 'Mega Grand World and Ha Noi old quarter', 'Tam Coc boat in Ninh Binh'],
     itinerary: [
-      { day: 1, title: 'Ha Noi - Tam Dao', notes: ['Airport pickup', 'Tam Dao stone church', 'Quan Gio cafe, drinks excluded'] },
-      { day: 2, title: 'Tam Dao - Ha Noi', notes: ['Free time in Tam Dao', 'Return to Ha Noi', 'Mega Grand World, Hoan Kiem Lake, 36 Streets'] },
-      { day: 3, title: 'Ninh Binh - Airport', notes: ['Transfer to Ninh Binh', 'Tam Coc boat trip', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ha Noi - Tam Dao',
+            titleTh: 'HA NOI – TAM DAO',
+            notes: ['Airport pickup', 'Tam Dao stone church', 'Quan Gio cafe, drinks excluded'],
+            notesTh: ['รับคณะที่สนามบิน เดินทางไปตามด๋าว', 'โบสถ์หินตามด๋าว', 'ร้านกำแฟ Quan Gio (ไม่รวมเครื่ องดื่ม)'],
+            lunch: 'Rock Cafe 15$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4+ star: Venus hotel or similar',
+            lunchMenuTh: ['สลัดใส่ เนื้อรมควัน', 'มันฝรั่งทอด', 'แซลมอนซอสเสำวรส', 'ขนมปังกระเทียมเนย', 'ขนมหวาน'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 2,
+            title: 'Tam Dao - Ha Noi',
+            titleTh: 'TAM DAO – HA NOI',
+            notes: ['Free time in Tam Dao', 'Return to Ha Noi', 'Mega Grand World, Hoan Kiem Lake, 36 Streets'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'อิสระเที่ยวเมืองตำมด๋ ำว', 'เดินทางกลับฮำนอย', 'Mega Grand World', 'ทะเลสาบคืนดำบ', 'ถนน สาย 36'],
+            lunch: 'Ngon PBC 20$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star: La Sante hotel and Spa or similar',
+            lunchMenuTh: ['ยำไหลบัวกุ้ง หมู', 'ขนมเบื้องญวน', 'เปาะเปี๊ยะปูทอด', 'ปลาหมึกแดดเดียวทอด', 'ขนมจีน หมูยำ่ ง', 'หอยโข่งผัดมะขำม', 'ผลไม้ + ชำ'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 3,
+            title: 'Ninh Binh - Airport',
+            titleTh: 'NINH BINH – AIRPORT',
+            notes: ['Transfer to Ninh Binh', 'Tam Coc boat trip', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปนิงห์บินห์', 'ล่องเรื อตำมก๊อก', 'ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Vu Bao 22$',
+            dinner: 'ไม่ รวม',
+            overnightTh: '',
+            lunchMenuTh: ['สลัดไข่สำหร่ ำยทะเล', 'ไก่น่ ึง', 'หอยทำกยัดไส้ต๋ ุน', 'หมูสำมชั้นทอด', 'ผักกำดผัดเห็ด', 'ข้าว', 'แกงส้ม', 'ผลไม้'],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '245', single: '205' },
+      { label: '29/04-02/05/2026', merged: '+30$/pax', single: '+100$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 3 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fithan02',
@@ -188,11 +358,75 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBands, [350, 300, 275, 260, 255], '+65 USD')],
     highlights: ['Cat Cat village and Moana Sapa', 'Sapa church and night market', 'Fansipan station area and mountain-view routing'],
     itinerary: [
-      { day: 1, title: 'Ha Noi - Sapa', notes: ['Airport pickup', 'Drive to Sapa', 'Cat Cat village, Moana, Sapa church, night market'] },
-      { day: 2, title: 'Sapa', notes: ['Hotel breakfast', 'Fansipan station area', 'Sapa sightseeing and local set meals'] },
-      { day: 3, title: 'Sapa - Ha Noi', notes: ['Morning in Sapa', 'Return to Ha Noi', 'Evening city time'] },
-      { day: 4, title: 'Ha Noi - Airport', notes: ['Hotel breakfast', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ha Noi - Sapa',
+            titleTh: 'HA NOI – SAPA',
+            notes: ['Airport pickup', 'Drive to Sapa', 'Cat Cat village, Moana, Sapa church, night market'],
+            notesTh: ['รับคณะที่สนามบิน แล้วเดินทางไปซำปำ (ประ ชั่วโมง)', 'หมู่บำ้ นก๊ำดๆ', 'ร้านกำแฟ Moana (รวมน้ ำเปล่ำท่านละ 1 ขว หิน', 'ตลาดไนต์ซำปำ', 'รับประทำนอาหารเย็นและพักผ่อนที่โรงแรม'],
+            lunch: 'Lam Dong luxury 14$',
+            dinner: 'Cho Tinh Quan 14$',
+            overnightTh: 'Hotel 4 star: Babeeni or similar',
+            lunchMenuTh: ['มำณ 6        1. ไก่ผดั ตะไคร้พริ ก', 'หมูเคี่ยวซอสน้ ำปลาใส่ พ', 'ซี่โครงหมูผดั เปรี้ ยวหว', 'ด) - โบสถ์   4. ปลา รำดซอสเปรี้ ยวเผ็ด', 'ไข่เจียวใส่ ตน้ หอม', 'แกงผักกำดใส่ หมูสับ', 'ข้าวสวย', 'ผลไม้ + น้ ำเปล่ำ'],
+            dinnerMenuTh: ['มีกำรแสดงรำพื้นเมือง', 'ริ ก   1.ปลาสเตอร์เจียนทอดเกลือ', 'ำน     2.ปลาแซนมอนย่ำงซิสฟักทอง', 'มันฝรั่งทอด', 'ผัดหมูสับ', 'หม้อไฟไก่', 'เห็ดจุ่ม + ผักสด', 'ผลไม้', 'ชำ'],
+          },
+      {
+            day: 2,
+            title: 'Sapa',
+            titleTh: 'SAPA',
+            notes: ['Hotel breakfast', 'Fansipan station area', 'Sapa sightseeing and local set meals'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'นัง่ รถรำงจำกเมือง ไปสถำนีกระเช้า', 'ขึ้นกระเช้า Faxipan', 'Option: รถรำงขึ้นยอดเขำ +7$/pax/one way (', 'ไหว้พระวัด Fanxipan', 'ลงกระเช้า', 'Option: Rong May Glass Bridge +23$/pax (ย'],
+            lunch: 'Van Sam (Fanxipan Station)',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star: Babeeni or similar',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 3,
+            title: 'Sapa - Ha Noi',
+            titleTh: 'SAPA – HA NOI',
+            notes: ['Morning in Sapa', 'Return to Ha Noi', 'Evening city time'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางกลับฮำนอย', 'แวะร้านเยื้อไผ่', 'ถนน สาย 36', 'ทะเลสาบคืนดำบ'],
+            lunch: 'Dong Mai 15$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star: La Sante hotel and Spa or similar',
+            lunchMenuTh: ['ไก่หมุนน้ ำผึ้ง', 'ปลาซอสเปรี้ ยวเผ็ด', 'หมูเคี่ยวซอสน้ ำปลาใส่ พร', 'ปลาหมึกผัดสับปะรดและหัวหอ', 'ผักผัดกระเทียม', 'แกงลูกชิ้นหมูเห็ดหอม', 'ข้าว + ผลไม้ + น้ ำเปล่ำ'],
+            dinnerMenuTh: ['ิ ก', 'ม'],
+          },
+      {
+            day: 4,
+            title: 'Ha Noi - Airport',
+            titleTh: 'HA NOI – AIRPORT',
+            notes: ['Hotel breakfast', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ถ่ำยรู ปที่ Mega World', 'สุ สำนลุงโฮ (ถ่ำยรู ปด้ำนอนก)', 'วัดเฉินก๊วก', 'ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Ngon PBC 20$',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['ยำไหลบัวกุ้ง หมู', 'ขนมเบื้องญวน', 'เปาะเปี๊ยะปูทอด', 'ปลาหมึกแดดเดียวทอด', 'ขนมจีน หมูยำ่ ง', 'หอยโข่งผัดมะขำม', 'ผลไม้ + ชำ'],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '350', single: '300' },
+      { label: '29/04-02/05/2026', merged: '+30$/pax', single: '+95$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ + บุฟเฟ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fithan03',
@@ -213,11 +447,75 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBands, [322, 278, 257, 255, 250], '+70 USD')],
     highlights: ['Ha Long Queen Sun World cable car', 'Ha Long Bay cruise and cave visit', 'Ninh Binh day with boat route'],
     itinerary: [
-      { day: 1, title: 'Ha Noi - Ha Long', notes: ['Airport pickup', 'Mega Grand World photo stop', 'Queen Sun World cable car'] },
-      { day: 2, title: 'Ha Long - Ha Noi', notes: ['Ha Long Bay cruise', 'Cave visit', 'Return to Ha Noi old quarter'] },
-      { day: 3, title: 'Ninh Binh - Ha Noi', notes: ['Ninh Binh sightseeing', 'Boat route and countryside stops', 'Return to Ha Noi'] },
-      { day: 4, title: 'Ha Noi - Airport', notes: ['Hotel breakfast', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ha Noi - Ha Long',
+            titleTh: 'HA NOI – HA LONG',
+            notes: ['Airport pickup', 'Mega Grand World photo stop', 'Queen Sun World cable car'],
+            notesTh: ['รับคณะที่สนามบิน', 'เดินทางเมืองฮำลอง (ประมำณ 3 ชั่วโมง)', 'แวะถ่ำยรู ป Mega Grand World', 'นัง่ กระเช้าข้ำมทะเล Queen Sun World'],
+            lunch: 'Ngon PBC 20$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 5 star: The Watson Premium or similar 7.ผลไม้ + ชำ',
+            lunchMenuTh: ['ยำไหลบัวกุ้ง หมู', 'ขนมเบื้องญวน', 'เปาะเปี๊ยะปูทอด', 'ปลาหมึกแดดเดียวทอด', 'ขนมจีน หมูยำ่ ง', 'หอยโข่งผัดมะขำม'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 2,
+            title: 'Ha Long - Ha Noi',
+            titleTh: 'HA LONG – HA NOI',
+            notes: ['Ha Long Bay cruise', 'Cave visit', 'Return to Ha Noi old quarter'],
+            notesTh: ['รับประทำนอาหารเช้ำที่โรงแรม', 'ล่องเรื ออ่ำวฮำลอง เกำะต่ำงๆ', 'ถ้ ำสวรรค์', 'เดินทางกลบฮำนอย', 'โบสถ์ฮำนอย', 'ถนน 36สาย'],
+            lunch: 'Sen A Dong',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star: La sante hotel & Spa or similar',
+            lunchMenuTh: ['Buffet'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 3,
+            title: 'Ninh Binh - Ha Noi',
+            titleTh: 'NINH BINH - HA NOI',
+            notes: ['Ninh Binh sightseeing', 'Boat route and countryside stops', 'Return to Ha Noi'],
+            notesTh: ['รับประทำนอาหารเช้ำที่โรงแรม', 'เดินทางนิงห์บิงห์', 'ล่องเรื อตำมก๊ก', 'กลับฮำนอย'],
+            lunch: 'Vu Bao 22$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star: La sante hotel & Spa or similar 8. ผลไม้',
+            lunchMenuTh: ['สลัดไข่สำหร่ ำยทะเล', 'ไก่น่ ึง', 'หอยทำกยัดไส้ต๋ ุน', 'หมูสำมชั้นทอด', 'ผักกำดผัดเห็ด', 'ข้าว', 'แกงส้ม'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 4,
+            title: 'Ha Noi - Airport',
+            titleTh: 'HA NOI –– AIRPORT',
+            notes: ['Hotel breakfast', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำที่โรงแรม', 'ช้สุสำนลุงโฮ และบริ เวณบ้ำนลุงโฮ วัดเสำ', 'วัดเฉินก๊วก', 'ชอปปิ้ ง Lotte Mall ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Sen',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['Buffet', 'เดียว'],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '322', single: '278' },
+      { label: '29/04-02/05/2026', merged: '+30$/pax', single: '+100$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fitpqc01',
@@ -238,10 +536,64 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBands, [220, 190, 177, 171, 170], '+80 USD')],
     highlights: ['Hon Thom cable car and Aquatopia', 'Sunset Town and Kiss Bridge', 'VinWonders, Grand World, Venice show area'],
     itinerary: [
-      { day: 1, title: 'Phu Quoc - Hon Thom Cable Car', notes: ['Airport pickup', 'Hon Thom cable car', 'Aquatopia water park', 'Sunset Town and Kiss Bridge'] },
-      { day: 2, title: 'VinWonders - Grand World', notes: ['VinWonders amusement park', 'Aquarium and water park', 'Grand World and Venice show area'] },
-      { day: 3, title: 'Phu Quoc - Airport', notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Phu Quoc - Hon Thom Cable Car',
+            titleTh: 'PHU QUOC – HON THOM CABLE CAR',
+            notes: ['Airport pickup', 'Hon Thom cable car', 'Aquatopia water park', 'Sunset Town and Kiss Bridge'],
+            notesTh: ['รับคณะที่สนามบินฟูก๊วก', 'ไปเที่ยวกระเช้าทะเล Hon Thom', 'สวนสนุก สวนน้ ำ Aquatopia ชำยหำด Hon Thom', 'ถ่ำยรู ปโซน Sunset town', 'ถ่ำยรู ปสะพานจูบ แลนด์มำกใหม่ของฟูก๊วก Option 1: The Kiss of Sea Show +26$/pax (21 ยกเว้นวันอังคำร Option 2: Set menu at Bavavia restaurant +2'],
+            lunch: 'Bun Quay Kien Xay 5$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar',
+            lunchMenuTh: ['ขนมจีนซีฟูด Full Top', 'คนละชำม + 1 solf dri', '.00-21.35)', '$/pax'],
+            dinnerMenuTh: ['ing', 'nk'],
+          },
+      {
+            day: 2,
+            title: 'VinWonders - Grand World',
+            titleTh: 'VIN WONDER',
+            notes: ['VinWonders amusement park', 'Aquarium and water park', 'Grand World and Venice show area'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนสนุก Vin Wonder สวนน้ ำ และ Aquarium', 'ไปเที่ยว Grand World Phu Quoc ที่ได้ฉำยำน แห่งเวียดนำม', 'ชมบ้ำนไม้ไผ่', 'หมู่บำ้ น Venice โชว์กลำงคืน', 'อิสระเล่นคำซีโนที่ Corona Casino', 'อิสระชมโชว์ The color of venice จักขึ้นบร 21.30-22.00 Option 1: ล่องเรื อ Gondola +9$/pax (ยังไม่ Option 2: Teddy Bear Museum +9$/pax (ยังไม่'],
+            lunch: 'Vin Wonder',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar',
+            lunchMenuTh: ['Buffee', 'ำมว่ำ Venice', 'ิ เวณแม่น้ ำเวนิส', 'รวม)', 'รวม)'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 3,
+            title: 'Phu Quoc - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ส่ งคณะไปสนามบิน'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '220', single: '190' },
+      { label: '29/04-02/05/2026', merged: '+25$/pax', single: '+105$' },
+      { label: '24-25/12/2026', merged: '+50$/pax', single: '+130$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 2 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผูใ้ หญ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fitpqc02',
@@ -262,11 +614,76 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBands, [268, 233, 215, 210, 205], '+110 USD')],
     highlights: ['Ho Quoc pagoda, Dinh Cau and bamboo house', 'VinWonders and Grand World', 'Hon Thom cable car and Sunset Town'],
     itinerary: [
-      { day: 1, title: 'Phu Quoc', notes: ['Airport pickup', 'Ho Quoc pagoda', 'Dinh Cau shrine', 'Bamboo house and Grand World night show'] },
-      { day: 2, title: 'VinWonders - Grand World', notes: ['VinWonders', 'Aquarium and water park', 'Free time in Grand World'] },
-      { day: 3, title: 'Hon Thom Cable Car', notes: ['Hon Thom cable car', 'Aquatopia', 'Sunset Town and Kiss Bridge'] },
-      { day: 4, title: 'Phu Quoc - Airport', notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Phu Quoc',
+            titleTh: 'PHU QUOC',
+            notes: ['Airport pickup', 'Ho Quoc pagoda', 'Dinh Cau shrine', 'Bamboo house and Grand World night show'],
+            notesTh: ['รับคณะที่สนามบินฟูก๊วก แล้วขึ้นรถ', 'ไปวัดโฮก๊วก', 'ไปสำรเจ้ำ Dinh Cau', 'ชมบ้ำนไม้ไผ่', 'หมู่บำ้ น Venice โชว์กลำงคืน'],
+            lunch: 'Bun Quay Kien Xay 5$',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar',
+            lunchMenuTh: ['ขนมจีนซีฟูด Full T', 'คนละชำม + 1 solf d'],
+            dinnerMenuTh: ['oping', 'rink'],
+          },
+      {
+            day: 2,
+            title: 'VinWonders - Grand World',
+            titleTh: 'VIN WONDER -GRAND WORLD',
+            notes: ['VinWonders', 'Aquarium and water park', 'Free time in Grand World'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนสนุก Vin Wonder', 'สวนน้ ำ และ Aquarium', 'อิสระใน Grand World', 'อิสระชมโชว์ The color of venice จักขึ้น 21.30-22.00'],
+            lunch: 'Vin Wonder',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar',
+            lunchMenuTh: ['Buffet', 'บริ เวณแม่น้ ำเวนิส'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 3,
+            title: 'Hon Thom Cable Car',
+            titleTh: 'PHU QUOC – HON THOM CABLE CAR',
+            notes: ['Hon Thom cable car', 'Aquatopia', 'Sunset Town and Kiss Bridge'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ไปเที่ยวกระเช้าทะเล Hon Thom', 'สวนสนุก สวนน้ ำ Aquatopia ชำยหำด Hon Th', 'ถ่ำยรู ปโซนใหม่ฟูก๊วก Mediterranean Sun', 'ถ่ำยรู ปสะพานจูป แลนด์มำกใหม่ของฟูก๊วก Option 1: The Kiss of Sea Show +26$/pax ( วันอังคำร Option 2: Set menu at Bavavia restaurant'],
+            lunch: 'Hon Thom',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star: Roma Phu Quoc or similar (Sunset town zone)',
+            lunchMenuTh: ['Buffet', 'om', 'set Town', '00-21.35) ยกเว้น', '+23$/pax'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 4,
+            title: 'Phu Quoc - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ส่ งคณะไปสนามบิน'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '268', single: '233' },
+      { label: '29/04-02/05/2026', merged: '+35$/pax', single: '+145$' },
+      { label: '24/12/2026-02/01/2027', merged: '+60$/pax', single: '+170$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 3 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผูใ้ หญ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fitcxr01',
@@ -287,11 +704,75 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBandsSmall, [422, 294, 260, 242, 230, 222], '+65 USD')],
     highlights: ['Da Lat city and night market', 'Tuyen Lam cable car and Datanla waterfall', 'Vinpearl Wonder Nha Trang'],
     itinerary: [
-      { day: 1, title: 'Nha Trang - Da Lat', notes: ['Airport pickup', 'Drive to Da Lat', 'Lam Vien Square and night market'] },
-      { day: 2, title: 'Da Lat - Nha Trang', notes: ['Tuyen Lam cable car', 'Datanla waterfall alpine coaster', 'Hydrangea garden, return to Nha Trang'] },
-      { day: 3, title: 'Nha Trang', notes: ['Vinpearl Wonder', 'Island cable car and amusement park', 'Nha Trang night market'] },
-      { day: 4, title: 'Nha Trang - Airport', notes: ['Hotel breakfast', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Nha Trang - Da Lat',
+            titleTh: 'NHA TRANG – DA LAT',
+            notes: ['Airport pickup', 'Drive to Da Lat', 'Lam Vien Square and night market'],
+            notesTh: ['รับคณะที่สนามบิน', 'เดินทางไปดำลัด (ประมำณ 3-3.5 ชั่วโมง)', 'จุตุรัต Lam Vien', 'ตลาดไนต์ดำลัด'],
+            lunch: 'Hon Giao',
+            dinner: 'BBQ Garden Dalat',
+            overnightTh: 'Hotel 4 star: Goldient Boutique or similar 9.ของหวาน + ชำน้ ำแข็ง',
+            lunchMenuTh: ['หมูป่ำผัดตะไคร้พริ ก', 'กุ้ง รำดซอสเนยกระเทียม', 'หมูสำมชั้นหนังกรอบ', 'ปลาบำซำตุ๋นในหม้อดิน', 'ไข่เจียว', 'สลัดน้ ำสลัดแบบน้ ำส้มสายชู', 'ซุปผักกำดใส่ หมู', 'ข้าวสวย'],
+            dinnerMenuTh: [],
+          },
+      {
+            day: 2,
+            title: 'Da Lat - Nha Trang',
+            titleTh: 'DA LAT – NHA TRANG',
+            notes: ['Tuyen Lam cable car', 'Datanla waterfall alpine coaster', 'Hydrangea garden, return to Nha Trang'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'กระเช้า Tuyen Lam (1 ขำ) วัดตุ๊กลัม', 'น้ ำตำกดำทันลำ นัง่ รถรำงไปกลับ', 'วัดมังกร', 'สวนดอกไม้ไฮเดนเยีย', 'เดินทางกลับไปไปญำจำง'],
+            lunch: 'Hoang Gia',
+            dinner: 'Galangal',
+            overnightTh: 'Hotel 4 star: Panama or similar',
+            lunchMenuTh: ['ปลาทับทิมนึ่ง', 'หมูตม้ ไข่', 'ซี่โครงหมูยำ่ งงำ', 'สลัดน้ ำใส', 'กุ้ง ผัดเค็ม', 'หม้อไฟปลาสเตอร์เจียน', 'ข้าว + ชำเย็น'],
+            dinnerMenuTh: ['เฝอ', 'ขนมเบื้องญวน', 'ซี่โครงหมูตม้ เค็ม', 'กุงั ต้มเค็ม', 'ข้าวผัดสับปะรด', 'ผักบุง้ ผัดกระเทียม', 'ผลไม้'],
+          },
+      {
+            day: 3,
+            title: 'Nha Trang',
+            titleTh: 'NHA TRANG',
+            notes: ['Vinpearl Wonder', 'Island cable car and amusement park', 'Nha Trang night market'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'นัง่ กระเช้าข้ำมทะเล ไปสวนสนุก VinPearl', 'อิสระกับเครื่ องเล่นมำกมำย', 'นัง่ กระเช้ากลับฝั่ง', 'วัดลองเซิน', 'โบสถ์หิน', 'ตลาดไนต์'],
+            lunch: 'Vinpearl Wonder',
+            dinner: 'Free Style ไม่ รวม',
+            overnightTh: 'Hotel 4 star: Panama or similar',
+            lunchMenuTh: ['Buffee'],
+            dinnerMenuTh: ['*ถ้ารวมอาหารเย็น +14$/pax'],
+          },
+      {
+            day: 4,
+            title: 'Nha Trang - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Hotel breakfast', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ส่ งสนามบิน'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '422', single: '294' },
+      { label: '29/04-02/05/2026', merged: '+30$/pax', single: '+95$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 5 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผูใ้ หญ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'fitsgn01',
@@ -312,10 +793,75 @@ export const tours = [
     priceRows: [makePrice('01/04-30/12/2026', fitBandsSmall, [545, 362, 308, 286, 267, 255], '+78 USD')],
     highlights: ['Fairy Stream, red and white sand dunes', 'Jeep ride in Mui Ne', 'Ho Chi Minh city tour and Saigon river dinner cruise'],
     itinerary: [
-      { day: 1, title: 'Ho Chi Minh - Mui Ne', notes: ['Airport pickup', 'Fairy Stream', 'Red Sand Dunes and fishing village'] },
-      { day: 2, title: 'Mui Ne - Ho Chi Minh', notes: ['White Sand Dunes with jeep', 'Return to Ho Chi Minh', 'Walking street, Uncle Ho statue, Cafe Apartment, Saigon dinner cruise'] },
-      { day: 3, title: 'Ho Chi Minh - Airport', notes: ['Independence Palace', 'Notre Dame Cathedral and Central Post Office', 'Ben Thanh Market, airport transfer'] },
+      {
+            day: 1,
+            title: 'Ho Chi Minh - Mui Ne',
+            titleTh: 'HO CHI MINH – MUI NE',
+            notes: ['Airport pickup', 'Fairy Stream', 'Red Sand Dunes and fishing village'],
+            notesTh: ['รับคณะที่สนามบิน', 'เดินทางไปมุยแน่ (ประมำณ 4 ชั่วโมง)', 'เดินลำธำรสวรรค์', 'ชมทะเลทรำยแดง', 'ชมทะเลทรำยแดง (รวมรถจี๊ป)', 'หมู่บำ้ นชำวประโมงค์'],
+            lunch: 'Cao Phat 15$',
+            dinner: 'Huong Phat 12$',
+            overnightTh: 'Hotel 4 star: Vipol, Unique or similar 8.ชำน้ ำแข็ง 8. ผักรวมลวก จิ้มแจ่ว',
+            lunchMenuTh: ['ปลาบ้งเลำตุ๋นในหม้อดิน', 'ยำดอกกล้วย', 'ไก่ทอดคลุกน้ ำปลา', 'กุ้ง ผัดเคี่ยวน้ ำปลากับหมูสำมชั้น', 'ดอกกะหล่ำผัดสไตล์เสฉวน', 'แกงส้มปลารสเปรี้ ยว', 'ข้าวสวย'],
+            dinnerMenuTh: ['สลัดไข่', 'ยำยอดมะพร้ำวทะเล', 'ข้าวผัดรวมมิตร', 'กุ้ง ผัดหมูเค็มหวาน', 'ดอกฟักทองผัดกระเทียม', 'แกงส้มกุ้ง', 'ปลาหมึกทอดน้ ำปลา'],
+          },
+      {
+            day: 2,
+            title: 'Mui Ne - Ho Chi Minh',
+            titleTh: 'MUI NE – DA LAT',
+            notes: ['White Sand Dunes with jeep', 'Return to Ho Chi Minh', 'Walking street, Uncle Ho statue, Cafe Apartment, Saigon dinner cruise'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปเมืองดำลัด', 'สวนดอกไม้ไฮเดนเยีย', 'กระเช้า Tuyen Lam (1 ขำ) วัดตุ๊กลัม', 'น้ ำตำกดำทันลำ นัง่ รถรำงไปกลับ', 'ตลาดไนต์ดำลัด'],
+            lunch: 'Hoang Gia',
+            dinner: 'BBQ Garden Dalat buffet',
+            overnightTh: 'Hotel 4 star: Goldient Boutique or similar 7. ข้าว + ชำเย็น',
+            lunchMenuTh: ['ปลาทับทิมนึ่ง', 'หมูตม้ ไข่', 'ซี่โครงหมูยำ่ งงำ', 'สลัดน้ ำใส', 'กุ้ง ผัดเค็ม', 'หม้อไฟปลาสเตอร์เจียน'],
+            dinnerMenuTh: ['รวมน้ ำชำท่านละ 1 แก้ว'],
+          },
+      {
+            day: 3,
+            title: 'Ho Chi Minh - Airport',
+            titleTh: 'DA LAT – HO CHI MINH',
+            notes: ['Independence Palace', 'Notre Dame Cathedral and Central Post Office', 'Ben Thanh Market, airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปโฮจิมินห์ (ประมำณ 6-7 ชั่วโมง)', 'ถนนคนเดิน Nguyen Hue', 'อนุสำวรี ลุงโฮ', 'Café Apartment'],
+            lunch: 'Song Chau',
+            dinner: 'Ganh Bong Sen',
+            overnightTh: 'Hotel 4 star: Athena, Cicilia or similar',
+            lunchMenuTh: ['ยำรวม + ข้าวเกรี ยบกุ้ง', 'ปอเปี๊ยะทอด', 'หมูต๋ ุนหน่อไม้', 'ปลาบำซำเนื้อแล่ทอดเสิ ร์ฟพร้อมกิมจิ', 'ดอกกะหล่ำผัดกับหมู', 'ซุปไก่ใส่ เห็ดสด', 'ข้าวสวย', 'ผลไม้ + ชำน้ ำแข็ง'],
+            dinnerMenuTh: ['Buffee'],
+          },
+      {
+            day: 4,
+            title: '',
+            titleTh: 'HO CHI MINH CITY TOUR – AIRPORT',
+            notes: [],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ทำเนียบอิสระภำพ', 'โบสถ์นอเธอดัม', 'ไปรษณี กลำง', 'วัดเจ้ำแม่ทบั ทิม', 'ตลาดเบ๋ นถัน่', 'ส่ งสนามบิน'],
+            lunch: 'Bep Me In (Michelin Bib Gourmand)',
+            dinner: 'Free Style ไม่ รวม',
+            overnightTh: '',
+            lunchMenuTh: ['ขนมเบื้องญวนกุ้ง และหมู', 'ยำใหลบัวกุ้ง หมู', 'ข้าวผัดทะเล', 'น่องไก่ยำ่ งเกลือพริ ก', 'หมูทอดงำ'],
+            dinnerMenuTh: ['*ถ้ารวมอาหารเย็น +14$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '01/04-30/12/2026', merged: '545', single: '362' },
+      { label: '29/04-02/05/2026', merged: '+35$/pax', single: '+110$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '16 seats', right: '29 seats (mini bus)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 5 มื้อ + บุ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องกำ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผูใ้ หญ', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'dad01',
@@ -336,10 +882,62 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [159, 152, 145, 140, 136, 133, 131], '+25 USD')],
     highlights: ['Hoi An Ancient Town', 'Ba Na Hills and Golden Bridge', 'Da Nang city photo stops'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Hoi An', notes: ['Airport pickup', 'Hoi An Ancient Town', 'Da Nang overnight'] },
-      { day: 2, title: 'Ba Na Hills', notes: ['Cable car', 'Golden Bridge, Fantasy Park and flower garden', 'Return to Da Nang'] },
-      { day: 3, title: 'Da Nang - Airport', notes: ['City photo stops', 'Shopping time', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Hoi An',
+            titleTh: 'DA NANG – HOI AN',
+            notes: ['Airport pickup', 'Hoi An Ancient Town', 'Da Nang overnight'],
+            notesTh: ['รับคณะที่สนามบิน', 'รับประทำนอาหารกลำงวันเสร็ จแล้วเดินทางเ', 'เดินเมืองโบราณฮอยอัน', 'เรื อกระด้ง', 'หมู่บำ้ นแกะสลักหิ นอ่อน กลับดานัง'],
+            lunch: 'Son Duong 6$',
+            dinner: 'Hanoi Old 6$',
+            overnightTh: 'Hotel 4 stars: Hadana, TGT, Magnolia (4 stars) or similar 11. ของหวาน + ชำเย็น',
+            lunchMenuTh: ['เปาะเปี๊ยะ', 'ข้ำสู่ เมืองฮอยอัน        2.ปลาหมึกทอดน้', 'ไก่ทอดน้ ำปล', 'ปลาทอดรำดซอส', 'หมูไข่พะโล้', 'ปลายอผัดมะเข', 'หอยผัดซอสจีน', 'ผักผัดน้ ำมั', 'แกงจืด หมูสบ', 'ข้าว ผลไม้'],
+            dinnerMenuTh: ['ทะเล              1. ยำหัวปลีใส่ กงุ้ และหมู', 'ำปลา             2. หอยลำยผัดซอสเสฉวน', 'ำ                 3. กุ้ง ผัดหมูเค็ม', 'เสำวรส            4. ปลาทอดซอสเปรี้ ยวหวาน', 'ไก่ทอดน้ ำปลา', 'ือเทศ             6. มะเขือยำวทอด', 'ผักบุง้ ผัด', 'นหอย              8. แกงจืดผัก', 'ั เต้ำหู้         9. ข้าวสวย', 'น้ ำเปล่ำ        10. ไข่ตม้ รำดซี อิ๊ว'],
+          },
+      {
+            day: 2,
+            title: 'Ba Na Hills',
+            titleTh: 'DA NANG – BANA HILLS',
+            notes: ['Cable car', 'Golden Bridge, Fantasy Park and flower garden', 'Return to Da Nang'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ขึ้นกระเช้าบำนำฮิวล์', 'ชมสะพานมือ สวนสนุกบำนำฮิวล์ สวนดอกไม้', 'ลงกระเช้า', 'ถ่ำยรู ปสะพานมังกร'],
+            lunch: 'Ba Na hills (buffet)',
+            dinner: 'Long Qiao – Buffet เสริฟที่โต๊ ะ',
+            overnightTh: 'Hotel 4 stars: Hadana, TGT, Magnolia (4 stars) or similar',
+            lunchMenuTh: [],
+            dinnerMenuTh: ['ของทะเล เนื้อ ผัก ติ่มซำ ... สดนึ่งชำบู', 'สั่งได้ไม่อั้นร้านติดกับสะพานมังกร', '*แถมฟรี กุ้ง มังกรอบเนย คนละครึ่งตัว', 'ถ้าเพิ่มเป็นกุ้ง มังกรคนละตัว +7$/pax'],
+          },
+      {
+            day: 3,
+            title: 'Da Nang - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['City photo stops', 'Shopping time', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ไหว้พระวัดลิงอื๋ง', 'Son Tra Marina (ไม่รวมเครื่ องดื่ม)', 'ชอปปิ้ งตลาดฮำน', 'ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Banh mi (แถมขนมปัง)',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['*ถ้าเพิ่มเป็น', 'sgd5 DAYS'],
+            dinnerMenuTh: ['เซตเมนู +6$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+18$/pax', single: '+15$/pax' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 2 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 ก่อนวันเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'dad02',
@@ -360,10 +958,63 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [186, 179, 177, 171, 166, 163, 160], '+65 USD')],
     highlights: ['Ba Na Hills overnight', 'Golden Bridge and Fantasy Park', 'Hoi An Ancient Town'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Ba Na Hills', notes: ['Airport pickup', 'Cable car', 'Golden Bridge and Ba Na attractions'] },
-      { day: 2, title: 'Ba Na Hills - Hoi An - Da Nang', notes: ['Hoi An Ancient Town', 'Basket boat or city walk depending program', 'Return to Da Nang'] },
-      { day: 3, title: 'Da Nang - Airport', notes: ['Linh Ung pagoda and city photos', 'Han Market', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Ba Na Hills',
+            titleTh: 'DA NANG – BANA HILLS',
+            notes: ['Airport pickup', 'Cable car', 'Golden Bridge and Ba Na attractions'],
+            notesTh: ['รับคณะที่สนามบิน เดินทางไปบำนำฮิวล์', 'ไหว้พระวัดลิงอื๋ง', 'Son Tra Marina (ไม่รวมเครื่ องดื่ม)', 'ขึ้นกระเช้าบำนำฮิวล์', 'ชมสะพานมือ', 'สวนสนุกบำนำฮิวล์', 'ทำนข้าวเย็นและพักผ่อนที่โรงแรม', '*กรณี พกั 3 คนที่บำนำฮิวล์ใช้ห้อง Family'],
+            lunch: 'Son Duong 6$',
+            dinner: 'Beer Plaza',
+            overnightTh: 'พักที่ Mercure Ba Na Hills 9.แกงจืด หมูสบั เต้ำหู้',
+            lunchMenuTh: ['เปาะเปี๊ยะทะ', 'ปลาหมึกทอดน้ ำ', 'ไก่ทอดน้ ำปลา', 'ปลาทอดรำดซอสเส', 'หมูไข่พะโล้', 'ปลายอผัดมะเขือ', 'หอยผัดซอสจีน', 'ผักผัดน้ ำมันห', 'Bunk +20$/ห้อง/คืน      10. ข้าว ผลไม้ น'],
+            dinnerMenuTh: ['เล              Buffee', 'ปลา', 'ำวรส', 'เทศ', 'อย', '้ ำเปล่ำ'],
+          },
+      {
+            day: 2,
+            title: 'Ba Na Hills - Hoi An - Da Nang',
+            titleTh: 'BANA HILLS – HOI AN',
+            notes: ['Hoi An Ancient Town', 'Basket boat or city walk depending program', 'Return to Da Nang'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนดอกไม้ ลงกระเช้า แล้วเดินทางไปฮอยอัน', 'เดินเมืองโบราณฮอยอัน', 'เรื อกระด้ง', 'หมู่บำ้ นแกะสลักหิ นอ่อน กลับดานัง', 'ถ่ำยรู ปสะพานมังกร'],
+            lunch: 'Hanoi Old 6$',
+            dinner: 'Long Qiao – Buffet เสริฟที่โต๊ ะ',
+            overnightTh: 'Hotel 4 stars: Hadana, TGT, Magnolia (4 stars) or similar 10. ของหวาน + ชำเย็น',
+            lunchMenuTh: ['หอยลำยนึ่ง', 'ไก่ผดั ขิง', 'กุ้ง หมูตม้ เ', 'ปลาตุ๋นหม้อดิ', 'ไข่เจียวหมูสบ', 'เต้ำหู้ซอสมะเ', 'ผัดผัก', 'แกงจืด ผัก หม', 'ข้าวสวย'],
+            dinnerMenuTh: ['ของทะเลำ เนื้อ ผัก ติ่มซำ ... สดนึ่งชำบู', 'สั่งได้ไม่อั้นร้านติดกับสะพานมังกร', 'ค็ม             *แถมฟรี กุ้ง มังกรอบเนย คนละครึ่งตัว', 'น', 'ั               **ถ้าเพิ่มเป็นกุ้ง มังกรคนละตัว +7$/pax', 'ขือเทศ', 'ูสบั'],
+          },
+      {
+            day: 3,
+            title: 'Da Nang - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Linh Ung pagoda and city photos', 'Han Market', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ตลาดฮำน', 'ไปสนามบิน ส่งคณะ จบโปรแกรม'],
+            lunch: 'Banh mi (แถมขนมปัง)',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['*ถ้าเพิ่มเป็นเซ'],
+            dinnerMenuTh: ['ตเมนู +6$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '28$/pax', single: '25$/pax' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 2 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 15 วันก่อนเดินทาง', 'ยอดคงเหลือ'],
+      ['ใช้เรทโอนเงินของช่อง Selling ในเว็บ Supperich สี เขี', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'dad03',
@@ -384,11 +1035,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [210, 205, 200, 193, 187, 183, 180], '+75 USD')],
     highlights: ['Ba Na Hills overnight', 'Hoi An Ancient Town', 'Da Nang city and shopping day'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Ba Na Hills', notes: ['Airport pickup', 'Ba Na Hills cable car', 'Golden Bridge and Fantasy Park'] },
-      { day: 2, title: 'Ba Na Hills - Hoi An - Da Nang', notes: ['Hoi An Ancient Town', 'Basket boat', 'Return to Da Nang'] },
-      { day: 3, title: 'Da Nang City', notes: ['Linh Ung pagoda', 'Son Tra Marina', 'Dragon Bridge and Love Bridge'] },
-      { day: 4, title: 'Da Nang - Airport', notes: ['Han Market shopping', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Ba Na Hills',
+            titleTh: 'DA NANG – BANA HILLS',
+            notes: ['Airport pickup', 'Ba Na Hills cable car', 'Golden Bridge and Fantasy Park'],
+            notesTh: ['รับคณะที่สนามบิน เดินทางไปบำนำฮิวล์', 'ขึ้นกระเช้าบำนำฮิวล์', 'ชมสะพานมือ', '-สวนสนุกบำนำฮิวล์', '*กรณี พกั 3 ท่านใช้ห้อง Family Bunk +20$/'],
+            lunch: 'Son Duong 6$',
+            dinner: 'Beer Plaza',
+            overnightTh: 'พักที่ Mercure Ba Na Hill 9.แกงจืด หมูสบั เต้ำหู้',
+            lunchMenuTh: ['ขำไก่ทอดรำดซอส', 'ปลาหมึกทอดน้ ำปลา', 'ไก่ทอดน้ ำปลา', 'ปลาทอดรำดซอสเสำวรส', 'หมูไข่พะโล้', 'ปลายอผัดมะเขือเทศ', 'หอยผัดซอสจีน', 'ผักผัดน้ ำมันหอย', 'ห้อง/คืน            10. ข้าว ผลไม้ น้ ำเ'],
+            dinnerMenuTh: ['Buffee', 'ปล่ำ'],
+          },
+      {
+            day: 2,
+            title: 'Ba Na Hills - Hoi An - Da Nang',
+            titleTh: 'BANA HILLS – DA NANG',
+            notes: ['Hoi An Ancient Town', 'Basket boat', 'Return to Da Nang'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนดอกไม้', 'ลงกระเช้า แล้วเดินทางไปดานัง', 'ไหว้พระวัดลิงอื๋ง', 'Son Tra Marina café (ไม่รวมเครื่ องดื่ม', 'ถ่ำยรู ปสะพานมังกร', 'ถ่ำยรู ปสวน APEC'],
+            lunch: 'ไม่ รวม',
+            dinner: 'Hoa Vien 12.5$',
+            overnightTh: 'Hotel 4 stars: Hadana, Magnolia (4 stars) or similar *ถ้าอัพเกทเป็นกุ้ง มังกรท่านละ 1 ตัว +7$/pax',
+            lunchMenuTh: ['*ถ้ารวมอาหารเที่ยงเป', 'Beer Plaza, Lavender', ')'],
+            dinnerMenuTh: ['็ นบุฟเฟ่ Four Season,   1. ยำทะเล', '+14$/pax                2.กุ้ง มังกรซอสกระเทียม คนละ ½ ตัว', 'หม้อไฟรวม ปูมำ้ กุ้ง ปลาหมึก ปลา หอย', 'เห็ด เต้ำหู้', 'ปลาหมึกทอดซอส', 'ไก่ทอดน้ ำปลา', 'ไข่เจียว', 'ผัดผัก', 'ข้าวสวย', 'ผลไม้', 'ไวน์แดงโต๊ะละ 1 ขวด'],
+          },
+      {
+            day: 3,
+            title: 'Da Nang City',
+            titleTh: 'DA NANG – HOI AN',
+            notes: ['Linh Ung pagoda', 'Son Tra Marina', 'Dragon Bridge and Love Bridge'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปฮอยอัน', 'เดินเมืองโบราณฮอยอัน', 'เรื อกระด้ง', 'เที่ยวหมู่บำ้ นแกะสลักหิ นอ่อน', 'กลับไปดานัง'],
+            lunch: 'Hanoi Old 6$',
+            dinner: 'Long Qiao – Buffet เสริฟที่โต๊ ะ',
+            overnightTh: 'Hotel 4 stars: Hadana, Magnolia (4 stars) or similar 11. ของหวาน + ชำเย็น',
+            lunchMenuTh: ['ยำหัวปลีใส่ กงุ้', 'หอยลำยผัดซอสเสฉวน', 'กุ้ง ผัดหมูเค็ม', 'ปลาทอดซอสเปรี้ ยว', 'ไก่ทอดน้ ำปลา', 'มะเขือยำวทอด', 'ผักบุง้ ผัด', 'แกงจืดผัก', 'ข้าวสวย', 'ไข่ตม้ รำดซี อิ๊'],
+            dinnerMenuTh: ['และหมู                   ของทะเลำ เนื้อ ผัก ติ่มซำ ... สดนึ่ง', 'ชำบู', 'สั่งได้ไม่อั้นร้านติดกับสะพานมังกร', 'หวาน                     *แถม กุ้ง มังกรอบเนยคนละครึ่งตัว', 'ถ้าเพิ่มเป็นกุ้ง มังกรคนละตัว +7$/pax', 'ว'],
+          },
+      {
+            day: 4,
+            title: 'Da Nang - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Han Market shopping', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ชอปปิ้ งตลาดฮำน', 'ไปสนามบิน ส่งคณะ จบโปรแกรม'],
+            lunch: 'Banh Mi (แถมขนมปังคนละชิ้น)',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['*ถ้าเพิ่มเป็นเซดเมน'],
+            dinnerMenuTh: ['ู +6$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+28$', single: '+25$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 3 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 15 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'dad04',
@@ -409,11 +1123,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [265, 260, 258, 248, 241, 237, 233], '+115 USD')],
     highlights: ['Two nights on Ba Na Hills', 'Golden Bridge, Fantasy Park and flower garden', 'Hoi An and Da Nang city highlights'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Ba Na Hills', notes: ['Airport pickup', 'Linh Ung pagoda', 'Ba Na Hills cable car'] },
-      { day: 2, title: 'Ba Na Hills', notes: ['Full Ba Na Hills day', 'Golden Bridge', 'Fantasy Park and flower garden'] },
-      { day: 3, title: 'Ba Na Hills - Hoi An - Da Nang', notes: ['Hoi An Ancient Town', 'Basket boat or coffee stop', 'Return to Da Nang'] },
-      { day: 4, title: 'Da Nang - Airport', notes: ['Han Market shopping', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Ba Na Hills',
+            titleTh: 'DA NANG – BANA HILLS',
+            notes: ['Airport pickup', 'Linh Ung pagoda', 'Ba Na Hills cable car'],
+            notesTh: ['รับคณะที่สนามบิน', 'ไหว้พระวัดลิงอื๋ง', 'Marina Cafe (ไม่รวมเครื่ องดื่ม)', 'ถ่ำยรู ปสะพานมังกร', 'ขึ้นกระเช้าบำนำฮิวล์', '*กรณี พกั 3 ท่านที่บำนำฮิวล์ใช้ห้อง Famil'],
+            lunch: 'Son Duong 6$',
+            dinner: 'Beer Plaza',
+            overnightTh: 'พักที่ Mercure Ba Na Hill 9.แกงจืด หมูสบั เต้ำหู้',
+            lunchMenuTh: ['ขำไก่ทอดรำดซอส', 'ปลาหมึกทอดน้ ำปลา', 'ไก่ทอดน้ ำปลา', 'ปลาทอดรำดซอสเสำวร', 'หมูไข่พะโล้', 'ปลายอผัดมะเขือเทศ', 'หอยผัดซอสจีน', 'ผักผัดน้ ำมันหอย', 'y Bunk +20$/ห้อง/คืน 10. ข้าว ผลไม้ น้ ำ'],
+            dinnerMenuTh: ['Buffee', 'ส', 'เปล่ำ'],
+          },
+      {
+            day: 2,
+            title: 'Ba Na Hills',
+            titleTh: 'BANA HILLS',
+            notes: ['Full Ba Na Hills day', 'Golden Bridge', 'Fantasy Park and flower garden'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนสนุก Fantasy Park', 'สะพานมือ', 'พระองค์ใหญ่', 'สวนดอกไม้', '*กรณี พกั 3 ท่านที่บำนำฮิวล์ใช้ห้อง Famil'],
+            lunch: 'ไม่ รวม',
+            dinner: 'Beer Plaza',
+            overnightTh: 'พักที่ Mercure Ba Na Hill',
+            lunchMenuTh: ['*ถ้ารวมอาหารเที่ยงเ', 'Four Season, Beer P', '+14$/pax', 'y Bunk +20$/ห้อง/คืน'],
+            dinnerMenuTh: ['ป็ นบุฟเฟ่       Buffee', 'laza, Lavender'],
+          },
+      {
+            day: 3,
+            title: 'Ba Na Hills - Hoi An - Da Nang',
+            titleTh: 'BA NA HILLS – HOI AN – DA NANG',
+            notes: ['Hoi An Ancient Town', 'Basket boat or coffee stop', 'Return to Da Nang'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ลงกระเช้า', 'แล้วเดินทางไปฮอยอัน', 'หมู่บำ้ นหิ นอ่อน', 'เรื อกระด้ง', 'เยีย่ มเมืองโบราณฮอยอัน แล้วกลับไปดานัง'],
+            lunch: 'Hanoi Old 6$',
+            dinner: 'Long Qiao – Buffet เสริฟที่โต๊ ะ',
+            overnightTh: 'Hotel 4 stars: Hadana, TGT, Magnolia (4 stars) or similar 11. ของหวาน + ชำเย็น',
+            lunchMenuTh: ['ยำหัวปลีใส่ กงุ้', 'หอยลำยผัดซอสเสฉว', 'กุ้ง ผัดหมูเค็ม', 'ปลาทอดซอสเปรี้ ย', 'ไก่ทอดน้ ำปลา', 'มะเขือยำวทอด', 'ผักบุง้ ผัด', 'แกงจืดผัก', 'ข้าวสวย', 'ไข่ตม้ รำดซี อิ'],
+            dinnerMenuTh: ['และหมู          ของทะเลำ เนื้อ ผัก ติ่มซำ ... สดนึ่ ง', 'น                ชำบู', 'สั่งได้ไม่อั้นร้านติดกับสะพานมังกร', 'วหวาน            *แถม กุ้ง มังกรอบเนยคนละครึ่งตัว', 'ถ้าเพิม่ เป็นกุ้ง มังกรคนละตัว +7$/pax', '๊ว'],
+          },
+      {
+            day: 4,
+            title: 'Da Nang - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Han Market shopping', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ตลาดฮำน', 'ส่งคณะไปสนามบิน จบโปรแกรม'],
+            lunch: 'Banh Mi (แถมขนมปังคนละชิ้น)',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['*ถ้าเพิ่มเป็นเซดเม'],
+            dinnerMenuTh: ['นู +6$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+45$', single: '+40$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 2 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 15 ก่อนวันเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'dad05',
@@ -434,11 +1211,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [223, 215, 213, 205, 199, 194, 191], '+78 USD')],
     highlights: ['Hue imperial route', 'Ba Na Hills and Golden Bridge', 'Hoi An Ancient Town'],
     itinerary: [
-      { day: 1, title: 'Da Nang - Hue', notes: ['Airport pickup', 'Transfer to Hue', 'Hue city highlights'] },
-      { day: 2, title: 'Hue - Da Nang', notes: ['Imperial city route', 'Return via Hai Van area', 'Da Nang overnight'] },
-      { day: 3, title: 'Ba Na Hills - Hoi An', notes: ['Ba Na Hills cable car', 'Golden Bridge', 'Hoi An Ancient Town'] },
-      { day: 4, title: 'Da Nang - Airport', notes: ['Market shopping', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Da Nang - Hue',
+            titleTh: 'DA NANG – HUE',
+            notes: ['Airport pickup', 'Transfer to Hue', 'Hue city highlights'],
+            notesTh: ['รับคณะที่สนามบิน เดินทางเว้', 'วัดเทียนมุ', 'ชอปปิ้ งตลาดดงบำ', 'ล่องเรื อ ชมกำรแสดงจักรพรรคบนเรื อ'],
+            lunch: 'Son Duong 6$',
+            dinner: 'Queen Palace 6.5$',
+            overnightTh: 'Hotel 4 stars standard: Cherish, Thanh Lich or similar 10. ข้าว ผลไม้ น้ ำเปล่ำ 10.ผลไม้',
+            lunchMenuTh: ['ขำไก่ทอดรำดซอส', 'ปลาหมึกทอดน้ ำปลา', 'ไก่ทอดน้ ำปลา', 'ปลาทอดรำดซอสเสำวร', 'หมูไข่พะโล้', 'ปลายอผัดมะเขือเทศ', 'หอยผัดซอสจีน', 'ผักผัดน้ ำมันหอย', 'แกงจืด หมูสบั เต้'],
+            dinnerMenuTh: ['ยำหัวปลีกงุ้ หมู - ข้าวเกรี ยบกุ้ง', 'ปลาทับทิมนึ่ งซี อิ๊ว', 'ไก่ซอสเห็ด', 'ส             4.กุ้ง หมูผดั เค็ม', 'แหนมเนือง', 'ไข่เจียวหมูสบั', 'ผักกำดผัดน้ ำมันหอย', 'แกงจืดใส่ ไข่ปู', 'ำหู้          9.ข้าว'],
+          },
+      {
+            day: 2,
+            title: 'Hue - Da Nang',
+            titleTh: 'HUE – BA NA HILLS',
+            notes: ['Imperial city route', 'Return via Hai Van area', 'Da Nang overnight'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ถ่ำยรู ปด้ำนนอก พระรำชวังไดโนย', 'นัง่ 3 ล้อชมรอบพระรำชวัง (รวมทิปให้คนปั', 'ขึ้นกระเช้าบำนำฮิวล์', 'สวนสนุกบำนำฮิวล์', 'สวนดอกไม้', '*กรณี พกั 3 ท่านที่บำนำฮิวล์ใช้ห้อง Famil'],
+            lunch: 'Lucky Pearl (seafood) 6$',
+            dinner: 'Mercure hotel buffee',
+            overnightTh: 'พักที่ Mercure Ba Na Hills 9.ต้มยำทะเล',
+            lunchMenuTh: ['ส้มตำ', 'กุ้ง นึ่ ง', '่นเรี ยบร้อย)        3.หอยนำงรมย่ำง', 'ปลาหำงเหลืองนึ่ ง', 'เนื้อปูมำ้ ผัดหอ', 'หมูทอด', 'ผัดผักบุง้', 'ไข่เจียว', 'y Bunk +20$/ห้อง/คืน 10.ข้าว + ผลไม้'],
+            dinnerMenuTh: ['ซี อิ๊ว', 'ม'],
+          },
+      {
+            day: 3,
+            title: 'Ba Na Hills - Hoi An',
+            titleTh: 'BA NA HILLS – HOI AN',
+            notes: ['Ba Na Hills cable car', 'Golden Bridge', 'Hoi An Ancient Town'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ชมสะพานมือ', 'ลงกระเช้า', 'เรื อกระด้ง', 'เยีย่ มเมืองโบราณโฮยอัน แล้วกลับไปดานัง', 'แวะหมู่บำ้ นหิ นอ่อน', 'ถ่ำยรู ปสะพานมังกร'],
+            lunch: 'Hanoi Old 6$',
+            dinner: 'Long Qiao – Buffet เสริฟที่โต๊ ะ',
+            overnightTh: 'Hotel 4 stars: Hadana, TGT, Magnolia (4 stars) or similar 11. ของหวาน + ชำเย็น',
+            lunchMenuTh: ['ยำหัวปลีใส่ กงุ้', 'หอยลำยผัดซอสเสฉว', 'กุ้ง ผัดหมูเค็ม', 'ปลาทอดซอสเปรี้ ย', 'ไก่ทอดน้ ำปลา', 'มะเขือยำวทอด', 'ผักบุง้ ผัด', 'แกงจืดผัก', 'ข้าวสวย', 'ไข่ตม้ รำดซี อิ'],
+            dinnerMenuTh: ['และหมู       ของทะเลำ เนื้อ ผัก ติ่มซำ ... สดนึ่ ง', 'น             ชำบู', 'สั่งได้ไม่อั้นร้านติดกับสะพานมังกร', 'วหวาน         *แถม กุ้งมังกรอบเนยคนละครึ่งตัว', 'ถ้าเพิม่ เป็นกุ้ง มังกรคนละตัว +7$/pax', '๊ว'],
+          },
+      {
+            day: 4,
+            title: 'Da Nang - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Market shopping', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ไหว้พระวัดลิงอื๋ง', 'ตลาดฮำน', 'ส่งคณะไปสนามบิน จบโปรแกรม'],
+            lunch: 'Banh Mi (แถมขนมปังคนละชิ้น)',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['*ถ้าเพิ่มเป็นเซดเ'],
+            dinnerMenuTh: ['มนู +7$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+27$', single: '+25$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats (coach)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโป', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผู', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหม'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 15 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'han01',
@@ -459,11 +1299,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [242, 224, 213, 199, 189, 183, 178], '+45 USD')],
     highlights: ['Sapa mountain route', 'Cat Cat village and Fansipan area', 'Ninh Binh countryside and boat trip'],
     itinerary: [
-      { day: 1, title: 'Ha Noi - Sapa', notes: ['Airport pickup', 'Drive to Sapa', 'Sapa town and night market'] },
-      { day: 2, title: 'Sapa', notes: ['Cat Cat village', 'Moana or mountain photo route', 'Fansipan area option per program'] },
-      { day: 3, title: 'Sapa - Ha Noi', notes: ['Return to Ha Noi', 'Old quarter and city highlights'] },
-      { day: 4, title: 'Ninh Binh - Airport', notes: ['Ninh Binh day route', 'Boat trip', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ha Noi - Sapa',
+            titleTh: 'HA NOI – SAPA',
+            notes: ['Airport pickup', 'Drive to Sapa', 'Sapa town and night market'],
+            notesTh: ['รับคณะที่สนามบิน แล้วเดินทางไปซำปำ (ประ', 'หมู่บำ้ นก๊ำดๆ', 'ร้านกำแฟ Moana (รวมน้ ำเปล่ำท่านละ 1 ขว', 'ตลาดไนต์ซำปำ', 'รับประทานอาหารเย็นและพักผ่อนที่โรงแรม'],
+            lunch: 'Lam Dong luxury 6$',
+            dinner: 'Hotel 7$',
+            overnightTh: 'Hotel 4 stars standard: Passion, Azure or similar 10.ข้าว + ผลไม้ + น้ ำเปล่ำ 10. ผลไม้ + ชำ',
+            lunchMenuTh: ['มำณ 6ชั่วโมง)         1.เป็ ดต้ม', 'ปลาน้ ำตกทอดใบช', 'ด) - โบสถ์หิน          3.หมูผดั เผ็ด', 'เปาะเปี๊ยะทอด', 'อกไก่ผดั ผักรวม', 'เต้ำหู้คลุกต้นห', 'ไข่เจียวใส่ ตน้', 'ผักผัดกระเทียม', 'แกงผักรวมใส่ หม'],
+            dinnerMenuTh: ['มันฝรั่งทอด', 'ะพลู             2.ไข่เจียวหมูสบั', 'ปลาทับทิมนึ่ งซี อิ้ว', 'ไก่ป่ำอบน้ ำผึ้ง', 'หมูทอด', 'อม               6.เต้ำหู้ซอสมะเขือเทศ', 'หอม             7.กะหล่ำปลีลวก + ไข่ลวก', 'แกงจืดผักกำด หมูสบั', 'ูสบั             9.ข้าว'],
+          },
+      {
+            day: 2,
+            title: 'Sapa',
+            titleTh: 'SAPA',
+            notes: ['Cat Cat village', 'Moana or mountain photo route', 'Fansipan area option per program'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'นัง่ รถรำงจำกเมือง ไปสถำนี กระเช้า', 'ขึ้นกระเช้า Faxipan', 'Option: รถรำงขึ้นยอดเขำ +7$/pax/one way (', 'ไหว้พระวัด Fanxipan', 'ลงกระเช้า', 'Option: Rong May Glass Bridge +23$/pax (ย'],
+            lunch: 'Van Sam (Fanxipan Station)',
+            dinner: 'Hoa Dong Tien (Salmon + redwine) 7$',
+            overnightTh: 'Hotel 4 stars standard: Passion, Azure or similar 10.ผลไม้ + ชำ',
+            lunchMenuTh: [],
+            dinnerMenuTh: ['ซุปไก่ขำ้ วโพด', 'มันฝรั่งทอด', 'เป็ ดย่ำง', 'ไก่ทอดตะไคร้พริ ก', 'หม้อไฟปลาแซนมอน', 'ผักรวมจุ่ม', 'เห็ดจุ่ม', 'เต้ำหู ้ + หมี่', 'ข้าวผัดไข่'],
+          },
+      {
+            day: 3,
+            title: 'Sapa - Ha Noi',
+            titleTh: 'SAPA – HA NOI',
+            notes: ['Return to Ha Noi', 'Old quarter and city highlights'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางกลับฮำนอย', 'แวะร้านเยื้อไผ่', 'สุสำนลุงโฮ (ถ่ำยรู ปด้ำนอนก)', 'วัดเฉิ นก๊วก', 'ถนน สาย 36', 'ทะเลสาบคืนดำบ'],
+            lunch: 'Dong Mai 6$',
+            dinner: 'Phuong Nguyen 6.5$',
+            overnightTh: 'Hotel 4 stars standard: Western Skyline, Capital or similar *ถ้าเปลี่ยนทำน Sen Buffee +14$/pax',
+            lunchMenuTh: ['ไก่ผดั ตะไคร้พ', 'หมูเคี่ยวซอสน้', 'ซี่โครงหมูผดั', 'ปลา รำดซอสเปรี', 'สันในหมูผดั บร', 'ไข่เจียวใส่ตน้', 'เต้ำหู้ทอดรำดซ', 'ผักผัดกระเทียม', 'แกงผักกำดใส่หม', 'ข้าวสวย + ผลไ'],
+            dinnerMenuTh: ['ริ ก             1.สลัดซอสเสำวรส', 'ำปลาใส่ พริ ก   2.น่องไก่ยำ่ งใบมะนำว', 'เปรี้ ยวหวาน     3.เปาะเปี๊ยะทะเลทอด', '้ ยวเผ็ด         4.ผัดผักบุง้', 'อกโคลี           5.ซี่โครงหมูซอสเปรี้ ยวหวาน', 'หอม             6.เต้ำหู้เสฉวน', 'อสเผ็ด           7.ปลาทับทิมนึ่ งซี อิ้ว', 'หมูสำมชั้นทอด', 'ูสบั             9.แกงจืดผักกำดหอย', 'ม้ + น้ ำเปล่ำ   10.ข้าว + ผลไม้ + ชำ'],
+          },
+      {
+            day: 4,
+            title: 'Ninh Binh - Airport',
+            titleTh: 'HA NOI – NINH BINH – AIRPORT',
+            notes: ['Ninh Binh day route', 'Boat trip', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปเมืองนิงบิง (ประมำณ 2 ชั่วโมง', 'ล่องเรื อตำมก๊ก ชมนำข้าว รอดถ้ ำ', 'ร้านสิ นค้ำโอทอป', 'ไปสนามบิน ส่งคณะ จบโปรแกรม'],
+            lunch: 'Anh Dzung 7$',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['เปาะเปี๊ยะทะเล', ')                      2.หมูเสี ยบไม้ยำ่', 'ทอดมันปลา', 'หมู ไข่พะโล้', 'ไข่เจียว', 'ไก่ผดั สับปะรด', 'วุน้ เส้นผัดรวม', 'ผักบุง้ ไฟแดง', 'แกงจืดใส่กงุ้', 'ข้าว + ผลไม้'],
+            dinnerMenuTh: ['ทอด', 'ง'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+25$', single: '+22$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 6 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 ก่อนวันเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'han02',
@@ -484,11 +1387,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 3*/4* standard - 01/04-30/12/2026', gitBands, [256, 235, 221, 207, 195, 187, 181], '+40 USD')],
     highlights: ['Sa Pa mountain stay', 'Ha Long Bay cruise route', 'Ha Noi old quarter'],
     itinerary: [
-      { day: 1, title: 'Ha Noi - Sa Pa', notes: ['Airport pickup', 'Drive to Sa Pa', 'Town sightseeing'] },
-      { day: 2, title: 'Sa Pa - Ha Noi', notes: ['Sa Pa morning route', 'Return toward Ha Noi', 'Evening city time'] },
-      { day: 3, title: 'Ha Noi - Ha Long', notes: ['Transfer to Ha Long', 'Bay area attractions', 'Overnight in Ha Long'] },
-      { day: 4, title: 'Ha Long - Airport', notes: ['Ha Long route by program', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ha Noi - Sa Pa',
+            titleTh: 'HA NOI – SAPA',
+            notes: ['Airport pickup', 'Drive to Sa Pa', 'Town sightseeing'],
+            notesTh: ['รับคณะที่สนามบิน แล้วเดินทางไปซำปำ (ประ', 'หมู่บำ้ นก๊ำดๆ', 'ร้านกำแฟ Moana (รวมน้ ำเปล่ำท่านละ 1 ขว', 'โบสถ์หิน', 'ตลาดไนต์ซำปำ', 'รับประทำนอาหารเย็นและพักผ่อนที่โรงแรม'],
+            lunch: 'Lam Dong luxury 6$',
+            dinner: 'Hotel set menu 7$',
+            overnightTh: 'Hotel 4 stars standard: Passion, Azure, Sapa Green or similar 10.ข้าว + ผลไม้ + น้ ำเปล่ำ 10. ผลไม้ + ชำ',
+            lunchMenuTh: ['มำณ 6 ชั่วโมง)      1.เป็ ดต้ม', 'ปลาน้ ำตกทอดใบชะพ', 'ด)                   3.หมูผดั เผ็ด', 'เปาะเปี๊ยะทอด', 'อกไก่ผดั ผักรวม', 'เต้ำหู้คลุกต้นหอม', 'ไข่เจียวใส่ตน้ หอ', 'ผักผัดกระเทียม', 'แกงผักรวมใส่ หมูส'],
+            dinnerMenuTh: ['มันฝรั่งทอด', 'ลู          2.ไข่เจียวหมูสบั', 'ปลาทับทิมนึ่ งซีอิ้ว', 'ไก่ป่ำอบน้ ำผึ้ง', 'หมูทอด', 'เต้ำหู้ซอสมะเขือเทศ', 'ม           7.กะหล่ำปลีลวก + ไข่ลวก', 'แกงจืดผักกำด หมูสบั', 'บั          9.ข้าว'],
+          },
+      {
+            day: 2,
+            title: 'Sa Pa - Ha Noi',
+            titleTh: 'SAPA – HA NOI',
+            notes: ['Sa Pa morning route', 'Return toward Ha Noi', 'Evening city time'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'นัง่ รถรำงจำกเมือง ไปสถำนี กระเช้า', 'ระหว่ำงทำงชมหุบเขำเมืองฮวำ สวนดอกไม้', 'ขึ้นกระเช้า Faxipan', 'Option: รถรำงขึ้นยอดเขำ +7$/pax/one way (', 'ไหว้พระวัด Fanxipan', 'ลงกระเช้า', 'กลับไปฮำนอย', '36 สาย ทะเลสาบคืนดำบ'],
+            lunch: 'Van Sam (Fanxipan Station)',
+            dinner: 'Phuong Nguyen 6.5$',
+            overnightTh: 'Hotel 4 stars standard: Western Skyline, Capital or similar *ถ้าเปลี่ยนทำน Sen Buffee +14$/pax',
+            lunchMenuTh: [],
+            dinnerMenuTh: ['สลัดซอสเสำวรส', 'น่องไก่ยำ่ งใบมะนำว', 'เปาะเปี๊ยะทะเลทอด', 'ผัดผักบุง้', 'ซี่โครงหมูซอสเปรี้ ยวหวาน', 'เต้ำหู้เสฉวน', 'ปลาทับทิมนึ่ งซีอิ้ว', 'หมูสำมชั้นทอด', 'แกงจืดผักกำดหอย', 'ข้าว + ผลไม้ + ชำ'],
+          },
+      {
+            day: 3,
+            title: 'Ha Noi - Ha Long',
+            titleTh: 'HA NOI – HA LONG',
+            notes: ['Transfer to Ha Long', 'Bay area attractions', 'Overnight in Ha Long'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'วัดเฉิ นก๊วก', 'เดินทางเมืองฮำลอง (ประมำณ 3 ชั่วโมง)', 'แวะถ่ำยรู ป Mega Grand World', 'Option: กระเช้า Queen ข้ำมทะเล 16$/pax (ย', 'ตลาดไนต์ฮำลอง'],
+            lunch: 'Thang Long Ha Long 6.5$',
+            dinner: 'Magnolia (seafood) 7$',
+            overnightTh: 'Hotel 3 stars : City Bay Palace, The Twin, Busan or similar 10.ผลไม้ 10.ข้าว + ผลไม้',
+            lunchMenuTh: [],
+            dinnerMenuTh: ['้           1.กั้งทอดเกลือ', 'กุ้ง ย่ำงตะไคร้', 'ปลาทับทิมซอสเห็ด', 'มิตร        4.ปลาหมึกผัด', 'ไข่เจียว', 'ปำะเปี๊ ยทะเลทอด', 'หมูผดั ตะไคร้', 'ผัดผักบุง้', 'แกงจืดผักกุ้ง'],
+          },
+      {
+            day: 4,
+            title: 'Ha Long - Airport',
+            titleTh: 'HA LONG – AIRPORT',
+            notes: ['Ha Long route by program', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ล่องเรื ออ่ำวฮำลอง เกำะต่ำงๆ', 'ถ้ ำสวรรค์', 'ร้านเยื้อไม้ไผ่', 'ไปสนามบิน ส่ งคณะ จบโปรแกรม'],
+            lunch: 'Cruise 6$',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['หอยนำงรมปิ้ ง (', 'กุ้ง นึ่ งมะพร้', 'หอยผัดโหระพำ', 'ปลานิลทอดซฮสมะเ', 'ปลาหมึกผัดหอม', 'เปำะเปี๊ ยทะเลท', 'ไข่เจียว', 'แกงจืดหอยผักปลั', 'ผัดผักกำด', 'ข้าว + ผลไม้'],
+            dinnerMenuTh: ['คนละ2ตัว)', 'ำว', 'ขือเทศ', 'อด', 'ง'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+25$', single: '+22$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแ', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 6 มื้อ +', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้อ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือ'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 ก่อนวันเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'han03',
@@ -509,11 +1475,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 3*/4* standard - 01/04-30/12/2026', gitBands, [234, 224, 216, 200, 191, 181, 174], '+50 USD')],
     highlights: ['Tam Dao mountain town', 'Ha Long Bay route', 'Ninh Binh boat and countryside'],
     itinerary: [
-      { day: 1, title: 'Ha Noi - Tam Dao', notes: ['Airport pickup', 'Tam Dao mountain town', 'Stone church and cafe route'] },
-      { day: 2, title: 'Tam Dao - Ha Long', notes: ['Transfer to Ha Long', 'Bay-area sightseeing', 'Overnight in Ha Long'] },
-      { day: 3, title: 'Ha Long - Ninh Binh - Ha Noi', notes: ['Ha Long morning', 'Ninh Binh countryside route', 'Return to Ha Noi'] },
-      { day: 4, title: 'Ha Noi - Airport', notes: ['City time or shopping', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ha Noi - Tam Dao',
+            titleTh: 'HA NOI – HA LONG',
+            notes: ['Airport pickup', 'Tam Dao mountain town', 'Stone church and cafe route'],
+            notesTh: ['รับคณะที่สนามบิน 08.00', 'สุสำนลุงโฮ (ถ่ำยรู ปด้ำนนอก)', 'ทะเลสาบคืนดำบ', 'วัดหงอกเซิน (ถ่ำยรู ปด้ำนนอก)', 'เดินทางเมืองฮำลอง (ประมำณ 3 ชั่วโมง)', 'แวะถ่ำยรู ป Mega Grand World'],
+            lunch: 'Phuong Nguyen 7$',
+            dinner: 'Thang Long Ha Long 7$',
+            overnightTh: 'พักที่ City Bay Hotel (3 stars) or similar 10.ข้าว + ผลไม้ + ชำ 10.ผลไม้',
+            lunchMenuTh: ['สลัดซอสเสำวรส', 'น่องไก่ยำ่ งใบมะนำว', 'เปาะเปี๊ยะทะเลทอด', 'ผัดผักบุง้', 'ซี่ โครงหมูซอสเปรี้ ยวหวาน', 'เต้ำหู้เสฉวน', 'ปลาทับทิมนึ่ งซีอิ้ว', 'หมูสำมชั้นทอด', 'แกงจืดผักกำดหอย'],
+            dinnerMenuTh: ['กุ้ง นึ่ งตะไคร้', 'ปลาทอดซอส5รส', 'แครี่ ไก่', 'ผัดวุน้ เส้นรวมมิตร', 'หมูพะโล้', 'ผัดทะเลรวมมิตร', 'ผัดผักกำด', 'แกงจืด', 'ข้าว'],
+          },
+      {
+            day: 2,
+            title: 'Tam Dao - Ha Long',
+            titleTh: 'HA LONG – TAM DAO',
+            notes: ['Transfer to Ha Long', 'Bay-area sightseeing', 'Overnight in Ha Long'],
+            notesTh: ['รับประทำนอาหารเช้ำที่โรงแรม', 'ล่องเรื ออ่ำวฮำลอง เกำะต่ำงๆ', 'ถ้ ำสวรรค์', 'เดินทางไปตำมด๋ ำว', 'กำแฟ Gio (รวมเครื่ องดื่มท่านละ 1แก้ว)', 'ถ่ำยรู ปปรำสำทดำ'],
+            lunch: 'Tau Thanh Nien 6$',
+            dinner: 'Gio Nui 7$',
+            overnightTh: 'พักที่ Genuss Hotel (4 stars) or similar 10.ข้าว + ผลไม้',
+            lunchMenuTh: ['หอยนำงรมปิ้ ง (คนละ2ตัว)', 'กุ้ง นึ่ งมะพร้ำว', 'หอยผัดโหระพำ', 'ปลานิลทอดซฮสมะเขือเทศ', 'ปลาหมึกผัดหอม', 'เปำะเปี๊ ยทะเลทอด', 'ไข่เจียว', 'แกงจืดหอยผักปลัง', 'ผัดผักกำด'],
+            dinnerMenuTh: ['หม้อไฟรวมมิตร หมูป่ำ ไก่ ปลาสเตอร์ เจียน', 'มันฝรั่งทอด', 'หมูปิ้งเสี ยบไม้', 'ผัดฟักแม้ว', 'ข้าวหลำมทอด', 'ผลไม้ + ชำเย็น'],
+          },
+      {
+            day: 3,
+            title: 'Ha Long - Ninh Binh - Ha Noi',
+            titleTh: 'TAY THIEN TAM DAO - HA NOI',
+            notes: ['Ha Long morning', 'Ninh Binh countryside route', 'Return to Ha Noi'],
+            notesTh: ['รับประทำนอาหารเช้ำที่โรงแรม', 'ประตูสวรรค์', 'ถ่ำยรู ที่สะพานเมฑ (Cau May)', 'นัง่ กระเช้าไปวัด Tay Thien', 'ลงกระเช้า', 'กลับฮำนอย', 'ถนน 36สาย'],
+            lunch: 'Thach Ban Tay Thien 7$',
+            dinner: 'Huong Rung 6$',
+            overnightTh: 'พักที่ Capital Garden (4 stars) or similar *ถ้าเปลี่ยนมำทำน Sen buffet +15$/pax',
+            lunchMenuTh: ['ผักฟักแม้วผัดกระเทียม', 'ปลาดุกนึ่ งซี อิว้', 'ไก่ผดั ขิง', 'หมูทอด', 'ผัดเต้ำหู้', 'แกงจืดผัด หมู', 'ไข่เจียว', 'ข้าว+ชำเย็น'],
+            dinnerMenuTh: ['เปาะเปี๊ยะทอด', 'ปลาหมึกทอด', 'ไก่ยำ่ ง', 'ปลาเสตอร์ เจียนนึ่ งซี อิ้ว', 'หมูทอดกรอบ', 'ซีโรงหมูซอสเปรี้ ยวหวาน', 'ผัดผัก', 'แกงจืดไข่ปู มะเขือดอง', 'ข้าว', 'ผลไม้ + ชำ'],
+          },
+      {
+            day: 4,
+            title: 'Ha Noi - Airport',
+            titleTh: 'HA NOI – NINH BINH – AIRPORT',
+            notes: ['City time or shopping', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำที่โรงแรม', 'โบสถ์ฮำนอย', 'เดินทางนิงห์บิงห์', 'ล่องเรื อตำมก๊ก', 'ช้อปสิ นค้ำโอทอป ไปสนามบิน ส่งคณะ จบโปรแกรม 20.50'],
+            lunch: 'Anh Dzung 7$',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: ['เปาะเปี๊ยะทะเลทอด', 'หมูเสี ยบไม้ยำ่ ง', 'ทอดมันปลา', 'หมู ไข่พะโล้', 'ไข่เจียว', 'ไก่ผดั สับปะรด', 'วุน้ เส้นผัดรวม', 'ผักบุง้ ไฟแดง', 'แกงจืดใส่กงุ้', 'ข้าว + ผลไม้'],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-02/05/2026', merged: '+25$', single: '+22$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแ', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 7 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้อ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: ['ค่าใช้จำ่ ยอื่นๆ ที่ไม่ได้ระบุในโปรแกรม'],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือ'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 ก่อนวันเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'pqc01',
@@ -538,10 +1567,62 @@ export const tours = [
     ],
     highlights: ['Hon Thom cable car and Aquatopia', 'Sunset Town and Kiss Bridge', 'Grand World and Venice show area'],
     itinerary: [
-      { day: 1, title: 'Phu Quoc - Hon Thom Cable Car', notes: ['Airport pickup', 'Hon Thom cable car', 'Aquatopia and beach', 'Sunset Town and Kiss Bridge'] },
-      { day: 2, title: 'VinWonders - Grand World', notes: ['VinWonders and aquarium', 'Grand World Phu Quoc', 'Venice show area'] },
-      { day: 3, title: 'Phu Quoc - Airport', notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Phu Quoc - Hon Thom Cable Car',
+            titleTh: 'PHU QUOC – HON THOM CABLE CAR',
+            notes: ['Airport pickup', 'Hon Thom cable car', 'Aquatopia and beach', 'Sunset Town and Kiss Bridge'],
+            notesTh: ['รับคณะที่สนามบินฟูก๊วก', 'ไปเที่ยวกระเช้าทะเล Hon Thom', 'สวนสนุก สวนน้ ำ Aquatopia ชำยหำด Hon Th', 'ถ่ำยรู ปโซน Sunset town', 'ถ่ำยรู ปสะพานจูบ แลนด์มำกใหม่ของฟูก๊วก (เริ่ ม 16/04 มีแจกเบียร์ฟรี 1 ลิตร) Option 1: The Kiss of Sea Show +26$/pax ( Option 2: Set menu at Bavavia restaurant'],
+            lunch: 'Bien Vang 8$',
+            dinner: 'Sai Gon Domain 8$',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar 10. ชำ 10.ชำ',
+            lunchMenuTh: ['ยำแ', 'ปลา', 'om                                 3.กุง', 'ปลา', 'หอย', 'ผัก', '00-21.35) ยกเว้นวันอังคำร       7.หม้', '+23$/pax                           8.ข้ำ', 'ผลไ'],
+            dinnerMenuTh: ['มงกะพรุ น               1.ยำทะเล', 'หมึกผัดเปรี้ ยวหวาน     2.กุ้ง ทอดกระเทียม', '้ ลำยเสื อย่ำง          3.หอยนึ่ง', 'ต้มเค็ม                 4.ปลาหำงเหลืองย่ำงห่ อฟอยล์', 'นึ่ง                    5.ไข่เจียวหมูสบั', 'บุง้ ผัดกระเทียม        6.ปลาหมึกผัดเปรี้ ยวหวาน', 'อไฟมันปลา               7.หม้อไฟทะเล', 'ว                       8.ข้าว + ขนมจีน', 'ม้                      9.ผลไม้'],
+          },
+      {
+            day: 2,
+            title: 'VinWonders - Grand World',
+            titleTh: 'VIN WONDER',
+            notes: ['VinWonders and aquarium', 'Grand World Phu Quoc', 'Venice show area'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนสนุก Vin Wonder สวนน้ ำ และ Aquarium', 'ไปเที่ยว Grand World Phu Quoc ที่ได้ฉำย', 'ชมบ้ำนไม้ไผ่', 'หมู่บำ้ น Venice โชว์กลำงคืน', 'อิสระเล่นคำซีโนที่ Corona Casino', 'อิสระชมโชว์ The color of venice จักขึ้น Option 1: ล่องเรื อ Gondola +9$/pax (ยังไ Option 2: Teddy Bear Museum +9$/pax (ยังไ'],
+            lunch: 'ไม่ รวม',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar',
+            lunchMenuTh: ['*ถ้าจ', 'Wonde', 'ำนำมว่ำ Venice แห่ งเวียดนำม', 'บริ เวณแม่น้ ำเวนิ ส 21.30-22.00', 'ม่รวม)', 'ม่รวม)'],
+            dinnerMenuTh: ['องบุฟเฟที่สวนสนุก Vin   *ถ้าเพิ่มเป็นเซตเมนู +9$/pax', 'r+15$/pax'],
+          },
+      {
+            day: 3,
+            title: 'Phu Quoc - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ชอปปิ้ งร้านไข่มุก', 'ส่งคณะไปสนามบิน'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '24/12/2026-02/01/2027', merged: '229', single: '225' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแ', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 2 มื้อ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้อ', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: ['ค่าใช้จ่ำยอื่นๆ ที่ไม่ได้ระบุในโปรแกรม'],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือ'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'pqc02',
@@ -566,11 +1647,74 @@ export const tours = [
     ],
     highlights: ['Hon Thom cable car and Mediterranean Sunset Town', 'Kiss Bridge and optional Kiss of Sea Show', 'Grand World and VinWonders'],
     itinerary: [
-      { day: 1, title: 'Phu Quoc - Hon Thom Cable Car', notes: ['Airport pickup', 'Hon Thom cable car and Aquatopia', 'Sunset Town and Kiss Bridge'] },
-      { day: 2, title: 'Grand World', notes: ['Grand World Phu Quoc', 'Venice area and evening show', 'Free time by program'] },
-      { day: 3, title: 'VinWonders', notes: ['VinWonders amusement park', 'Aquarium and water park', 'Grand World free time'] },
-      { day: 4, title: 'Phu Quoc - Airport', notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Phu Quoc - Hon Thom Cable Car',
+            titleTh: 'PHU QUOC – HON THOM CABLE CAR',
+            notes: ['Airport pickup', 'Hon Thom cable car and Aquatopia', 'Sunset Town and Kiss Bridge'],
+            notesTh: ['รับคณะที่สนามบินฟูก๊วก แล้วขึ้นรถ', 'ไปเที่ยวกระเช้าทะเล Hon Thom', 'สวนสนุก สวนน้ ำ Aquatopia ชำยหำด Hon Th', 'ถ่ำยรู ปโซนใหม่ฟกู ๊วก Mediterranean Su', 'ถ่ำยรู ปสะพานจูป แลนด์มำกใหม่ของฟูก๊วก (โปรโมชัน่ แจกเบียร์ฟรี 1 ลิตรจนกว่ำมีประ Option 1: The Kiss of Sea Show +26$/pax ( Option 2: Set menu at Bavavia restaurant'],
+            lunch: 'ไม่ รวม',
+            dinner: 'Bababa seafood buffet 13$',
+            overnightTh: 'Hotel 4 star: Muong Thanh luxury Phu Quoc or similar',
+            lunchMenuTh: ['*ถ้าเ', 'om', 'nset Town', 'กำศใหม่)', '00-21.35) ยกเว้นวันอังคำร', '+23$/pax'],
+            dinnerMenuTh: ['พิ่มมื้อเที่ยง +8$/pax   ปิ้ งย่ำง'],
+          },
+      {
+            day: 2,
+            title: 'Grand World',
+            titleTh: 'GRAND WORLD',
+            notes: ['Grand World Phu Quoc', 'Venice area and evening show', 'Free time by program'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ไปวัดโฮก๊วก', 'ไปสำรเจ้ำ Dinh Cau', 'ชอปปิ้ งร้านผ้ำไหม', 'ชมบ้ำนไม้ไผ่', 'หมู่บำ้ น Venice โชว์กลำงคืน', 'อิสระเล่นคำซีโนที่ Corona Casino', 'อิสระชมโชว์ The color of venice จักขึ้น'],
+            lunch: 'Bien Vang 9$',
+            dinner: 'Sai Gon Domain 8$',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar 10.ผลไม้ + ชำ 10.ชำ',
+            lunchMenuTh: ['ยำแ', 'หอย', 'ปลา', 'ปลา', 'หม', 'กุ', 'ผั', 'บริ เวณแม่น้ ำเวนิ ส 21.30-22.00   8. หม', 'ข้'],
+            dinnerMenuTh: ['มงกระพรุ นมะละกอ         1.ยำทะเล', 'ลำยนึ่ง                  2.กุ้ง ทอดกระเทียม', 'หมึกผัดกระเทียม          3.หอยนึ่ง', 'ช่อนย่ำง                 4.ปลาหำงเหลืองย่ำงห่ อฟอยล์', 'ูพะโล้                   5.ไข่เจียวหมูสบั', 'ง้ ย่ำงเกลือ             6.ปลาหมึกผัดเปรี้ ยวหวาน', 'กบุง้ ผัดกระเทียม        7.หม้อไฟทะเล', '้อไฟมันปลา               8.ข้าว + ขนมจีน', 'ำว                       9.ผลไม้'],
+          },
+      {
+            day: 3,
+            title: 'VinWonders',
+            titleTh: 'VIN WONDER',
+            notes: ['VinWonders amusement park', 'Aquarium and water park', 'Grand World free time'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'สวนสนุก Vin Wonder', 'สวนน้ ำ และ Aquarium', 'อิสระใน Grand World', 'อิสระเล่นคำซีโนที่ Corona Casino'],
+            lunch: 'Vin Wonder',
+            dinner: 'ไม่ รวม',
+            overnightTh: 'Hotel 4 star standard: Vin Holiday Fiesta or similar',
+            lunchMenuTh: ['Buffe'],
+            dinnerMenuTh: ['e                        *ถ้าเพิ่มอาหารเซดโต๊ะ +9$/pax'],
+          },
+      {
+            day: 4,
+            title: 'Phu Quoc - Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Hotel breakfast', 'Pearl shopping stop', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ชอปปิ้ งร้านไข่มุก', 'ส่งคณะไปสนามบิน'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '24/12/2026-02/01/2027', merged: '309', single: '305' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 2 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 14 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'cxr01',
@@ -591,10 +1735,62 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [136, 128, 125, 114, 109, 106, 104], '+25 USD')],
     highlights: ['Ponagar Tower, Long Son Pagoda and Stone Church', 'Jungle Cafe photo stop', 'Vinpearl Land cable car and amusement park'],
     itinerary: [
-      { day: 1, title: 'Nha Trang City', notes: ['Airport pickup', 'Ponagar Tower', 'Jungle Cafe, Long Son Pagoda, Stone Church, Tram Huong photo stop'] },
-      { day: 2, title: 'Nha Trang - Vinpearl Land', notes: ['Hotel breakfast', 'Cable car to Vinpearl Land', 'Free time for attractions'] },
-      { day: 3, title: 'Nha Trang - Airport', notes: ['Hotel breakfast', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Nha Trang City',
+            titleTh: 'AIRPORT',
+            notes: ['Airport pickup', 'Ponagar Tower', 'Jungle Cafe, Long Son Pagoda, Stone Church, Tram Huong photo stop'],
+            notesTh: ['รับคณะที่สนามบิน', 'ประสำท Ponaga', 'Jungle Café (ไม่รวมเครื่ องดื่ม)', 'วัดลองเซิ น', 'โบสถ์หิน', 'ถ่ำยรู ปประสำท Tram Huong'],
+            lunch: 'Dong Tien Luxury 7$',
+            dinner: 'Thang Loi 6$',
+            overnightTh: 'Hotel 4 stars standard: Maris, TND Hotel or similar',
+            lunchMenuTh: ['กุ้ง นึ่ งมะพร้ ำว', 'ปลาหมึกทอดน้ ำปลา', 'ปลาดุกต้มเค็มหม้อดิน', 'ไก่ผดั ตะไคร้ พริ ก', 'หมูตม้ เค็ม', 'ผักกำดผัดกระเทียม', 'ผัดผักบุง้', 'แกงจืดซี โครงหมู', 'ผลไม้ + ข้าว + ชำเย็น'],
+            dinnerMenuTh: ['ปลาทะเลนึ่งพักกำดดอง', 'ปลาหมึกทอด', 'หมูทอด', 'กุ้ง ผัดบร๊ อคโคลี', 'ไก่ผดั ขิง', 'ผักผัดกระเทียม', 'หม้อไฟทะเล', 'ข้าว', 'ผลไม้ + ชำเย็น'],
+          },
+      {
+            day: 2,
+            title: 'Nha Trang - Vinpearl Land',
+            titleTh: 'NHA TRANG – VINPEARL LAND',
+            notes: ['Hotel breakfast', 'Cable car to Vinpearl Land', 'Free time for attractions'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไป Vinpearl Land', 'นัง่ กระเช้าไปสวนสนุก VinPearl', 'อิสระกับเครื่ องเล่นมำกมำย', 'นัง่ กระเช้ากลับฝั่ง'],
+            lunch: 'Free Style ไม่ รวม',
+            dinner: 'Zalot 12$',
+            overnightTh: 'Hotel 4 stars standard: Maris, TND Hotel or simil',
+            lunchMenuTh: ['*ถ้าจอง Vinpearl Wonder +1', 'Buffee'],
+            dinnerMenuTh: ['Buffee Seafood', '$   ฟรี เบียร์'],
+          },
+      {
+            day: 3,
+            title: 'Nha Trang - Airport',
+            titleTh: 'NHA TRANG – AIRPORT',
+            notes: ['Hotel breakfast', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ส่งคณะที่สนามบิน จบโปรแกรม FD647 10.25'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-03/05/2026', merged: '+10$/pax', single: '' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats (coach)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 2 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'cxr02',
@@ -615,11 +1811,74 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [220, 202, 185, 177, 170, 165, 161], '+37 USD')],
     highlights: ['Da Lat Lam Vien Square and night market', 'Tuyen Lam cable car, Datanla waterfall and Hydrangea garden', 'Vinpearl Wonder and Nha Trang city stops'],
     itinerary: [
-      { day: 1, title: 'Nha Trang - Da Lat', notes: ['Airport pickup', 'Drive to Da Lat', 'Lam Vien Square and Da Lat night market'] },
-      { day: 2, title: 'Da Lat - Nha Trang', notes: ['Tuyen Lam cable car', 'Datanla waterfall alpine coaster', 'Dragon pagoda, Hydrangea garden, return to Nha Trang'] },
-      { day: 3, title: 'Nha Trang', notes: ['Vinpearl Wonder', 'Cable car and amusement park', 'Long Son Pagoda, Stone Church, night market'] },
-      { day: 4, title: 'Airport', notes: ['Hotel breakfast', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Nha Trang - Da Lat',
+            titleTh: 'NHA TRANG – DA LAT',
+            notes: ['Airport pickup', 'Drive to Da Lat', 'Lam Vien Square and Da Lat night market'],
+            notesTh: ['รับคณะที่สนามบิน', 'เดินทางไปดำลัด (ประมำณ 3-3.5 ชั่วโมง)', 'จุตุรัต Lam Vien', 'ตลาดไนต์ดำลัด'],
+            lunch: 'Hon Giao 6$',
+            dinner: 'Da Lat house 6$',
+            overnightTh: 'Hotel 4 stars standard: King, Sandal or similar 10.น้ ำชำ+ ผ้ำเย็น 10.ผลไม้ + น้ ำชำ',
+            lunchMenuTh: ['กุ้ง ทอดกระเทียม', 'ปลาทับทิมทอดน้ ำปลามะม่วง', 'หมูทอด', 'ไข่เจียวหมูสบั', 'ยำสลัด', 'ผัดผักบุง้', 'แกงจืดผักกำดหมู', 'ข้าว', 'ผลไม้'],
+            dinnerMenuTh: ['กุ้ง ซอสต้มยำ', 'ไข่เจียวหมูสบั', 'หมูผดั เปรี้ ยวหวาน', 'สลัดมะเขือเทศ', 'ผักโขมผัดกระเทียม', 'ไก่ผดั ขิง', 'ปลาสเตอร์เจียนสไตล์ตม้ เค็ม', 'หม้อไฟอำร์ติโซ๊ค', 'ข้าว'],
+          },
+      {
+            day: 2,
+            title: 'Da Lat - Nha Trang',
+            titleTh: 'DA LAT – NHA TRANG',
+            notes: ['Tuyen Lam cable car', 'Datanla waterfall alpine coaster', 'Dragon pagoda, Hydrangea garden, return to Nha Trang'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'กระเช้า Tuyen Lam (1 ขำ) วัดตุก๊ ลัม', 'น้ ำตำกดำทันลำ นัง่ รถรำงไปกลับ', 'วัดมังกร', 'สวนดอกไม้ไฮเดนเยีย', 'เดินทางกลับไปไปญำจำง'],
+            lunch: 'Nha Toi 7.$',
+            dinner: 'Zalot',
+            overnightTh: 'Hotel 4 stars standard: Sata, Maris or similar 8.ข้าว + ผลไม้ + ชำ',
+            lunchMenuTh: ['หมูยำ่ ง + มันฝรั่งทอด', 'เปาะเปี๊ยะทอด', 'ปลาดุกต้มเค็มหม้อดิน', 'ไก่ทอดน้ ำปลา', 'ผักผัดรวม', 'ยำสลัดกุ้ง หมู', 'หม้อไฟซีโครงหมู'],
+            dinnerMenuTh: ['Seafood buffee'],
+          },
+      {
+            day: 3,
+            title: 'Nha Trang',
+            titleTh: 'NHA TRANG',
+            notes: ['Vinpearl Wonder', 'Cable car and amusement park', 'Long Son Pagoda, Stone Church, night market'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'นัง่ กระเช้าข้ำมทะเล ไปสวนสนุก VinPearl', 'อิสระกับเครื่ องเล่นมำกมำย', 'นัง่ กระเช้ากลับฝั่ง', 'วัดลองเซิน', 'โบสถ์หิน', 'ตลาดไนต์'],
+            lunch: 'Vinpearl Wonder 14$',
+            dinner: 'Free Style ไม่ รวม',
+            overnightTh: 'Hotel 4 stars standard: Sata, Maris or similar',
+            lunchMenuTh: ['Buffee'],
+            dinnerMenuTh: ['*ถ้ารวมอาหารเย็น +6$/pax'],
+          },
+      {
+            day: 4,
+            title: 'Airport',
+            titleTh: 'AIRPORT',
+            notes: ['Hotel breakfast', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ส่งสนามบิน'],
+            lunch: '',
+            dinner: '',
+            overnightTh: '',
+            lunchMenuTh: [],
+            dinnerMenuTh: [],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-03/05/2026', merged: '+25$/pax', single: '' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats (coach)' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 3 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'sgn01',
@@ -640,10 +1899,62 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [187, 173, 162, 149, 142, 137, 133], '+50 USD')],
     highlights: ['Mui Ne Fairy Stream and sand dunes', 'White Sand Dunes jeep route', 'Ho Chi Minh city tour and Saigon dinner cruise'],
     itinerary: [
-      { day: 1, title: 'Ho Chi Minh - Mui Ne', notes: ['Airport pickup', 'Drive to Mui Ne', 'Fairy Stream, Red Sand Dunes and fishing village'] },
-      { day: 2, title: 'Mui Ne - Ho Chi Minh', notes: ['White Sand Dunes with jeep', 'Walking street, Uncle Ho statue, Cafe Apartment', 'Saigon river dinner cruise'] },
-      { day: 3, title: 'Ho Chi Minh - Airport', notes: ['Independence Palace', 'Notre Dame Cathedral, Central Post Office, Ba Thien Hau temple, Ben Thanh Market', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ho Chi Minh - Mui Ne',
+            titleTh: 'HO CHI MINH – MUI NE',
+            notes: ['Airport pickup', 'Drive to Mui Ne', 'Fairy Stream, Red Sand Dunes and fishing village'],
+            notesTh: ['รับคณะที่สนามบิน', 'เดินทางไปมุยแน่ (ประมำณ 4 ชั่วโมง)', 'เดินลำธำรสวรรค์', 'ชมทะเลทรำยแดง', 'หมู่บำ้ นชำวประโมงค์'],
+            lunch: 'Cao Phat 7$',
+            dinner: 'Lang Chai 7$',
+            overnightTh: 'Hotel 4 stars standard: Vipol, Tien Dat (4 stars) or similar 9.ผลไม้ + ชำ 9.ผลไม้ + ชำ',
+            lunchMenuTh: ['ปลาหมึกผัดสะเต๊', 'ปลาอินทรี ทอดน้', 'หมูตม้ เค็มหม้อ', 'ไก่ทอด', 'ดอกฟักเขียวผัดก', 'ไข่เจียวหมูสบั', 'แกงจืดฟักเขียวซ', 'ข้าวในหม้อดิน'],
+            dinnerMenuTh: ['ะ           1.หมูพะโล้', 'ำปลา       2.หอยนึ่ง', 'ดิน         3.ปลาทับทิมต้ม+ขนมจีน', 'ผักกำดผัดกระเทียม', 'ระเทียม     5.ไข่เจียว', 'ปลาหมึกทอดกรอบ', 'ีโครงหมู    7.แกงจืดน้ ำเต้ำกุ้ง', 'ข้าว'],
+          },
+      {
+            day: 2,
+            title: 'Mui Ne - Ho Chi Minh',
+            titleTh: 'MUI NE – HO CHI MINH',
+            notes: ['White Sand Dunes with jeep', 'Walking street, Uncle Ho statue, Cafe Apartment', 'Saigon river dinner cruise'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ชมทะเลทรำยขำว (รวมค่ารถจี๊ปลุยทรำย)', 'กลับไปโฮจิมินห์', 'ถนนคนเดิน', 'อนุสำวรี ลุงโฮ', 'Cafe Apartment', 'ล่องเรื อทำนข้าว แม่น้ ำซ่ำยง่อน'],
+            lunch: 'Canh Buom Vang 7$',
+            dinner: 'Ben Nghe Cruise 22$',
+            overnightTh: 'Hotel 4 stars standard: Acnoss hotel (4 stars) or similar 10.น้ ำชำเ 10.ผลไม้ + น้ ำชำเย็น',
+            lunchMenuTh: ['ปลาหมึกนึ่งขิง', 'ซี่โครงหมูผดั เ', 'สลัดน้ ำใส', 'ปลายอผัดเปรี้ ย', 'เต้ำหู้ตม้ ไข่', 'ไก่ผดั ตะไคร้', 'หม้อไฟปลาดุก +', 'ข้าว', 'ผลไม้'],
+            dinnerMenuTh: ['เปาะเปี๊ยะกุ้ง หมูทอด', 'ค็ม         2.หมูกอ้ นซอสฮ่องกง', 'เนื้อปลาทอดซอสเปรี้ ยวหวาน', 'วหวาน       4.ไก่ผดั ขิง', 'ปลาหมึกผัดรวม', 'เต้ำหู้เสฉวน', 'ขนมจีน      7.ผักบุง้ ไฟแดง', 'แกงรวมมิตร', 'ข้าว'],
+          },
+      {
+            day: 3,
+            title: 'Ho Chi Minh - Airport',
+            titleTh: 'HO CHI MINH CITY TOUR – AIRPORT',
+            notes: ['Independence Palace', 'Notre Dame Cathedral, Central Post Office, Ba Thien Hau temple, Ben Thanh Market', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ทำเนียบอิสระภำพ', 'โบสถ์นอเธอดัม', 'ไปรษณี ยก์ ลำง', 'วัดเจ้ำแม่ทบั ทิม', 'ตลาดเบ๋ นถัน่', 'ส่งสนามบิน'],
+            lunch: 'Ganh Bong Sen',
+            dinner: 'Free Style ไม่ รวม',
+            overnightTh: '',
+            lunchMenuTh: ['Buffee'],
+            dinnerMenuTh: ['*ถ้ารวมอาหารเย็น +9$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-03/05/2026', merged: '+25$/pax', single: '' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกร', 'อาหารเช้ำที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 4 มื้อ + บ', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องก', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้ ห', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนก'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ 07 วันก่อนเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
   makeTour({
     id: 'sgn02',
@@ -664,10 +1975,73 @@ export const tours = [
     priceRows: [makePrice('Hotel 4* standard - 01/04-30/12/2026', gitBands, [244, 224, 210, 194, 184, 177, 172], '+68 USD')],
     highlights: ['Mui Ne dunes and fishing village', 'Da Lat mountain city route', 'Ho Chi Minh city highlights'],
     itinerary: [
-      { day: 1, title: 'Ho Chi Minh - Mui Ne', notes: ['Airport pickup', 'Fairy Stream', 'Red Sand Dunes with jeep and fishing village'] },
-      { day: 2, title: 'Mui Ne - Da Lat', notes: ['White Sand Dunes', 'Drive to Da Lat', 'Da Lat night market'] },
-      { day: 3, title: 'Da Lat - Ho Chi Minh', notes: ['Da Lat highlights', 'Return to Ho Chi Minh', 'Evening city time'] },
-      { day: 4, title: 'Ho Chi Minh - Airport', notes: ['City tour and market', 'Airport transfer'] },
+      {
+            day: 1,
+            title: 'Ho Chi Minh - Mui Ne',
+            titleTh: 'HO CHI MINH – MUI NE',
+            notes: ['Airport pickup', 'Fairy Stream', 'Red Sand Dunes with jeep and fishing village'],
+            notesTh: ['รับคณะที่สนามบิน', 'เดินทางไปมุยแน่ (ประมำณ 4 ชั่วโมง)', 'เดินลำธำรสวรรค์', 'ชมทะเลทรำยแดง', 'ชมทะเลทรำยแดง (รวมรถจี๊ป)', 'หมู่บำ้ นชำวประโมงค์'],
+            lunch: 'Cao Phat 7$',
+            dinner: 'Lang Chai 7$',
+            overnightTh: 'Hotel 4 stars standard: Vipol, Unique (4 stars) or similar',
+            lunchMenuTh: ['ปลาหมึกผัดสะเต๊', 'ปลาอินทรี ทอดน้', 'หมูตม้ เค็มหม้อ', 'ไก่ทอด', 'ดอกฟักเขียวผัดก', 'ไข่เจียวหมูสบั', 'แกงจืดฟักเขียวซ', 'ข้าวในหม้อดิน', 'ผลไม้ + ชำ'],
+            dinnerMenuTh: ['ะ              1.หมูพะโล้', 'ำปลา          2.หอยนึ่ง', 'ดิน            3.ปลาทับทิมต้ม+ขนมจีน', 'ผักกำดผัดกระเทียม', 'ระเทียม        5.ไข่เจียว', 'ปลาหมึกทอดกรอบ', 'ีโครงหมู       7.แกงจืดน้ ำเต้ำกุ้ง', 'ข้าว', 'ผลไม้ + ชำ'],
+          },
+      {
+            day: 2,
+            title: 'Mui Ne - Da Lat',
+            titleTh: 'MUI NE – DA LAT',
+            notes: ['White Sand Dunes', 'Drive to Da Lat', 'Da Lat night market'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปเมืองดำลัด', 'สวนดอกไม้ไฮเดนเยีย', 'กระเช้า Tuyen Lam (1 ขำ) วัดตุก๊ ลัม', 'น้ ำตำกดำทันลำ นัง่ รถรำงไปกลับ', 'ตลาดไนต์ดำลัด'],
+            lunch: 'Nha Toi 7$',
+            dinner: 'Da Lat house 6$',
+            overnightTh: 'Hotel 4 stars standard: King, TTC Golf (4 stars) or similar 10.ผลไม้ + น้ ำชำ',
+            lunchMenuTh: ['หมูยำ่ ง + มันฝ', 'เปาะเปี๊ยะทอด', 'ปลาดุกต้มเค็มหม', 'ไก่ทอดน้ ำปลา', 'ผักผัดรวม', 'ยำสลัดกุ้ง หมู', 'หม้อไฟซีโครงหมู', 'ข้าว + ผลไม้ +'],
+            dinnerMenuTh: ['รั่งทอด        1.กุ้ง ซอสเปรี้ ยวเผ็ด', 'ไข่เจียวหมูสบั', '้อดิน          3.หมูผดั เปรี้ ยวหวาน', 'เปาะเปี๊ยะกุ้ง หมูทอด', 'ผักโขมผัดกระเทียม', 'ไก่ผดั ขิง', 'ปลาสเตอร์เจียนสไตล์ตม้ เค็ม', 'ชำ             8.หม้อไฟอำร์ติโซ๊ค', 'ข้าว'],
+          },
+      {
+            day: 3,
+            title: 'Da Lat - Ho Chi Minh',
+            titleTh: 'DA LAT – HO CHI MINH',
+            notes: ['Da Lat highlights', 'Return to Ho Chi Minh', 'Evening city time'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'เดินทางไปโฮจิมินห์ (ประมำณ 6-7 ชั่วโมง', 'ถนนคนเดิน Nguyen Hue', 'อนุสำวรี ลุงโฮ', 'Café Apartment'],
+            lunch: 'Song Chau 7.5$',
+            dinner: 'Sai Gon 3 9$',
+            overnightTh: 'Hotel 4 stars standard: Acnoss (4 stars) or similar 10. ผลไม้ + ชำ 10.ข้าว + ผลไม้',
+            lunchMenuTh: ['สลัดไข่', ')                      2.ยำรวมมิตร + ข้ำ', 'หมูยำ่ ง + มันฝ', 'เปาะเปี๊ยะทอด', 'หมูตม้ หน่อไม้', 'เนื้อปลาดุกทอด', 'บล๊อคโคลี่ผดั ห', 'ไก่ตม้ เห็ด', 'ข้าว'],
+            dinnerMenuTh: ['แกงสำหร่ ำยหมูสบั', 'วเกรี ยบกุ้ง   2.ไก่ผดั ซอสไทย', 'รั่งทอด        3.ปลาทับทิมผัดเปรี้ ยวหวาน', 'ไส้หมูต๋ นุ สไตล์ฮ่องกง', 'ทะเลผัดสะเต๊ะ', '- กิมจิ       6.เปาะเปี๊ยะกุ้ง หมูทอด', 'มู             7.ไข่น่ ึง3รส', 'ผักกำดผัดน้ ำมันหอย', 'มะเขือยำวผัดปลาเค็มหมูสบั'],
+          },
+      {
+            day: 4,
+            title: 'Ho Chi Minh - Airport',
+            titleTh: 'HO CHI MINH CITY TOUR – AIRPORT',
+            notes: ['City tour and market', 'Airport transfer'],
+            notesTh: ['รับประทำนอาหารเช้ำ ณ โรงแรม', 'ทำเนียบอิสระภำพ', 'โบสถ์นอเธอดัม', 'ไปรษณี กลำง', 'วัดเจ้ำแม่ทบั ทิม', 'ตลาดเบ๋ นถัน่', 'ส่งสนามบิน'],
+            lunch: 'Ganh Bong Sen',
+            dinner: 'Free Style ไม่ รวม',
+            overnightTh: '',
+            lunchMenuTh: ['Buffee'],
+            dinnerMenuTh: ['*ถ้ารวมอาหารเย็น +9$/pax'],
+          }
     ],
+    pdfPriceLayout: true,
+    priceExtraRows: [
+      { label: '29/04-03/05/2026', merged: '+30$/pax', single: '+98$' }
+    ],
+    vehicleRows: [
+      { label: 'Vehicle type', left: '29 seats (mini bus)', right: '35 seats' }
+    ],
+    inclusionsTh: ['โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแก', 'อาหารเช้ำที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 6 มื้อ +', 'รถปรับอำกำศคุณภำพดี', 'ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้อง', 'บัตรเข้ำชมสถานที่เที่ยวต่ำงๆที่ระบุในโปรแกรม'],
+    exclusionsTh: [],
+    childRatesTh: ['เด็ก 0-2 ขวบ ฟรี', 'เด็ก 3-6 ขวบ คิด50% ค่าทัวร์ และเด็กต้องนอนกับผูใ้', 'เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือน'],
+    paymentTermsTh: [
+      ['หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%', '30% ของยอดทั้งหมด'],
+      ['โอนชำระเงินส่วนที่เหลือ ก่อน 07 วันเดินทาง', 'ยอดคงเหลือ']
+    ],
+    cancellationPolicyTh: [
+      ['ก่อน 21 วันเช็คอิน', 'ไม่โดนชาร์จ'],
+      ['จาก 20 วันถึง 07 วันก่อนวันเดินทาง', 'ชาร์จ 50% ราคาทัวร์'],
+      ['จาก 06 วันก่อนวันเดินทาง', 'ชาร์จ 90% ราคาทัวร์']
+    ]
   }),
 ];
