@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "prebuild": "node scripts/fetch-tours.js",
     "build": "vite build",
+    "fetch": "node scripts/fetch-tours.js",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

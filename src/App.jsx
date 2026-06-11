@@ -1,15 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  BriefcaseBusiness,
   Building2,
   CalendarDays,
   CheckCircle2,
   ChevronDown,
-  Copy,
   ExternalLink,
   Filter,
   Globe2,
-  Languages,
   MapPin,
   PlaneTakeoff,
   Search,
@@ -18,8 +15,9 @@ import {
   X,
 } from 'lucide-react';
 import { regions, tours } from './data/tours.js';
+import Admin from './components/Admin.jsx';
 
-const packageFilters = ['All', 'FIT', 'GIT'];
+const packageFilters = ['FIT', 'GIT'];
 const sortModes = ['Popular', 'Price Low', 'Duration'];
 
 const EXCHANGE_RATE = 35; // 1 USD = 35 THB
@@ -76,6 +74,10 @@ const translations = {
     dinner: 'Dinner',
     childRates: 'Child Rates',
     vehicleInfo: 'Vehicle / Upgrade',
+    northVietnam: 'North Vietnam',
+    centralVietnam: 'Central Vietnam',
+    southernVietnam: 'Southern Vietnam',
+    phuQuoc: 'Phu Quoc',
   },
   TH: {
     travelStyle: 'รูปแบบการเดินทาง',
@@ -128,6 +130,10 @@ const translations = {
     dinner: 'มื้อเย็น',
     childRates: 'ราคาสำหรับเด็ก',
     vehicleInfo: 'ประเภทรถ / อัปเกรดรถ',
+    northVietnam: 'เวียดนามเหนือ',
+    centralVietnam: 'เวียดนามกลาง',
+    southernVietnam: 'เวียดนามใต้',
+    phuQuoc: 'ฟูโกว๊ก',
   },
 };
 
@@ -150,11 +156,7 @@ function getHotelStandard(tour) {
   return 'Standard';
 }
 
-function getMeals(day, duration) {
-  if (day === 1) return 'L, D';
-  if (day === duration) return 'B';
-  return 'B, L, D';
-}
+
 
 function getQuoteText(tour, currency) {
   const bestRow = tour.priceRows.reduce((winner, row) => {
@@ -176,9 +178,37 @@ function getQuoteText(tour, currency) {
   ].join('\n');
 }
 
+const ThailandFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="16" height="11" style={{ borderRadius: '1px', display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="900" height="600" fill="#a51931"/>
+    <rect y="100" width="900" height="400" fill="#f4f5f8"/>
+    <rect y="200" width="900" height="200" fill="#2d2a4a"/>
+  </svg>
+);
+
+const UKFlag = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="16" height="11" style={{ borderRadius: '1px', display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M0 0v30h50V0z" fill="#012169"/>
+    <path d="M0 0l50 30M50 0L0 30" stroke="#fff" stroke-width="6"/>
+    <path d="M0 0l50 30M50 0L0 30" stroke="#c8102e" stroke-width="4"/>
+    <path d="M0 15h50M25 0v30" stroke="#fff" stroke-width="10"/>
+    <path d="M0 15h50M25 0v30" stroke="#c8102e" stroke-width="6"/>
+  </svg>
+);
+
+const regionKeyMap = {
+  'North Vietnam': 'northVietnam',
+  'Central Vietnam': 'centralVietnam',
+  'Southern Vietnam': 'southernVietnam',
+  'Phu Quoc': 'phuQuoc',
+};
+
 function App() {
+  const [isAdminMode, setIsAdminMode] = useState(() => {
+    return new URLSearchParams(window.location.search).get('admin') === 'true';
+  });
   const [currency, setCurrency] = useState('USD');
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState('TH');
   const [packageFilter, setPackageFilter] = useState('FIT');
   const [regionFilter, setRegionFilter] = useState('All');
   const [query, setQuery] = useState('');
@@ -219,6 +249,16 @@ function App() {
   }, [filteredTours, selectedId]);
 
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'a') {
+        setIsAdminMode(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (!notice) return undefined;
     const id = window.setTimeout(() => setNotice(''), 2200);
     return () => window.clearTimeout(id);
@@ -226,14 +266,7 @@ function App() {
 
   const selectedTour = filteredTours.find((tour) => tour.id === selectedId) || filteredTours[0] || null;
 
-  async function copyQuote(tour) {
-    try {
-      await navigator.clipboard.writeText(getQuoteText(tour, currency));
-      setNotice(`Copied quote notes for ${tour.code}`);
-    } catch {
-      setNotice('Copy failed. Browser blocked clipboard access.');
-    }
-  }
+
 
   function showNotice(message) {
     setNotice(message);
@@ -264,6 +297,10 @@ function App() {
     setNotice(`Language preference set to ${nextLanguage}`);
   }
 
+  if (isAdminMode) {
+    return <Admin onBack={() => setIsAdminMode(false)} />;
+  }
+
   return (
     <div className="app">
       <header className="topbar">
@@ -276,17 +313,13 @@ function App() {
         </div>
 
         <div className="topbar-actions">
-          <button className="select-button" type="button" onClick={cycleCurrency}>
+          <button className="currency-btn" type="button" onClick={cycleCurrency}>
             {currency}
-            <ChevronDown size={15} />
           </button>
-          <button className="icon-button" type="button" aria-label="Language" onClick={cycleLanguage}>
-            <Globe2 size={18} />
-            {language}
-            <ChevronDown size={14} />
+          <button className="language-btn" type="button" aria-label="Language" onClick={cycleLanguage}>
+            {language === 'TH' ? <ThailandFlag /> : <UKFlag />}
+            <span>{language}</span>
           </button>
-
-
         </div>
       </header>
 
@@ -303,7 +336,7 @@ function App() {
                     type="button"
                     onClick={() => setPackageFilter(option)}
                   >
-                    {option === 'All' ? <Globe2 size={16} /> : <Users size={16} />}
+                    <Users size={16} />
                     {option}
                   </button>
                 ))}
@@ -314,7 +347,9 @@ function App() {
               <span>{t('region', language)}</span>
               <div className="region-row" aria-label="Region filter">
                 {[t('allRegions', language), ...regions].map((option) => {
-                  const value = option === t('allRegions', language) ? 'All' : option;
+                  const isAll = option === t('allRegions', language);
+                  const value = isAll ? 'All' : option;
+                  const label = isAll ? option : t(regionKeyMap[option] || option, language);
                   return (
                     <button
                       className={value === regionFilter ? 'is-active' : ''}
@@ -322,7 +357,7 @@ function App() {
                       type="button"
                       onClick={() => setRegionFilter(value)}
                     >
-                      {option}
+                      {label}
                     </button>
                   );
                 })}
@@ -389,7 +424,6 @@ function App() {
             tour={selectedTour}
             currency={currency}
             language={language}
-            onCopy={() => copyQuote(selectedTour)}
             onClose={() => showNotice('Detail panel stays open on desktop')}
             onSave={() => showNotice(`Saved ${selectedTour.code} to shortlist`)}
             onReset={resetFilters}
@@ -457,7 +491,7 @@ function TourCard({ tour, active, onSelect, currency, language }) {
   );
 }
 
-function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, containerRef }) {
+function DetailPanel({ tour, onClose, onSave, currency, language, containerRef }) {
   const inclusions = language === 'TH' && tour.inclusionsTh ? tour.inclusionsTh : tour.inclusions;
   const exclusions = language === 'TH' && tour.exclusionsTh ? tour.exclusionsTh : tour.exclusions;
   const childRates = language === 'TH' && tour.childRatesTh ? tour.childRatesTh : tour.childRates;
@@ -514,10 +548,6 @@ function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, contai
           <ExternalLink size={17} />
           {t('viewPdf', language)}
         </a>
-        <button className="ghost-link" type="button" onClick={onCopy}>
-          <Copy size={17} />
-          {t('copyQuote', language)}
-        </button>
         <button className="star-button" type="button" aria-label="Save tour" onClick={onSave}>
           <Star size={18} />
         </button>
@@ -557,7 +587,7 @@ function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, contai
             ['0 - 6 days prior', '90%'],
           ]}
         />
-        {tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (
+        {!tour.pdfPriceLayout && tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (
           <div className="remarks-card">
             <h3>{language === 'TH' ? 'นโยบายหัวหน้าทัวร์' : 'Tour Leader Policy'}</h3>
             <div className="remarks-grid">
@@ -585,6 +615,24 @@ function DetailPanel({ tour, onCopy, onClose, onSave, currency, language, contai
           </div>
         )}
       </section>
+
+      {/* Line Contact */}
+      <a
+        href="https://line.me/ti/p/U1vOdylKTL"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="line-contact-block"
+      >
+        <img
+          src="/assets/line-qr.png"
+          alt="Line QR Code"
+          className="line-qr-img"
+        />
+        <div className="line-contact-text">
+          <span className="line-contact-label">ติดต่อผ่าน LINE</span>
+          <span className="line-contact-sub">แสกน QR หรือคลิกเพื่อเพิ่มเพื่อน</span>
+        </div>
+      </a>
     </section>
   );
 }
@@ -615,16 +663,13 @@ function ItineraryTable({ tour, language }) {
                   <li key={note}>{note}</li>
                 ))}
               </ul>
+              {overnight && overnight !== t('notAvailable', language) && (
+                <div className="itinerary-overnight-pdf">
+                  {t('overnight', language)}: {overnight}
+                </div>
+              )}
             </div>
             <div className="itinerary-side">
-              <span>
-                <Languages size={14} />
-                {t('meals', language)}: {getMeals(day.day, tour.duration)}
-              </span>
-              <span>
-                <BriefcaseBusiness size={14} />
-                {t('overnight', language)}: {overnight}
-              </span>
               {(lunch || dinner) && (
                 <div className="meal-venues">
                   {lunch && (
@@ -693,7 +738,7 @@ function PricePreview({ tour, currency, language }) {
                 {row.cells.map((cell) => (
                   <td key={`${row.season}-${cell.band}`}>{formatMoney(cell.value, currency)}</td>
                 ))}
-                <td>{row.single}</td>
+                <td>{row.single?.replace(' USD', '$')}</td>
               </tr>
             ))}
             {tour.pdfPriceLayout && tour.priceExtraRows?.map((row) => (
@@ -706,7 +751,7 @@ function PricePreview({ tour, currency, language }) {
                 ) : (
                   <td colSpan={bands.length}>{row.merged}</td>
                 )}
-                <td>{row.single}</td>
+                <td>{row.single?.replace(' USD', '$')}</td>
               </tr>
             ))}
             {!tour.pdfPriceLayout && tour.priceExtraRows?.map((row) => (
@@ -715,7 +760,7 @@ function PricePreview({ tour, currency, language }) {
                 {bands.map((band, index) => (
                   <td key={`${row.label}-${band}`}>{row.cells?.[index] || ''}</td>
                 ))}
-                <td>{row.single || ''}</td>
+                <td>{row.single?.replace(' USD', '$') || ''}</td>
               </tr>
             ))}
             {tour.pdfPriceLayout && tour.vehicleRows?.map((row) => (
@@ -733,6 +778,22 @@ function PricePreview({ tour, currency, language }) {
                 )}
               </tr>
             ))}
+            {tour.pdfPriceLayout && tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (() => {
+              const totalBandCols = bands.length + 1; // +1 for นอนเดียว col
+              const leftSpan = tour.remarksLeftSpan || Math.floor(totalBandCols / 2);
+              const middleSpan = tour.remarksMiddleSpan || 0;
+              const rightSpan = tour.remarksRightSpan || (totalBandCols - leftSpan - middleSpan);
+              const leftText = tour.remarksTh.left?.join('\n') || '';
+              const rightText = tour.remarksTh.right?.join('\n') || '';
+              return (
+                <tr className="remarks-table-row">
+                  <td className="remarks-table-label">หมายเหตุ</td>
+                  {leftText && <td colSpan={leftSpan} className="multiline-cell remarks-table-cell">{leftText}</td>}
+                  {!!middleSpan && <td colSpan={middleSpan} className="remarks-table-cell-empty"></td>}
+                  {rightText && <td colSpan={rightSpan} className="multiline-cell remarks-table-cell">{rightText}</td>}
+                </tr>
+              );
+            })()}
           </tbody>
         </table>
       </div>

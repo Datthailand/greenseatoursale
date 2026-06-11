@@ -150,6 +150,35 @@ button {
   padding: 0 12px;
 }
 
+.currency-btn,
+.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 760;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(22, 32, 29, 0.04);
+}
+
+.currency-btn:hover,
+.language-btn:hover {
+  background: var(--soft-green);
+  border-color: var(--brand-strong);
+  color: var(--brand);
+}
+
+.language-btn svg {
+  display: block;
+}
+
 .icon-button.alert {
   position: relative;
   justify-content: center;
@@ -809,9 +838,9 @@ button {
 
 table {
   width: 100%;
-  min-width: 0;
+  min-width: 480px;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
   background: #fff;
 }
 
@@ -843,7 +872,10 @@ th {
 
 td:first-child,
 th:first-child {
-  width: 152px;
+  width: 130px;
+  min-width: 130px;
+  max-width: 130px;
+  overflow: hidden;
 }
 
 td:first-child,
@@ -859,6 +891,8 @@ th:first-child {
 
 td:first-child {
   background: #fff;
+  word-break: break-word;
+  white-space: pre-line;
 }
 
 td:not(:first-child) {
@@ -879,13 +913,15 @@ td:not(:first-child) {
 }
 
 .pdf-price-table {
-  table-layout: fixed;
   border: 2px solid #0067a8;
 }
 
 .pdf-price-table th,
 .pdf-price-table td {
   border-color: #111;
+}
+
+.pdf-price-table td {
   white-space: pre-line;
 }
 
@@ -1076,19 +1112,43 @@ td:not(:first-child) {
 
 @media (max-width: 760px) {
   .topbar {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-    padding: 12px;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 8px 12px;
+    min-height: 52px;
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
   }
 
   .brand strong {
-    font-size: 18px;
+    font-size: 15px;
+  }
+
+  .brand span {
+    display: none;
   }
 
   .topbar-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: stretch;
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+
+  .currency-btn,
+  .language-btn {
+    min-height: 28px;
+    padding: 0 8px;
+    font-size: 12px;
+    gap: 4px;
+    border-radius: 14px;
   }
 
   .user-chip,
@@ -1171,7 +1231,7 @@ td:not(:first-child) {
   }
 
   .detail-price {
-    text-align: left;
+    display: none;
   }
 
   .detail-title h1 {
@@ -1206,7 +1266,7 @@ td:not(:first-child) {
   }
 
   table {
-    min-width: 680px;
+    min-width: 480px;
   }
 
   .pdf-text-block {
@@ -1276,9 +1336,85 @@ td:not(:first-child) {
 }
 
 @media (max-width: 760px) {
+  .remarks-card {
+    grid-column: span 1;
+  }
   .remarks-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 }
 
+.itinerary-overnight-pdf {
+  margin-top: 8px;
+  color: var(--coral);
+  font-size: 13px;
+  font-weight: 700;
+}
+/* ── Remarks row inside price table ── */
+.remarks-table-row td {
+  background: #e8f4ff;
+  color: #0067a8;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: left;
+  vertical-align: top;
+}
+
+.remarks-table-label {
+  font-weight: 900;
+  white-space: nowrap;
+  color: #0067a8 !important;
+}
+
+.remarks-table-cell {
+  text-align: left !important;
+}/* ── Line QR Contact Block ── */
+.line-contact-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 16px 20px;
+  border: 2px solid #06C755;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.line-contact-block:hover {
+  box-shadow: 0 4px 16px rgba(6, 199, 85, 0.25);
+  transform: translateY(-1px);
+}
+
+.line-qr-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 8px;
+  object-fit: contain;
+  border: 1px solid #d1f0db;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.line-contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.line-contact-label {
+  font-size: 17px;
+  font-weight: 850;
+  color: #06C755;
+  letter-spacing: 0.01em;
+}
+
+.line-contact-sub {
+  font-size: 12px;
+  color: #3d7a4f;
+  line-height: 1.4;
+}
