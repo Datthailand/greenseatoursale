@@ -938,6 +938,7 @@ td:not(:first-child) {
   background: #fff200;
   color: #9f3829;
   font-weight: 850;
+  white-space: nowrap;
 }
 
 .pdf-price-table .price-extra-row td {
