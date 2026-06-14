@@ -505,13 +505,13 @@ async function main() {
       // Assemble final tour configuration
       const backupTour = backupTours.find(t => t.id === rTour.id);
       
-      const duration = backupTour && backupTour.duration ? backupTour.duration : parseInt(rTour.duration, 10);
-      const title = backupTour && backupTour.title ? backupTour.title : rTour.title;
-      const route = backupTour && backupTour.route ? backupTour.route : rTour.route;
-      const nights = backupTour && backupTour.nights ? backupTour.nights : rTour.nights;
-      const hotel = backupTour && backupTour.hotel ? backupTour.hotel : rTour.hotel;
-      const groupRange = backupTour && backupTour.groupRange ? backupTour.groupRange : rTour.groupRange;
-      const vehicle = backupTour && backupTour.vehicle ? backupTour.vehicle : rTour.vehicle;
+      const duration = rTour.duration ? parseInt(rTour.duration, 10) : (backupTour?.duration || 0);
+      const title = rTour.title || backupTour?.title || '';
+      const route = rTour.route || backupTour?.route || '';
+      const nights = rTour.nights || backupTour?.nights || '';
+      const hotel = rTour.hotel || backupTour?.hotel || '';
+      const groupRange = rTour.groupRange || backupTour?.groupRange || '';
+      const vehicle = rTour.vehicle || backupTour?.vehicle || '';
 
       let highlights = parseLineList(rTour.highlights);
       if (backupTour && backupTour.highlights && (highlights.length === 0 || backupTour.id === 'fitsgn01')) {
