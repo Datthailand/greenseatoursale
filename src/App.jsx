@@ -234,10 +234,41 @@ function App() {
   const searchParams = useMemo(() => new URLSearchParams(window.location.search), []);
   const hideParam = searchParams.get('hide') || '';
   const viewParam = searchParams.get('view') || '';
+  const keyParam = searchParams.get('key') || '';
   const isPublicView = viewParam.toLowerCase() === 'public' || viewParam.toLowerCase() === 'client';
   
+  const isExplicitPublic = isPublicView || hideParam.includes('price') || hideParam.includes('meals');
+  const isExplicitAgent = keyParam.toLowerCase() === 'greensea_agent' ||
+                           keyParam.toLowerCase() === 'agent' ||
+                           keyParam.toLowerCase() === 'partner' ||
+                           keyParam.toLowerCase() === 'b2b' ||
+                           viewParam.toLowerCase() === 'agent';
+
   const [isPublicMode, setIsPublicMode] = useState(() => {
-    return isPublicView || hideParam.includes('price') || hideParam.includes('meals');
+    if (isExplicitPublic) {
+      return true; // Explicit public parameter overrides everything
+    }
+    if (isExplicitAgent) {
+      try {
+        localStorage.setItem('greensea_role', 'agent');
+      } catch (e) {
+        console.error('LocalStorage not available:', e);
+      }
+      return false; // Explicit agent key forces agent view (isPublicMode = false)
+    }
+    
+    // Otherwise, check localStorage
+    try {
+      const savedRole = localStorage.getItem('greensea_role');
+      if (savedRole === 'agent') {
+        return false; // Saved agent role -> show agent view
+      }
+    } catch (e) {
+      console.error('Error reading LocalStorage:', e);
+    }
+    
+    // Default for general B2C public visitors: Hide sensitive info
+    return true; 
   });
   
   const shouldHidePrice = isPublicMode || hideParam.includes('price') || hideParam.includes('pricing');
