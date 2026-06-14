@@ -910,6 +910,7 @@ td:not(:first-child) {
   background: var(--coral-soft);
   color: #9f3829;
   font-weight: 850;
+  font-size: 14px;
 }
 
 .pdf-price-table {
@@ -943,6 +944,7 @@ td:not(:first-child) {
   background: #fff;
   color: var(--ink);
   font-weight: 760;
+  font-size: 14px;
 }
 
 .pdf-price-table thead tr:not(.pdf-price-title-row) th {
