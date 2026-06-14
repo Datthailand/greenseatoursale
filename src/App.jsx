@@ -731,7 +731,7 @@ function ItineraryTable({ tour, language, hideMeals }) {
               {hideMeals ? (
                 mealsList.length > 0 && (
                   <div className="meal-summary-general">
-                    <strong>{language === 'TH' ? 'มื้ออาหาร' : 'Meals'}: {mealsList.join(', ')}</strong>
+                    {language === 'TH' ? 'มื้ออาหาร' : 'Meals'}: {mealsList.join(', ')}
                   </div>
                 )
               ) : (

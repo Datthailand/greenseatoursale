@@ -1354,6 +1354,12 @@ td:not(:first-child) {
   font-size: 13px;
   font-weight: 700;
 }
+
+.meal-summary-general {
+  color: var(--coral);
+  font-size: 13px;
+  font-weight: 700;
+}
 /* ── Remarks row inside price table ── */
 .remarks-table-row td {
   background: #e8f4ff;
