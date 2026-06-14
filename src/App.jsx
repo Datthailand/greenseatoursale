@@ -238,7 +238,8 @@ function App() {
   const isPublicView = viewParam.toLowerCase() === 'public' || viewParam.toLowerCase() === 'client';
   
   const isExplicitPublic = isPublicView || hideParam.includes('price') || hideParam.includes('meals');
-  const isExplicitAgent = keyParam.toLowerCase() === 'greensea_agent' ||
+  const isExplicitAgent = keyParam.toLowerCase() === 'greenseatour_agent' ||
+                           keyParam.toLowerCase() === 'greensea_agent' ||
                            keyParam.toLowerCase() === 'agent' ||
                            keyParam.toLowerCase() === 'partner' ||
                            keyParam.toLowerCase() === 'b2b' ||
