@@ -1,0 +1,73 @@
+{
+  "tourCode": "FITCXR01",
+  "productType": "FIT",
+  "region": "Southern Vietnam",
+  "sourceFile": "D:\\Dat\\webapp greensea\\tmp\\opendataloader\\Sales kit_FIT\\Sales kit FIT_Southern Vietnam2026.json",
+  "sourcePage": 4,
+  "season": "01/04-30/12/2026",
+  "customerGroups": [
+    "2-3",
+    "4-5",
+    "6-7",
+    "8-9",
+    "10-11",
+    "12-14"
+  ],
+  "singleColumn": true,
+  "basePrices": {
+    "2-3": "422",
+    "4-5": "294",
+    "6-7": "260",
+    "8-9": "242",
+    "10-11": "230",
+    "12-14": "222",
+    "single": "+65$"
+  },
+  "priceSeasons": [
+    {
+      "season": "01/04-30/12/2026",
+      "values": {
+        "2-3": "422",
+        "4-5": "294",
+        "6-7": "260",
+        "8-9": "242",
+        "10-11": "230",
+        "12-14": "222",
+        "single": "+65$"
+      },
+      "raw": "01/04-30/12/2026 422 294 260 242 230 222 +65$"
+    }
+  ],
+  "holidaySurcharges": [
+    {
+      "dates": [
+        "29/04-02/05/2026",
+        "24-25/12/2026"
+      ],
+      "values": {
+        "2-3": "+30$/pax",
+        "4-5": "+30$/pax",
+        "6-7": "+30$/pax",
+        "8-9": "+30$/pax",
+        "10-11": "+30$/pax",
+        "12-14": "+30$/pax",
+        "single": "+95$"
+      },
+      "raw": "+30$/pax +95$ | 29/04-02/05/2026 24-25/12/2026"
+    }
+  ],
+  "vehicleType": {
+    "2-3": "16 seats",
+    "4-5": "16 seats",
+    "6-7": "16 seats",
+    "8-9": "29 seats (mini bus)",
+    "10-11": "29 seats (mini bus)",
+    "12-14": "29 seats (mini bus)",
+    "single": ""
+  },
+  "tourLeaderPolicy": null,
+  "validation": {
+    "status": "PASS",
+    "issues": []
+  }
+}

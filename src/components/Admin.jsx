@@ -27,6 +27,7 @@ export default function Admin({ onBack }) {
 
   const [selectedTourId, setSelectedTourId] = useState(initialTours[0]?.id || '');
   const [activeTab, setActiveTab] = useState('general'); // general, pricing, itinerary, sync
+  const [selectedDayIdx, setSelectedDayIdx] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [regionFilter, setRegionFilter] = useState('All');
   const [packageFilter, setPackageFilter] = useState('All');
@@ -41,6 +42,10 @@ export default function Admin({ onBack }) {
   useEffect(() => {
     localStorage.setItem('greensea_admin_config', JSON.stringify(config));
   }, [config]);
+
+  useEffect(() => {
+    setSelectedDayIdx(0);
+  }, [selectedTourId]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -62,6 +67,17 @@ export default function Admin({ onBack }) {
       }
       return t;
     }));
+  };
+
+  const day = activeTour?.itinerary?.[selectedDayIdx] || activeTour?.itinerary?.[0];
+  const safeSelectedDayIdx = activeTour?.itinerary?.[selectedDayIdx] ? selectedDayIdx : 0;
+
+  const updateActiveDay = (updater) => {
+    updateActiveTour(t => {
+      if (t.itinerary && t.itinerary[safeSelectedDayIdx]) {
+        updater(t.itinerary[safeSelectedDayIdx]);
+      }
+    });
   };
 
   // Serialize to Sheet JSON
@@ -154,12 +170,16 @@ export default function Admin({ onBack }) {
       // Standard rows
       if (t.priceRows) {
         t.priceRows.forEach(row => {
+          let singleVal = row.single || '';
+          if (typeof singleVal === 'string' && (singleVal.startsWith('+') || singleVal.startsWith('='))) {
+            singleVal = "'" + singleVal;
+          }
           pricingRows.push({
             tour_id: t.id,
             row_type: 'standard',
             label: row.season,
             cells: row.cells.map(c => c.value).join(','),
-            single: row.single || ''
+            single: singleVal
           });
         });
       }
@@ -168,16 +188,29 @@ export default function Admin({ onBack }) {
         t.priceExtraRows.forEach(row => {
           let cellsStr = '';
           if (row.cells) {
-            cellsStr = row.cells.map(c => `${c.text}[${c.colSpan}]`).join(',');
+            cellsStr = row.cells.map(c => {
+              let text = c.text || '';
+              if (typeof text === 'string' && (text.startsWith('+') || text.startsWith('='))) {
+                return "'" + text + `[${c.colSpan}]`;
+              }
+              return `${text}[${c.colSpan}]`;
+            }).join(',');
           } else if (row.merged) {
             cellsStr = row.merged;
+            if (typeof cellsStr === 'string' && (cellsStr.startsWith('+') || cellsStr.startsWith('='))) {
+              cellsStr = "'" + cellsStr;
+            }
+          }
+          let singleVal = row.single || '';
+          if (typeof singleVal === 'string' && (singleVal.startsWith('+') || singleVal.startsWith('='))) {
+            singleVal = "'" + singleVal;
           }
           pricingRows.push({
             tour_id: t.id,
             row_type: 'extra',
             label: row.label,
             cells: cellsStr,
-            single: row.single || ''
+            single: singleVal
           });
         });
       }
@@ -186,9 +219,19 @@ export default function Admin({ onBack }) {
         t.vehicleRows.forEach(row => {
           let cellsStr = '';
           if (row.cells) {
-            cellsStr = row.cells.map(c => `${c.text}[${c.colSpan}]`).join(',');
+            cellsStr = row.cells.map(c => {
+              let text = c.text || '';
+              if (typeof text === 'string' && (text.startsWith('+') || text.startsWith('='))) {
+                return "'" + text + `[${c.colSpan}]`;
+              }
+              return `${text}[${c.colSpan}]`;
+            }).join(',');
           } else if (row.left || row.right) {
-            cellsStr = `${row.left},${row.right}`;
+            let left = row.left || '';
+            let right = row.right || '';
+            if (left.startsWith('+') || left.startsWith('=')) left = "'" + left;
+            if (right.startsWith('+') || right.startsWith('=')) right = "'" + right;
+            cellsStr = `${left},${right}`;
           }
           pricingRows.push({
             tour_id: t.id,
@@ -1345,126 +1388,113 @@ export default function Admin({ onBack }) {
               </div>
             )}
 
-            {activeTab === 'itinerary' && (() => {
-              const [selectedDayIdx, setSelectedDayIdx] = useState(0);
-              const day = activeTour.itinerary?.[selectedDayIdx];
-
-              const updateActiveDay = (updater) => {
-                updateActiveTour(t => {
-                  if (t.itinerary && t.itinerary[selectedDayIdx]) {
-                    updater(t.itinerary[selectedDayIdx]);
-                  }
-                });
-              };
-
-              return (
-                <div className="editor-card itinerary-editor-grid">
-                  <div className="days-nav">
-                    {activeTour.itinerary?.map((item, idx) => (
-                      <div 
-                        className={`day-nav-item ${selectedDayIdx === idx ? 'active' : ''}`}
-                        key={item.day}
-                        onClick={() => setSelectedDayIdx(idx)}
-                      >
-                        <span>Ngày {item.day}</span>
-                        <ChevronRight size={14} />
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {day ? (
-                    <div className="day-editor-form">
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                        <div className="form-field">
-                          <label>Tiêu đề tiếng Anh (EN Title)</label>
-                          <input 
-                            type="text" 
-                            value={day.title || ''}
-                            onChange={e => updateActiveDay(d => d.title = e.target.value)}
-                          />
-                        </div>
-                        <div className="form-field">
-                          <label>Tiêu đề tiếng Thái (TH Title)</label>
-                          <input 
-                            type="text" 
-                            value={day.titleTh || ''}
-                            onChange={e => updateActiveDay(d => d.titleTh = e.target.value)}
-                          />
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                        <div className="form-field">
-                          <label>Chi tiết chương trình EN (notes) - Một mục mỗi dòng</label>
-                          <textarea 
-                            value={day.notes?.join('\n') || ''}
-                            onChange={e => updateActiveDay(d => d.notes = e.target.value.split('\n'))}
-                            style={{ height: '120px' }}
-                          />
-                        </div>
-                        <div className="form-field">
-                          <label>Chi tiết chương trình TH (notesTh) - Một mục mỗi dòng</label>
-                          <textarea 
-                            value={day.notesTh?.join('\n') || ''}
-                            onChange={e => updateActiveDay(d => d.notesTh = e.target.value.split('\n'))}
-                            style={{ height: '120px' }}
-                          />
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                        <div className="form-field">
-                          <label>Địa điểm ăn trưa (Lunch place)</label>
-                          <input 
-                            type="text" 
-                            value={day.lunch || ''}
-                            onChange={e => updateActiveDay(d => d.lunch = e.target.value)}
-                          />
-                        </div>
-                        <div className="form-field">
-                          <label>Menu ăn trưa tiếng Thái (Lunch Menu TH) - Tách bằng dấu phẩy</label>
-                          <input 
-                            type="text" 
-                            placeholder="Món 1, Món 2, Món 3"
-                            value={day.lunchMenuTh?.join(', ') || ''}
-                            onChange={e => updateActiveDay(d => d.lunchMenuTh = e.target.value.split(',').map(s=>s.trim()))}
-                          />
-                        </div>
-                        <div className="form-field">
-                          <label>Địa điểm ăn tối (Dinner place)</label>
-                          <input 
-                            type="text" 
-                            value={day.dinner || ''}
-                            onChange={e => updateActiveDay(d => d.dinner = e.target.value)}
-                          />
-                        </div>
-                        <div className="form-field">
-                          <label>Menu ăn tối tiếng Thái (Dinner Menu TH) - Tách bằng dấu phẩy</label>
-                          <input 
-                            type="text" 
-                            placeholder="Món 1, Món 2, Món 3"
-                            value={day.dinnerMenuTh?.join(', ') || ''}
-                            onChange={e => updateActiveDay(d => d.dinnerMenuTh = e.target.value.split(',').map(s=>s.trim()))}
-                          />
-                        </div>
-                        <div className="form-field" style={{ gridColumn: 'span 2' }}>
-                          <label>Địa điểm ngủ qua đêm tiếng Thái (Overnight TH)</label>
-                          <input 
-                            type="text" 
-                            value={day.overnightTh || ''}
-                            onChange={e => updateActiveDay(d => d.overnightTh = e.target.value)}
-                          />
-                        </div>
-                      </div>
+            {activeTab === 'itinerary' && (
+              <div className="editor-card itinerary-editor-grid">
+                <div className="days-nav">
+                  {activeTour.itinerary?.map((item, idx) => (
+                    <div 
+                      className={`day-nav-item ${safeSelectedDayIdx === idx ? 'active' : ''}`}
+                      key={item.day}
+                      onClick={() => setSelectedDayIdx(idx)}
+                    >
+                      <span>Ngày {item.day}</span>
+                      <ChevronRight size={14} />
                     </div>
-                  ) : (
-                    <div style={{ display: 'grid', placeItems: 'center', height: '100%' }}>
-                      Chọn một ngày lịch trình để bắt đầu soạn thảo.
-                    </div>
-                  )}
+                  ))}
                 </div>
-              );
-            })()}
+                
+                {day ? (
+                  <div className="day-editor-form">
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                      <div className="form-field">
+                        <label>Tiêu đề tiếng Anh (EN Title)</label>
+                        <input 
+                          type="text" 
+                          value={day.title || ''}
+                          onChange={e => updateActiveDay(d => d.title = e.target.value)}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Tiêu đề tiếng Thái (TH Title)</label>
+                        <input 
+                          type="text" 
+                          value={day.titleTh || ''}
+                          onChange={e => updateActiveDay(d => d.titleTh = e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                      <div className="form-field">
+                        <label>Chi tiết chương trình EN (notes) - Một mục mỗi dòng</label>
+                        <textarea 
+                          value={day.notes?.join('\n') || ''}
+                          onChange={e => updateActiveDay(d => d.notes = e.target.value.split('\n'))}
+                          style={{ height: '120px' }}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Chi tiết chương trình TH (notesTh) - Một mục mỗi dòng</label>
+                        <textarea 
+                          value={day.notesTh?.join('\n') || ''}
+                          onChange={e => updateActiveDay(d => d.notesTh = e.target.value.split('\n'))}
+                          style={{ height: '120px' }}
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                      <div className="form-field">
+                        <label>Địa điểm ăn trưa (Lunch place)</label>
+                        <input 
+                          type="text" 
+                          value={day.lunch || ''}
+                          onChange={e => updateActiveDay(d => d.lunch = e.target.value)}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Menu ăn trưa tiếng Thái (Lunch Menu TH) - Tách bằng dấu phẩy</label>
+                        <input 
+                          type="text" 
+                          placeholder="Món 1, Món 2, Món 3"
+                          value={day.lunchMenuTh?.join(', ') || ''}
+                          onChange={e => updateActiveDay(d => d.lunchMenuTh = e.target.value.split(',').map(s=>s.trim()))}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Địa điểm ăn tối (Dinner place)</label>
+                        <input 
+                          type="text" 
+                          value={day.dinner || ''}
+                          onChange={e => updateActiveDay(d => d.dinner = e.target.value)}
+                        />
+                      </div>
+                      <div className="form-field">
+                        <label>Menu ăn tối tiếng Thái (Dinner Menu TH) - Tách bằng dấu phẩy</label>
+                        <input 
+                          type="text" 
+                          placeholder="Món 1, Món 2, Món 3"
+                          value={day.dinnerMenuTh?.join(', ') || ''}
+                          onChange={e => updateActiveDay(d => d.dinnerMenuTh = e.target.value.split(',').map(s=>s.trim()))}
+                        />
+                      </div>
+                      <div className="form-field" style={{ gridColumn: 'span 2' }}>
+                        <label>Địa điểm ngủ qua đêm tiếng Thái (Overnight TH)</label>
+                        <input 
+                          type="text" 
+                          value={day.overnightTh || ''}
+                          onChange={e => updateActiveDay(d => d.overnightTh = e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ display: 'grid', placeItems: 'center', height: '100%' }}>
+                    Chọn một ngày lịch trình để bắt đầu soạn thảo.
+                  </div>
+                )}
+              </div>
+            )}
 
             {activeTab === 'sync' && (
               <div className="editor-card sync-card">

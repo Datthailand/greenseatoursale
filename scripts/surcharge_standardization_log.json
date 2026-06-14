@@ -1,0 +1,103 @@
+{
+  "timestamp": "2026-06-14T00:29:00Z",
+  "task": "Standardizing GIT Tour Surcharge Data & Multi-period Labels (Corrected Spans)",
+  "standardization_schema": {
+    "target_field": "priceExtraRows",
+    "cells_format": [
+      { "text": "+XX$", "colSpan": 2 },
+      { "text": "+YY$", "colSpan": 5 }
+    ],
+    "unified_label_pattern": "{holiday_period_1}\\n{holiday_period_2}"
+  },
+  "tours_fixed": [
+    {
+      "id": "han01",
+      "code": "HAN01",
+      "region": "North Vietnam",
+      "original_label": "29/04-02/05/2026",
+      "new_label": "29/04-02/05/2026\\n24-25/12/2026",
+      "legacy_merged_surcharge": "+25$ / +22$",
+      "new_cells_surcharge": [
+        { "text": "+25$", "colSpan": 2 },
+        { "text": "+22$", "colSpan": 5 }
+      ]
+    },
+    {
+      "id": "han02",
+      "code": "HAN02",
+      "region": "North Vietnam",
+      "original_label": "29/04-02/05/2026",
+      "new_label": "29/04-02/05/2026\\n24-25/12/2026",
+      "legacy_merged_surcharge": "+25$ / +22$",
+      "new_cells_surcharge": [
+        { "text": "+25$", "colSpan": 2 },
+        { "text": "+22$", "colSpan": 5 }
+      ]
+    },
+    {
+      "id": "han03",
+      "code": "HAN03",
+      "region": "North Vietnam",
+      "original_label": "29/04-02/05/2026",
+      "new_label": "29/04-02/05/2026\\n24-25/12/2026",
+      "legacy_merged_surcharge": "+25$ / +22$",
+      "new_cells_surcharge": [
+        { "text": "+25$", "colSpan": 2 },
+        { "text": "+22$", "colSpan": 5 }
+      ]
+    },
+    {
+      "id": "cxr01",
+      "code": "CXR01",
+      "region": "Southern Vietnam",
+      "original_label": "29/04-03/05/2026",
+      "new_label": "29/04-03/05/2026\\n24-26/12/2026",
+      "legacy_merged_surcharge": "+10$/pax",
+      "new_cells_surcharge": [
+        { "text": "+10$/pax", "colSpan": 7 }
+      ]
+    },
+    {
+      "id": "cxr02",
+      "code": "CXR02",
+      "region": "Southern Vietnam",
+      "original_label": "29/04-03/05/2026",
+      "new_label": "29/04-03/05/2026\\n24-26/12/2026",
+      "legacy_merged_surcharge": "+25$/pax",
+      "new_cells_surcharge": [
+        { "text": "+25$/pax", "colSpan": 7 }
+      ]
+    },
+    {
+      "id": "sgn01",
+      "code": "SGN01",
+      "region": "Southern Vietnam",
+      "original_label": "29/04-03/05/2026",
+      "new_label": "29/04-03/05/2026\\n24-26/12/2026",
+      "legacy_merged_surcharge": "+25$/pax",
+      "new_cells_surcharge": [
+        { "text": "+25$/pax", "colSpan": 7 }
+      ]
+    },
+    {
+      "id": "sgn02",
+      "code": "SGN02",
+      "region": "Southern Vietnam",
+      "original_label": "29/04-03/05/2026",
+      "new_label": "29/04-03/05/2026\\n24-26/12/2026",
+      "legacy_merged_surcharge": "+30$/pax",
+      "new_cells_surcharge": [
+        { "text": "+30$/pax", "colSpan": 7 }
+      ]
+    }
+  ],
+  "pipeline_modifications": {
+    "file": "scripts/fetch-tours.js",
+    "change": "Updated row_type === 'extra' processor to prioritize 'backupRow.label' (with multi-period newlines) over Google Sheet 'pRow.label' during compilation."
+  },
+  "deployment": {
+    "status": "success",
+    "url": "https://greenseatour.vn",
+    "script": "deploy.ps1"
+  }
+}

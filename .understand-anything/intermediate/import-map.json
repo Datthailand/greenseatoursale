@@ -1,0 +1,38 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 18,
+    "filesWithImports": 4,
+    "totalEdges": 6
+  },
+  "importMap": {
+    "data_goc/ssh digital.txt": [],
+    "deploy.ps1": [],
+    "implementation-notes.md": [],
+    "index.html": [],
+    "package.json": [],
+    "RUNBOOK.md": [],
+    "scripts/config.json": [],
+    "scripts/export-to-csv.js": [
+      "src/data/tours.js"
+    ],
+    "scripts/fetch-tours.js": [],
+    "src/App.jsx": [
+      "src/components/Admin.jsx",
+      "src/data/tours.js"
+    ],
+    "src/components/Admin.jsx": [
+      "src/data/tours.js"
+    ],
+    "src/data/pdfExtracts.js": [],
+    "src/data/tours.js": [],
+    "src/main.jsx": [
+      "src/App.jsx",
+      "src/styles.css"
+    ],
+    "src/styles.css": [],
+    "tmp_search.txt": [],
+    "tour_audit_full.md": [],
+    "tour_data_audit.md": []
+  }
+}

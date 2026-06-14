@@ -1,0 +1,73 @@
+{
+  "tourCode": "FITDAD01",
+  "productType": "FIT",
+  "region": "Central Vietnam",
+  "sourceFile": "D:\\Dat\\webapp greensea\\tmp\\opendataloader\\Sales kit_FIT\\Sales kit FIT_Central Vietnam2026.json",
+  "sourcePage": 4,
+  "season": "01/04-30/12/2026",
+  "customerGroups": [
+    "2-3",
+    "4-5",
+    "6-7",
+    "8-9",
+    "10-11",
+    "12-14"
+  ],
+  "singleColumn": true,
+  "basePrices": {
+    "2-3": "350",
+    "4-5": "260",
+    "6-7": "230",
+    "8-9": "206",
+    "10-11": "198",
+    "12-14": "194",
+    "single": "+70$"
+  },
+  "priceSeasons": [
+    {
+      "season": "01/04-30/12/2026",
+      "values": {
+        "2-3": "350",
+        "4-5": "260",
+        "6-7": "230",
+        "8-9": "206",
+        "10-11": "198",
+        "12-14": "194",
+        "single": "+70$"
+      },
+      "raw": "01/04-30/12/2026 350 260 230 206 198 194 +70$"
+    }
+  ],
+  "holidaySurcharges": [
+    {
+      "dates": [
+        "29/04-02/05/2026",
+        "24-25/04/2026"
+      ],
+      "values": {
+        "2-3": "+18$/pax",
+        "4-5": "+18$/pax",
+        "6-7": "+18$/pax",
+        "8-9": "+18$/pax",
+        "10-11": "+18$/pax",
+        "12-14": "+18$/pax",
+        "single": "+88$"
+      },
+      "raw": "+18$/pax +88$ | 29/04-02/05/2026 24-25/04/2026"
+    }
+  ],
+  "vehicleType": {
+    "2-3": "16 seats",
+    "4-5": "16 seats",
+    "6-7": "16 seats",
+    "8-9": "29 seats (mini bus)",
+    "10-11": "29 seats (mini bus)",
+    "12-14": "29 seats (mini bus)",
+    "single": ""
+  },
+  "tourLeaderPolicy": null,
+  "validation": {
+    "status": "PASS",
+    "issues": []
+  }
+}

@@ -75,10 +75,12 @@ const sharedTerms = {
 };
 
 const makeTour = (tour) => {
-  const rowMinimums = tour.priceRows.flatMap((row) => row.cells.map((cell) => cell.value));
+  const priceRows = tour.priceRows || [];
+  const rowMinimums = priceRows.flatMap((row) => (row.cells || []).map((cell) => cell.value).filter((v) => typeof v === 'number' && !isNaN(v)));
+  const minPrice = rowMinimums.length > 0 ? Math.min(...rowMinimums) : 0;
   return {
     ...tour,
-    priceFrom: Math.min(...rowMinimums),
+    priceFrom: minPrice,
     inclusions: tour.inclusions || sharedTerms.inclusions,
     exclusions: tour.exclusions || sharedTerms.exclusions,
     policies: tour.policies || sharedTerms.policies,
@@ -97,6 +99,7 @@ export const tours = [
   "id": "fitdad01",
   "code": "FITDAD01",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Ba Na Hills, Hoi An",
   "route": "Da Nang > Ba Na Hills > Hoi An",
@@ -111,9 +114,65 @@ export const tours = [
     "29/04-02/05/2026 +18 USD/pax",
     "24-25/12/2026 single +88 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "2-3",
+          "value": 350
+        },
+        {
+          "band": "4-5",
+          "value": 260
+        },
+        {
+          "band": "6-7",
+          "value": 230
+        },
+        {
+          "band": "8-9",
+          "value": 206
+        },
+        {
+          "band": "10-11",
+          "value": 198
+        },
+        {
+          "band": "12-14",
+          "value": 194
+        }
+      ],
+      "single": "+70 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+18$/pax",
+          "colSpan": 6
+        }
+      ],
+      "single": "+88$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 3
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Golden Bridge and Ba Na Hills overnight",
     "Hoi An Ancient Town and basket boat",
@@ -217,18 +276,19 @@ export const tours = [
         "ผลไม้"
       ],
       "dinner": "Banh mi",
-      "dinnerMenuTh": []
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
-    "อาหารเช้าที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 3 มื้อ + บุฟเฟ่ ต์ 2 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                  300baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "อาหารเช้าที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 3 มื้อ + บุฟเฟ่ต์ 2 มื้อ",
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 600bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 300baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -236,6 +296,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -265,6 +329,7 @@ export const tours = [
   "id": "fitdad02",
   "code": "FITDAD02",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Ba Na Hills, Hoi An",
   "route": "Da Nang > Ba Na Hills > Hoi An",
@@ -279,9 +344,65 @@ export const tours = [
     "29/04-02/05/2026 +20 USD/pax",
     "24-25/12/2026 single +100 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "2-3",
+          "value": 395
+        },
+        {
+          "band": "4-5",
+          "value": 290
+        },
+        {
+          "band": "6-7",
+          "value": 255
+        },
+        {
+          "band": "8-9",
+          "value": 229
+        },
+        {
+          "band": "10-11",
+          "value": 220
+        },
+        {
+          "band": "12-14",
+          "value": 215
+        }
+      ],
+      "single": "+80 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+20$/pax",
+          "colSpan": 6
+        }
+      ],
+      "single": "+100$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 3
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Ba Na Hills overnight",
     "Hoi An Ancient Town and basket boat",
@@ -414,18 +535,20 @@ export const tours = [
       ],
       "lunch": "Banh mi",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
-    "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ + บุฟเฟ่ ต์ 2 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                        400baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ + บุฟเฟ่ต์ 2 มื้อ",
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 800bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 400baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -433,6 +556,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -462,6 +589,7 @@ export const tours = [
   "id": "fithan01",
   "code": "FITHAN01",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "North Vietnam",
   "title": "Ha Noi, Tam Dao, Ninh Binh",
   "route": "Ha Noi > Tam Dao > Ninh Binh",
@@ -476,9 +604,61 @@ export const tours = [
     "29/04-02/05/2026 +30 USD/pax",
     "24-26/12/2026 single +100 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "4-5",
+          "value": 245
+        },
+        {
+          "band": "6-7",
+          "value": 205
+        },
+        {
+          "band": "8-9",
+          "value": 185
+        },
+        {
+          "band": "10-11",
+          "value": 178
+        },
+        {
+          "band": "12-14",
+          "value": 170
+        }
+      ],
+      "single": "+70 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+30$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+100$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 2
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Tam Dao stone church and Quan Gio cafe",
     "Mega Grand World and Ha Noi old quarter",
@@ -569,18 +749,19 @@ export const tours = [
         "ผลไม้"
       ],
       "dinner": "ไม่ รวม",
-      "dinnerMenuTh": []
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
     "อาหารเช้าที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 3 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                  300baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 600bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 300baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -588,6 +769,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -617,6 +802,7 @@ export const tours = [
   "id": "fithan02",
   "code": "FITHAN02",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "North Vietnam",
   "title": "Ha Noi and Sapa",
   "route": "Ha Noi > Sapa",
@@ -631,9 +817,61 @@ export const tours = [
     "29/04-02/05/2026 +30 USD/pax",
     "24-26/12/2026 single +95 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "4-5",
+          "value": 350
+        },
+        {
+          "band": "6-7",
+          "value": 300
+        },
+        {
+          "band": "8-9",
+          "value": 275
+        },
+        {
+          "band": "10-11",
+          "value": 260
+        },
+        {
+          "band": "12-14",
+          "value": 255
+        }
+      ],
+      "single": "+65 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+30$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+95$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 2
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Cat Cat village and Moana Sapa",
     "Sapa church and night market",
@@ -762,18 +1000,20 @@ export const tours = [
         "หอยโข่งผัดมะขำม",
         "ผลไม้ + ชำ"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
-    "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ + บุฟเฟ่ ต์ 1 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                  400baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ + บุฟเฟ่ต์ 1 มื้อ",
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 800bath/pax/trip (กรุ๊ป 8 ท่านขึ้นไป 400baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -781,6 +1021,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -810,6 +1054,7 @@ export const tours = [
   "id": "fithan03",
   "code": "FITHAN03",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "North Vietnam",
   "title": "Ha Noi, Ha Long, Ninh Binh",
   "route": "Ha Noi > Ha Long > Ninh Binh",
@@ -824,9 +1069,61 @@ export const tours = [
     "29/04-02/05/2026 +30 USD/pax",
     "24-26/12/2026 single +100 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "4-5",
+          "value": 322
+        },
+        {
+          "band": "6-7",
+          "value": 278
+        },
+        {
+          "band": "8-9",
+          "value": 257
+        },
+        {
+          "band": "10-11",
+          "value": 255
+        },
+        {
+          "band": "12-14",
+          "value": 250
+        }
+      ],
+      "single": "+70 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+30$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+100$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 2
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Ha Long Queen Sun World cable car",
     "Ha Long Bay cruise and cave visit",
@@ -935,18 +1232,20 @@ export const tours = [
       "lunchMenuTh": [
         "Buffet"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
     "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 4 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                    400baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 800bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 400baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -954,6 +1253,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -983,6 +1286,7 @@ export const tours = [
   "id": "fitpqc01",
   "code": "FITPQC01",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "Phu Quoc",
   "title": "Phu Quoc Island",
   "route": "Phu Quoc > Hon Thom > Grand World",
@@ -997,9 +1301,71 @@ export const tours = [
     "29/04-02/05/2026 +25 USD/pax",
     "24-25/12/2026 +50 USD/pax"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "4-5",
+          "value": 220
+        },
+        {
+          "band": "6-7",
+          "value": 190
+        },
+        {
+          "band": "8-9",
+          "value": 177
+        },
+        {
+          "band": "10-11",
+          "value": 171
+        },
+        {
+          "band": "12-14",
+          "value": 170
+        }
+      ],
+      "single": "+80 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n01/11-23/12/2026",
+      "cells": [
+        {
+          "text": "+25$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+105$"
+    },
+    {
+      "label": "24-25/12/2026",
+      "cells": [
+        {
+          "text": "+50$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+130$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 2
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Hon Thom cable car and Aquatopia",
     "Sunset Town and Kiss Bridge",
@@ -1071,19 +1437,22 @@ export const tours = [
         "รับประทานอาหารเช้า ณ โรงแรม",
         "ส่ งคณะไปสนามบิน"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
     "อาหารเช้าที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 2 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                           ท่านขึ้นไป 300baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 600bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 300baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -1091,6 +1460,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -1120,6 +1493,7 @@ export const tours = [
   "id": "fitpqc02",
   "code": "FITPQC02",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "Phu Quoc",
   "title": "Phu Quoc Island",
   "route": "Phu Quoc > Grand World > Hon Thom",
@@ -1134,9 +1508,71 @@ export const tours = [
     "29/04-02/05/2026 +35 USD/pax",
     "24/12/2026-02/01/2027 +60 USD/pax"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "4-5",
+          "value": 268
+        },
+        {
+          "band": "6-7",
+          "value": 233
+        },
+        {
+          "band": "8-9",
+          "value": 215
+        },
+        {
+          "band": "10-11",
+          "value": 210
+        },
+        {
+          "band": "12-14",
+          "value": 205
+        }
+      ],
+      "single": "+110 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n01/11-23/12/2026",
+      "cells": [
+        {
+          "text": "+35$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+145$"
+    },
+    {
+      "label": "24/12/2026-02/01/2027",
+      "cells": [
+        {
+          "text": "+60$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+170$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 2
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Ho Quoc pagoda, Dinh Cau and bamboo house",
     "VinWonders and Grand World",
@@ -1230,19 +1666,22 @@ export const tours = [
         "รับประทานอาหารเช้า ณ โรงแรม",
         "ส่ งคณะไปสนามบิน"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
     "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 3 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                         400baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 800bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 400baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -1250,6 +1689,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -1279,6 +1722,7 @@ export const tours = [
   "id": "fitcxr01",
   "code": "FITCXR01",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "Southern Vietnam",
   "title": "Nha Trang and Da Lat",
   "route": "Nha Trang > Da Lat > Nha Trang",
@@ -1293,9 +1737,65 @@ export const tours = [
     "29/04-02/05/2026 +30 USD/pax",
     "24-25/12/2026 single +95 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "2-3",
+          "value": 422
+        },
+        {
+          "band": "4-5",
+          "value": 294
+        },
+        {
+          "band": "6-7",
+          "value": 260
+        },
+        {
+          "band": "8-9",
+          "value": 242
+        },
+        {
+          "band": "10-11",
+          "value": 230
+        },
+        {
+          "band": "12-14",
+          "value": 222
+        }
+      ],
+      "single": "+65 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+30$/pax",
+          "colSpan": 6
+        }
+      ],
+      "single": "+95$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 3
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Da Lat city and night market",
     "Tuyen Lam cable car and Datanla waterfall",
@@ -1412,19 +1912,22 @@ export const tours = [
         "รับประทานอาหารเช้า ณ โรงแรม",
         "ส่ งสนามบิน"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
     "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 5 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                          400baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ",
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 800bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 400baht/pax/trip)",
     "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
@@ -1432,6 +1935,10 @@ export const tours = [
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -1461,12 +1968,13 @@ export const tours = [
   "id": "fitsgn01",
   "code": "FITSGN01",
   "packageType": "FIT",
+  "pdfPriceLayout": true,
   "region": "Southern Vietnam",
-  "title": "Ho Chi Minh and Mui Ne",
-  "route": "Ho Chi Minh > Mui Ne > Ho Chi Minh",
-  "duration": 3,
-  "nights": "Ho Chi Minh 1N + Mui Ne 1N",
-  "hotel": "Mui Ne and Ho Chi Minh 4* standard hotels or similar",
+  "title": "Ho Chi Minh, Mui Ne, Da Lat",
+  "route": "Ho Chi Minh > Mui Ne > Da Lat > Ho Chi Minh",
+  "duration": 4,
+  "nights": "Ho Chi Minh 1N + Mui Ne 1N + Da Lat 1N",
+  "hotel": "Ho Chi Minh, Mui Ne, and Da Lat 4* standard hotels or similar",
   "groupRange": "2-14 pax",
   "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
   "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
@@ -1475,13 +1983,69 @@ export const tours = [
     "29/04-02/05/2026 +35 USD/pax",
     "24-25/12/2026 single +110 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "2-3",
+          "value": 545
+        },
+        {
+          "band": "4-5",
+          "value": 362
+        },
+        {
+          "band": "6-7",
+          "value": 308
+        },
+        {
+          "band": "8-9",
+          "value": 286
+        },
+        {
+          "band": "10-11",
+          "value": 267
+        },
+        {
+          "band": "12-14",
+          "value": 255
+        }
+      ],
+      "single": "+78 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+35$/pax",
+          "colSpan": 6
+        }
+      ],
+      "single": "+110$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "16 seats",
+          "colSpan": 3
+        },
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 4
+        }
+      ]
+    }
+  ],
   "highlights": [
-    "Fairy Stream, red and white sand dunes",
-    "Jeep ride in Mui Ne",
-    "Ho Chi Minh city tour and Saigon river dinner cruise"
+    "Fairy Stream, red dunes and jeep ride in Mui Ne",
+    "Datanla waterfall ride and hydrangeas garden in Da Lat",
+    "Ho Chi Minh city tour: Independence Palace and Notre Dame"
   ],
   "itinerary": [
     {
@@ -1593,8 +2157,15 @@ export const tours = [
     },
     {
       "day": 4,
+      "title": "Ho Chi Minh City Tour - Airport",
       "titleTh": "HO CHI MINH CITY TOUR – AIRPORT",
-      "notes": [],
+      "notes": [
+        "Independence Palace",
+        "Notre Dame Cathedral & Central Post Office",
+        "Thien Hau Temple",
+        "Ben Thanh Market",
+        "Airport transfer"
+      ],
       "notesTh": [
         "รับประทานอาหารเช้า ณ โรงแรม",
         "ทำเนียบอิสระภำพ",
@@ -1615,25 +2186,30 @@ export const tours = [
       "dinner": "Free Style ไม่ รวม",
       "dinnerMenuTh": [
         "*ถ้ารวมอาหารเย็น +14$/pax"
-      ]
+      ],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
-    "โรงแรมที่พกั (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
-    "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 5 มื้อ + บุฟเฟ่ ต์ 2 มื้อ",
-    "รถปรับอำกำศคุณภำพดี                                                                                    8 ท่านขึ้นไป 400baht/pax/trip)",
-    "ไกด์ท้องถิ่นสื่ อสำรภำษำไทย หรืออังกฤษตำมควำมต้องการ",
-    "บัตรเข้ำชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
+    "โรงแรมที่พัก (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม",
+    "อาหารเช้าที่โรงแรม 3 มื้อ + อาหารมื้อหลัก 5 มื้อ + บุฟเฟ่ต์ 2 มื้อ",
+    "รถปรับอากาศคุณภาพดี",
+    "ไกด์ท้องถิ่นสื่อสารภาษาไทย หรืออังกฤษตามความต้องการ",
+    "บัตรเข้าชมสถานที่เที่ยวต่างๆที่ระบุในโปรแกรม"
   ],
   "exclusionsTh": [
-    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับ",
-    "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุใน"
+    "ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ 800bath/pax/trip (หากกรุ๊ป 8 ท่านขึ้นไป 400baht/pax/trip)",
+    "ค่าใช้จ่ายอื่นๆ ที่ไม่ได้ระบุในโปรแกรม"
   ],
   "childRatesTh": [
     "เด็ก 0-2 ขวบ ฟรี",
     "เด็ก 3-6 ขวบ คิด50% ค่าทัวร์และเด็กต้องนอนกับผู้ใหญ่ (ถ้าใช้เตียงก็จ่ายเพิ่มค่าเตียงเท่ำกับค่าพักเดี่ยว)",
     "เด็ก 7 ขวบขึ้นไป คิด100% ค่าทัวร์ และใช้สิทธิ์เหมือนกับผู้ใหญ่"
   ],
+  "remarksTh": {
+    "left": [],
+    "right": []
+  },
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -1663,6 +2239,7 @@ export const tours = [
   "id": "dad01",
   "code": "DAD01",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Ba Na Hills, Hoi An",
   "route": "Da Nang > Hoi An > Ba Na Hills",
@@ -1677,9 +2254,77 @@ export const tours = [
     "29/04-02/05/2026 +18 USD/pax for small bands",
     "24-26/12/2026 single +40 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 159
+        },
+        {
+          "band": "10-14",
+          "value": 152
+        },
+        {
+          "band": "15-19",
+          "value": 145
+        },
+        {
+          "band": "20-24",
+          "value": 140
+        },
+        {
+          "band": "25-29",
+          "value": 136
+        },
+        {
+          "band": "30-34",
+          "value": 133
+        },
+        {
+          "band": "35-42",
+          "value": 131
+        }
+      ],
+      "single": "+25 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+18$/pax",
+          "colSpan": 2
+        },
+        {
+          "text": "+15$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+40$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Hoi An Ancient Town",
     "Ba Na Hills and Golden Bridge",
@@ -1778,7 +2423,9 @@ export const tours = [
       "lunchMenuTh": [
         "*ถ้าเพิ่มเป็นเซตเมนู +6$/pax"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -1810,6 +2457,9 @@ export const tours = [
       "แยกนอนเดี่ยว +120$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -1839,6 +2489,7 @@ export const tours = [
   "id": "dad02",
   "code": "DAD02",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Ba Na Hills, Hoi An",
   "route": "Da Nang > Ba Na Hills > Hoi An",
@@ -1853,9 +2504,77 @@ export const tours = [
     "29/04-02/05/2026 +28/+25 USD by band",
     "24-26/12/2026 single +90 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 186
+        },
+        {
+          "band": "10-14",
+          "value": 179
+        },
+        {
+          "band": "15-19",
+          "value": 177
+        },
+        {
+          "band": "20-24",
+          "value": 171
+        },
+        {
+          "band": "25-29",
+          "value": 166
+        },
+        {
+          "band": "30-34",
+          "value": 163
+        },
+        {
+          "band": "35-42",
+          "value": 160
+        }
+      ],
+      "single": "+65 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "28$/pax",
+          "colSpan": 2
+        },
+        {
+          "text": "25$/pax",
+          "colSpan": 5
+        }
+      ],
+      "single": "+90$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Ba Na Hills overnight",
     "Golden Bridge and Fantasy Park",
@@ -1957,7 +2676,9 @@ export const tours = [
       "lunchMenuTh": [
         "*ถ้าเพิ่มเป็นเซตเมนู +6$/pax"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -1978,17 +2699,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +190$",
-      "แยกนอนเดี่ยว +190$"
+      "นอนเดี่ยว +190$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +70$"
+      "นอนด้วยกัน +70$",
+      "แยกนอนเดี่ยว +190$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -2022,6 +2746,7 @@ export const tours = [
   "id": "dad03",
   "code": "DAD03",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Ba Na Hills, Hoi An",
   "route": "Da Nang > Ba Na Hills > Hoi An",
@@ -2036,9 +2761,77 @@ export const tours = [
     "29/04-02/05/2026 +28/+25 USD by band",
     "24-26/12/2026 single +100 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 210
+        },
+        {
+          "band": "10-14",
+          "value": 205
+        },
+        {
+          "band": "15-19",
+          "value": 200
+        },
+        {
+          "band": "20-24",
+          "value": 193
+        },
+        {
+          "band": "25-29",
+          "value": 187
+        },
+        {
+          "band": "30-34",
+          "value": 183
+        },
+        {
+          "band": "35-42",
+          "value": 180
+        }
+      ],
+      "single": "+75 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+28$",
+          "colSpan": 2
+        },
+        {
+          "text": "+25$",
+          "colSpan": 5
+        }
+      ],
+      "single": "+100$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Ba Na Hills overnight",
     "Hoi An Ancient Town",
@@ -2179,7 +2972,9 @@ export const tours = [
       "lunchMenuTh": [
         "*ถ้าเพิ่มเป็นเซดเมนู +6$/pax"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -2200,17 +2995,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +200$",
-      "แยกนอนเดี่ยว +200$"
+      "นอนเดี่ยว +200$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +70$"
+      "นอนด้วยกัน +70$",
+      "แยกนอนเดี่ยว +200$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -2240,6 +3038,7 @@ export const tours = [
   "id": "dad04",
   "code": "DAD04",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Ba Na Hills, Hoi An",
   "route": "Da Nang > Ba Na Hills > Hoi An",
@@ -2254,9 +3053,77 @@ export const tours = [
     "29/04-02/05/2026 +45/+40 USD by band",
     "24-26/12/2026 single +155 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 265
+        },
+        {
+          "band": "10-14",
+          "value": 260
+        },
+        {
+          "band": "15-19",
+          "value": 258
+        },
+        {
+          "band": "20-24",
+          "value": 248
+        },
+        {
+          "band": "25-29",
+          "value": 241
+        },
+        {
+          "band": "30-34",
+          "value": 237
+        },
+        {
+          "band": "35-42",
+          "value": 233
+        }
+      ],
+      "single": "+115 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+45$",
+          "colSpan": 2
+        },
+        {
+          "text": "+40$",
+          "colSpan": 5
+        }
+      ],
+      "single": "+155$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Two nights on Ba Na Hills",
     "Golden Bridge, Fantasy Park and flower garden",
@@ -2388,7 +3255,9 @@ export const tours = [
       "lunchMenuTh": [
         "*ถ้าเพิ่มเป็นเซดเมนู +6$/pax"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -2409,17 +3278,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +300$",
-      "แยกนอนเดี่ยว +300$"
+      "นอนเดี่ยว +300$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +80$"
+      "นอนด้วยกัน +80$",
+      "แยกนอนเดี่ยว +300$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -2449,6 +3321,7 @@ export const tours = [
   "id": "dad05",
   "code": "DAD05",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Central Vietnam",
   "title": "Da Nang, Hue, Ba Na Hills, Hoi An",
   "route": "Da Nang > Hue > Ba Na Hills > Hoi An",
@@ -2463,9 +3336,77 @@ export const tours = [
     "29/04-02/05/2026 +27/+25 USD by band",
     "24-26/12/2026 single +103 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 223
+        },
+        {
+          "band": "10-14",
+          "value": 215
+        },
+        {
+          "band": "15-19",
+          "value": 213
+        },
+        {
+          "band": "20-24",
+          "value": 205
+        },
+        {
+          "band": "25-29",
+          "value": 199
+        },
+        {
+          "band": "30-34",
+          "value": 194
+        },
+        {
+          "band": "35-42",
+          "value": 191
+        }
+      ],
+      "single": "+78 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+27$",
+          "colSpan": 2
+        },
+        {
+          "text": "+25$",
+          "colSpan": 5
+        }
+      ],
+      "single": "+103$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats (coach)",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Hue imperial route",
     "Ba Na Hills and Golden Bridge",
@@ -2610,7 +3551,9 @@ export const tours = [
       "lunchMenuTh": [
         "*ถ้าเพิ่มเป็นเซดเมนู +7$/pax"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -2631,17 +3574,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +220$",
-      "แยกนอนเดี่ยว +220$"
+      "นอนเดี่ยว +220$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +70$"
+      "นอนด้วยกัน +70$",
+      "แยกนอนเดี่ยว +220$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิ ร์ มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -2671,6 +3617,7 @@ export const tours = [
   "id": "han01",
   "code": "HAN01",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "North Vietnam",
   "title": "Ha Noi, Sapa, Ninh Binh",
   "route": "Ha Noi > Sapa > Ninh Binh",
@@ -2685,9 +3632,77 @@ export const tours = [
     "29/04-02/05/2026 +25/+22 USD by band",
     "24-25/12/2026 single +70 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 242
+        },
+        {
+          "band": "10-14",
+          "value": 224
+        },
+        {
+          "band": "15-19",
+          "value": 213
+        },
+        {
+          "band": "20-24",
+          "value": 199
+        },
+        {
+          "band": "25-29",
+          "value": 189
+        },
+        {
+          "band": "30-34",
+          "value": 183
+        },
+        {
+          "band": "35-42",
+          "value": 178
+        }
+      ],
+      "single": "+45 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+25$",
+          "colSpan": 2
+        },
+        {
+          "text": "+22$",
+          "colSpan": 5
+        }
+      ],
+      "single": "+70$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Sapa mountain route",
     "Cat Cat village and Fansipan area",
@@ -2850,7 +3865,9 @@ export const tours = [
         "แกงจืดใส่กงุ้",
         "ข้าว + ผลไม้"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -2871,17 +3888,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว 160$",
-      "แยกนอนเดี่ยว 160$"
+      "นอนเดี่ยว +160$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน 75$"
+      "นอนด้วยกัน +75$",
+      "แยกนอนเดี่ยว +160$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -2911,6 +3931,7 @@ export const tours = [
   "id": "han02",
   "code": "HAN02",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "North Vietnam",
   "title": "Ha Noi, Sa Pa, Ha Long",
   "route": "Ha Noi > Sa Pa > Ha Long",
@@ -2925,9 +3946,77 @@ export const tours = [
     "29/04-02/05/2026 +25/+22 USD by band",
     "24-25/12/2026 single +65 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 3*/4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 256
+        },
+        {
+          "band": "10-14",
+          "value": 235
+        },
+        {
+          "band": "15-19",
+          "value": 221
+        },
+        {
+          "band": "20-24",
+          "value": 207
+        },
+        {
+          "band": "25-29",
+          "value": 195
+        },
+        {
+          "band": "30-34",
+          "value": 187
+        },
+        {
+          "band": "35-42",
+          "value": 181
+        }
+      ],
+      "single": "+40 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+25$",
+          "colSpan": 2
+        },
+        {
+          "text": "+22$",
+          "colSpan": 5
+        }
+      ],
+      "single": "+65$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Sa Pa mountain stay",
     "Ha Long Bay cruise route",
@@ -3092,7 +4181,9 @@ export const tours = [
         "ผัดผักกำด",
         "ข้าว + ผลไม้"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -3113,17 +4204,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +150$",
-      "แยกนอนเดี่ยว 150$"
+      "นอนเดี่ยว +150$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน 75$"
+      "นอนด้วยกัน +75$",
+      "แยกนอนเดี่ยว +150$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -3153,6 +4247,7 @@ export const tours = [
   "id": "han03",
   "code": "HAN03",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "North Vietnam",
   "title": "Ha Noi, Tam Dao, Ha Long, Ninh Binh",
   "route": "Ha Noi > Tam Dao > Ha Long > Ninh Binh",
@@ -3167,9 +4262,77 @@ export const tours = [
     "29/04-02/05/2026 +25/+22 USD by band",
     "24-25/12/2026 single +75 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 3*/4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 234
+        },
+        {
+          "band": "10-14",
+          "value": 224
+        },
+        {
+          "band": "15-19",
+          "value": 216
+        },
+        {
+          "band": "20-24",
+          "value": 200
+        },
+        {
+          "band": "25-29",
+          "value": 191
+        },
+        {
+          "band": "30-34",
+          "value": 181
+        },
+        {
+          "band": "35-42",
+          "value": 174
+        }
+      ],
+      "single": "+50 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-02/05/2026\n24-25/12/2026",
+      "cells": [
+        {
+          "text": "+25$",
+          "colSpan": 2
+        },
+        {
+          "text": "+22$",
+          "colSpan": 5
+        }
+      ],
+      "single": "+75$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Tam Dao mountain town",
     "Ha Long Bay route",
@@ -3335,7 +4498,9 @@ export const tours = [
         "แกงจืดใส่กงุ้",
         "ข้าว + ผลไม้"
       ],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -3356,17 +4521,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
-      "*ถ้าเพิม่ อีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +150$",
-      "แยกนอนเดี่ยว 150$"
+      "ไม่ฟรีหัวหน้าทัวร์",
+      "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
+      "นอนเดี่ยว +150$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
-      "*ถ้าเพิม่ อีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน 60$"
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
+      "นอนด้วยกัน +60$",
+      "แยกนอนเดี่ยว +150$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -3396,6 +4564,7 @@ export const tours = [
   "id": "pqc01",
   "code": "PQC01",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Phu Quoc",
   "title": "Phu Quoc Island",
   "route": "Phu Quoc > Hon Thom > Grand World",
@@ -3409,9 +4578,130 @@ export const tours = [
   "surcharges": [
     "24/12/2026-02/01/2027 high-season row applies"
   ],
-  "priceRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-31/10/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 184
+        },
+        {
+          "band": "10-14",
+          "value": 179
+        },
+        {
+          "band": "15-19",
+          "value": 176
+        },
+        {
+          "band": "20-24",
+          "value": 169
+        },
+        {
+          "band": "25-29",
+          "value": 163
+        },
+        {
+          "band": "30-34",
+          "value": 159
+        },
+        {
+          "band": "35-42",
+          "value": 157
+        }
+      ],
+      "single": "+60 USD"
+    },
+    {
+      "season": "01/11-23/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 198
+        },
+        {
+          "band": "10-14",
+          "value": 194
+        },
+        {
+          "band": "15-19",
+          "value": 191
+        },
+        {
+          "band": "20-24",
+          "value": 184
+        },
+        {
+          "band": "25-29",
+          "value": 178
+        },
+        {
+          "band": "30-34",
+          "value": 174
+        },
+        {
+          "band": "35-42",
+          "value": 171
+        }
+      ],
+      "single": "+75 USD"
+    },
+    {
+      "season": "24/12/2026-02/01/2027",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 229
+        },
+        {
+          "band": "10-14",
+          "value": 225
+        },
+        {
+          "band": "15-19",
+          "value": 222
+        },
+        {
+          "band": "20-24",
+          "value": 214
+        },
+        {
+          "band": "25-29",
+          "value": 207
+        },
+        {
+          "band": "30-34",
+          "value": 203
+        },
+        {
+          "band": "35-42",
+          "value": 200
+        }
+      ],
+      "single": "+100 USD"
+    }
+  ],
   "priceExtraRows": [],
-  "vehicleRows": [],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Hon Thom cable car and Aquatopia",
     "Sunset Town and Kiss Bridge",
@@ -3506,8 +4796,11 @@ export const tours = [
         "ชอปปิ้ งร้านไข่มุก",
         "ส่งคณะไปสนามบิน"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -3528,17 +4821,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +170$",
-      "แยกนอนเดี่ยว +170$"
+      "นอนเดี่ยว +170$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +70$"
+      "นอนด้วยกัน +70$",
+      "แยกนอนเดี่ยว +170$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -3568,6 +4864,7 @@ export const tours = [
   "id": "pqc02",
   "code": "PQC02",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Phu Quoc",
   "title": "Phu Quoc Island",
   "route": "Phu Quoc > Hon Thom > Grand World",
@@ -3581,9 +4878,130 @@ export const tours = [
   "surcharges": [
     "24/12/2026-02/01/2027 high-season row applies"
   ],
-  "priceRows": [],
+  "priceRows": [
+    {
+      "season": "01/04-30/10/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 242
+        },
+        {
+          "band": "12-14",
+          "value": 235
+        },
+        {
+          "band": "15-19",
+          "value": 230
+        },
+        {
+          "band": "20-24",
+          "value": 220
+        },
+        {
+          "band": "25-29",
+          "value": 213
+        },
+        {
+          "band": "30-34",
+          "value": 208
+        },
+        {
+          "band": "35-42",
+          "value": 205
+        }
+      ],
+      "single": "+72 USD"
+    },
+    {
+      "season": "01/11-23/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 265
+        },
+        {
+          "band": "12-14",
+          "value": 259
+        },
+        {
+          "band": "15-19",
+          "value": 255
+        },
+        {
+          "band": "20-24",
+          "value": 244
+        },
+        {
+          "band": "25-29",
+          "value": 237
+        },
+        {
+          "band": "30-34",
+          "value": 232
+        },
+        {
+          "band": "35-42",
+          "value": 228
+        }
+      ],
+      "single": "+95 USD"
+    },
+    {
+      "season": "24/12/2026-02/01/2027",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 309
+        },
+        {
+          "band": "12-14",
+          "value": 305
+        },
+        {
+          "band": "15-19",
+          "value": 301
+        },
+        {
+          "band": "20-24",
+          "value": 289
+        },
+        {
+          "band": "25-29",
+          "value": 280
+        },
+        {
+          "band": "30-34",
+          "value": 275
+        },
+        {
+          "band": "35-42",
+          "value": 271
+        }
+      ],
+      "single": "+140 USD"
+    }
+  ],
   "priceExtraRows": [],
-  "vehicleRows": [],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Hon Thom cable car and Mediterranean Sunset Town",
     "Kiss Bridge and optional Kiss of Sea Show",
@@ -3703,8 +5121,11 @@ export const tours = [
         "ชอปปิ้ งร้านไข่มุก",
         "ส่งคณะไปสนามบิน"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -3725,17 +5146,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +240$",
-      "แยกนอนเดี่ยว +240$"
+      "นอนเดี่ยว +240$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ ท่าน 1(นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +90$"
+      "นอนด้วยกัน +90$",
+      "แยกนอนเดี่ยว +240$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -3765,6 +5189,7 @@ export const tours = [
   "id": "cxr01",
   "code": "CXR01",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Southern Vietnam",
   "title": "Nha Trang City",
   "route": "Nha Trang City > Vinpearl Land",
@@ -3778,9 +5203,72 @@ export const tours = [
   "surcharges": [
     "29/04-03/05/2026 +10 USD/pax"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 136
+        },
+        {
+          "band": "10-14",
+          "value": 128
+        },
+        {
+          "band": "15-19",
+          "value": 125
+        },
+        {
+          "band": "20-24",
+          "value": 114
+        },
+        {
+          "band": "25-29",
+          "value": 109
+        },
+        {
+          "band": "30-34",
+          "value": 106
+        },
+        {
+          "band": "35-42",
+          "value": 104
+        }
+      ],
+      "single": "+25 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-03/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+10$/pax",
+          "colSpan": 7
+        }
+      ]
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats (coach)",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Ponagar Tower, Long Son Pagoda and Stone Church",
     "Jungle Cafe photo stop",
@@ -3870,8 +5358,11 @@ export const tours = [
         "รับประทานอาหารเช้า ณ โรงแรม",
         "ส่งคณะที่สนามบิน จบโปรแกรม FD647 10.25"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -3892,17 +5383,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +100$",
-      "แยกนอนเดี่ยว +100$"
+      "นอนเดี่ยว +100$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +60$"
+      "นอนด้วยกัน +60$",
+      "แยกนอนเดี่ยว +100$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -3932,6 +5426,7 @@ export const tours = [
   "id": "cxr02",
   "code": "CXR02",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Southern Vietnam",
   "title": "Nha Trang and Da Lat",
   "route": "Nha Trang > Da Lat > Nha Trang",
@@ -3945,9 +5440,72 @@ export const tours = [
   "surcharges": [
     "29/04-03/05/2026 +25 USD/pax"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 220
+        },
+        {
+          "band": "10-14",
+          "value": 202
+        },
+        {
+          "band": "15-19",
+          "value": 185
+        },
+        {
+          "band": "20-24",
+          "value": 177
+        },
+        {
+          "band": "25-29",
+          "value": 170
+        },
+        {
+          "band": "30-34",
+          "value": 165
+        },
+        {
+          "band": "35-42",
+          "value": 161
+        }
+      ],
+      "single": "+37 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-03/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+25$/pax",
+          "colSpan": 7
+        }
+      ]
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats (coach)",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Da Lat Lam Vien Square and night market",
     "Tuyen Lam cable car, Datanla waterfall and Hydrangea garden",
@@ -4071,8 +5629,11 @@ export const tours = [
         "รับประทานอาหารเช้า ณ โรงแรม",
         "ส่งสนามบิน"
       ],
+      "lunch": "",
       "lunchMenuTh": [],
-      "dinnerMenuTh": []
+      "dinner": "",
+      "dinnerMenuTh": [],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -4093,17 +5654,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +160$",
-      "แยกนอนเดี่ยว +160$"
+      "นอนเดี่ยว +160$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +80$"
+      "นอนด้วยกัน +80$",
+      "แยกนอนเดี่ยว +160$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -4133,6 +5697,7 @@ export const tours = [
   "id": "sgn01",
   "code": "SGN01",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Southern Vietnam",
   "title": "Ho Chi Minh and Mui Ne",
   "route": "Ho Chi Minh > Mui Ne > Ho Chi Minh",
@@ -4146,9 +5711,72 @@ export const tours = [
   "surcharges": [
     "29/04-03/05/2026 +25 USD/pax"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 187
+        },
+        {
+          "band": "10-14",
+          "value": 173
+        },
+        {
+          "band": "15-19",
+          "value": 162
+        },
+        {
+          "band": "20-24",
+          "value": 149
+        },
+        {
+          "band": "25-29",
+          "value": 142
+        },
+        {
+          "band": "30-34",
+          "value": 137
+        },
+        {
+          "band": "35-42",
+          "value": 133
+        }
+      ],
+      "single": "+50 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-03/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+25$/pax",
+          "colSpan": 7
+        }
+      ]
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Mui Ne Fairy Stream and sand dunes",
     "White Sand Dunes jeep route",
@@ -4268,7 +5896,8 @@ export const tours = [
       "dinner": "Free Style ไม่ รวม",
       "dinnerMenuTh": [
         "*ถ้ารวมอาหารเย็น +9$/pax"
-      ]
+      ],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -4289,17 +5918,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +125$",
-      "แยกนอนเดี่ยว +125$"
+      "นอนเดี่ยว +125$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +30$"
+      "นอนด้วยกัน +30$",
+      "แยกนอนเดี่ยว +125$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",
@@ -4329,6 +5961,7 @@ export const tours = [
   "id": "sgn02",
   "code": "SGN02",
   "packageType": "GIT",
+  "pdfPriceLayout": true,
   "region": "Southern Vietnam",
   "title": "Ho Chi Minh, Mui Ne, Da Lat",
   "route": "Ho Chi Minh > Mui Ne > Da Lat",
@@ -4343,9 +5976,73 @@ export const tours = [
     "29/04-03/05/2026 +30 USD/pax",
     "24-26/12/2026 single +98 USD"
   ],
-  "priceRows": [],
-  "priceExtraRows": [],
-  "vehicleRows": [],
+  "priceRows": [
+    {
+      "season": "Hotel 4* standard - 01/04-30/12/2026",
+      "cells": [
+        {
+          "band": "8-9",
+          "value": 244
+        },
+        {
+          "band": "10-14",
+          "value": 224
+        },
+        {
+          "band": "15-19",
+          "value": 210
+        },
+        {
+          "band": "20-24",
+          "value": 194
+        },
+        {
+          "band": "25-29",
+          "value": 184
+        },
+        {
+          "band": "30-34",
+          "value": 177
+        },
+        {
+          "band": "35-42",
+          "value": 172
+        }
+      ],
+      "single": "+68 USD"
+    }
+  ],
+  "priceExtraRows": [
+    {
+      "label": "29/04-03/05/2026\n24-26/12/2026",
+      "cells": [
+        {
+          "text": "+30$/pax",
+          "colSpan": 7
+        }
+      ],
+      "single": "+98$"
+    }
+  ],
+  "vehicleRows": [
+    {
+      "label": "Vehicle type",
+      "cells": [
+        {
+          "text": "29 seats (mini bus)",
+          "colSpan": 2
+        },
+        {
+          "text": "35 seats",
+          "colSpan": 1
+        },
+        {
+          "text": "45 seats (bus)",
+          "colSpan": 5
+        }
+      ]
+    }
+  ],
   "highlights": [
     "Mui Ne dunes and fishing village",
     "Da Lat mountain city route",
@@ -4506,7 +6203,8 @@ export const tours = [
       "dinner": "Free Style ไม่ รวม",
       "dinnerMenuTh": [
         "*ถ้ารวมอาหารเย็น +9$/pax"
-      ]
+      ],
+      "overnightTh": ""
     }
   ],
   "inclusionsTh": [
@@ -4527,17 +6225,20 @@ export const tours = [
   ],
   "remarksTh": {
     "left": [
-      "ไม่ฟรี หัว หน้าทัวร์",
+      "ไม่ฟรีหัวหน้าทัวร์",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนเดี่ยว +173$",
-      "แยกนอนเดี่ยว +173$"
+      "นอนเดี่ยว +173$"
     ],
     "right": [
-      "ฟรี หัว หน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
+      "ฟรีหัวหน้าทัวร์ 1 ท่าน (นอนเดี่ยว)",
       "*ถ้าเพิ่มอีก 1 หัวหน้าทัวร์",
-      "นอนด้วยกัน +40$"
+      "นอนด้วยกัน +40$",
+      "แยกนอนเดี่ยว +173$"
     ]
   },
+  "remarksLeftSpan": 2,
+  "remarksMiddleSpan": 0,
+  "remarksRightSpan": 6,
   "paymentTermsTh": [
     [
       "หลังจากแจ้งคอนเฟิร์มกรุ๊ ป โอนค่ามัดจำ 30%",

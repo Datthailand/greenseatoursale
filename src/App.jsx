@@ -78,6 +78,7 @@ const translations = {
     centralVietnam: 'Central Vietnam',
     southernVietnam: 'Southern Vietnam',
     phuQuoc: 'Phu Quoc',
+    noPriceData: 'No pricing data available',
   },
   TH: {
     travelStyle: 'รูปแบบการเดินทาง',
@@ -134,6 +135,7 @@ const translations = {
     centralVietnam: 'เวียดนามกลาง',
     southernVietnam: 'เวียดนามใต้',
     phuQuoc: 'ฟูโกว๊ก',
+    noPriceData: 'ไม่มีข้อมูลราคา',
   },
 };
 
@@ -159,11 +161,33 @@ function getHotelStandard(tour) {
 
 
 function getQuoteText(tour, currency) {
+  if (!tour.priceRows || tour.priceRows.length === 0) {
+    return [
+      `${tour.code} - ${tour.title}`,
+      `Package: ${tour.packageType} | Region: ${tour.region} | Duration: ${tour.duration} days`,
+      `Route: ${tour.route}`,
+      `Hotel: ${tour.hotel}`,
+      `Vehicle: ${tour.vehicle}`,
+    ].join('\n');
+  }
+
   const bestRow = tour.priceRows.reduce((winner, row) => {
+    if (!row.cells || row.cells.length === 0) return winner;
     const rowMin = Math.min(...row.cells.map((cell) => cell.value));
     const winnerMin = Math.min(...winner.cells.map((cell) => cell.value));
     return rowMin < winnerMin ? row : winner;
   }, tour.priceRows[0]);
+
+  if (!bestRow || !bestRow.cells || bestRow.cells.length === 0) {
+    return [
+      `${tour.code} - ${tour.title}`,
+      `Package: ${tour.packageType} | Region: ${tour.region} | Duration: ${tour.duration} days`,
+      `Route: ${tour.route}`,
+      `Hotel: ${tour.hotel}`,
+      `Vehicle: ${tour.vehicle}`,
+    ].join('\n');
+  }
+
   const bestCell = bestRow.cells.reduce((winner, cell) => (cell.value < winner.value ? cell : winner), bestRow.cells[0]);
 
   return [
@@ -171,10 +195,10 @@ function getQuoteText(tour, currency) {
     `Package: ${tour.packageType} | Region: ${tour.region} | Duration: ${tour.duration} days`,
     `Route: ${tour.route}`,
     `Price from: ${formatMoney(tour.priceFrom, currency)}/pax (${bestCell.band} pax, ${bestRow.season})`,
-    `Single supplement: ${bestRow.single}`,
+    `Single supplement: ${bestRow.single || 'N/A'}`,
     `Hotel: ${tour.hotel}`,
     `Vehicle: ${tour.vehicle}`,
-    `Source: ${tour.assets.label}, ${tour.sourcePages}`,
+    `Source: ${tour.assets?.label || 'N/A'}, ${tour.sourcePages || 'N/A'}`,
   ].join('\n');
 }
 
@@ -707,7 +731,10 @@ function ItineraryTable({ tour, language }) {
 }
 
 function PricePreview({ tour, currency, language }) {
-  const bands = tour.priceRows[0].cells.map((cell) => cell.band);
+  if (!tour.priceRows || tour.priceRows.length === 0) {
+    return <p className="price-note">{t('noPriceData', language) || 'No price data available'}</p>;
+  }
+  const bands = tour.priceRows[0]?.cells?.map((cell) => cell.band) || [];
   return (
     <>
       <div className="section-title-row">
@@ -754,16 +781,27 @@ function PricePreview({ tour, currency, language }) {
                 <td>{row.single?.replace(' USD', '$')}</td>
               </tr>
             ))}
-            {!tour.pdfPriceLayout && tour.priceExtraRows?.map((row) => (
-              <tr className="price-extra-row" key={row.label}>
-                <td>{row.label}</td>
-                {bands.map((band, index) => (
-                  <td key={`${row.label}-${band}`}>{row.cells?.[index] || ''}</td>
-                ))}
-                <td>{row.single?.replace(' USD', '$') || ''}</td>
-              </tr>
-            ))}
-            {tour.pdfPriceLayout && tour.vehicleRows?.map((row) => (
+            {!tour.pdfPriceLayout && tour.priceExtraRows?.map((row) => {
+              const renderedColSpan = row.cells ? row.cells.reduce((acc, c) => acc + c.colSpan, 0) : 0;
+              const remaining = bands.length - renderedColSpan;
+              return (
+                <tr className="price-extra-row" key={row.label}>
+                  <td>{row.label}</td>
+                  {row.cells ? (
+                    <>
+                      {row.cells.map((c, i) => (
+                        <td key={i} colSpan={c.colSpan}>{c.text}</td>
+                      ))}
+                      {remaining > 0 && <td colSpan={remaining}></td>}
+                    </>
+                  ) : (
+                    <td colSpan={bands.length}>{row.merged || ''}</td>
+                  )}
+                  <td>{row.single?.replace(' USD', '$') || ''}</td>
+                </tr>
+              );
+            })}
+            {tour.vehicleRows?.map((row) => (
               <tr className="vehicle-table-row" key={row.label}>
                 <td>{row.label}</td>
                 {row.cells ? (
@@ -780,7 +818,12 @@ function PricePreview({ tour, currency, language }) {
             ))}
             {tour.pdfPriceLayout && tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (() => {
               const totalBandCols = bands.length + 1; // +1 for นอนเดียว col
-              const leftSpan = tour.remarksLeftSpan || Math.floor(totalBandCols / 2);
+              const vehicleRow = tour.vehicleRows?.[0];
+              let defaultLeftSpan = Math.floor(totalBandCols / 2);
+              if (vehicleRow && vehicleRow.cells && vehicleRow.cells.length > 1) {
+                defaultLeftSpan = vehicleRow.cells.slice(0, -1).reduce((acc, c) => acc + c.colSpan, 0);
+              }
+              const leftSpan = tour.remarksLeftSpan || defaultLeftSpan;
               const middleSpan = tour.remarksMiddleSpan || 0;
               const rightSpan = tour.remarksRightSpan || (totalBandCols - leftSpan - middleSpan);
               const leftText = tour.remarksTh.left?.join('\n') || '';

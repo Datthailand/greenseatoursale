@@ -17,6 +17,16 @@ if (fs.existsSync(configPath)) {
   }
 }
 
+const backupToursPath = path.resolve('scripts/backup-tours.json');
+let backupTours = [];
+if (fs.existsSync(backupToursPath)) {
+  try {
+    backupTours = JSON.parse(fs.readFileSync(backupToursPath, 'utf-8'));
+  } catch (err) {
+    console.warn('Warning: Could not read backup-tours.json:', err);
+  }
+}
+
 // -------------------------------------------------------------
 // RFC-4180 Compliant CSV Parser
 // -------------------------------------------------------------
@@ -85,7 +95,7 @@ function parseCSV(csvText) {
 function getCSV(sheetName) {
   return new Promise((resolve, reject) => {
     if (SPREADSHEET_ID) {
-      const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+      const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=${sheetName}&headers=1`;
       console.log(`Fetching remote sheet "${sheetName}" from Google Sheets...`);
       https.get(url, (res) => {
         const chunks = [];
@@ -133,6 +143,72 @@ function parsePipePairs(str) {
   }).filter(pair => pair[0] || pair[1]);
 }
 
+// Helper to clean and heal remarksTh layout and spelling to match PDF source-of-truth
+function healRemarksTh(sheetLeftStr, sheetRightStr, backupRemarksTh) {
+  if (!sheetLeftStr && !sheetRightStr && backupRemarksTh) {
+    return backupRemarksTh;
+  }
+
+  let left = sheetLeftStr ? sheetLeftStr.split('\n').map(s => s.trim()).filter(Boolean) : [];
+  let right = sheetRightStr ? sheetRightStr.split('\n').map(s => s.trim()).filter(Boolean) : [];
+
+  if (left.length === 0 && right.length === 0 && backupRemarksTh) {
+    return backupRemarksTh;
+  }
+
+  const cleanSpelling = (str) => {
+    return str
+      .replace(/ไม่\s*ฟรี\s*หัว\s*หน้า\s*ทัวร์/g, 'ไม่ฟรีหัวหน้าทัวร์')
+      .replace(/ไม่\s*ฟรี\s*หัวหน้า\s*ทัวร์/g, 'ไม่ฟรีหัวหน้าทัวร์')
+      .replace(/ฟรี\s*หัว\s*หน้า\s*ทัวร์/g, 'ฟรีหัวหน้าทัวร์')
+      .replace(/ฟรี\s*หัวหน้า\s*ทัวร์/g, 'ฟรีหัวหน้าทัวร์')
+      .replace(/ท่าน\s*1\s*\(นอนเดี่ยว\)/g, '1 ท่าน (นอนเดี่ยว)')
+      .replace(/1\s*ท่าน\s*\(นอนเดี่ยว\)/g, '1 ท่าน (นอนเดี่ยว)')
+      .replace(/ถ้า\s*เพิ\s*่ม\s*อีก/g, 'ถ้าเพิ่มอีก')
+      .replace(/ถ้า\s*เพิ\s*ม่\s*อีก/g, 'ถ้าเพิ่มอีก')
+      .replace(/ถ้า\s*เพิ่ม\s*อีก/g, 'ถ้าเพิ่มอีก')
+      .replace(/หัว\s*หน้า\s*ทัวร์/g, 'หัวหน้าทัวร์')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  const addPlusPrefix = (str) => {
+    if (/^\d+\$/.test(str)) {
+      return '+' + str;
+    }
+    const match = str.match(/^(นอนเดี่ยว|แยกนอนเดี่ยว|นอนด้วยกัน|นอนเด่ยว)\s*(\+)?(\d+\$)$/);
+    if (match) {
+      const label = match[1].replace('นอนเด่ยว', 'นอนเดี่ยว');
+      const value = match[3];
+      return `${label} +${value}`;
+    }
+    return str;
+  };
+
+  left = left.map(cleanSpelling);
+  right = right.map(cleanSpelling);
+
+  const yaekIdx = left.findIndex(s => s.includes('แยกนอนเดี่ยว'));
+  if (yaekIdx !== -1) {
+    const yaekLine = left[yaekIdx];
+    left.splice(yaekIdx, 1);
+    if (!right.some(s => s.includes('แยกนอนเดี่ยว'))) {
+      right.push(yaekLine);
+    }
+  }
+
+  left = left.map(addPlusPrefix);
+  right = right.map(addPlusPrefix);
+
+  if (backupRemarksTh) {
+    if (left.length === 0 && backupRemarksTh.left) left = backupRemarksTh.left;
+    if (right.length === 0 && backupRemarksTh.right) right = backupRemarksTh.right;
+  }
+
+  return { left, right };
+}
+
+
 // Helper to determine band list dynamically
 function getBands(tourId, packageType, numValues) {
   if (tourId === 'pqc02') {
@@ -154,14 +230,38 @@ function getBands(tourId, packageType, numValues) {
 function parseCellConfig(str) {
   if (!str) return [];
   return str.split(',').map(s => s.trim()).filter(Boolean).map(part => {
-    const match = part.match(/^([^\[]*)(?:\[(\d+)\])?$/);
+    let cleanPart = part;
+    if (cleanPart.startsWith("'") && (cleanPart.substring(1).startsWith('+') || cleanPart.substring(1).startsWith('='))) {
+      cleanPart = cleanPart.substring(1);
+    }
+    const match = cleanPart.match(/^([^\[]*)(?:\[(\d+)\])?$/);
     if (match) {
       const text = match[1].trim();
       const colSpan = match[2] ? parseInt(match[2], 10) : 1;
       return { text, colSpan };
     }
-    return { text: part, colSpan: 1 };
+    return { text: cleanPart, colSpan: 1 };
   });
+}
+
+// Heals parsed cells using structure from backup cells
+function healCells(sheetCells, backupCells) {
+  if (!backupCells || backupCells.length === 0) return sheetCells;
+  if (!sheetCells || sheetCells.length === 0) return backupCells;
+  
+  if (sheetCells.some(c => c.text === '#ERROR!')) return backupCells;
+  
+  const sheetTexts = sheetCells.map(c => c.text).filter(t => t && t.trim() !== '');
+  if (sheetTexts.length > 0) {
+    return backupCells.map((bCell, idx) => {
+      const text = sheetTexts[idx] !== undefined ? sheetTexts[idx] : bCell.text;
+      return {
+        ...bCell,
+        text: text
+      };
+    });
+  }
+  return backupCells;
 }
 
 // -------------------------------------------------------------
@@ -185,20 +285,71 @@ async function main() {
       const tourId = rTour.id;
       
       // Filter itineraries for this tour
+      const backupTourForIti = backupTours.find(t => t.id === tourId);
       const tourItineraries = rawIti
         .filter(item => item.tour_id === tourId)
-        .map(item => ({
-          day: parseInt(item.day, 10),
-          title: item.title || undefined,
-          titleTh: item.titleTh || undefined,
-          notes: parseLineList(item.notes),
-          notesTh: parseLineList(item.notesTh),
-          lunch: item.lunch || undefined,
-          lunchMenuTh: parseCommaList(item.lunchMenuTh),
-          dinner: item.dinner || undefined,
-          dinnerMenuTh: parseCommaList(item.dinnerMenuTh),
-          overnightTh: item.overnightTh || undefined
-        }))
+        .map(item => {
+          const dayNum = parseInt(item.day, 10);
+          const backupDay = backupTourForIti?.itinerary?.find(d => d.day === dayNum);
+          
+          let title = item.title || undefined;
+          if (!title && backupDay) {
+            title = backupDay.title;
+          }
+          
+          let titleTh = item.titleTh || undefined;
+          if (!titleTh && backupDay) {
+            titleTh = backupDay.titleTh;
+          }
+          
+          let notes = parseLineList(item.notes);
+          if (notes.length === 0 && backupDay?.notes) {
+            notes = backupDay.notes;
+          }
+          
+          let notesTh = parseLineList(item.notesTh);
+          if (notesTh.length === 0 && backupDay?.notesTh) {
+            notesTh = backupDay.notesTh;
+          }
+          
+          let lunch = item.lunch || undefined;
+          if (!lunch && backupDay) {
+            lunch = backupDay.lunch;
+          }
+          
+          let lunchMenuTh = parseCommaList(item.lunchMenuTh);
+          if (lunchMenuTh.length === 0 && backupDay?.lunchMenuTh) {
+            lunchMenuTh = backupDay.lunchMenuTh;
+          }
+          
+          let dinner = item.dinner || undefined;
+          if (!dinner && backupDay) {
+            dinner = backupDay.dinner;
+          }
+          
+          let dinnerMenuTh = parseCommaList(item.dinnerMenuTh);
+          if (dinnerMenuTh.length === 0 && backupDay?.dinnerMenuTh) {
+            dinnerMenuTh = backupDay.dinnerMenuTh;
+          }
+          
+          let overnightTh = item.overnightTh || undefined;
+          if (!overnightTh && backupDay) {
+            overnightTh = backupDay.overnightTh;
+          }
+          
+          return {
+            day: dayNum,
+            title,
+            titleTh,
+            notes,
+            notesTh,
+            lunch,
+            lunchMenuTh,
+            dinner,
+            dinnerMenuTh,
+            overnightTh
+          };
+        })
         .sort((a, b) => a.day - b.day);
 
       // Filter pricing for this tour
@@ -210,43 +361,134 @@ async function main() {
 
       for (const pRow of tourPricing) {
         if (pRow.row_type === 'standard') {
-          const rawValues = pRow.cells.split(',').map(v => v.trim()).filter(Boolean);
-          const values = rawValues.map(v => Number(v));
+          let rawValues = pRow.cells.split(',').map(v => v.trim()).filter(Boolean);
+          let values = rawValues.map(v => Number(v));
+          
+          const backupTour = backupTours.find(t => t.id === tourId);
+          const backupRow = backupTour?.priceRows?.find(r => r.season === pRow.label) || backupTour?.priceRows?.[priceRows.length];
+          
+          if ((values.length === 0 || values.some(v => isNaN(v))) && backupRow) {
+            values = backupRow.cells.map(c => c.value);
+          }
+          
           const bands = getBands(tourId, rTour.packageType, values.length);
+          
+          let singleVal = pRow.single;
+          if (singleVal === '#ERROR!' && backupRow) {
+            singleVal = backupRow.single;
+          }
+          if (singleVal && singleVal.startsWith("'") && (singleVal.substring(1).startsWith('+') || singleVal.substring(1).startsWith('='))) {
+            singleVal = singleVal.substring(1);
+          }
           
           priceRows.push({
             season: pRow.label,
             cells: bands.map((band, index) => ({ band, value: values[index] })),
-            single: pRow.single || undefined
+            single: singleVal || undefined
           });
         } else if (pRow.row_type === 'extra') {
+          if (priceRows.some(r => r.season === pRow.label)) {
+            continue;
+          }
+          const backupTour = backupTours.find(t => t.id === tourId);
+          const backupRow = backupTour?.priceExtraRows?.find(r => r.label === pRow.label) || backupTour?.priceExtraRows?.[priceExtraRows.length];
+          
+          let cellsStr = pRow.cells || '';
+          let singleVal = pRow.single || '';
+          
+          if (cellsStr.includes('#ERROR!') && backupRow) {
+            if (backupRow.cells) {
+              cellsStr = backupRow.cells.map(c => `${c.text}[${c.colSpan}]`).join(',');
+            } else if (backupRow.merged) {
+              cellsStr = backupRow.merged;
+            }
+          }
+          if (singleVal === '#ERROR!' && backupRow) {
+            singleVal = backupRow.single || '';
+          }
+          
+          if (singleVal && singleVal.startsWith("'") && (singleVal.substring(1).startsWith('+') || singleVal.substring(1).startsWith('='))) {
+            singleVal = singleVal.substring(1);
+          }
+          if (cellsStr && cellsStr.startsWith("'") && (cellsStr.substring(1).startsWith('+') || cellsStr.substring(1).startsWith('='))) {
+            cellsStr = cellsStr.substring(1);
+          }
+
           // Check if it's the legacy format (no brackets/colspans, just a merged cell string)
-          if (pRow.cells && !pRow.cells.includes('[') && pRow.cells.includes('/')) {
-            priceExtraRows.push({
-              label: pRow.label,
-              merged: pRow.cells,
-              single: pRow.single || undefined
-            });
+          if (cellsStr && !cellsStr.includes('[') && cellsStr.includes('/')) {
+            if (backupRow && backupRow.cells) {
+              const healedSingle = (singleVal && !singleVal.toLowerCase().includes('pax') && (!backupRow.cells || !backupRow.cells.some(c => c.text === singleVal))) ? singleVal : (backupRow.single || singleVal || undefined);
+              priceExtraRows.push({
+                label: backupRow?.label || pRow.label,
+                cells: healCells(parseCellConfig(cellsStr), backupRow.cells),
+                single: healedSingle
+              });
+            } else {
+              priceExtraRows.push({
+                label: backupRow?.label || pRow.label,
+                merged: cellsStr,
+                single: singleVal || undefined
+              });
+            }
           } else {
+            let cellsObj = parseCellConfig(cellsStr);
+            if (backupRow && backupRow.cells) {
+              cellsObj = healCells(cellsObj, backupRow.cells);
+            } else if ((cellsObj.some(c => c.text === '#ERROR!') || cellsObj.length === 0) && backupRow && backupRow.cells) {
+              cellsObj = backupRow.cells;
+            }
+            const healedSingle = (singleVal && !singleVal.toLowerCase().includes('pax') && (!cellsObj || !cellsObj.some(c => c.text === singleVal))) ? singleVal : (backupRow?.single || singleVal || undefined);
             priceExtraRows.push({
-              label: pRow.label,
-              cells: parseCellConfig(pRow.cells),
-              single: pRow.single || undefined
+              label: backupRow?.label || pRow.label,
+              cells: cellsObj,
+              single: healedSingle
             });
           }
         } else if (pRow.row_type === 'vehicle') {
+          const backupTour = backupTours.find(t => t.id === tourId);
+          const backupRow = backupTour?.vehicleRows?.find(r => r.label === pRow.label) || backupTour?.vehicleRows?.[vehicleRows.length];
+          
+          let cellsStr = pRow.cells || '';
+          if (cellsStr.includes('#ERROR!') && backupRow) {
+            if (backupRow.cells) {
+              cellsStr = backupRow.cells.map(c => `${c.text}[${c.colSpan}]`).join(',');
+            } else {
+              const parts = [];
+              if (backupRow.left) parts.push(backupRow.left);
+              if (backupRow.right) parts.push(backupRow.right);
+              cellsStr = parts.join(',');
+            }
+          }
+          
+          if (cellsStr && cellsStr.startsWith("'") && (cellsStr.substring(1).startsWith('+') || cellsStr.substring(1).startsWith('='))) {
+            cellsStr = cellsStr.substring(1);
+          }
+
           // Check if it's the legacy format
-          if (pRow.cells && !pRow.cells.includes('[')) {
-            const parts = pRow.cells.split(',').map(s => s.trim()).filter(Boolean);
-            vehicleRows.push({
-              label: pRow.label,
-              left: parts[0] || '',
-              right: parts[1] || ''
-            });
+          if (cellsStr && !cellsStr.includes('[')) {
+            if (backupRow && backupRow.cells) {
+              vehicleRows.push({
+                label: pRow.label,
+                cells: healCells(parseCellConfig(cellsStr), backupRow.cells)
+              });
+            } else {
+              const parts = cellsStr.split(',').map(s => s.trim()).filter(Boolean);
+              vehicleRows.push({
+                label: pRow.label,
+                left: parts[0] || '',
+                right: parts[1] || ''
+              });
+            }
           } else {
+            let cellsObj = parseCellConfig(cellsStr);
+            if (backupRow && backupRow.cells) {
+              cellsObj = healCells(cellsObj, backupRow.cells);
+            } else if ((cellsObj.some(c => c.text === '#ERROR!') || cellsObj.length === 0) && backupRow && backupRow.cells) {
+              cellsObj = backupRow.cells;
+            }
             vehicleRows.push({
               label: pRow.label,
-              cells: parseCellConfig(pRow.cells)
+              cells: cellsObj
             });
           }
         }
@@ -261,18 +503,50 @@ async function main() {
       const assetsKey = `kitAssets.${pType}${reg}`;
 
       // Assemble final tour configuration
+      const backupTour = backupTours.find(t => t.id === rTour.id);
+      
+      const duration = backupTour && backupTour.duration ? backupTour.duration : parseInt(rTour.duration, 10);
+      const title = backupTour && backupTour.title ? backupTour.title : rTour.title;
+      const route = backupTour && backupTour.route ? backupTour.route : rTour.route;
+      const nights = backupTour && backupTour.nights ? backupTour.nights : rTour.nights;
+      const hotel = backupTour && backupTour.hotel ? backupTour.hotel : rTour.hotel;
+      const groupRange = backupTour && backupTour.groupRange ? backupTour.groupRange : rTour.groupRange;
+      const vehicle = backupTour && backupTour.vehicle ? backupTour.vehicle : rTour.vehicle;
+
+      let highlights = parseLineList(rTour.highlights);
+      if (backupTour && backupTour.highlights && (highlights.length === 0 || backupTour.id === 'fitsgn01')) {
+        highlights = backupTour.highlights;
+      }
+
+      let inclusionsTh = parseLineList(rTour.inclusionsTh);
+      if (backupTour && backupTour.inclusionsTh) {
+        const hasSplitTip = inclusionsTh.some(line => line.includes('baht/pax/trip)'));
+        if (hasSplitTip || inclusionsTh.length === 0) {
+          inclusionsTh = backupTour.inclusionsTh;
+        }
+      }
+
+      let exclusionsTh = parseLineList(rTour.exclusionsTh);
+      if (backupTour && backupTour.exclusionsTh) {
+        const isCutOff = exclusionsTh.some(line => line === 'ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับ' || line === 'ยังไม่รวมค่าทิปให้ไกด์ท้องถิ่นกับคนขับรถ');
+        if (isCutOff || exclusionsTh.length === 0) {
+          exclusionsTh = backupTour.exclusionsTh;
+        }
+      }
+
       const tourObj = {
         id: rTour.id,
         code: rTour.code,
         packageType: rTour.packageType,
+        pdfPriceLayout: backupTour ? (backupTour.pdfPriceLayout !== false) : true,
         region: rTour.region,
-        title: rTour.title,
-        route: rTour.route,
-        duration: parseInt(rTour.duration, 10),
-        nights: rTour.nights,
-        hotel: rTour.hotel,
-        groupRange: rTour.groupRange,
-        vehicle: rTour.vehicle,
+        title,
+        route,
+        duration,
+        nights,
+        hotel,
+        groupRange,
+        vehicle,
         tip: rTour.tip,
         assets: assetsKey, // will be replaced with reference in final file write
         sourcePages: rTour.sourcePages || undefined,
@@ -280,17 +554,19 @@ async function main() {
         priceRows,
         priceExtraRows,
         vehicleRows,
-        highlights: parseLineList(rTour.highlights),
+        highlights,
         itinerary: tourItineraries,
-        inclusionsTh: parseLineList(rTour.inclusionsTh),
-        exclusionsTh: parseLineList(rTour.exclusionsTh),
+        inclusionsTh,
+        exclusionsTh,
         childRatesTh: parseLineList(rTour.childRatesTh),
-        remarksTh: (rTour.remarksThLeft || rTour.remarksThRight) ? {
-          left: parseLineList(rTour.remarksThLeft),
-          right: parseLineList(rTour.remarksThRight)
-        } : undefined,
-        remarksLeftSpan: rTour.remarksLeftSpan ? parseInt(rTour.remarksLeftSpan, 10) : undefined,
-        remarksRightSpan: rTour.remarksRightSpan ? parseInt(rTour.remarksRightSpan, 10) : undefined,
+        remarksTh: healRemarksTh(
+          rTour.remarksThLeft,
+          rTour.remarksThRight,
+          backupTour?.remarksTh
+        ),
+        remarksLeftSpan: (backupTour && backupTour.remarksLeftSpan !== undefined) ? backupTour.remarksLeftSpan : (rTour.remarksLeftSpan ? parseInt(rTour.remarksLeftSpan, 10) : undefined),
+        remarksMiddleSpan: (backupTour && backupTour.remarksMiddleSpan !== undefined) ? backupTour.remarksMiddleSpan : (rTour.remarksMiddleSpan ? parseInt(rTour.remarksMiddleSpan, 10) : undefined),
+        remarksRightSpan: (backupTour && backupTour.remarksRightSpan !== undefined) ? backupTour.remarksRightSpan : (rTour.remarksRightSpan ? parseInt(rTour.remarksRightSpan, 10) : undefined),
         paymentTermsTh: parsePipePairs(rTour.paymentTermsTh),
         cancellationPolicyTh: parsePipePairs(rTour.cancellationPolicyTh),
       };
@@ -376,10 +652,12 @@ const sharedTerms = {
 };
 
 const makeTour = (tour) => {
-  const rowMinimums = tour.priceRows.flatMap((row) => row.cells.map((cell) => cell.value));
+  const priceRows = tour.priceRows || [];
+  const rowMinimums = priceRows.flatMap((row) => (row.cells || []).map((cell) => cell.value).filter((v) => typeof v === 'number' && !isNaN(v)));
+  const minPrice = rowMinimums.length > 0 ? Math.min(...rowMinimums) : 0;
   return {
     ...tour,
-    priceFrom: Math.min(...rowMinimums),
+    priceFrom: minPrice,
     inclusions: tour.inclusions || sharedTerms.inclusions,
     exclusions: tour.exclusions || sharedTerms.exclusions,
     policies: tour.policies || sharedTerms.policies,

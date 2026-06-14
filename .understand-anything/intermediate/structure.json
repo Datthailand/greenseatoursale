@@ -1,0 +1,3350 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 18,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "data_goc/ssh digital.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "deploy.ps1",
+      "language": "powershell",
+      "fileCategory": "script",
+      "totalLines": 29,
+      "nonEmptyLines": 23,
+      "metrics": {}
+    },
+    {
+      "path": "implementation-notes.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 27,
+      "nonEmptyLines": 23,
+      "sections": [
+        {
+          "heading": "Implementation Notes",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "2026-06-08",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "2026-06-09",
+          "level": 2,
+          "line": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 12,
+      "nonEmptyLines": 12,
+      "metrics": {}
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 22,
+      "nonEmptyLines": 22,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "private",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "scripts",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "devDependencies",
+          "level": 1,
+          "line": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "RUNBOOK.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 52,
+      "nonEmptyLines": 37,
+      "sections": [
+        {
+          "heading": "Green Sea Webapp Runbook",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Location",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Stack",
+          "level": 2,
+          "line": 8
+        },
+        {
+          "heading": "Commands",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "Current checks",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Important note",
+          "level": 2,
+          "line": 38
+        },
+        {
+          "heading": "Dev server",
+          "level": 2,
+          "line": 48
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "scripts/config.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 4,
+      "nonEmptyLines": 4,
+      "sections": [
+        {
+          "heading": "spreadsheetId",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "googleAppsScriptUrl",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "scripts/export-to-csv.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 182,
+      "functions": [
+        {
+          "name": "escapeCsv",
+          "startLine": 11,
+          "endLine": 21,
+          "params": [
+            "val"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "escapeCsv",
+          "callee": "String",
+          "lineNumber": 13
+        },
+        {
+          "caller": "escapeCsv",
+          "callee": "str.replace",
+          "lineNumber": 15
+        },
+        {
+          "caller": "escapeCsv",
+          "callee": "str.includes",
+          "lineNumber": 17
+        },
+        {
+          "caller": "escapeCsv",
+          "callee": "str.includes",
+          "lineNumber": 17
+        },
+        {
+          "caller": "escapeCsv",
+          "callee": "str.includes",
+          "lineNumber": 17
+        },
+        {
+          "caller": "escapeCsv",
+          "callee": "str.replace",
+          "lineNumber": 18
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "scripts/fetch-tours.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 416,
+      "nonEmptyLines": 380,
+      "functions": [
+        {
+          "name": "parseCSV",
+          "startLine": 23,
+          "endLine": 80,
+          "params": [
+            "csvText"
+          ]
+        },
+        {
+          "name": "getCSV",
+          "startLine": 85,
+          "endLine": 113,
+          "params": [
+            "sheetName"
+          ]
+        },
+        {
+          "name": "parseLineList",
+          "startLine": 116,
+          "endLine": 119,
+          "params": [
+            "str"
+          ]
+        },
+        {
+          "name": "parseCommaList",
+          "startLine": 122,
+          "endLine": 125,
+          "params": [
+            "str"
+          ]
+        },
+        {
+          "name": "parsePipePairs",
+          "startLine": 128,
+          "endLine": 134,
+          "params": [
+            "str"
+          ]
+        },
+        {
+          "name": "getBands",
+          "startLine": 137,
+          "endLine": 151,
+          "params": [
+            "tourId",
+            "packageType",
+            "numValues"
+          ]
+        },
+        {
+          "name": "parseCellConfig",
+          "startLine": 154,
+          "endLine": 165,
+          "params": [
+            "str"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 170,
+          "endLine": 414,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseCSV",
+          "callee": "csvText.replace",
+          "lineNumber": 29
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "currentLine.push",
+          "lineNumber": 50
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "currentCell.trim",
+          "lineNumber": 50
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "currentLine.push",
+          "lineNumber": 53
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "currentCell.trim",
+          "lineNumber": 53
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "lines.push",
+          "lineNumber": 54
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "currentLine.push",
+          "lineNumber": 64
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "currentCell.trim",
+          "lineNumber": 64
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "lines.push",
+          "lineNumber": 65
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "headers.forEach",
+          "lineNumber": 74
+        },
+        {
+          "caller": "parseCSV",
+          "callee": "objects.push",
+          "lineNumber": 77
+        },
+        {
+          "caller": "getCSV",
+          "callee": "console.log",
+          "lineNumber": 89
+        },
+        {
+          "caller": "getCSV",
+          "callee": "https.get(url, (res) => {\n        const chunks = [];\n        res.on('data', (chunk) => { chunks.push(chunk); });\n        res.on('end', () => {\n          if (res.statusCode === 200) {\n            const data = Buffer.concat(chunks).toString('utf-8');\n            resolve(data);\n          } else {\n            reject(new Error(`Failed to fetch sheet ${sheetName}: Status ${res.statusCode}`));\n          }\n        });\n      }).on",
+          "lineNumber": 90
+        },
+        {
+          "caller": "getCSV",
+          "callee": "https.get",
+          "lineNumber": 90
+        },
+        {
+          "caller": "getCSV",
+          "callee": "res.on",
+          "lineNumber": 92
+        },
+        {
+          "caller": "getCSV",
+          "callee": "chunks.push",
+          "lineNumber": 92
+        },
+        {
+          "caller": "getCSV",
+          "callee": "res.on",
+          "lineNumber": 93
+        },
+        {
+          "caller": "getCSV",
+          "callee": "Buffer.concat(chunks).toString",
+          "lineNumber": 95
+        },
+        {
+          "caller": "getCSV",
+          "callee": "Buffer.concat",
+          "lineNumber": 95
+        },
+        {
+          "caller": "getCSV",
+          "callee": "resolve",
+          "lineNumber": 96
+        },
+        {
+          "caller": "getCSV",
+          "callee": "reject",
+          "lineNumber": 98
+        },
+        {
+          "caller": "getCSV",
+          "callee": "path.join",
+          "lineNumber": 103
+        },
+        {
+          "caller": "getCSV",
+          "callee": "console.log",
+          "lineNumber": 104
+        },
+        {
+          "caller": "getCSV",
+          "callee": "fs.readFileSync",
+          "lineNumber": 106
+        },
+        {
+          "caller": "getCSV",
+          "callee": "resolve",
+          "lineNumber": 107
+        },
+        {
+          "caller": "getCSV",
+          "callee": "reject",
+          "lineNumber": 109
+        },
+        {
+          "caller": "parseLineList",
+          "callee": "str.split('\\n').map(s => s.trim()).filter",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseLineList",
+          "callee": "str.split('\\n').map",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseLineList",
+          "callee": "str.split",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseLineList",
+          "callee": "s.trim",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseCommaList",
+          "callee": "str.split(',').map(s => s.trim()).filter",
+          "lineNumber": 124
+        },
+        {
+          "caller": "parseCommaList",
+          "callee": "str.split(',').map",
+          "lineNumber": 124
+        },
+        {
+          "caller": "parseCommaList",
+          "callee": "str.split",
+          "lineNumber": 124
+        },
+        {
+          "caller": "parseCommaList",
+          "callee": "s.trim",
+          "lineNumber": 124
+        },
+        {
+          "caller": "parsePipePairs",
+          "callee": "str.split('\\n').map(line => {\n    const parts = line.split('|');\n    return [parts[0] ? parts[0].trim() : '', parts[1] ? parts[1].trim() : ''];\n  }).filter",
+          "lineNumber": 130
+        },
+        {
+          "caller": "parsePipePairs",
+          "callee": "str.split('\\n').map",
+          "lineNumber": 130
+        },
+        {
+          "caller": "parsePipePairs",
+          "callee": "str.split",
+          "lineNumber": 130
+        },
+        {
+          "caller": "parsePipePairs",
+          "callee": "line.split",
+          "lineNumber": 131
+        },
+        {
+          "caller": "parsePipePairs",
+          "callee": "parts[0].trim",
+          "lineNumber": 132
+        },
+        {
+          "caller": "parsePipePairs",
+          "callee": "parts[1].trim",
+          "lineNumber": 132
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "str.split(',').map(s => s.trim()).filter(Boolean).map",
+          "lineNumber": 156
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "str.split(',').map(s => s.trim()).filter",
+          "lineNumber": 156
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "str.split(',').map",
+          "lineNumber": 156
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "str.split",
+          "lineNumber": 156
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "s.trim",
+          "lineNumber": 156
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "part.match",
+          "lineNumber": 157
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "match[1].trim",
+          "lineNumber": 159
+        },
+        {
+          "caller": "parseCellConfig",
+          "callee": "parseInt",
+          "lineNumber": 160
+        },
+        {
+          "caller": "main",
+          "callee": "getCSV",
+          "lineNumber": 172
+        },
+        {
+          "caller": "main",
+          "callee": "getCSV",
+          "lineNumber": 173
+        },
+        {
+          "caller": "main",
+          "callee": "getCSV",
+          "lineNumber": 174
+        },
+        {
+          "caller": "main",
+          "callee": "parseCSV",
+          "lineNumber": 176
+        },
+        {
+          "caller": "main",
+          "callee": "parseCSV",
+          "lineNumber": 177
+        },
+        {
+          "caller": "main",
+          "callee": "parseCSV",
+          "lineNumber": 178
+        },
+        {
+          "caller": "main",
+          "callee": "console.log",
+          "lineNumber": 180
+        },
+        {
+          "caller": "main",
+          "callee": "rawIti\n        .filter(item => item.tour_id === tourId)\n        .map(item => ({\n          day: parseInt(item.day, 10),\n          title: item.title || undefined,\n          titleTh: item.titleTh || undefined,\n          notes: parseLineList(item.notes),\n          notesTh: parseLineList(item.notesTh),\n          lunch: item.lunch || undefined,\n          lunchMenuTh: parseCommaList(item.lunchMenuTh),\n          dinner: item.dinner || undefined,\n          dinnerMenuTh: parseCommaList(item.dinnerMenuTh),\n          overnightTh: item.overnightTh || undefined\n        }))\n        .sort",
+          "lineNumber": 188
+        },
+        {
+          "caller": "main",
+          "callee": "rawIti\n        .filter(item => item.tour_id === tourId)\n        .map",
+          "lineNumber": 188
+        },
+        {
+          "caller": "main",
+          "callee": "rawIti\n        .filter",
+          "lineNumber": 188
+        },
+        {
+          "caller": "main",
+          "callee": "parseInt",
+          "lineNumber": 191
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 194
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 195
+        },
+        {
+          "caller": "main",
+          "callee": "parseCommaList",
+          "lineNumber": 197
+        },
+        {
+          "caller": "main",
+          "callee": "parseCommaList",
+          "lineNumber": 199
+        },
+        {
+          "caller": "main",
+          "callee": "rawPricing.filter",
+          "lineNumber": 205
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.split(',').map(v => v.trim()).filter",
+          "lineNumber": 213
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.split(',').map",
+          "lineNumber": 213
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.split",
+          "lineNumber": 213
+        },
+        {
+          "caller": "main",
+          "callee": "v.trim",
+          "lineNumber": 213
+        },
+        {
+          "caller": "main",
+          "callee": "rawValues.map",
+          "lineNumber": 214
+        },
+        {
+          "caller": "main",
+          "callee": "Number",
+          "lineNumber": 214
+        },
+        {
+          "caller": "main",
+          "callee": "getBands",
+          "lineNumber": 215
+        },
+        {
+          "caller": "main",
+          "callee": "priceRows.push",
+          "lineNumber": 217
+        },
+        {
+          "caller": "main",
+          "callee": "bands.map",
+          "lineNumber": 219
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.includes",
+          "lineNumber": 224
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.includes",
+          "lineNumber": 224
+        },
+        {
+          "caller": "main",
+          "callee": "priceExtraRows.push",
+          "lineNumber": 225
+        },
+        {
+          "caller": "main",
+          "callee": "priceExtraRows.push",
+          "lineNumber": 231
+        },
+        {
+          "caller": "main",
+          "callee": "parseCellConfig",
+          "lineNumber": 233
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.includes",
+          "lineNumber": 239
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.split(',').map(s => s.trim()).filter",
+          "lineNumber": 240
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.split(',').map",
+          "lineNumber": 240
+        },
+        {
+          "caller": "main",
+          "callee": "pRow.cells.split",
+          "lineNumber": 240
+        },
+        {
+          "caller": "main",
+          "callee": "s.trim",
+          "lineNumber": 240
+        },
+        {
+          "caller": "main",
+          "callee": "vehicleRows.push",
+          "lineNumber": 241
+        },
+        {
+          "caller": "main",
+          "callee": "vehicleRows.push",
+          "lineNumber": 247
+        },
+        {
+          "caller": "main",
+          "callee": "parseCellConfig",
+          "lineNumber": 249
+        },
+        {
+          "caller": "main",
+          "callee": "rTour.packageType.toLowerCase",
+          "lineNumber": 256
+        },
+        {
+          "caller": "main",
+          "callee": "rTour.region.includes",
+          "lineNumber": 258
+        },
+        {
+          "caller": "main",
+          "callee": "rTour.region.includes",
+          "lineNumber": 259
+        },
+        {
+          "caller": "main",
+          "callee": "rTour.region.includes",
+          "lineNumber": 260
+        },
+        {
+          "caller": "main",
+          "callee": "rTour.region.includes",
+          "lineNumber": 260
+        },
+        {
+          "caller": "main",
+          "callee": "parseInt",
+          "lineNumber": 271
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 279
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 283
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 285
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 286
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 287
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 289
+        },
+        {
+          "caller": "main",
+          "callee": "parseLineList",
+          "lineNumber": 290
+        },
+        {
+          "caller": "main",
+          "callee": "parseInt",
+          "lineNumber": 292
+        },
+        {
+          "caller": "main",
+          "callee": "parseInt",
+          "lineNumber": 293
+        },
+        {
+          "caller": "main",
+          "callee": "parsePipePairs",
+          "lineNumber": 294
+        },
+        {
+          "caller": "main",
+          "callee": "parsePipePairs",
+          "lineNumber": 295
+        },
+        {
+          "caller": "main",
+          "callee": "tours.push",
+          "lineNumber": 298
+        },
+        {
+          "caller": "main",
+          "callee": "JSON.stringify",
+          "lineNumber": 393
+        },
+        {
+          "caller": "main",
+          "callee": "toursBody.replace",
+          "lineNumber": 395
+        },
+        {
+          "caller": "main",
+          "callee": "JSON.stringify",
+          "lineNumber": 399
+        },
+        {
+          "caller": "main",
+          "callee": "JSON.stringify",
+          "lineNumber": 400
+        },
+        {
+          "caller": "main",
+          "callee": "tours.map((t, idx) => {\n      // Extract exact tour string block from JSON array\n      const tourJson = JSON.stringify(t, null, 2);\n      const replacedTour = tourJson.replace(/\"assets\":\\s*\"kitAssets\\.([a-zA-Z]+)\"/g, '\"assets\": kitAssets.$1');\n      return `  makeTour(${replacedTour})`;\n    }).join",
+          "lineNumber": 401
+        },
+        {
+          "caller": "main",
+          "callee": "tours.map",
+          "lineNumber": 401
+        },
+        {
+          "caller": "main",
+          "callee": "JSON.stringify",
+          "lineNumber": 403
+        },
+        {
+          "caller": "main",
+          "callee": "tourJson.replace",
+          "lineNumber": 404
+        },
+        {
+          "caller": "main",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 408
+        },
+        {
+          "caller": "main",
+          "callee": "path.resolve",
+          "lineNumber": 408
+        },
+        {
+          "caller": "main",
+          "callee": "console.log",
+          "lineNumber": 409
+        },
+        {
+          "caller": "main",
+          "callee": "console.error",
+          "lineNumber": 411
+        },
+        {
+          "caller": "main",
+          "callee": "process.exit",
+          "lineNumber": 412
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/App.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 838,
+      "nonEmptyLines": 779,
+      "functions": [
+        {
+          "name": "t",
+          "startLine": 140,
+          "endLine": 142,
+          "params": [
+            "key",
+            "language"
+          ]
+        },
+        {
+          "name": "formatMoney",
+          "startLine": 144,
+          "endLine": 149,
+          "params": [
+            "value",
+            "currency"
+          ]
+        },
+        {
+          "name": "getHotelStandard",
+          "startLine": 151,
+          "endLine": 157,
+          "params": [
+            "tour"
+          ]
+        },
+        {
+          "name": "getQuoteText",
+          "startLine": 161,
+          "endLine": 179,
+          "params": [
+            "tour",
+            "currency"
+          ]
+        },
+        {
+          "name": "ThailandFlag",
+          "startLine": 181,
+          "endLine": 187,
+          "params": []
+        },
+        {
+          "name": "UKFlag",
+          "startLine": 189,
+          "endLine": 197,
+          "params": []
+        },
+        {
+          "name": "App",
+          "startLine": 206,
+          "endLine": 449,
+          "params": []
+        },
+        {
+          "name": "TourCard",
+          "startLine": 451,
+          "endLine": 492,
+          "params": []
+        },
+        {
+          "name": "DetailPanel",
+          "startLine": 494,
+          "endLine": 638,
+          "params": []
+        },
+        {
+          "name": "ItineraryTable",
+          "startLine": 642,
+          "endLine": 707,
+          "params": []
+        },
+        {
+          "name": "PricePreview",
+          "startLine": 709,
+          "endLine": 805,
+          "params": []
+        },
+        {
+          "name": "ListBlock",
+          "startLine": 807,
+          "endLine": 821,
+          "params": []
+        },
+        {
+          "name": "SmallInfoCard",
+          "startLine": 823,
+          "endLine": 835,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "formatMoney",
+          "callee": "Math.round(value * EXCHANGE_RATE).toLocaleString",
+          "lineNumber": 146
+        },
+        {
+          "caller": "formatMoney",
+          "callee": "Math.round",
+          "lineNumber": 146
+        },
+        {
+          "caller": "formatMoney",
+          "callee": "value.toLocaleString",
+          "lineNumber": 148
+        },
+        {
+          "caller": "getHotelStandard",
+          "callee": "tour.hotel.includes",
+          "lineNumber": 152
+        },
+        {
+          "caller": "getHotelStandard",
+          "callee": "tour.hotel.includes",
+          "lineNumber": 153
+        },
+        {
+          "caller": "getHotelStandard",
+          "callee": "tour.hotel.includes",
+          "lineNumber": 153
+        },
+        {
+          "caller": "getHotelStandard",
+          "callee": "tour.hotel.includes",
+          "lineNumber": 154
+        },
+        {
+          "caller": "getHotelStandard",
+          "callee": "tour.hotel.includes",
+          "lineNumber": 155
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "tour.priceRows.reduce",
+          "lineNumber": 162
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "Math.min",
+          "lineNumber": 163
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "row.cells.map",
+          "lineNumber": 163
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "Math.min",
+          "lineNumber": 164
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "winner.cells.map",
+          "lineNumber": 164
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "bestRow.cells.reduce",
+          "lineNumber": 167
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "[\n    `${tour.code} - ${tour.title}`,\n    `Package: ${tour.packageType} | Region: ${tour.region} | Duration: ${tour.duration} days`,\n    `Route: ${tour.route}`,\n    `Price from: ${formatMoney(tour.priceFrom, currency)}/pax (${bestCell.band} pax, ${bestRow.season})`,\n    `Single supplement: ${bestRow.single}`,\n    `Hotel: ${tour.hotel}`,\n    `Vehicle: ${tour.vehicle}`,\n    `Source: ${tour.assets.label}, ${tour.sourcePages}`,\n  ].join",
+          "lineNumber": 169
+        },
+        {
+          "caller": "getQuoteText",
+          "callee": "formatMoney",
+          "lineNumber": 173
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 207
+        },
+        {
+          "caller": "App",
+          "callee": "new URLSearchParams(window.location.search).get",
+          "lineNumber": 208
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 210
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 211
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 212
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 213
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 214
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 215
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 216
+        },
+        {
+          "caller": "App",
+          "callee": "useState",
+          "lineNumber": 217
+        },
+        {
+          "caller": "App",
+          "callee": "useRef",
+          "lineNumber": 218
+        },
+        {
+          "caller": "handleSelectTour",
+          "callee": "setSelectedId",
+          "lineNumber": 221
+        },
+        {
+          "caller": "handleSelectTour",
+          "callee": "setTimeout",
+          "lineNumber": 222
+        },
+        {
+          "caller": "handleSelectTour",
+          "callee": "detailRef.current.scrollIntoView",
+          "lineNumber": 224
+        },
+        {
+          "caller": "App",
+          "callee": "useMemo",
+          "lineNumber": 229
+        },
+        {
+          "caller": "App",
+          "callee": "query.trim().toLowerCase",
+          "lineNumber": 230
+        },
+        {
+          "caller": "App",
+          "callee": "query.trim",
+          "lineNumber": 230
+        },
+        {
+          "caller": "App",
+          "callee": "tours.filter",
+          "lineNumber": 231
+        },
+        {
+          "caller": "App",
+          "callee": "`${tour.code} ${tour.title} ${tour.route} ${tour.region} ${tour.packageType}`.toLowerCase",
+          "lineNumber": 234
+        },
+        {
+          "caller": "App",
+          "callee": "haystack.includes",
+          "lineNumber": 235
+        },
+        {
+          "caller": "App",
+          "callee": "[...matches].sort",
+          "lineNumber": 238
+        },
+        {
+          "caller": "App",
+          "callee": "tours.findIndex",
+          "lineNumber": 241
+        },
+        {
+          "caller": "App",
+          "callee": "tours.findIndex",
+          "lineNumber": 241
+        },
+        {
+          "caller": "App",
+          "callee": "useEffect",
+          "lineNumber": 245
+        },
+        {
+          "caller": "App",
+          "callee": "filteredTours.some",
+          "lineNumber": 246
+        },
+        {
+          "caller": "App",
+          "callee": "setSelectedId",
+          "lineNumber": 247
+        },
+        {
+          "caller": "App",
+          "callee": "useEffect",
+          "lineNumber": 251
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "e.key.toLowerCase",
+          "lineNumber": 253
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "setIsAdminMode",
+          "lineNumber": 254
+        },
+        {
+          "caller": "App",
+          "callee": "window.addEventListener",
+          "lineNumber": 257
+        },
+        {
+          "caller": "App",
+          "callee": "window.removeEventListener",
+          "lineNumber": 258
+        },
+        {
+          "caller": "App",
+          "callee": "useEffect",
+          "lineNumber": 261
+        },
+        {
+          "caller": "App",
+          "callee": "window.setTimeout",
+          "lineNumber": 263
+        },
+        {
+          "caller": "App",
+          "callee": "setNotice",
+          "lineNumber": 263
+        },
+        {
+          "caller": "App",
+          "callee": "window.clearTimeout",
+          "lineNumber": 264
+        },
+        {
+          "caller": "App",
+          "callee": "filteredTours.find",
+          "lineNumber": 267
+        },
+        {
+          "caller": "showNotice",
+          "callee": "setNotice",
+          "lineNumber": 272
+        },
+        {
+          "caller": "resetFilters",
+          "callee": "setPackageFilter",
+          "lineNumber": 276
+        },
+        {
+          "caller": "resetFilters",
+          "callee": "setRegionFilter",
+          "lineNumber": 277
+        },
+        {
+          "caller": "resetFilters",
+          "callee": "setQuery",
+          "lineNumber": 278
+        },
+        {
+          "caller": "resetFilters",
+          "callee": "setNotice",
+          "lineNumber": 279
+        },
+        {
+          "caller": "cycleSortMode",
+          "callee": "sortModes.indexOf",
+          "lineNumber": 283
+        },
+        {
+          "caller": "cycleSortMode",
+          "callee": "setSortMode",
+          "lineNumber": 284
+        },
+        {
+          "caller": "cycleSortMode",
+          "callee": "setNotice",
+          "lineNumber": 285
+        },
+        {
+          "caller": "cycleCurrency",
+          "callee": "setCurrency",
+          "lineNumber": 290
+        },
+        {
+          "caller": "cycleCurrency",
+          "callee": "setNotice",
+          "lineNumber": 291
+        },
+        {
+          "caller": "cycleLanguage",
+          "callee": "setLanguage",
+          "lineNumber": 296
+        },
+        {
+          "caller": "cycleLanguage",
+          "callee": "setNotice",
+          "lineNumber": 297
+        },
+        {
+          "caller": "App",
+          "callee": "setIsAdminMode",
+          "lineNumber": 301
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 311
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 330
+        },
+        {
+          "caller": "App",
+          "callee": "packageFilters.map",
+          "lineNumber": 332
+        },
+        {
+          "caller": "App",
+          "callee": "setPackageFilter",
+          "lineNumber": 337
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 347
+        },
+        {
+          "caller": "App",
+          "callee": "[t('allRegions', language), ...regions].map",
+          "lineNumber": 349
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 349
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 350
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 352
+        },
+        {
+          "caller": "App",
+          "callee": "setRegionFilter",
+          "lineNumber": 358
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 374
+        },
+        {
+          "caller": "App",
+          "callee": "setQuery",
+          "lineNumber": 375
+        },
+        {
+          "caller": "App",
+          "callee": "showNotice",
+          "lineNumber": 378
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 380
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 383
+        },
+        {
+          "caller": "App",
+          "callee": "filteredTours.map",
+          "lineNumber": 390
+        },
+        {
+          "caller": "App",
+          "callee": "handleSelectTour",
+          "lineNumber": 397
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 403
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 404
+        },
+        {
+          "caller": "App",
+          "callee": "setPackageFilter",
+          "lineNumber": 409
+        },
+        {
+          "caller": "App",
+          "callee": "setRegionFilter",
+          "lineNumber": 410
+        },
+        {
+          "caller": "App",
+          "callee": "setQuery",
+          "lineNumber": 411
+        },
+        {
+          "caller": "App",
+          "callee": "setNotice",
+          "lineNumber": 412
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 415
+        },
+        {
+          "caller": "App",
+          "callee": "showNotice",
+          "lineNumber": 427
+        },
+        {
+          "caller": "App",
+          "callee": "showNotice",
+          "lineNumber": 428
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 436
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 437
+        },
+        {
+          "caller": "App",
+          "callee": "t",
+          "lineNumber": 439
+        },
+        {
+          "caller": "TourCard",
+          "callee": "t",
+          "lineNumber": 462
+        },
+        {
+          "caller": "TourCard",
+          "callee": "formatMoney",
+          "lineNumber": 463
+        },
+        {
+          "caller": "TourCard",
+          "callee": "t",
+          "lineNumber": 464
+        },
+        {
+          "caller": "TourCard",
+          "callee": "t",
+          "lineNumber": 474
+        },
+        {
+          "caller": "TourCard",
+          "callee": "Math.max",
+          "lineNumber": 474
+        },
+        {
+          "caller": "TourCard",
+          "callee": "t",
+          "lineNumber": 474
+        },
+        {
+          "caller": "TourCard",
+          "callee": "getHotelStandard",
+          "lineNumber": 482
+        },
+        {
+          "caller": "TourCard",
+          "callee": "t",
+          "lineNumber": 486
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "tour.packageType.toLowerCase",
+          "lineNumber": 512
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 518
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "Math.max",
+          "lineNumber": 518
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 518
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 526
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 531
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 534
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "getHotelStandard",
+          "lineNumber": 534
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 540
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "formatMoney",
+          "lineNumber": 541
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 542
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 549
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 559
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 568
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 569
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 573
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "childRates.map",
+          "lineNumber": 573
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 575
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 577
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 578
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 579
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 579
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 583
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "t",
+          "lineNumber": 585
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "tour.remarksTh.left.slice(1).map",
+          "lineNumber": 598
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "tour.remarksTh.left.slice",
+          "lineNumber": 598
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "tour.remarksTh.right.slice(1).map",
+          "lineNumber": 608
+        },
+        {
+          "caller": "DetailPanel",
+          "callee": "tour.remarksTh.right.slice",
+          "lineNumber": 608
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "tour.itinerary.map",
+          "lineNumber": 645
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "t",
+          "lineNumber": 654
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "t",
+          "lineNumber": 658
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "notes.map",
+          "lineNumber": 662
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "t",
+          "lineNumber": 666
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "t",
+          "lineNumber": 668
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "t",
+          "lineNumber": 677
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "lunchMenu.map",
+          "lineNumber": 680
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "t",
+          "lineNumber": 689
+        },
+        {
+          "caller": "ItineraryTable",
+          "callee": "dinnerMenu.map",
+          "lineNumber": 692
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.priceRows[0].cells.map",
+          "lineNumber": 710
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "t",
+          "lineNumber": 714
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "t",
+          "lineNumber": 714
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "t",
+          "lineNumber": 725
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "bands.map",
+          "lineNumber": 726
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "t",
+          "lineNumber": 729
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.priceRows.map",
+          "lineNumber": 733
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.season.includes",
+          "lineNumber": 736
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.season.replace",
+          "lineNumber": 736
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.cells.map",
+          "lineNumber": 738
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "formatMoney",
+          "lineNumber": 739
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.single?.replace",
+          "lineNumber": 741
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.priceExtraRows?.map",
+          "lineNumber": 744
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.cells.map",
+          "lineNumber": 748
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.single?.replace",
+          "lineNumber": 754
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.priceExtraRows?.map",
+          "lineNumber": 757
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "bands.map",
+          "lineNumber": 760
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.single?.replace",
+          "lineNumber": 763
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.vehicleRows?.map",
+          "lineNumber": 766
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "row.cells.map",
+          "lineNumber": 770
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "Math.floor",
+          "lineNumber": 775
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "Math.ceil",
+          "lineNumber": 776
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "(() => {\n              const totalBandCols = bands.length + 1; // +1 for นอนเดียว col\n              const leftSpan = tour.remarksLeftSpan || Math.floor(totalBandCols / 2);\n              const middleSpan = tour.remarksMiddleSpan || 0;\n              const rightSpan = tour.remarksRightSpan || (totalBandCols - leftSpan - middleSpan);\n              const leftText = tour.remarksTh.left?.join('\\n') || '';\n              const rightText = tour.remarksTh.right?.join('\\n') || '';\n              return (\n                <tr className=\"remarks-table-row\">\n                  <td className=\"remarks-table-label\">หมายเหตุ</td>\n                  {leftText && <td colSpan={leftSpan} className=\"multiline-cell remarks-table-cell\">{leftText}</td>}\n                  {!!middleSpan && <td colSpan={middleSpan} className=\"remarks-table-cell-empty\"></td>}\n                  {rightText && <td colSpan={rightSpan} className=\"multiline-cell remarks-table-cell\">{rightText}</td>}\n                </tr>\n              );\n            })",
+          "lineNumber": 781
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "Math.floor",
+          "lineNumber": 783
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.remarksTh.left?.join",
+          "lineNumber": 786
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.remarksTh.right?.join",
+          "lineNumber": 787
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "t",
+          "lineNumber": 801
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.surcharges.slice(0, 2).join",
+          "lineNumber": 801
+        },
+        {
+          "caller": "PricePreview",
+          "callee": "tour.surcharges.slice",
+          "lineNumber": 801
+        },
+        {
+          "caller": "ListBlock",
+          "callee": "items.map",
+          "lineNumber": 812
+        },
+        {
+          "caller": "SmallInfoCard",
+          "callee": "rows.map",
+          "lineNumber": 827
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 13,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/Admin.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 1540,
+      "nonEmptyLines": 1476,
+      "functions": [
+        {
+          "name": "Admin",
+          "startLine": 9,
+          "endLine": 1540,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Admin",
+          "line": 9,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 10
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 11
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 12
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 15
+        },
+        {
+          "caller": "Admin",
+          "callee": "localStorage.getItem",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Admin",
+          "callee": "JSON.parse",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Admin",
+          "callee": "JSON.parse",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Admin",
+          "callee": "JSON.stringify",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 36
+        },
+        {
+          "caller": "Admin",
+          "callee": "useState",
+          "lineNumber": 37
+        },
+        {
+          "caller": "Admin",
+          "callee": "tours.find",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Admin",
+          "callee": "useEffect",
+          "lineNumber": 42
+        },
+        {
+          "caller": "Admin",
+          "callee": "localStorage.setItem",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Admin",
+          "callee": "JSON.stringify",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Admin",
+          "callee": "useEffect",
+          "lineNumber": 46
+        },
+        {
+          "caller": "Admin",
+          "callee": "setSelectedDayIdx",
+          "lineNumber": 47
+        },
+        {
+          "caller": "handleLogin",
+          "callee": "e.preventDefault",
+          "lineNumber": 51
+        },
+        {
+          "caller": "handleLogin",
+          "callee": "setIsAuthenticated",
+          "lineNumber": 53
+        },
+        {
+          "caller": "handleLogin",
+          "callee": "setLoginError",
+          "lineNumber": 54
+        },
+        {
+          "caller": "handleLogin",
+          "callee": "setLoginError",
+          "lineNumber": 56
+        },
+        {
+          "caller": "updateActiveTour",
+          "callee": "setTours",
+          "lineNumber": 62
+        },
+        {
+          "caller": "updateActiveTour",
+          "callee": "prev.map",
+          "lineNumber": 62
+        },
+        {
+          "caller": "updateActiveTour",
+          "callee": "JSON.parse",
+          "lineNumber": 64
+        },
+        {
+          "caller": "updateActiveTour",
+          "callee": "JSON.stringify",
+          "lineNumber": 64
+        },
+        {
+          "caller": "updateActiveTour",
+          "callee": "updater",
+          "lineNumber": 65
+        },
+        {
+          "caller": "updateActiveDay",
+          "callee": "updateActiveTour",
+          "lineNumber": 76
+        },
+        {
+          "caller": "updateActiveDay",
+          "callee": "updater",
+          "lineNumber": 78
+        },
+        {
+          "caller": "handleSync",
+          "callee": "setSyncResult",
+          "lineNumber": 86
+        },
+        {
+          "caller": "handleSync",
+          "callee": "setSyncing",
+          "lineNumber": 90
+        },
+        {
+          "caller": "handleSync",
+          "callee": "setSyncResult",
+          "lineNumber": 91
+        },
+        {
+          "caller": "handleSync",
+          "callee": "serializeStateToSheets",
+          "lineNumber": 94
+        },
+        {
+          "caller": "handleSync",
+          "callee": "fetch",
+          "lineNumber": 95
+        },
+        {
+          "caller": "handleSync",
+          "callee": "JSON.stringify",
+          "lineNumber": 101
+        },
+        {
+          "caller": "handleSync",
+          "callee": "setSyncResult",
+          "lineNumber": 106
+        },
+        {
+          "caller": "handleSync",
+          "callee": "setSyncResult",
+          "lineNumber": 111
+        },
+        {
+          "caller": "handleSync",
+          "callee": "setSyncing",
+          "lineNumber": 113
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "toursList.forEach",
+          "lineNumber": 122
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "toursRows.push",
+          "lineNumber": 124
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "(t.paymentTermsTh || []).map",
+          "lineNumber": 146
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "p.join",
+          "lineNumber": 146
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "(t.cancellationPolicyTh || []).map",
+          "lineNumber": 147
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "p.join",
+          "lineNumber": 147
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "t.itinerary.forEach",
+          "lineNumber": 152
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "itinerariesRows.push",
+          "lineNumber": 153
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "(day.notes || []).join",
+          "lineNumber": 158
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "(day.notesTh || []).join",
+          "lineNumber": 159
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "(day.lunchMenuTh || []).join",
+          "lineNumber": 161
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "(day.dinnerMenuTh || []).join",
+          "lineNumber": 163
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "t.priceRows.forEach",
+          "lineNumber": 172
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "pricingRows.push",
+          "lineNumber": 173
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "row.cells.map(c => c.value).join",
+          "lineNumber": 177
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "row.cells.map",
+          "lineNumber": 177
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "t.priceExtraRows.forEach",
+          "lineNumber": 184
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "row.cells.map(c => `${c.text}[${c.colSpan}]`).join",
+          "lineNumber": 187
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "row.cells.map",
+          "lineNumber": 187
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "pricingRows.push",
+          "lineNumber": 191
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "t.vehicleRows.forEach",
+          "lineNumber": 202
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "row.cells.map(c => `${c.text}[${c.colSpan}]`).join",
+          "lineNumber": 205
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "row.cells.map",
+          "lineNumber": 205
+        },
+        {
+          "caller": "serializeStateToSheets",
+          "callee": "pricingRows.push",
+          "lineNumber": 209
+        },
+        {
+          "caller": "handleCreateNewTour",
+          "callee": "Date.now",
+          "lineNumber": 228
+        },
+        {
+          "caller": "handleCreateNewTour",
+          "callee": "setTours",
+          "lineNumber": 262
+        },
+        {
+          "caller": "handleCreateNewTour",
+          "callee": "setSelectedTourId",
+          "lineNumber": 263
+        },
+        {
+          "caller": "handleCreateNewTour",
+          "callee": "setActiveTab",
+          "lineNumber": 264
+        },
+        {
+          "caller": "handleDeleteTour",
+          "callee": "alert",
+          "lineNumber": 269
+        },
+        {
+          "caller": "handleDeleteTour",
+          "callee": "window.confirm",
+          "lineNumber": 272
+        },
+        {
+          "caller": "handleDeleteTour",
+          "callee": "tours.filter",
+          "lineNumber": 273
+        },
+        {
+          "caller": "handleDeleteTour",
+          "callee": "setTours",
+          "lineNumber": 274
+        },
+        {
+          "caller": "handleDeleteTour",
+          "callee": "setSelectedTourId",
+          "lineNumber": 275
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "serializeStateToSheets",
+          "lineNumber": 280
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "encodeURIComponent",
+          "lineNumber": 281
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "JSON.stringify",
+          "lineNumber": 281
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "document.createElement",
+          "lineNumber": 282
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "downloadAnchor.setAttribute",
+          "lineNumber": 283
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "downloadAnchor.setAttribute",
+          "lineNumber": 284
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "new Date().toISOString().slice",
+          "lineNumber": 284
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "new Date().toISOString",
+          "lineNumber": 284
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "document.body.appendChild",
+          "lineNumber": 285
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "downloadAnchor.click",
+          "lineNumber": 286
+        },
+        {
+          "caller": "handleDownloadBackup",
+          "callee": "downloadAnchor.remove",
+          "lineNumber": 287
+        },
+        {
+          "caller": "Admin",
+          "callee": "tours.filter",
+          "lineNumber": 291
+        },
+        {
+          "caller": "Admin",
+          "callee": "t.code.toLowerCase().includes",
+          "lineNumber": 292
+        },
+        {
+          "caller": "Admin",
+          "callee": "t.code.toLowerCase",
+          "lineNumber": 292
+        },
+        {
+          "caller": "Admin",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 292
+        },
+        {
+          "caller": "Admin",
+          "callee": "t.title.toLowerCase().includes",
+          "lineNumber": 293
+        },
+        {
+          "caller": "Admin",
+          "callee": "t.title.toLowerCase",
+          "lineNumber": 293
+        },
+        {
+          "caller": "Admin",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 293
+        },
+        {
+          "caller": "Admin",
+          "callee": "t.route.toLowerCase().includes",
+          "lineNumber": 294
+        },
+        {
+          "caller": "Admin",
+          "callee": "t.route.toLowerCase",
+          "lineNumber": 294
+        },
+        {
+          "caller": "Admin",
+          "callee": "searchQuery.toLowerCase",
+          "lineNumber": 294
+        },
+        {
+          "caller": "Admin",
+          "callee": "setPassword",
+          "lineNumber": 423
+        },
+        {
+          "caller": "Admin",
+          "callee": "setIsAuthenticated",
+          "lineNumber": 895
+        },
+        {
+          "caller": "Admin",
+          "callee": "setSearchQuery",
+          "lineNumber": 912
+        },
+        {
+          "caller": "Admin",
+          "callee": "setRegionFilter",
+          "lineNumber": 929
+        },
+        {
+          "caller": "Admin",
+          "callee": "setRegionFilter",
+          "lineNumber": 935
+        },
+        {
+          "caller": "Admin",
+          "callee": "setRegionFilter",
+          "lineNumber": 941
+        },
+        {
+          "caller": "Admin",
+          "callee": "setRegionFilter",
+          "lineNumber": 947
+        },
+        {
+          "caller": "Admin",
+          "callee": "setRegionFilter",
+          "lineNumber": 953
+        },
+        {
+          "caller": "Admin",
+          "callee": "setPackageFilter",
+          "lineNumber": 961
+        },
+        {
+          "caller": "Admin",
+          "callee": "setPackageFilter",
+          "lineNumber": 967
+        },
+        {
+          "caller": "Admin",
+          "callee": "setPackageFilter",
+          "lineNumber": 973
+        },
+        {
+          "caller": "Admin",
+          "callee": "filteredTours.map",
+          "lineNumber": 981
+        },
+        {
+          "caller": "Admin",
+          "callee": "setSelectedTourId",
+          "lineNumber": 985
+        },
+        {
+          "caller": "Admin",
+          "callee": "handleDeleteTour",
+          "lineNumber": 1010
+        },
+        {
+          "caller": "Admin",
+          "callee": "setActiveTab",
+          "lineNumber": 1018
+        },
+        {
+          "caller": "Admin",
+          "callee": "setActiveTab",
+          "lineNumber": 1021
+        },
+        {
+          "caller": "Admin",
+          "callee": "setActiveTab",
+          "lineNumber": 1024
+        },
+        {
+          "caller": "Admin",
+          "callee": "setActiveTab",
+          "lineNumber": 1027
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1044
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1052
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1060
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1067
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1079
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1090
+        },
+        {
+          "caller": "Admin",
+          "callee": "parseInt",
+          "lineNumber": 1090
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1098
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1106
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1114
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1122
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.inclusionsTh?.join",
+          "lineNumber": 1135
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1136
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1136
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.exclusionsTh?.join",
+          "lineNumber": 1143
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1144
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1144
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.childRatesTh?.join",
+          "lineNumber": 1151
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1152
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1152
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.highlights?.join",
+          "lineNumber": 1159
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1160
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1160
+        },
+        {
+          "caller": "Admin",
+          "callee": "(activeTour.paymentTermsTh || []).map(p => p.join(' | ')).join",
+          "lineNumber": 1175
+        },
+        {
+          "caller": "Admin",
+          "callee": "(activeTour.paymentTermsTh || []).map",
+          "lineNumber": 1175
+        },
+        {
+          "caller": "Admin",
+          "callee": "p.join",
+          "lineNumber": 1175
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split('\\n').map",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "Admin",
+          "callee": "line.split('|').map",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "Admin",
+          "callee": "line.split",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "Admin",
+          "callee": "s.trim",
+          "lineNumber": 1176
+        },
+        {
+          "caller": "Admin",
+          "callee": "(activeTour.cancellationPolicyTh || []).map(p => p.join(' | ')).join",
+          "lineNumber": 1184
+        },
+        {
+          "caller": "Admin",
+          "callee": "(activeTour.cancellationPolicyTh || []).map",
+          "lineNumber": 1184
+        },
+        {
+          "caller": "Admin",
+          "callee": "p.join",
+          "lineNumber": 1184
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split('\\n').map",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "Admin",
+          "callee": "line.split('|').map",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "Admin",
+          "callee": "line.split",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "Admin",
+          "callee": "s.trim",
+          "lineNumber": 1185
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.priceRows?.map",
+          "lineNumber": 1203
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1213
+        },
+        {
+          "caller": "Admin",
+          "callee": "row.cells.map",
+          "lineNumber": 1218
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1224
+        },
+        {
+          "caller": "Admin",
+          "callee": "parseInt",
+          "lineNumber": 1224
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.priceExtraRows?.map(row => {\n                          const cellsStr = row.cells ? row.cells.map(c => `${c.text}[${c.colSpan}]`).join(',') : row.merged;\n                          return `${row.label} | ${cellsStr} | ${row.single || ''}`;\n                        }).join",
+          "lineNumber": 1244
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.priceExtraRows?.map",
+          "lineNumber": 1244
+        },
+        {
+          "caller": "Admin",
+          "callee": "row.cells.map(c => `${c.text}[${c.colSpan}]`).join",
+          "lineNumber": 1245
+        },
+        {
+          "caller": "Admin",
+          "callee": "row.cells.map",
+          "lineNumber": 1245
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split('\\n').map(line => {\n                            const parts = line.split('|');\n                            if (parts.length < 2) return null;\n                            const label = parts[0].trim();\n                            const cellsVal = parts[1].trim();\n                            const single = parts[2] ? parts[2].trim() : '';\n\n                            // Parse cells format e.g. \"Text[2],Text2[1]\"\n                            if (cellsVal.includes('[')) {\n                              const cells = cellsVal.split(',').map(part => {\n                                const match = part.match(/^([^\\[]*)(?:\\[(\\d+)\\])?$/);\n                                return {\n                                  text: match ? match[1].trim() : part.trim(),\n                                  colSpan: match && match[2] ? parseInt(match[2], 10) : 1\n                                };\n                              });\n                              return { label, cells, single };\n                            } else {\n                              return { label, merged: cellsVal, single };\n                            }\n                          }).filter",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split('\\n').map",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1249
+        },
+        {
+          "caller": "Admin",
+          "callee": "line.split",
+          "lineNumber": 1250
+        },
+        {
+          "caller": "Admin",
+          "callee": "parts[0].trim",
+          "lineNumber": 1252
+        },
+        {
+          "caller": "Admin",
+          "callee": "parts[1].trim",
+          "lineNumber": 1253
+        },
+        {
+          "caller": "Admin",
+          "callee": "parts[2].trim",
+          "lineNumber": 1254
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.includes",
+          "lineNumber": 1257
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.split(',').map",
+          "lineNumber": 1258
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.split",
+          "lineNumber": 1258
+        },
+        {
+          "caller": "Admin",
+          "callee": "part.match",
+          "lineNumber": 1259
+        },
+        {
+          "caller": "Admin",
+          "callee": "match[1].trim",
+          "lineNumber": 1261
+        },
+        {
+          "caller": "Admin",
+          "callee": "part.trim",
+          "lineNumber": 1261
+        },
+        {
+          "caller": "Admin",
+          "callee": "parseInt",
+          "lineNumber": 1262
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1270
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.vehicleRows?.map(row => {\n                          const cellsStr = row.cells ? row.cells.map(c => `${c.text}[${c.colSpan}]`).join(',') : `${row.left},${row.right}`;\n                          return `${row.label} | ${cellsStr}`;\n                        }).join",
+          "lineNumber": 1281
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.vehicleRows?.map",
+          "lineNumber": 1281
+        },
+        {
+          "caller": "Admin",
+          "callee": "row.cells.map(c => `${c.text}[${c.colSpan}]`).join",
+          "lineNumber": 1282
+        },
+        {
+          "caller": "Admin",
+          "callee": "row.cells.map",
+          "lineNumber": 1282
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split('\\n').map(line => {\n                            const parts = line.split('|');\n                            if (parts.length < 2) return null;\n                            const label = parts[0].trim();\n                            const cellsVal = parts[1].trim();\n\n                            if (cellsVal.includes('[')) {\n                              const cells = cellsVal.split(',').map(part => {\n                                const match = part.match(/^([^\\[]*)(?:\\[(\\d+)\\])?$/);\n                                return {\n                                  text: match ? match[1].trim() : part.trim(),\n                                  colSpan: match && match[2] ? parseInt(match[2], 10) : 1\n                                };\n                              });\n                              return { label, cells };\n                            } else {\n                              const split = cellsVal.split(',');\n                              return { label, left: split[0]?.trim() || '', right: split[1]?.trim() || '' };\n                            }\n                          }).filter",
+          "lineNumber": 1286
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split('\\n').map",
+          "lineNumber": 1286
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1286
+        },
+        {
+          "caller": "Admin",
+          "callee": "line.split",
+          "lineNumber": 1287
+        },
+        {
+          "caller": "Admin",
+          "callee": "parts[0].trim",
+          "lineNumber": 1289
+        },
+        {
+          "caller": "Admin",
+          "callee": "parts[1].trim",
+          "lineNumber": 1290
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.includes",
+          "lineNumber": 1292
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.split(',').map",
+          "lineNumber": 1293
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.split",
+          "lineNumber": 1293
+        },
+        {
+          "caller": "Admin",
+          "callee": "part.match",
+          "lineNumber": 1294
+        },
+        {
+          "caller": "Admin",
+          "callee": "match[1].trim",
+          "lineNumber": 1296
+        },
+        {
+          "caller": "Admin",
+          "callee": "part.trim",
+          "lineNumber": 1296
+        },
+        {
+          "caller": "Admin",
+          "callee": "parseInt",
+          "lineNumber": 1297
+        },
+        {
+          "caller": "Admin",
+          "callee": "cellsVal.split",
+          "lineNumber": 1302
+        },
+        {
+          "caller": "Admin",
+          "callee": "split[0]?.trim",
+          "lineNumber": 1303
+        },
+        {
+          "caller": "Admin",
+          "callee": "split[1]?.trim",
+          "lineNumber": 1303
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1306
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.remarksTh?.left?.join",
+          "lineNumber": 1322
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1323
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1325
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.remarksTh?.right?.join",
+          "lineNumber": 1333
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1334
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1336
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1348
+        },
+        {
+          "caller": "Admin",
+          "callee": "parseInt",
+          "lineNumber": 1348
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveTour",
+          "lineNumber": 1356
+        },
+        {
+          "caller": "Admin",
+          "callee": "parseInt",
+          "lineNumber": 1356
+        },
+        {
+          "caller": "Admin",
+          "callee": "activeTour.itinerary?.map",
+          "lineNumber": 1367
+        },
+        {
+          "caller": "Admin",
+          "callee": "setSelectedDayIdx",
+          "lineNumber": 1371
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1387
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1395
+        },
+        {
+          "caller": "Admin",
+          "callee": "day.notes?.join",
+          "lineNumber": 1404
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1405
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1405
+        },
+        {
+          "caller": "Admin",
+          "callee": "day.notesTh?.join",
+          "lineNumber": 1412
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1413
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1413
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1425
+        },
+        {
+          "caller": "Admin",
+          "callee": "day.lunchMenuTh?.join",
+          "lineNumber": 1433
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1434
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split(',').map",
+          "lineNumber": 1434
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1434
+        },
+        {
+          "caller": "Admin",
+          "callee": "s.trim",
+          "lineNumber": 1434
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1442
+        },
+        {
+          "caller": "Admin",
+          "callee": "day.dinnerMenuTh?.join",
+          "lineNumber": 1450
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1451
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split(',').map",
+          "lineNumber": 1451
+        },
+        {
+          "caller": "Admin",
+          "callee": "e.target.value.split",
+          "lineNumber": 1451
+        },
+        {
+          "caller": "Admin",
+          "callee": "s.trim",
+          "lineNumber": 1451
+        },
+        {
+          "caller": "Admin",
+          "callee": "updateActiveDay",
+          "lineNumber": 1459
+        },
+        {
+          "caller": "Admin",
+          "callee": "setConfig",
+          "lineNumber": 1501
+        },
+        {
+          "caller": "Admin",
+          "callee": "setConfig",
+          "lineNumber": 1509
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/pdfExtracts.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 163,
+      "nonEmptyLines": 163,
+      "exports": [
+        {
+          "name": "pdfExtracts",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/tours.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 6006,
+      "nonEmptyLines": 6000,
+      "functions": [
+        {
+          "name": "makeTour",
+          "startLine": 77,
+          "endLine": 86,
+          "params": [
+            "tour"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "regions",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "config",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "tours",
+          "line": 95,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "makeTour",
+          "callee": "tour.priceRows.flatMap",
+          "lineNumber": 78
+        },
+        {
+          "caller": "makeTour",
+          "callee": "row.cells.map",
+          "lineNumber": 78
+        },
+        {
+          "caller": "makeTour",
+          "callee": "Math.min",
+          "lineNumber": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/main.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 9,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/styles.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 1420,
+      "nonEmptyLines": 1220,
+      "metrics": {}
+    },
+    {
+      "path": "tmp_search.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 81,
+      "nonEmptyLines": 81,
+      "metrics": {}
+    },
+    {
+      "path": "tour_audit_full.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 108,
+      "nonEmptyLines": 95,
+      "sections": [
+        {
+          "heading": "Báo Cáo Kiểm Tra Toàn Bộ Tour",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Tổng Quan Các Tour",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "2. Chi Tiết Tính Năng Theo Tour",
+          "level": 2,
+          "line": 33
+        },
+        {
+          "heading": "3. Thống Kê Theo Package Type",
+          "level": 2,
+          "line": 61
+        },
+        {
+          "heading": "FIT Tours (9 tour)",
+          "level": 3,
+          "line": 63
+        },
+        {
+          "heading": "GIT Tours (14 tour)",
+          "level": 3,
+          "line": 74
+        },
+        {
+          "heading": "4. Vấn Đề Cần Lưu Ý",
+          "level": 2,
+          "line": 90
+        },
+        {
+          "heading": "✅ Tất cả tour đã sửa format USD → $",
+          "level": 3,
+          "line": 92
+        },
+        {
+          "heading": "⚠️ Số ngày itinerary không khớp duration (1 tour)",
+          "level": 3,
+          "line": 94
+        },
+        {
+          "heading": "5. Đã Hoàn Thành",
+          "level": 2,
+          "line": 98
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "path": "tour_data_audit.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 191,
+      "nonEmptyLines": 155,
+      "sections": [
+        {
+          "heading": "📋 Green Sea Tour — Báo Cáo Kiểm Tra & Chỉnh Sửa Dữ Liệu Tour",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Tổng quan",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "2. Trạng thái chỉnh sửa theo từng tour",
+          "level": 2,
+          "line": 21
+        },
+        {
+          "heading": "✅ Đã chỉnh sửa xong — Đối chiếu PDF gốc hoàn tất",
+          "level": 3,
+          "line": 23
+        },
+        {
+          "heading": "⏳ Chưa chỉnh sửa — Cần đối chiếu PDF gốc",
+          "level": 3,
+          "line": 55
+        },
+        {
+          "heading": "GIT — Tất cả các tour GIT đã hoàn tất!",
+          "level": 4,
+          "line": 59
+        },
+        {
+          "heading": "FIT — Tất cả khu vực",
+          "level": 4,
+          "line": 62
+        },
+        {
+          "heading": "3. Chi tiết kỹ thuật — Cấu trúc dữ liệu",
+          "level": 2,
+          "line": 79
+        },
+        {
+          "heading": "Format cũ (legacy — còn tồn tại ở 9 tour FIT chưa chỉnh sửa)",
+          "level": 3,
+          "line": 81
+        },
+        {
+          "heading": "Format mới (đã áp dụng cho toàn bộ 14 tour GIT)",
+          "level": 3,
+          "line": 98
+        },
+        {
+          "heading": "4. Checklist công việc tiếp theo",
+          "level": 2,
+          "line": 133
+        },
+        {
+          "heading": "Ưu tiên cao — Hoàn thành toàn bộ GIT tours!",
+          "level": 3,
+          "line": 135
+        },
+        {
+          "heading": "Ưu tiên trung bình — FIT tours (9 tour)",
+          "level": 3,
+          "line": 138
+        },
+        {
+          "heading": "Cho mỗi tour FIT, cần kiểm tra:",
+          "level": 3,
+          "line": 149
+        },
+        {
+          "heading": "5. Lịch sử commit liên quan",
+          "level": 2,
+          "line": 160
+        },
+        {
+          "heading": "6. File & đường dẫn tham chiếu",
+          "level": 2,
+          "line": 179
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 16
+      }
+    }
+  ]
+}
