@@ -311,6 +311,24 @@ function App() {
   }, [packageFilter, query, regionFilter, sortMode]);
 
   useEffect(() => {
+    // Clean up key and view agent parameters from address bar to prevent accidental sharing
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('key') || params.get('view') === 'agent') {
+        params.delete('key');
+        if (params.get('view') === 'agent') {
+          params.delete('view');
+        }
+        const newSearch = params.toString();
+        const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
+        window.history.replaceState({}, '', newUrl);
+      }
+    } catch (e) {
+      console.error('Error cleaning up URL parameters:', e);
+    }
+  }, []);
+
+  useEffect(() => {
     if (filteredTours.length && !filteredTours.some((tour) => tour.id === selectedId)) {
       setSelectedId(filteredTours[0].id);
     }
