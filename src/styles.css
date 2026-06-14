@@ -750,6 +750,10 @@ button {
   border-bottom: 1px solid var(--line);
 }
 
+.itinerary-table.hide-meals .itinerary-row {
+  grid-template-columns: 76px minmax(0, 1fr);
+}
+
 .itinerary-row:last-child {
   border-bottom: 0;
 }

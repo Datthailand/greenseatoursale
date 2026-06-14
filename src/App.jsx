@@ -231,6 +231,15 @@ function App() {
   const [isAdminMode, setIsAdminMode] = useState(() => {
     return new URLSearchParams(window.location.search).get('admin') === 'true';
   });
+  const searchParams = useMemo(() => new URLSearchParams(window.location.search), []);
+  const hideParam = searchParams.get('hide') || '';
+  const viewParam = searchParams.get('view') || '';
+  const isPublicView = viewParam.toLowerCase() === 'public' || viewParam.toLowerCase() === 'client';
+  
+  const shouldHidePrice = isPublicView || hideParam.includes('price') || hideParam.includes('pricing');
+  const shouldHideMeals = isPublicView || hideParam.includes('meals') || hideParam.includes('restaurant') || hideParam.includes('restaurants') || hideParam.includes('meal');
+  const shouldHidePdf = isPublicView || hideParam.includes('pdf') || hideParam.includes('link');
+
   const [currency, setCurrency] = useState('USD');
   const [language, setLanguage] = useState('TH');
   const [packageFilter, setPackageFilter] = useState('FIT');
@@ -419,6 +428,7 @@ function App() {
                 language={language}
                 active={tour.id === selectedTour?.id}
                 onSelect={() => handleSelectTour(tour.id)}
+                hidePrice={shouldHidePrice}
               />
             ))}
             {!filteredTours.length && (
@@ -452,6 +462,9 @@ function App() {
             onSave={() => showNotice(`Saved ${selectedTour.code} to shortlist`)}
             onReset={resetFilters}
             containerRef={detailRef}
+            hidePrice={shouldHidePrice}
+            hideMeals={shouldHideMeals}
+            hidePdf={shouldHidePdf}
           />
         ) : (
           <section className="detail-panel detail-empty" ref={detailRef}>
@@ -472,7 +485,7 @@ function App() {
   );
 }
 
-function TourCard({ tour, active, onSelect, currency, language }) {
+function TourCard({ tour, active, onSelect, currency, language, hidePrice }) {
   return (
     <button className={`tour-card ${active ? 'is-active' : ''}`} type="button" onClick={onSelect}>
       <img src={tour.assets.thumb || tour.assets.cover} alt="" />
@@ -482,11 +495,13 @@ function TourCard({ tour, active, onSelect, currency, language }) {
             <strong>{tour.code}</strong>
             <h2>{tour.title}</h2>
           </div>
-          <div className="card-price">
-            <span>{t('from', language)}</span>
-            <strong>{formatMoney(tour.priceFrom, currency)}</strong>
-            <small>{t('perPerson', language)}</small>
-          </div>
+          {!hidePrice && (
+            <div className="card-price">
+              <span>{t('from', language)}</span>
+              <strong>{formatMoney(tour.priceFrom, currency)}</strong>
+              <small>{t('perPerson', language)}</small>
+            </div>
+          )}
         </div>
         <div className="route-line">
           <MapPin size={15} />
@@ -515,7 +530,7 @@ function TourCard({ tour, active, onSelect, currency, language }) {
   );
 }
 
-function DetailPanel({ tour, onClose, onSave, currency, language, containerRef }) {
+function DetailPanel({ tour, onClose, onSave, currency, language, containerRef, hidePrice, hideMeals, hidePdf }) {
   const inclusions = language === 'TH' && tour.inclusionsTh ? tour.inclusionsTh : tour.inclusions;
   const exclusions = language === 'TH' && tour.exclusionsTh ? tour.exclusionsTh : tour.exclusions;
   const childRates = language === 'TH' && tour.childRatesTh ? tour.childRatesTh : tour.childRates;
@@ -560,18 +575,22 @@ function DetailPanel({ tour, onClose, onSave, currency, language, containerRef }
           </div>
         </div>
 
-        <div className="detail-price">
-          <span>{t('from', language)}</span>
-          <strong>{formatMoney(tour.priceFrom, currency)}</strong>
-          <small>{t('perPerson', language)}</small>
-        </div>
+        {!hidePrice && (
+          <div className="detail-price">
+            <span>{t('from', language)}</span>
+            <strong>{formatMoney(tour.priceFrom, currency)}</strong>
+            <small>{t('perPerson', language)}</small>
+          </div>
+        )}
       </div>
 
       <div className="detail-actions">
-        <a className="primary-button" href={tour.assets.pdf} target="_blank" rel="noreferrer">
-          <ExternalLink size={17} />
-          {t('viewPdf', language)}
-        </a>
+        {!hidePdf && (
+          <a className="primary-button" href={tour.assets.pdf} target="_blank" rel="noreferrer">
+            <ExternalLink size={17} />
+            {t('viewPdf', language)}
+          </a>
+        )}
         <button className="star-button" type="button" aria-label="Save tour" onClick={onSave}>
           <Star size={18} />
         </button>
@@ -581,12 +600,14 @@ function DetailPanel({ tour, onClose, onSave, currency, language, containerRef }
 
       <section className="detail-section">
         <h3>{t('itineraryOverview', language)}</h3>
-        <ItineraryTable tour={tour} language={language} />
+        <ItineraryTable tour={tour} language={language} hideMeals={hideMeals} />
       </section>
 
-      <section className="detail-section">
-        <PricePreview tour={tour} currency={currency} language={language} />
-      </section>
+      {!hidePrice && (
+        <section className="detail-section">
+          <PricePreview tour={tour} currency={currency} language={language} />
+        </section>
+      )}
 
       <section className="detail-section inclusion-grid">
         <ListBlock icon={CheckCircle2} title={t('inclusions', language)} items={inclusions} tone="include" />
@@ -594,24 +615,28 @@ function DetailPanel({ tour, onClose, onSave, currency, language, containerRef }
       </section>
 
       <section className="bottom-grid">
-        {childRates?.length > 0 && <SmallInfoCard title={t('childRates', language)} rows={childRates.map((item) => [item, ''])} />}
-        <SmallInfoCard
-          title={t('paymentTerms', language)}
-          rows={paymentRows || [
-            [t('bookingDeposit', language), '30%'],
-            [t('finalPayment', language), '7-14 days prior'],
-            [t('paymentMethods', language), t('bankTransfer', language)],
-          ]}
-        />
-        <SmallInfoCard
-          title={t('cancellationPolicy', language)}
-          rows={cancellationRows || [
-            ['21+ days prior', t('noCharge', language)],
-            ['20 - 7 days prior', '50%'],
-            ['0 - 6 days prior', '90%'],
-          ]}
-        />
-        {!tour.pdfPriceLayout && tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (
+        {!hidePrice && childRates?.length > 0 && <SmallInfoCard title={t('childRates', language)} rows={childRates.map((item) => [item, ''])} />}
+        {!hidePrice && (
+          <SmallInfoCard
+            title={t('paymentTerms', language)}
+            rows={paymentRows || [
+              [t('bookingDeposit', language), '30%'],
+              [t('finalPayment', language), '7-14 days prior'],
+              [t('paymentMethods', language), t('bankTransfer', language)],
+            ]}
+          />
+        )}
+        {!hidePrice && (
+          <SmallInfoCard
+            title={t('cancellationPolicy', language)}
+            rows={cancellationRows || [
+              ['21+ days prior', t('noCharge', language)],
+              ['20 - 7 days prior', '50%'],
+              ['0 - 6 days prior', '90%'],
+            ]}
+          />
+        )}
+        {!hidePrice && !tour.pdfPriceLayout && tour.remarksTh && (tour.remarksTh.left?.length > 0 || tour.remarksTh.right?.length > 0) && (
           <div className="remarks-card">
             <h3>{language === 'TH' ? 'นโยบายหัวหน้าทัวร์' : 'Tour Leader Policy'}</h3>
             <div className="remarks-grid">
@@ -663,9 +688,9 @@ function DetailPanel({ tour, onClose, onSave, currency, language, containerRef }
 
 
 
-function ItineraryTable({ tour, language }) {
+function ItineraryTable({ tour, language, hideMeals }) {
   return (
-    <div className="itinerary-table">
+    <div className={`itinerary-table ${hideMeals ? 'hide-meals' : ''}`}>
       {tour.itinerary.map((day) => {
         const title = language === 'TH' && day.titleTh ? day.titleTh : day.title;
         const notes = language === 'TH' && day.notesTh ? day.notesTh : day.notes;
@@ -693,8 +718,8 @@ function ItineraryTable({ tour, language }) {
                 </div>
               )}
             </div>
-            <div className="itinerary-side">
-              {(lunch || dinner) && (
+            {!hideMeals && (lunch || dinner) && (
+              <div className="itinerary-side">
                 <div className="meal-venues">
                   {lunch && (
                     <div>
@@ -721,8 +746,8 @@ function ItineraryTable({ tour, language }) {
                     </div>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         );
       })}
