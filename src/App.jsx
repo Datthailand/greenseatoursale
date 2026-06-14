@@ -236,9 +236,13 @@ function App() {
   const viewParam = searchParams.get('view') || '';
   const isPublicView = viewParam.toLowerCase() === 'public' || viewParam.toLowerCase() === 'client';
   
-  const shouldHidePrice = isPublicView || hideParam.includes('price') || hideParam.includes('pricing');
-  const shouldHideMeals = isPublicView || hideParam.includes('meals') || hideParam.includes('restaurant') || hideParam.includes('restaurants') || hideParam.includes('meal');
-  const shouldHidePdf = isPublicView || hideParam.includes('pdf') || hideParam.includes('link');
+  const [isPublicMode, setIsPublicMode] = useState(() => {
+    return isPublicView || hideParam.includes('price') || hideParam.includes('meals');
+  });
+  
+  const shouldHidePrice = isPublicMode || hideParam.includes('price') || hideParam.includes('pricing');
+  const shouldHideMeals = isPublicMode || hideParam.includes('meals') || hideParam.includes('restaurant') || hideParam.includes('restaurants') || hideParam.includes('meal');
+  const shouldHidePdf = isPublicMode || hideParam.includes('pdf') || hideParam.includes('link');
 
   const [currency, setCurrency] = useState('USD');
   const [language, setLanguage] = useState('TH');
@@ -285,6 +289,13 @@ function App() {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'a') {
         setIsAdminMode(prev => !prev);
+      }
+      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p') {
+        setIsPublicMode(prev => {
+          const next = !prev;
+          setNotice(next ? "Public View Activated" : "Agent View Activated");
+          return next;
+        });
       }
     };
     window.addEventListener('keydown', handleKeyDown);
