@@ -2654,60 +2654,69 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
         </div>
       </section>
 
-      {/* 7. B2B AGENT RESERVATION & DIRECT LINE CONTACT FORM */}
+      {/* 7. B2B AGENT RESERVATION & DIRECT LINE FAST CONNECT */}
       <section style={{ maxWidth: '1240px', margin: '0 auto 5rem', padding: '0 2rem' }}>
         <div style={{
-          background: 'linear-gradient(135deg, #003829 0%, #00533d 100%)',
-          borderRadius: '1.5rem', padding: '3rem', color: '#fff',
-          boxShadow: '0 25px 50px -12px rgba(0, 56, 41, 0.4)'
+          background: '#ffffff',
+          borderRadius: '1.75rem',
+          padding: '2.5rem',
+          border: '1px solid #e2e8f0',
+          boxShadow: '0 20px 50px -10px rgba(0, 83, 61, 0.08)'
         }}>
           
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '3rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '2.5rem', alignItems: 'stretch' }}>
             
-            {/* Form Side */}
-            <div>
-              <h3 style={{ fontSize: '2.1rem', fontWeight: 900, margin: '0 0 0.85rem', lineHeight: 1.2, fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
-                {agentConfig.isAgent && agentConfig.name 
-                  ? (isVi ? `Gửi Yêu Cầu Tư Vấn Đến ${agentConfig.name}` : isTh ? `ส่งคำขอข้อมูลการเดินทางถึง ${agentConfig.name}` : `Submit Tour Inquiry to ${agentConfig.name}`)
-                  : (isVi ? 'Gửi Yêu Cầu Báo Giá B2B Nhanh Cho Đại Lý' : isTh ? 'ขอใบเสนอราคา B2B / ล็อคโควต้าสำหรับตัวแทน' : 'Request B2B Quotation & Group Allotment')}
-              </h3>
-              <p style={{ color: '#d1fae5', fontSize: '0.95rem', margin: '0 0 2rem', lineHeight: 1.6 }}>
-                {agentConfig.isAgent && agentConfig.name
-                  ? (isVi ? `Điền thông tin liên hệ để chuyên viên tư vấn của ${agentConfig.name} liên hệ và hỗ trợ quý khách chi tiết nhất:` : `กรอกข้อมูลการเดินทางเพื่อให้เจ้าหน้าที่ของ ${agentConfig.name} ติดต่อกลับและดูแลท่านอย่างดีที่สุด:`)
-                  : (isVi ? 'Điền thông tin đoàn để nhận Phiếu xác nhận đặt tour (Confirmation Slip) và báo giá chính thức trong vòng 15 phút:' : 'กรอกข้อมูลรายละเอียดกรุ๊ป เจ้าหน้าที่ Green Sea Tour ประจำตลาดไทยจะติดต่อกลับและส่ง Confirmation Slip ภายใน 15 นาที:')}
-              </p>
+            {/* Left: Modern Form Side */}
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#ecfdf5', color: '#00533d', padding: '0.35rem 0.85rem', borderRadius: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+                  <Send size={13} style={{ color: '#059669' }} />
+                  {isVi ? 'Nhận Báo Giá B2B Nhanh Trong 15 Phút' : isTh ? 'ขอใบเสนอราคา B2B ด่วนภายใน 15 นาที' : 'Fast 15-Minute B2B Quotation'}
+                </div>
+
+                <h3 style={{ fontSize: '1.75rem', fontWeight: 900, color: '#0f172a', margin: '0 0 0.5rem', lineHeight: 1.25, fontFamily: isTh ? "'Prompt', sans-serif" : "'Plus Jakarta Sans', sans-serif" }}>
+                  {agentConfig.isAgent && agentConfig.name 
+                    ? (isVi ? `Gửi Yêu Cầu Tư Vấn Đến ${agentConfig.name}` : isTh ? `ส่งคำขอข้อมูลการเดินทางถึง ${agentConfig.name}` : `Submit Tour Inquiry to ${agentConfig.name}`)
+                    : (isVi ? 'Gửi Yêu Cầu Báo Giá B2B Cho Đại Lý' : isTh ? 'ขอใบเสนอราคา B2B สำหรับตัวแทน' : 'Request B2B Quotation & Allotment')}
+                </h3>
+                <p style={{ color: '#64748b', fontSize: '0.9rem', margin: '0 0 1.5rem', lineHeight: 1.55 }}>
+                  {agentConfig.isAgent && agentConfig.name
+                    ? (isVi ? `Điền thông tin liên hệ để chuyên viên tư vấn của ${agentConfig.name} liên hệ và hỗ trợ quý khách chi tiết nhất:` : `กรอกข้อมูลการเดินทางเพื่อให้เจ้าหน้าที่ของ ${agentConfig.name} ติดต่อกลับและดูแลท่านอย่างดีที่สุด:`)
+                    : (isVi ? 'Điền thông tin đoàn của quý đối tác để nhận báo giá chính thức B2B và xác nhận lịch trình nhanh chóng:' : 'กรอกข้อมูลเพื่อขอรับใบเสนอราคา B2B อย่างเป็นทางการ พร้อมตรวจสอบโควต้าห้องพักและบริการพิเศษ')}
+                </p>
+              </div>
 
               {submitted ? (
-                <div style={{ background: 'rgba(255,255,255,0.15)', borderRadius: '1rem', padding: '2rem', textAlign: 'center' }}>
-                  <CheckCircle2 size={52} style={{ color: '#4ade80', margin: '0 auto 1rem' }} />
-                  <h4 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0 0 0.5rem' }}>
+                <div style={{ background: '#ecfdf5', border: '1.5px solid #a7f3d0', borderRadius: '1rem', padding: '2.5rem 1.5rem', textAlign: 'center' }}>
+                  <CheckCircle2 size={48} style={{ color: '#059669', margin: '0 auto 0.75rem' }} />
+                  <h4 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#065f46', margin: '0 0 0.4rem' }}>
                     {isVi ? 'Đã gửi yêu cầu thành công!' : isTh ? 'ส่งคำขอสำเร็จแล้ว!' : 'Request Sent Successfully!'}
                   </h4>
-                  <p style={{ fontSize: '0.95rem', color: '#d1fae5', margin: 0 }}>
-                    {isVi ? 'Bộ phận kinh doanh Green Sea Tour sẽ liên hệ lại quý đối tác ngay qua LINE / Zalo / WhatsApp.' : 'We are preparing your confirmation slip.'}
+                  <p style={{ fontSize: '0.875rem', color: '#047857', margin: 0 }}>
+                    {isVi ? 'Bộ phận kinh doanh Green Sea Tour sẽ liên hệ lại quý đối tác ngay qua LINE / WhatsApp.' : 'เจ้าหน้าที่ฝ่ายขายจะติดต่อกลับผ่าน LINE / WhatsApp โดยเร็วที่สุด'}
                   </p>
                 </div>
               ) : (
-                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.4rem', color: '#e2e8f0' }}>
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
                       {agentConfig.isAgent 
-                        ? (isVi ? 'Họ và Tên Quý Khách (Full Name)' : isTh ? 'ชื่อ-นามสกุลของคุณ (Full Name)' : 'Your Full Name')
-                        : (isVi ? 'Tên Công Ty / Đại Lý (Travel Agency)' : isTh ? 'ชื่อบริษัทตัวแทน (Travel Agency Name)' : 'Agency Name')} *
+                        ? (isVi ? 'Họ và Tên Quý Khách' : isTh ? 'ชื่อ-นามสกุล' : 'Full Name')
+                        : (isVi ? 'Tên Công Ty / Đại Lý' : isTh ? 'ชื่อบริษัททัวร์ / ตัวแทน' : 'Agency Name')} *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder={agentConfig.isAgent ? (isVi ? 'Ví dụ: Nguyễn Văn A' : 'e.g. Somchai Prasert') : (isVi ? 'Ví dụ: ABC Travel' : 'e.g. ABC Travel')}
+                      placeholder={agentConfig.isAgent ? (isVi ? 'Ví dụ: Somchai Prasert' : 'e.g. Somchai Prasert') : (isVi ? 'Ví dụ: Siam Travel Co.' : 'e.g. Siam Travel')}
                       value={agentForm.agencyName}
                       onChange={e => setAgentForm({ ...agentForm, agencyName: e.target.value })}
-                      style={{ width: '100%', padding: '0.85rem', borderRadius: '0.6rem', border: 'none', fontSize: '0.925rem', boxSizing: 'border-box', background: '#fff', color: '#0f172a' }}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.4rem', color: '#e2e8f0' }}>
-                      {isVi ? 'Người liên hệ (Contact Person)' : isTh ? 'ชื่อผู้ติดต่อ (Contact Person)' : 'Contact Person'} *
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
+                      {isVi ? 'Người liên hệ' : isTh ? 'ชื่อผู้ติดต่อ' : 'Contact Person'} *
                     </label>
                     <input
                       type="text"
@@ -2715,26 +2724,26 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                       placeholder={isVi ? 'Tên người liên hệ' : 'Contact Person'}
                       value={agentForm.contactName}
                       onChange={e => setAgentForm({ ...agentForm, contactName: e.target.value })}
-                      style={{ width: '100%', padding: '0.85rem', borderRadius: '0.6rem', border: 'none', fontSize: '0.925rem', boxSizing: 'border-box', background: '#fff', color: '#0f172a' }}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.4rem', color: '#e2e8f0' }}>
-                      {isVi ? 'Số điện thoại / LINE ID / WhatsApp' : isTh ? 'เบอร์โทร / LINE ID / WhatsApp' : 'Phone / LINE ID'} *
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
+                      {isVi ? 'Số điện thoại / LINE ID' : isTh ? 'เบอร์โทร / LINE ID' : 'Phone / LINE ID'} *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="+84... / +66... / LINE ID"
+                      placeholder="+66... / +84... / @line_id"
                       value={agentForm.phoneLine}
                       onChange={e => setAgentForm({ ...agentForm, phoneLine: e.target.value })}
-                      style={{ width: '100%', padding: '0.85rem', borderRadius: '0.6rem', border: 'none', fontSize: '0.925rem', boxSizing: 'border-box', background: '#fff', color: '#0f172a' }}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.4rem', color: '#e2e8f0' }}>
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
                       {isVi ? 'Ngày dự kiến khởi hành' : isTh ? 'วันเดินทางโดยประมาณ' : 'Estimated Date'} *
                     </label>
                     <input
@@ -2742,34 +2751,36 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                       required
                       value={agentForm.departureDate}
                       onChange={e => setAgentForm({ ...agentForm, departureDate: e.target.value })}
-                      style={{ width: '100%', padding: '0.85rem', borderRadius: '0.6rem', border: 'none', fontSize: '0.925rem', boxSizing: 'border-box', background: '#fff', color: '#0f172a' }}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
                     />
                   </div>
 
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.4rem', color: '#e2e8f0' }}>
-                      {isVi ? 'Yêu cầu đặc biệt (Nâng cấp xe Limousine, phòng Family Bunk, ăn kiêng...)' : isTh ? 'ความต้องการเพิ่มเติม (เช่น อัปเกรด Limousine, ห้อง Family Bunk, เมนูอาหารพิเศษ)' : 'Special Requests'}
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
+                      {isVi ? 'Yêu cầu đặc biệt (Nâng cấp xe Limousine, phòng Family, ăn kiêng...)' : isTh ? 'ความต้องการเพิ่มเติม (เช่น อัปเกรด Limousine, ห้อง Family, เมนูอาหารพิเศษ)' : 'Special Requests'}
                     </label>
                     <textarea
                       rows={2}
                       placeholder={isVi ? 'Nhập ghi chú yêu cầu thêm nếu có...' : 'Additional notes...'}
                       value={agentForm.specialRequests}
                       onChange={e => setAgentForm({ ...agentForm, specialRequests: e.target.value })}
-                      style={{ width: '100%', padding: '0.85rem', borderRadius: '0.6rem', border: 'none', fontSize: '0.925rem', boxSizing: 'border-box', background: '#fff', color: '#0f172a', resize: 'vertical' }}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
                     />
                   </div>
 
-                  <div style={{ gridColumn: '1 / -1' }}>
+                  <div style={{ gridColumn: '1 / -1', marginTop: '0.25rem' }}>
                     <button
                       type="submit"
                       style={{
-                        width: '100%', padding: '1rem', borderRadius: '0.75rem', background: '#f59e0b',
-                        color: '#0f172a', border: 'none', fontSize: '1.1rem', fontWeight: 900, cursor: 'pointer',
+                        width: '100%', padding: '0.9rem 1.25rem', borderRadius: '0.75rem',
+                        background: 'linear-gradient(135deg, #059669 0%, #00533d 100%)',
+                        color: '#ffffff', border: 'none', fontSize: '0.95rem', fontWeight: 900, cursor: 'pointer',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                        boxShadow: '0 6px 18px rgba(245, 158, 11, 0.4)', letterSpacing: '0.3px'
+                        boxShadow: '0 4px 16px rgba(5, 150, 105, 0.3)', letterSpacing: '0.3px',
+                        transition: 'all 0.2s'
                       }}
                     >
-                      <Send size={18} />
+                      <Send size={16} />
                       {isVi ? 'GỬI YÊU CẦU BÁO GIÁ B2B' : isTh ? 'ขอใบเสนอราคา B2B' : 'Request B2B Quotation'}
                     </button>
                   </div>
@@ -2777,95 +2788,158 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
               )}
             </div>
 
-            {/* QR Code & Contacts Side (White-Label Dynamic) */}
+            {/* Right: Modern Fast Connect / QR Hub Side */}
             <div style={{
-              background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(12px)',
-              borderRadius: '1.25rem', padding: '2rem', border: '1px solid rgba(255, 255, 255, 0.2)',
-              textAlign: 'center'
+              background: '#f8fafc',
+              borderRadius: '1.25rem',
+              padding: '1.75rem',
+              border: '1px solid #e2e8f0',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: '1.25rem'
             }}>
               {agentConfig.isAgent && agentConfig.name ? (
                 <div>
                   <div style={{
-                    width: '68px', height: '68px', borderRadius: '1.25rem',
-                    background: '#ffffff', color: '#00533d',
-                    fontWeight: 900, fontSize: '2rem',
+                    width: '60px', height: '60px', borderRadius: '1rem',
+                    background: '#00533d', color: '#ffffff',
+                    fontWeight: 900, fontSize: '1.75rem',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    margin: '0 auto 1rem', boxShadow: '0 8px 20px rgba(0,0,0,0.2)'
+                    margin: '0 auto 0.75rem', boxShadow: '0 6px 18px rgba(0,83,61,0.2)'
                   }}>
                     {agentConfig.name.charAt(0).toUpperCase()}
                   </div>
-                  <div style={{ fontWeight: 900, fontSize: '1.35rem', color: '#ffffff', marginBottom: '0.35rem' }}>
+                  <div style={{ fontWeight: 900, fontSize: '1.25rem', color: '#0f172a', textAlign: 'center', marginBottom: '0.25rem' }}>
                     {agentConfig.name.toUpperCase()}
                   </div>
-                  <div style={{ color: '#a7f3d0', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1.5rem' }}>
+                  <div style={{ color: '#059669', fontSize: '0.8rem', fontWeight: 800, textAlign: 'center', marginBottom: '1.25rem' }}>
                     {isVi ? 'Đại Lý Du Lịch Chuyên Nghiệp' : isTh ? 'ตัวแทนท่องเที่ยวอย่างเป็นทางการ' : 'Authorized Travel Partner'}
                   </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', textAlign: 'left', background: 'rgba(0,0,0,0.25)', padding: '1.25rem', borderRadius: '0.85rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                     {agentConfig.tel && (
-                      <a href={`tel:${agentConfig.tel}`} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#fde047', textDecoration: 'none', fontWeight: 800, fontSize: '0.95rem' }}>
-                        <Phone size={18} />
-                        <span>Hotline: {agentConfig.tel}</span>
+                      <a href={`tel:${agentConfig.tel}`} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.75rem 1rem', background: '#ffffff', borderRadius: '0.65rem', border: '1px solid #e2e8f0', color: '#00533d', textDecoration: 'none', fontWeight: 800, fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(0,0,0,0.03)' }}>
+                        <Phone size={16} style={{ color: '#059669' }} />
+                        <span>Hotline: <strong>{agentConfig.tel}</strong></span>
                       </a>
                     )}
                     {agentConfig.line && (
-                      <a href={agentConfig.line.startsWith('http') ? agentConfig.line : `https://line.me/ti/p/~${agentConfig.line.replace('@', '')}`} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#86efac', textDecoration: 'none', fontWeight: 800, fontSize: '0.95rem' }}>
-                        <MessageSquare size={18} />
-                        <span>LINE ID: {agentConfig.line}</span>
+                      <a href={agentConfig.line.startsWith('http') ? agentConfig.line : `https://line.me/ti/p/~${agentConfig.line.replace('@', '')}`} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.75rem 1rem', background: '#ffffff', borderRadius: '0.65rem', border: '1px solid #e2e8f0', color: '#00533d', textDecoration: 'none', fontWeight: 800, fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(0,0,0,0.03)' }}>
+                        <MessageSquare size={16} style={{ color: '#06c755' }} />
+                        <span>LINE ID: <strong>{agentConfig.line}</strong></span>
                       </a>
                     )}
-                    <div style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.4, marginTop: '0.35rem', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '0.5rem' }}>
-                      {isVi ? '✓ Cam kết chất lượng dịch vụ tiêu chuẩn cao nhất cho chuyến đi của quý khách.' : '✓ มุ่งมั่นให้บริการคุณภาพระดับมาตรฐานสากลเพื่อความสุขในการเดินทางของคุณ'}
-                    </div>
                   </div>
                 </div>
               ) : (
-                <div>
-                  <a href="https://lin.ee/Pwro79k" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'inline-block' }}>
-                    <img 
-                      src="/assets/line-qr.png" 
-                      alt="GreenSea LINE Official QR Code" 
-                      style={{ width: '140px', height: '140px', borderRadius: '0.85rem', background: '#fff', padding: '0.5rem', margin: '0 auto 0.75rem', display: 'block' }}
-                    />
-                    <div style={{ background: '#00b900', color: '#fff', padding: '0.35rem 0.85rem', borderRadius: '0.4rem', fontSize: '0.78rem', fontWeight: 900, display: 'inline-block' }}>
-                      {isVi ? 'Bấm vào đây để kết nối LINE' : 'คลิกเพิ่มเพื่อน LINE Official'}
+                /* B2B Mode: Official LINE Connect Hub */
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', gap: '1rem' }}>
+                  
+                  {/* Top: LINE Official Box */}
+                  <div style={{ background: '#ffffff', padding: '1.25rem', borderRadius: '1rem', border: '1px solid #e2e8f0', textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                      <img 
+                        src="/assets/qr-line-oa.png" 
+                        alt="Green Sea Official LINE OA QR" 
+                        style={{ width: '95px', height: '95px', borderRadius: '0.6rem', border: '1px solid #e2e8f0', padding: '4px', background: '#fff' }}
+                      />
+                      <div style={{ textAlign: 'left' }}>
+                        <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#059669', textTransform: 'uppercase', marginBottom: '2px' }}>
+                          LINE Official 24/7
+                        </div>
+                        <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a', marginBottom: '6px' }}>
+                          GreenSea Vietnam
+                        </div>
+                        <a 
+                          href="https://lin.ee/Pwro79k" 
+                          target="_blank" 
+                          rel="noreferrer"
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+                            background: '#06c755', color: '#ffffff', padding: '0.45rem 0.85rem',
+                            borderRadius: '0.5rem', fontSize: '0.78rem', fontWeight: 800,
+                            textDecoration: 'none', boxShadow: '0 3px 10px rgba(6, 199, 85, 0.25)'
+                          }}
+                        >
+                          <MessageSquare size={13} />
+                          {isVi ? 'Kết Nối LINE Ngay' : 'แอด LINE ทันที'}
+                        </a>
+                      </div>
                     </div>
-                  </a>
-                  <div style={{ fontWeight: 900, fontSize: '1.15rem', margin: '0.85rem 0 0.25rem', fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
-                    GreenSea LINE Official
-                  </div>
-                  <div style={{ color: '#a7f3d0', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1.25rem' }}>
-                    LINE ID: https://lin.ee/Pwro79k
                   </div>
 
-                  {/* Direct Team Contacts */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.85rem', color: '#e2e8f0', textAlign: 'left', borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: '1rem' }}>
-                    <div>📍 <strong>GreenSeaTour</strong> - {isVi ? 'DMC Inbound Việt Nam' : 'บริษัทแลนด์เวียดนาม สำหรับกรุ๊ปไทย'}</div>
-                    <div>📌 <strong>{isVi ? 'Địa chỉ:' : 'ที่อยู่:'}</strong> 516 Nguyen Huu Tho, Da Nang city</div>
-                    <div>📞 <strong>Hotline:</strong> <a href="https://wa.me/84987434343" target="_blank" rel="noreferrer" style={{ color: '#fde047', textDecoration: 'none', fontWeight: 800 }}>(+84) 987.43.43.43</a></div>
-                    <div>📧 <strong>Email:</strong> <a href="mailto:sale1@greenseatour.vn" style={{ color: '#93c5fd', textDecoration: 'none' }}>sale1@greenseatour.vn</a></div>
-                    <div>🌐 <strong>Website:</strong> <a href="https://www.greensealandtourvietnam.com" target="_blank" rel="noreferrer" style={{ color: '#93c5fd', textDecoration: 'none' }}>www.greensealandtourvietnam.com</a></div>
-                    
-                    {/* Sales Representatives Direct LINE with QR Codes */}
-                    <div style={{ marginTop: '0.75rem', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '0.75rem' }}>
-                      <div style={{ fontWeight: 800, color: '#fde047', marginBottom: '0.5rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <span>{isVi ? 'Phụ trách thị trường Thái Lan:' : 'ฝ่ายขายตลาดไทย (Thai Sales Team):'}</span>
-                        <span style={{ fontSize: '0.7rem', color: '#86efac', background: 'rgba(34, 197, 94, 0.2)', padding: '2px 6px', borderRadius: '4px' }}>24/7 Online</span>
-                      </div>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                        <a href="https://line.me/ti/p/BSLZR5dyBa" target="_blank" rel="noreferrer" style={{ background: 'rgba(255,255,255,0.12)', padding: '0.5rem', borderRadius: '0.5rem', textDecoration: 'none', color: '#fff', textAlign: 'center', transition: 'all 0.2s' }}>
-                          <img src="/assets/qr-kim.png" alt="Ms. Kim LINE" style={{ width: '64px', height: '64px', borderRadius: '4px', background: '#fff', padding: '2px', margin: '0 auto 4px', display: 'block' }} />
-                          <div style={{ fontWeight: 800, fontSize: '0.75rem' }}>Ms. Kim</div>
-                          <div style={{ fontSize: '0.65rem', color: '#4ade80', fontWeight: 700 }}>LINE Direct →</div>
-                        </a>
-                        <a href="https://line.me/ti/p/U1vOdylKTL" target="_blank" rel="noreferrer" style={{ background: 'rgba(255,255,255,0.12)', padding: '0.5rem', borderRadius: '0.5rem', textDecoration: 'none', color: '#fff', textAlign: 'center', transition: 'all 0.2s' }}>
-                          <img src="/assets/qr-khanh.png" alt="Mr. Khanh LINE" style={{ width: '64px', height: '64px', borderRadius: '4px', background: '#fff', padding: '2px', margin: '0 auto 4px', display: 'block' }} />
-                          <div style={{ fontWeight: 800, fontSize: '0.75rem' }}>Mr. Khanh</div>
-                          <div style={{ fontSize: '0.65rem', color: '#4ade80', fontWeight: 700 }}>LINE Direct →</div>
-                        </a>
-                      </div>
+                  {/* Middle: Fast Direct Support Specialists (Ms. Kim & Mr. Khanh) */}
+                  <div>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <span>🇹🇭 {isVi ? 'Phụ trách thị trường Thái Lan:' : 'ทีมงานดูแลตลาดไทยโดยตรง:'}</span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
+                      {/* Specialist 1: Ms. Kim */}
+                      <a 
+                        href="https://line.me/ti/p/~0987434343" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        style={{
+                          background: '#ffffff',
+                          borderRadius: '0.75rem',
+                          padding: '0.65rem 0.75rem',
+                          border: '1px solid #e2e8f0',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          textDecoration: 'none',
+                          color: '#0f172a',
+                          transition: 'all 0.15s'
+                        }}
+                      >
+                        <img src="/assets/qr-kim.png" alt="Ms Kim QR" style={{ width: '42px', height: '42px', borderRadius: '0.35rem' }} />
+                        <div>
+                          <div style={{ fontWeight: 800, fontSize: '0.8rem', color: '#00533d' }}>Ms. Kim</div>
+                          <div style={{ fontSize: '0.7rem', color: '#06c755', fontWeight: 700 }}>LINE Direct →</div>
+                        </div>
+                      </a>
+
+                      {/* Specialist 2: Mr. Khanh */}
+                      <a 
+                        href="https://line.me/ti/p/~0987434343" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        style={{
+                          background: '#ffffff',
+                          borderRadius: '0.75rem',
+                          padding: '0.65rem 0.75rem',
+                          border: '1px solid #e2e8f0',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          textDecoration: 'none',
+                          color: '#0f172a',
+                          transition: 'all 0.15s'
+                        }}
+                      >
+                        <img src="/assets/qr-khanh.png" alt="Mr Khanh QR" style={{ width: '42px', height: '42px', borderRadius: '0.35rem' }} />
+                        <div>
+                          <div style={{ fontWeight: 800, fontSize: '0.8rem', color: '#00533d' }}>Mr. Khanh</div>
+                          <div style={{ fontSize: '0.7rem', color: '#06c755', fontWeight: 700 }}>LINE Direct →</div>
+                        </div>
+                      </a>
                     </div>
                   </div>
+
+                  {/* Bottom: Contact Info Strip */}
+                  <div style={{ background: '#ffffff', borderRadius: '0.75rem', padding: '0.75rem 1rem', border: '1px solid #e2e8f0', fontSize: '0.78rem', color: '#475569', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Phone size={13} style={{ color: '#059669' }} />
+                      <span>Hotline: <strong>(+84) 987.43.43.43</strong></span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Mail size={13} style={{ color: '#059669' }} />
+                      <span>Email: <strong>sale1@greenseatour.vn</strong></span>
+                    </div>
+                  </div>
+
                 </div>
               )}
             </div>
