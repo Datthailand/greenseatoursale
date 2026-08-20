@@ -5,7 +5,8 @@ import {
   ChevronDown, ChevronUp, Star, Award, Sparkles, Send, Clock, HelpCircle,
   ExternalLink, Copy, Check, Info, Calculator, Coffee, Compass, CheckCircle,
   Camera, ChevronRight, Layers, Eye, Tag, Plus, Minus, Zap, Sliders,
-  Share2, Image as ImageIcon, UserCheck, Link2, X, FileText, CheckCheck
+  Share2, Image as ImageIcon, UserCheck, Link2, X, FileText, CheckCheck,
+  Mail
 } from 'lucide-react';
 
 const EXCHANGE_RATE = 35; // 1 USD = 35 THB
