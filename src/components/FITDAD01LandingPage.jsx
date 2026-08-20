@@ -2115,40 +2115,6 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     ))}
                   </div>
                 </div>
-
-                {/* Currency Switcher Toggle: USD or THB */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                  <button
-                    type="button"
-                    onClick={() => setCurrency('USD')}
-                    style={{
-                      padding: '0.45rem 0.6rem', borderRadius: '0.5rem',
-                      border: currency === 'USD' ? '2px solid #059669' : '1px solid #cbd5e1',
-                      background: currency === 'USD' ? '#00533d' : '#f8fafc',
-                      color: currency === 'USD' ? '#ffffff' : '#334155',
-                      fontWeight: 800, fontSize: '0.8rem', cursor: 'pointer',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem',
-                      transition: 'all 0.15s'
-                    }}
-                  >
-                    💵 {isVi ? 'Đô la Mỹ ($)' : isTh ? 'ดอลลาร์สหรัฐ ($)' : 'US Dollar ($)'}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCurrency('THB')}
-                    style={{
-                      padding: '0.45rem 0.6rem', borderRadius: '0.5rem',
-                      border: currency === 'THB' ? '2px solid #059669' : '1px solid #cbd5e1',
-                      background: currency === 'THB' ? '#00533d' : '#f8fafc',
-                      color: currency === 'THB' ? '#ffffff' : '#334155',
-                      fontWeight: 800, fontSize: '0.8rem', cursor: 'pointer',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem',
-                      transition: 'all 0.15s'
-                    }}
-                  >
-                    🇹🇭 {isVi ? 'Baht Thái (฿)' : isTh ? 'บาทไทย (฿)' : 'Thai Baht (฿)'}
-                  </button>
-                </div>
               </div>
 
               {/* Input 4: Mức Lợi Nhuận Đại Lý (Segmented Pills - Hidden in Client Mode) */}
