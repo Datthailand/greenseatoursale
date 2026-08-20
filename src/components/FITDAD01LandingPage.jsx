@@ -2234,7 +2234,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                         {isVi ? `(Từ mức Margin +${agentMarginPercent}% cho đoàn ${paxCount} khách)` : `(จาก Margin +${agentMarginPercent}% กรุ๊ป ${paxCount} ท่าน)`}
                       </div>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
+                  <div style={{ textAlign: 'right' }}>
                       <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#059669' }}>
                         +${calculation.agentProfit.toLocaleString('en-US')}
                       </div>
@@ -2523,8 +2523,8 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
             <div>
               <h3 style={{ fontSize: '2.1rem', fontWeight: 900, margin: '0 0 0.85rem', lineHeight: 1.2, fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
                 {agentConfig.isAgent && agentConfig.name 
-                  ? (isVi ? `Gửi Yêu Cầu Đặt Tour Đến ${agentConfig.name}` : isTh ? `ส่งคำขอจองทัวร์ถึง ${agentConfig.name}` : `Submit Tour Request to ${agentConfig.name}`)
-                  : (isVi ? 'Gửi Yêu Cầu Đặt Đoàn / Báo Giá Nhanh Cho Đại Lý' : isTh ? 'ส่งคำขอจองกรุ๊ป / ล็อคโควต้าสำหรับตัวแทน' : 'Agent Booking & Block Quotation')}
+                  ? (isVi ? `Gửi Yêu Cầu Tư Vấn Đến ${agentConfig.name}` : isTh ? `ส่งคำขอข้อมูลการเดินทางถึง ${agentConfig.name}` : `Submit Tour Inquiry to ${agentConfig.name}`)
+                  : (isVi ? 'Gửi Yêu Cầu Báo Giá B2B Nhanh Cho Đại Lý' : isTh ? 'ขอใบเสนอราคา B2B / ล็อคโควต้าสำหรับตัวแทน' : 'Request B2B Quotation & Group Allotment')}
               </h3>
               <p style={{ color: '#d1fae5', fontSize: '0.95rem', margin: '0 0 2rem', lineHeight: 1.6 }}>
                 {agentConfig.isAgent && agentConfig.name
@@ -2536,7 +2536,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                 <div style={{ background: 'rgba(255,255,255,0.15)', borderRadius: '1rem', padding: '2rem', textAlign: 'center' }}>
                   <CheckCircle2 size={52} style={{ color: '#4ade80', margin: '0 auto 1rem' }} />
                   <h4 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0 0 0.5rem' }}>
-                    {isVi ? 'Đã gửi yêu cầu thành công!' : isTh ? 'ส่งคำขอจองสำเร็จแล้ว!' : 'Request Sent Successfully!'}
+                    {isVi ? 'Đã gửi yêu cầu thành công!' : isTh ? 'ส่งคำขอสำเร็จแล้ว!' : 'Request Sent Successfully!'}
                   </h4>
                   <p style={{ fontSize: '0.95rem', color: '#d1fae5', margin: 0 }}>
                     {isVi ? 'Bộ phận kinh doanh Green Sea Tour sẽ liên hệ lại quý đối tác ngay qua LINE / Zalo / WhatsApp.' : 'We are preparing your confirmation slip.'}
@@ -2625,7 +2625,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                       }}
                     >
                       <Send size={18} />
-                      {isVi ? 'GỬI YÊU CẦU ĐẶT ĐOÀN / BÁO GIÁ' : isTh ? 'ส่งคำขอใบเสนอราคา / จองกรุ๊ป' : 'Submit Group Booking Request'}
+                      {isVi ? 'GỬI YÊU CẦU BÁO GIÁ B2B' : isTh ? 'ขอใบเสนอราคา B2B' : 'Request B2B Quotation'}
                     </button>
                   </div>
                 </form>

@@ -207,7 +207,7 @@ export default function TourLandingPage({ tour, onBack, initialLanguage = 'TH', 
               }}
             >
               <Sparkles size={18} />
-              {isTh ? 'ขอใบเสนอราคา / จองทัวร์' : 'Get Instant Quote'}
+              {isTh ? 'ขอใบเสนอราคา B2B' : 'Request B2B Quotation'}
             </a>
 
             {tour.individualPdfLink && (
