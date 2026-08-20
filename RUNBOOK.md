@@ -45,6 +45,23 @@ npm install
 
 Reason: `node_modules` may have been installed from Windows first, so Rollup optional native package for Linux may be absent.
 
+## Deployment & Git Sync
+
+### 1. Push to GitHub Remote:
+- **Repo URL:** `https://github.com/Datthailand/greenseatoursale`
+- **SSH URL:** `git@github.com:Datthailand/greenseatoursale.git`
+```bash
+git add -A
+git commit -m "feat/fix: [Description]"
+wsl -d Ubuntu -- bash -lc "cd '/mnt/d/Dat/webapp greensea' && git push -u origin master"
+```
+
+### 2. Deploy Live to VPS:
+- **Server:** `129.212.232.185` (`https://greenseatour.vn`)
+```powershell
+powershell -ExecutionPolicy Bypass -File .\deploy.ps1
+```
+
 ## Dev server
 
 Current checked port: `http://127.0.0.1:5174/`
