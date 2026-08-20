@@ -595,6 +595,72 @@ button {
   margin-top: 22px;
 }
 
+/* ReactBits UI Button Micro-Interactions */
+@keyframes reactbits-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.reactbits-landing-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1.5px solid #10b981;
+  background: linear-gradient(110deg, #ecfdf5 20%, #a7f3d0 35%, #ecfdf5 50%);
+  background-size: 250% 100%;
+  color: #065f46;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.15);
+  animation: reactbits-shimmer 5s ease-in-out infinite;
+}
+
+.reactbits-landing-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32);
+  border-color: #059669;
+  color: #004d38;
+}
+
+.reactbits-landing-btn:active {
+  transform: translateY(0);
+}
+
+.reactbits-landing-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.75) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.reactbits-landing-btn:hover::after {
+  transform: translateX(100%) rotate(25deg);
+}
+
 .primary-button,
 .ghost-link,
 .star-button {
@@ -605,12 +671,26 @@ button {
   min-height: 38px;
   padding: 0 16px;
   text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .primary-button {
   border-color: var(--brand);
-  background: var(--brand);
+  background: linear-gradient(135deg, #00533d 0%, #003e2e 100%);
   color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 83, 61, 0.2);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 83, 61, 0.35);
+  filter: brightness(1.08);
+}
+
+.primary-button:active {
+  transform: translateY(0);
 }
 
 .ghost-link {
@@ -620,6 +700,16 @@ button {
 .star-button {
   width: 44px;
   padding: 0;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+}
+
+.star-button:hover {
+  transform: translateY(-2px) scale(1.06);
+  border-color: #f59e0b;
+  color: #d97706;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
 .detail-divider {

@@ -505,13 +505,21 @@ async function main() {
       // Assemble final tour configuration
       const backupTour = backupTours.find(t => t.id === rTour.id);
       
-      const duration = rTour.duration ? parseInt(rTour.duration, 10) : (backupTour?.duration || 0);
-      const title = rTour.title || backupTour?.title || '';
-      const route = rTour.route || backupTour?.route || '';
-      const nights = rTour.nights || backupTour?.nights || '';
-      const hotel = rTour.hotel || backupTour?.hotel || '';
-      const groupRange = rTour.groupRange || backupTour?.groupRange || '';
-      const vehicle = rTour.vehicle || backupTour?.vehicle || '';
+      let duration = rTour.duration ? parseInt(rTour.duration, 10) : (backupTour?.duration || 0);
+      let title = rTour.title || backupTour?.title || '';
+      let route = rTour.route || backupTour?.route || '';
+      let nights = rTour.nights || backupTour?.nights || '';
+      let hotel = rTour.hotel || backupTour?.hotel || '';
+      let groupRange = rTour.groupRange || backupTour?.groupRange || '';
+      let vehicle = rTour.vehicle || backupTour?.vehicle || '';
+
+      if (rTour.id === 'fitsgn01') {
+        duration = 4;
+        title = 'Ho Chi Minh, Mui Ne, Da Lat';
+        route = 'Ho Chi Minh > Mui Ne > Da Lat > Ho Chi Minh';
+        nights = 'Ho Chi Minh 1N + Mui Ne 1N + Da Lat 1N';
+        hotel = 'Ho Chi Minh, Mui Ne, and Da Lat 4* standard hotels or similar';
+      }
 
       let highlights = parseLineList(rTour.highlights);
       if (backupTour && backupTour.highlights && (highlights.length === 0 || backupTour.id === 'fitsgn01')) {
@@ -569,6 +577,7 @@ async function main() {
         remarksRightSpan: (backupTour && backupTour.remarksRightSpan !== undefined) ? backupTour.remarksRightSpan : (rTour.remarksRightSpan ? parseInt(rTour.remarksRightSpan, 10) : undefined),
         paymentTermsTh: parsePipePairs(rTour.paymentTermsTh),
         cancellationPolicyTh: parsePipePairs(rTour.cancellationPolicyTh),
+        individualPdfLink: `/tours/${rTour.packageType === 'FIT' ? (rTour.code.startsWith('FIT') ? rTour.code : `FIT${rTour.code}`) : (rTour.code.startsWith('GIT') ? rTour.code : `GIT${rTour.code}`)}.pdf`,
       };
 
       tours.push(tourObj);

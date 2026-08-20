@@ -14,7 +14,7 @@
 | 6 | FITPQC01 | FIT | Phu Quoc | 3 | ✅ | ✅ | ✅ (3d) | ✅ | ✅ |
 | 7 | FITPQC02 | FIT | Phu Quoc | 4 | ✅ | ✅ | ✅ (4d) | ✅ | ✅ |
 | 8 | FITCXR01 | FIT | Southern Vietnam | 4 | ✅ | ✅ | ✅ (4d) | ✅ | ✅ |
-| 9 | FITSGN01 | FIT | Southern Vietnam | 3 | ✅ | ✅ | ✅ (4d) | ✅ | ✅ |
+| 9 | FITSGN01 | FIT | Southern Vietnam | 4 | ✅ | ✅ | ✅ (4d) | ✅ | ✅ |
 | 10 | DAD01 | GIT | Central Vietnam | 3 | ✅ | ✅ | ✅ (3d) | ✅ | ✅ |
 | 11 | DAD02 | GIT | Central Vietnam | 3 | ✅ | ✅ | ✅ (3d) | ✅ | ✅ |
 | 12 | DAD03 | GIT | Central Vietnam | 4 | ✅ | ✅ | ✅ (4d) | ✅ | ✅ |
@@ -69,7 +69,7 @@
 - **FITPQC01**: Phu Quoc Island — 3 ngày
 - **FITPQC02**: Phu Quoc Island — 4 ngày
 - **FITCXR01**: Nha Trang and Da Lat — 4 ngày
-- **FITSGN01**: Ho Chi Minh and Mui Ne — 3 ngày
+- **FITSGN01**: Ho Chi Minh, Mui Ne, Da Lat — 4 ngày
 
 ### GIT Tours (14 tour)
 - **DAD01**: Da Nang, Ba Na Hills, Hoi An — 3 ngày
@@ -90,9 +90,7 @@
 ## 4. Vấn Đề Cần Lưu Ý
 
 ### ✅ Tất cả tour đã sửa format USD → $
-
-### ⚠️ Số ngày itinerary không khớp duration (1 tour)
-- FITSGN01: duration=3, itinerary days=4
+### ✅ Đã sửa số ngày FITSGN01 khớp 4 ngày (4D)
 
 
 ## 5. Đã Hoàn Thành

@@ -10,12 +10,16 @@ import {
   MapPin,
   PlaneTakeoff,
   Search,
+  Sparkles,
   Star,
   Users,
   X,
 } from 'lucide-react';
 import { regions, tours } from './data/tours.js';
+import { landingTours } from './data/landingTours.js';
 import Admin from './components/Admin.jsx';
+import TourLandingPage from './components/TourLandingPage.jsx';
+import FITDAD01LandingPage from './components/FITDAD01LandingPage.jsx';
 
 const packageFilters = ['FIT', 'GIT'];
 const sortModes = ['Popular', 'Price Low', 'Duration'];
@@ -276,13 +280,42 @@ function App() {
   const shouldHideMeals = isPublicMode || hideParam.includes('meals') || hideParam.includes('restaurant') || hideParam.includes('restaurants') || hideParam.includes('meal');
   const shouldHidePdf = isPublicMode || hideParam.includes('pdf') || hideParam.includes('link');
 
+  const initialTour = useMemo(() => {
+    const tourParam = searchParams.get('tour') || searchParams.get('id') || searchParams.get('code');
+    if (tourParam) {
+      const match = tours.find(t => 
+        t.id.toLowerCase() === tourParam.toLowerCase() || 
+        t.code.toLowerCase() === tourParam.toLowerCase() ||
+        `${t.packageType}${t.code}`.toLowerCase() === tourParam.toLowerCase()
+      );
+      if (match) return match;
+    }
+    return tours[0];
+  }, [searchParams]);
+
+  const [landingTourId, setLandingTourId] = useState(() => {
+    if (searchParams.get('mode') === 'landing' || searchParams.get('page') === 'landing' || searchParams.get('landing') === 'true') {
+      const tourParam = searchParams.get('tour') || searchParams.get('id') || searchParams.get('code');
+      if (tourParam) {
+        const match = landingTours.find(t =>
+          t.id.toLowerCase() === tourParam.toLowerCase() ||
+          t.code.toLowerCase() === tourParam.toLowerCase() ||
+          `${t.packageType}${t.code}`.toLowerCase() === tourParam.toLowerCase()
+        );
+        if (match) return match.id;
+      }
+      return landingTours[0]?.id || null;
+    }
+    return null;
+  });
+
   const [currency, setCurrency] = useState('USD');
   const [language, setLanguage] = useState('TH');
-  const [packageFilter, setPackageFilter] = useState('FIT');
+  const [packageFilter, setPackageFilter] = useState(initialTour?.packageType || 'FIT');
   const [regionFilter, setRegionFilter] = useState('All');
   const [query, setQuery] = useState('');
   const [sortMode, setSortMode] = useState('Popular');
-  const [selectedId, setSelectedId] = useState(tours[0].id);
+  const [selectedId, setSelectedId] = useState(initialTour?.id || tours[0].id);
   const [notice, setNotice] = useState('');
   const detailRef = useRef(null);
 
@@ -395,11 +428,48 @@ function App() {
     return <Admin onBack={() => setIsAdminMode(false)} />;
   }
 
+  if (landingTourId) {
+    if (landingTourId === 'fitdad01') {
+      return (
+        <FITDAD01LandingPage
+          onBack={() => {
+            setLandingTourId(null);
+            const params = new URLSearchParams(window.location.search);
+            params.delete('mode');
+            params.delete('page');
+            params.delete('landing');
+            const newSearch = params.toString();
+            const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
+            window.history.replaceState({}, '', newUrl);
+          }}
+        />
+      );
+    }
+    const currentLandingTour = landingTours.find(t => t.id === landingTourId) || landingTours[0];
+    return (
+      <TourLandingPage
+        tour={currentLandingTour}
+        initialLanguage={language}
+        initialCurrency={currency}
+        onBack={() => {
+          setLandingTourId(null);
+          const params = new URLSearchParams(window.location.search);
+          params.delete('mode');
+          params.delete('page');
+          params.delete('landing');
+          const newSearch = params.toString();
+          const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
+          window.history.replaceState({}, '', newUrl);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="app">
       <header className="topbar">
         <div className="brand">
-          <img src="/assets/logo.jpg" alt="Green Sea Tour Logo" className="brand-logo" />
+          <img src="/assets/logo-transparent.png" alt="Green Sea Tour Logo" className="brand-logo" style={{ objectFit: 'contain' }} />
           <div>
             <strong>GREEN SEA TOUR</strong>
             <span>{t('tagline', language)}</span>
@@ -522,6 +592,14 @@ function App() {
             onClose={() => showNotice('Detail panel stays open on desktop')}
             onSave={() => showNotice(`Saved ${selectedTour.code} to shortlist`)}
             onReset={resetFilters}
+            onOpenLanding={(tourId) => {
+              setLandingTourId(tourId.toLowerCase());
+              const params = new URLSearchParams(window.location.search);
+              params.set('mode', 'landing');
+              params.set('tour', tourId.toLowerCase());
+              const newUrl = window.location.pathname + `?${params.toString()}#pricing-terminal`;
+              window.history.pushState({}, '', newUrl);
+            }}
             containerRef={detailRef}
             hidePrice={shouldHidePrice}
             hideMeals={shouldHideMeals}
@@ -591,7 +669,7 @@ function TourCard({ tour, active, onSelect, currency, language, hidePrice }) {
   );
 }
 
-function DetailPanel({ tour, onClose, onSave, currency, language, containerRef, hidePrice, hideMeals, hidePdf }) {
+function DetailPanel({ tour, onClose, onSave, onOpenLanding, currency, language, containerRef, hidePrice, hideMeals, hidePdf }) {
   const inclusions = language === 'TH' && tour.inclusionsTh ? tour.inclusionsTh : tour.inclusions;
   const exclusions = language === 'TH' && tour.exclusionsTh ? tour.exclusionsTh : tour.exclusions;
   const childRates = language === 'TH' && tour.childRatesTh ? tour.childRatesTh : tour.childRates;
@@ -646,8 +724,24 @@ function DetailPanel({ tour, onClose, onSave, currency, language, containerRef, 
       </div>
 
       <div className="detail-actions">
+        {tour.id?.toLowerCase() === 'fitdad01' && (
+          <a
+            href="/?tour=fitdad01&mode=landing#pricing-terminal"
+            className="reactbits-landing-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              if (onOpenLanding) {
+                onOpenLanding('fitdad01');
+              } else {
+                window.location.href = '/?tour=fitdad01&mode=landing#pricing-terminal';
+              }
+            }}
+          >
+            <span>Landing Page</span>
+          </a>
+        )}
         {!hidePdf && (
-          <a className="primary-button" href={tour.assets.pdf} target="_blank" rel="noreferrer">
+          <a className="primary-button" href={tour.individualPdfLink || tour.assets.pdf} target="_blank" rel="noreferrer">
             <ExternalLink size={17} />
             {t('viewPdf', language)}
           </a>
@@ -728,19 +822,19 @@ function DetailPanel({ tour, onClose, onSave, currency, language, containerRef, 
 
       {/* Line Contact */}
       <a
-        href="https://line.me/ti/p/U1vOdylKTL"
+        href="https://lin.ee/Pwro79k"
         target="_blank"
         rel="noopener noreferrer"
         className="line-contact-block"
       >
         <img
           src="/assets/line-qr.png"
-          alt="Line QR Code"
+          alt="GreenSea LINE Official QR Code"
           className="line-qr-img"
         />
         <div className="line-contact-text">
-          <span className="line-contact-label">ติดต่อผ่าน LINE</span>
-          <span className="line-contact-sub">แสกน QR หรือคลิกเพื่อเพิ่มเพื่อน</span>
+          <span className="line-contact-label">GreenSea LINE Official</span>
+          <span className="line-contact-sub">แสกน QR หรือคลิกเพื่อเพิ่มเพื่อน (ID: @greenseatour)</span>
         </div>
       </a>
     </section>

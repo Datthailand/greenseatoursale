@@ -4,11 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "prebuild": "node scripts/fetch-tours.js",
+    "dev": "vite --host 127.0.0.1 --port 5174",
+    "prebuild": "node scripts/copy-pdfs.js && node scripts/fetch-tours.js && node scripts/research-and-enrich-tours.js",
     "build": "vite build",
-    "fetch": "node scripts/fetch-tours.js",
-    "preview": "vite preview --host 127.0.0.1"
+    "fetch": "node scripts/copy-pdfs.js && node scripts/fetch-tours.js && node scripts/research-and-enrich-tours.js",
+    "preview": "vite preview --host 127.0.0.1 --port 5174"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",

@@ -323,7 +323,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITDAD01.pdf"
 }),
   makeTour({
   "id": "fitdad02",
@@ -583,7 +584,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITDAD02.pdf"
 }),
   makeTour({
   "id": "fithan01",
@@ -796,7 +798,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITHAN01.pdf"
 }),
   makeTour({
   "id": "fithan02",
@@ -1048,7 +1051,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITHAN02.pdf"
 }),
   makeTour({
   "id": "fithan03",
@@ -1280,7 +1284,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITHAN03.pdf"
 }),
   makeTour({
   "id": "fitpqc01",
@@ -1487,7 +1492,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITPQC01.pdf"
 }),
   makeTour({
   "id": "fitpqc02",
@@ -1716,7 +1722,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITPQC02.pdf"
 }),
   makeTour({
   "id": "fitcxr01",
@@ -1962,7 +1969,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITCXR01.pdf"
 }),
   makeTour({
   "id": "fitsgn01",
@@ -1970,11 +1978,11 @@ export const tours = [
   "packageType": "FIT",
   "pdfPriceLayout": true,
   "region": "Southern Vietnam",
-  "title": "Ho Chi Minh and Mui Ne",
-  "route": "Ho Chi Minh > Mui Ne > Ho Chi Minh",
-  "duration": 3,
-  "nights": "Ho Chi Minh 1N + Mui Ne 1N",
-  "hotel": "Mui Ne and Ho Chi Minh 4* standard hotels or similar",
+  "title": "Ho Chi Minh, Mui Ne, Da Lat",
+  "route": "Ho Chi Minh > Mui Ne > Da Lat > Ho Chi Minh",
+  "duration": 4,
+  "nights": "Ho Chi Minh 1N + Mui Ne 1N + Da Lat 1N",
+  "hotel": "Ho Chi Minh, Mui Ne, and Da Lat 4* standard hotels or similar",
   "groupRange": "2-14 pax",
   "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
   "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
@@ -2233,7 +2241,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/FITSGN01.pdf"
 }),
   makeTour({
   "id": "dad01",
@@ -2483,7 +2492,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITDAD01.pdf"
 }),
   makeTour({
   "id": "dad02",
@@ -2740,7 +2750,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITDAD02.pdf"
 }),
   makeTour({
   "id": "dad03",
@@ -3032,7 +3043,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITDAD03.pdf"
 }),
   makeTour({
   "id": "dad04",
@@ -3315,7 +3327,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITDAD04.pdf"
 }),
   makeTour({
   "id": "dad05",
@@ -3611,7 +3624,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITDAD05.pdf"
 }),
   makeTour({
   "id": "han01",
@@ -3925,7 +3939,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITHAN01.pdf"
 }),
   makeTour({
   "id": "han02",
@@ -4241,7 +4256,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITHAN02.pdf"
 }),
   makeTour({
   "id": "han03",
@@ -4558,7 +4574,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITHAN03.pdf"
 }),
   makeTour({
   "id": "pqc01",
@@ -4858,7 +4875,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITPQC01.pdf"
 }),
   makeTour({
   "id": "pqc02",
@@ -5183,7 +5201,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITPQC02.pdf"
 }),
   makeTour({
   "id": "cxr01",
@@ -5420,7 +5439,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITCXR01.pdf"
 }),
   makeTour({
   "id": "cxr02",
@@ -5691,7 +5711,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITCXR02.pdf"
 }),
   makeTour({
   "id": "sgn01",
@@ -5955,7 +5976,8 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITSGN01.pdf"
 }),
   makeTour({
   "id": "sgn02",
@@ -6262,6 +6284,7 @@ export const tours = [
       "จาก 06 วันก่อนวันเดินทาง",
       "ชาร์จ 90% ราคาทัวร์"
     ]
-  ]
+  ],
+  "individualPdfLink": "/tours/GITSGN02.pdf"
 })
 ];

@@ -47,6 +47,6 @@ Reason: `node_modules` may have been installed from Windows first, so Rollup opt
 
 ## Dev server
 
-Current checked port: `http://127.0.0.1:5173/`
+Current checked port: `http://127.0.0.1:5174/`
 
 Use the Codex in-app Browser plugin first for rendered UI QA when it is available. If Browser cannot attach to the local tab, use Playwright CLI/script as the fallback and record the reason.
