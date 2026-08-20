@@ -1161,8 +1161,153 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
         </div>
       </section>
 
+      {/* 2.5 B2B DMC POSITIONING & AGENT SALES KIT (Option 2 - Hidden in White-Label Client Mode) */}
+      {!agentConfig.isAgent && !agentConfig.hideNet && (
+        <section style={{ maxWidth: '1240px', margin: '-2.5rem auto 2.5rem', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '1.25rem' }}>
+            
+            {/* Block 1: Operated by Green Sea Tour — Vietnam Inbound DMC */}
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '1.25rem',
+              padding: '1.5rem 1.75rem',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 10px 30px -5px rgba(0,0,0,0.05)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: '0.85rem'
+            }}>
+              <div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#ecfdf5', color: '#00533d', padding: '0.3rem 0.75rem', borderRadius: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  <ShieldCheck size={14} style={{ color: '#059669' }} />
+                  {isVi ? 'Vận hành bởi Green Sea Tour' : isTh ? 'ดำเนินงานโดย Green Sea Tour' : 'Operated by Green Sea Tour'}
+                </div>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', margin: '0 0 0.4rem', lineHeight: 1.3 }}>
+                  {isVi ? 'Vietnam Inbound DMC cho đối tác lữ hành Thái Lan' : isTh ? 'Vietnam Inbound DMC สำหรับบริษัททัวร์ไทย' : 'Vietnam Inbound DMC for Thai Travel Agencies'}
+                </h3>
+                <p style={{ color: '#475569', fontSize: '0.825rem', lineHeight: 1.5, margin: 0 }}>
+                  {isVi 
+                    ? 'Chương trình FITDAD01 được vận hành trực tiếp bởi Green Sea Tour — đơn vị land operator tại Việt Nam, hỗ trợ công ty tour Thái từ đón tiễn, khách sạn 4 sao, xe VIP, HDV tiếng Thái, nhà hàng, vé cáp treo đến chăm sóc đoàn trọn tuyến.'
+                    : isTh 
+                      ? 'โปรแกรมนี้ดำเนินงานโดย Green Sea Tour ทีมแลนด์โอเปอเรเตอร์ในเวียดนาม ดูแลครบตั้งแต่รับสนามบิน โรงแรม รถ ไกด์ ร้านอาหาร ตั๋วเข้าชม และการดูแลกรุ๊ประหว่างเดินทาง'
+                      : 'This FITDAD01 program is operated by Green Sea Tour, a Vietnam-based inbound land operator supporting Thai travel partners with airport transfers, 4-star hotels, transport, Thai guides, meals, tickets and on-trip care.'}
+                </p>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '0.25rem' }}>
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
+                    📍 Local Vietnam Operation
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Vận hành trực tiếp tại Đà Nẵng & Miền Trung' : 'ทีมงานประจำเวียดนาม ประสานงานตรง'}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
+                    🇹🇭 Thai Market Support
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'HDV tiếng Thái & thực đơn chuẩn vị' : 'ไกด์ภาษาไทย & อาหารรสชาติถูกปาก'}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
+                    💬 LINE-first Response
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Phản hồi báo giá & điều chỉnh nhanh qua LINE' : 'ตอบกลับและปรับโปรแกรมรวดเร็วผ่าน LINE'}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
+                    ⚡ Flexible Handling
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Linh hoạt xe, khách sạn, bữa ăn theo đoàn' : 'ปรับรถ โรงแรม อาหารตามต้องการ'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Block 2: B2B Agent Sales Kit */}
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '1.25rem',
+              padding: '1.5rem 1.75rem',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 10px 30px -5px rgba(0,0,0,0.05)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: '0.85rem'
+            }}>
+              <div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#eff6ff', color: '#1d4ed8', padding: '0.3rem 0.75rem', borderRadius: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  <Sparkles size={14} style={{ color: '#2563eb' }} />
+                  {isVi ? 'Tài liệu Sales Kit B2B' : isTh ? 'B2B Agent Sales Kit' : 'B2B Agent Sales Kit'}
+                </div>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', margin: '0 0 0.4rem', lineHeight: 1.3 }}>
+                  {isVi ? 'Sales kit B2B cho đại lý và công ty tour' : isTh ? 'Sales Kit สำหรับบริษัททัวร์และเอเจนซี่' : 'B2B Sales Kit for Travel Partners'}
+                </h3>
+                <p style={{ color: '#475569', fontSize: '0.825rem', lineHeight: 1.5, margin: 0 }}>
+                  {isVi 
+                    ? 'Thiết kế riêng cho đội ngũ sales và đối tác lữ hành tư vấn khách FIT / đoàn gia đình / incentive. Toàn bộ giá NET, tài liệu PDF và công cụ xuất poster báo giá đã sẵn sàng sử dụng.'
+                    : isTh 
+                      ? 'หน้านี้ออกแบบสำหรับทีมขายและพาร์ทเนอร์ทัวร์ ใช้เสนอโปรแกรมให้ลูกค้า FIT / กรุ๊ปเล็ก / ครอบครัว / Incentive พร้อมข้อมูลราคา NET และรายละเอียดบริการสำหรับการทำใบเสนอราคา B2B'
+                      : 'Designed for travel agents and sales teams to present the FITDAD01 itinerary with transparent B2B NET rates, instant profit calculators and ready-to-share posters.'}
+                </p>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '0.25rem' }}>
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
+                    💰 NET Rate for Agents
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Bảng giá NET minh bạch theo từng mốc đoàn' : 'ราคา NET ชัดเจนตามจำนวนผู้เดินทาง'}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
+                    📄 Ready-to-Send PDF
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Lịch trình song ngữ định dạng chuẩn gửi khách' : 'โปรแกรมพร้อมส่งต่อให้ทีมขายและลูกค้า'}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
+                    📱 1-Click LINE Quote
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Sao chép văn bản báo giá hoặc xuất ảnh Poster' : 'คัดลอกข้อความหรือสร้างโปสเตอร์ส่ง LINE'}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
+                    🏷️ White-Label Share
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
+                    {isVi ? 'Tạo link gắn thương hiệu đại lý & ẩn giá NET' : 'สร้างลิงก์ใส่แบรนด์ตัวแทน & ซ่อนราคา NET'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      )}
+
       {/* 3. INTERACTIVE EXPANDING DESTINATION HIGHLIGHTS ACCORDION */}
-      <section style={{ maxWidth: '1240px', margin: '-2.5rem auto 3.5rem', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
+      <section style={{ maxWidth: '1240px', margin: agentConfig.isAgent || agentConfig.hideNet ? '-2.5rem auto 3.5rem' : '0 auto 3.5rem', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
         <div style={{
           background: '#ffffff',
           borderRadius: '1.5rem',
