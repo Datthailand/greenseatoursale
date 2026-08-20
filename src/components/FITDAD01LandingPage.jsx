@@ -1773,20 +1773,22 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))',
-          gap: '2rem',
-          alignItems: 'start'
+          gap: '1.75rem',
+          alignItems: 'stretch'
         }}>
           
           {/* ===================== CỘT 1 (BÊN TRÁI): BẢNG TRA CỨU GIÁ NET TOÀN DIỆN ===================== */}
           <div style={{
             background: '#ffffff',
             borderRadius: '1.5rem',
-            padding: '2rem',
+            padding: '1.6rem',
             border: '1px solid #e2e8f0',
             boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.5rem'
+            justifyContent: 'space-between',
+            gap: '1.25rem',
+            height: '100%'
           }}>
             
             {/* Header Cột 1 */}
@@ -2283,96 +2285,97 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
 
             </div>
 
-            {/* Action Buttons: Copy Quote + Export Poster + White-Label Link */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', width: '100%' }}>
-              {/* 1. Copy Quote Text Button */}
-              <Magnet magnetStrength={0.2} style={{ width: '100%' }}>
+            {/* Action Buttons: Copy Quote + Export Poster (Side by Side) + White-Label Link */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+              {/* Row 1: 2 Main Action Buttons Side by Side */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                {/* 1. Copy Quote Text Button */}
                 <button
                   onClick={handleCopyQuote}
+                  type="button"
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.25rem',
-                    borderRadius: '0.75rem',
+                    padding: '0.7rem 0.6rem',
+                    borderRadius: '0.7rem',
                     border: 'none',
                     background: copiedQuote ? '#16a34a' : '#00533d',
                     color: '#ffffff',
-                    fontSize: '0.9rem',
+                    fontSize: '0.825rem',
                     fontWeight: 900,
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.5rem',
-                    boxShadow: '0 4px 14px rgba(0, 83, 61, 0.2)',
+                    gap: '0.35rem',
+                    boxShadow: '0 3px 10px rgba(0, 83, 61, 0.18)',
                     transition: 'all 0.2s'
                   }}
                 >
-                  {copiedQuote ? <Check size={18} /> : <Copy size={18} />}
+                  {copiedQuote ? <Check size={16} /> : <Copy size={16} />}
                   <span>
                     {copiedQuote 
-                      ? (isVi ? 'ĐÃ SAO CHÉP BÁO GIÁ THÀNH CÔNG!' : 'คัดลอกข้อความสำเร็จ!') 
-                      : (isVi ? 'SAO CHÉP BÁO GIÁ (LINE / WHATSAPP)' : 'คัดลอกข้อความเสนอราคาด่วน')}
+                      ? (isVi ? 'ĐÃ SAO CHÉP!' : 'คัดลอกสำเร็จ!') 
+                      : (isVi ? 'SAO CHÉP BÁO GIÁ' : 'คัดลอกข้อความ')}
                   </span>
                 </button>
-              </Magnet>
 
-              {/* 2. 1-Click Export Poster Image Button */}
-              <Magnet magnetStrength={0.2} style={{ width: '100%' }}>
+                {/* 2. 1-Click Export Poster Image Button */}
                 <button
                   onClick={handleExportPoster}
                   disabled={isExportingPoster}
+                  type="button"
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.25rem',
-                    borderRadius: '0.75rem',
-                    border: '1.5px solid #d97706',
+                    padding: '0.7rem 0.6rem',
+                    borderRadius: '0.7rem',
+                    border: '1px solid #d97706',
                     background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
                     color: '#ffffff',
-                    fontSize: '0.9rem',
+                    fontSize: '0.825rem',
                     fontWeight: 900,
                     cursor: isExportingPoster ? 'wait' : 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.5rem',
-                    boxShadow: '0 4px 14px rgba(217, 119, 6, 0.25)',
+                    gap: '0.35rem',
+                    boxShadow: '0 3px 10px rgba(217, 119, 6, 0.22)',
                     transition: 'all 0.2s',
                     opacity: isExportingPoster ? 0.75 : 1
                   }}
                 >
-                  <ImageIcon size={18} />
+                  <ImageIcon size={16} />
                   <span>
                     {isExportingPoster 
-                      ? (isVi ? 'ĐANG TẠO ẢNH POSTER...' : 'กำลังสร้างภาพโปสเตอร์...') 
-                      : (isVi ? '📸 XUẤT POSTER BÁO GIÁ (ẢNH LINE/WHATSAPP)' : '📸 ดาวน์โหลดภาพใบเสนอราคา (Poster)')}
+                      ? (isVi ? 'ĐANG TẠO...' : 'กำลังสร้าง...') 
+                      : (isVi ? 'XUẤT POSTER ẢNH' : 'ดาวน์โหลดโปสเตอร์')}
                   </span>
                 </button>
-              </Magnet>
+              </div>
 
-              {/* 3. White-Label Share Link Button (Only for Agents) */}
+              {/* Row 2: White-Label Share Link Button (Only for Agents) */}
               {!agentConfig.isAgent && (
                 <button
                   onClick={() => setShowAgentModal(true)}
                   type="button"
                   style={{
                     width: '100%',
-                    padding: '0.65rem 1rem',
-                    borderRadius: '0.65rem',
+                    padding: '0.55rem 0.75rem',
+                    borderRadius: '0.6rem',
                     border: '1.5px dashed #059669',
                     background: '#f0fdf4',
                     color: '#065f46',
-                    fontSize: '0.825rem',
+                    fontSize: '0.8rem',
                     fontWeight: 800,
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.4rem',
+                    gap: '0.35rem',
                     transition: 'all 0.2s'
                   }}
                 >
-                  <Share2 size={15} style={{ color: '#059669' }} />
-                  <span>{isVi ? '🏷️ Tạo Link Gửi Khách (Gắn Thương Hiệu Đại Lý & Ẩn Giá NET)' : isTh ? '🏷️ สร้างลิงก์ส่งลูกค้า (ใส่แบรนด์ตัวแทน & ซ่อนราคา NET)' : '🏷️ Generate Client Share Link'}</span>
+                  <Share2 size={14} style={{ color: '#059669' }} />
+                  <span>{isVi ? '🏷️ Tạo Link Gửi Khách (Gắn Thương Hiệu & Ẩn Giá NET)' : isTh ? '🏷️ สร้างลิงก์ส่งลูกค้า (ใส่แบรนด์ & ซ่อนราคา NET)' : '🏷️ Generate Client Share Link'}</span>
                 </button>
               )}
             </div>
