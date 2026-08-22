@@ -1,0 +1,438 @@
+001. Sontra Marina Café (ไม่รวมอาหารและเครื่ องดื่ม)
+002. Sontra Marina Café (ไม่รวมเครื่ องดื่ม)
+003. Café Apartment
+004. Son Tra Marina café (ไม่รวมเครื่ องดื่ม)
+005. Jungle Café (ไม่รวมเครื่ องดื่ม)
+006. Khách sạn 4 sao chuẩn quốc tế
+007. Ẩm thực phong phú & Đặc sản địa phương
+008. Bao gồm bữa sáng buffet tại khách sạn và thực đơn tuyển chọn Michelin/đặc sản
+009. Xe du lịch đời mới & Đưa đón riêng
+010. Hướng dẫn viên chuyên nghiệp
+011. Hướng dẫn viên tiếng Thái / tiếng Anh nhiệt tình, chu đáo suốt tuyến
+012. Tour có bao gồm vé máy bay không?
+013. Chương trình là land tour trọn gói đón tiễn tại sân bay điểm đến tại Việt Nam, chưa bao gồm vé máy bay khứ hồi quốc tế để quý khách linh hoạt chọn chuyến bay phù hợp nhất.
+014. Chính sách trẻ em và phụ thu phòng đơn thế nào?
+015. Trẻ em 0-2 tuổi miễn phí; 3-6 tuổi tính 50% ngủ cùng người lớn; từ 7 tuổi tính như người lớn. Phụ thu phòng đơn áp dụng theo chi tiết trong bảng giá tour.
+016. Quy trình đặt tour và phương thức thanh toán?
+017. Đặt cọc 30% khi xác nhận dịch vụ, số tiền còn lại thanh toán trước ngày khởi hành 7 - 14 ngày qua chuyển khoản ngân hàng.
+018. Mật khẩu không chính xác!
+019. Vui lòng cấu hình URL Google Apps Script trước!
+020. Đã gửi yêu cầu đồng bộ thành công! Hãy đợi khoảng 5-10 giây để Google Sheets cập nhật.
+021. Tên Tour Mới
+022. Lộ trình mới
+023. Khách sạn 3-4* tiêu chuẩn
+024. Xe du lịch đời mới
+025. 3 USD/pax/ngày
+026. Điểm nổi bật 1
+027. Điểm nổi bật 2
+028. Mốc 1
+029. Nội dung 1
+030. Chương trình ngày 1
+031. Không thể xóa tour duy nhất còn lại!
+032. Anh có chắc chắn muốn xóa tour này không?
+033. Tải File Backup (JSON)
+034. Đăng xuất
+035. Tìm tour theo code, tên...
+036. Tạo Tour Mới
+037. Tất cả miền
+038. Bắc
+039. Phú Quốc
+040. Tất cả loại
+041. FIT (Lẻ)
+042. GIT (Đoàn)
+043. Vùng miền:
+044. | Kiểu tour:
+045. Xóa Tour này
+046. 1. Thông tin chung & Điều khoản
+047. 2. Bảng giá & Xe
+048. 3. Lịch trình (
+049. Ngày)
+050. 4. Cấu hình & Đồng bộ Google Sheets
+051. Thông tin cơ bản
+052. Mã Tour (Code)
+053. Tên Tour (Title)
+054. Lộ trình (Route)
+055. Vùng miền (Region)
+056. Bắc Bộ (North)
+057. Trung Bộ (Central)
+058. Nam Bộ (South)
+059. Kiểu Tour
+060. FIT (Khách lẻ)
+061. Số ngày
+062. Khách sạn
+063. Khoảng đoàn khách (Group size)
+064. Tiêu chuẩn Xe
+065. Quy định TIP
+066. Chương trình & Điều khoản (Dịch sang Tiếng Thái)
+067. Bao gồm (Inclusions TH) - Một mục mỗi dòng
+068. Không bao gồm (Exclusions TH) - Một mục mỗi dòng
+069. Chính sách trẻ em (Child Rates TH) - Một mục mỗi dòng
+070. Điểm nhấn Tour (Highlights EN) - Một mục mỗi dòng
+071. Chính sách Thanh toán & Hủy tour (Dạng Cặp: Tiêu chí | Nội dung)
+072. Điều khoản Thanh toán (Payment Terms TH)
+073. Mốc thanh toán | Tỷ lệ % hoặc số tiền
+074. Chính sách Hủy phạt (Cancellation Policy TH)
+075. Mốc thời gian | Tỷ lệ phạt %
+076. Bảng giá tiêu chuẩn (Standard Price Rows)
+077. Bảng giá:
+078. Phòng đơn:
+079. Dòng phụ thu & Bảng xe (Extra Rows / Vehicle Rows)
+080. Dòng phụ thu bổ sung (Extra Rows) - Ghi chú ô gộp ví dụ: +$28[2]
+081. Tên phụ thu | Nội dung gộp hoặc từng ô tách bằng dấu phẩy
+082. Dòng nâng cấp xe (Vehicle Rows) - Định dạng giống ô phụ thu
+083. Tên xe | Xe mini[2], Xe lớn[4]
+084. Chính sách Tour Leader (Ghi chú dưới chân bảng giá)
+085. Cột trái (left) - Một dòng mỗi mục
+086. Cột phải (right) - Một dòng mỗi mục
+087. Số cột gộp cột trái (remarksLeftSpan)
+088. Số cột gộp cột phải (remarksRightSpan)
+089. Ngày
+090. Tiêu đề tiếng Anh (EN Title)
+091. Tiêu đề tiếng Thái (TH Title)
+092. Chi tiết chương trình EN (notes) - Một mục mỗi dòng
+093. Chi tiết chương trình TH (notesTh) - Một mục mỗi dòng
+094. Địa điểm ăn trưa (Lunch place)
+095. Menu ăn trưa tiếng Thái (Lunch Menu TH) - Tách bằng dấu phẩy
+096. Món 1, Món 2, Món 3
+097. Địa điểm ăn tối (Dinner place)
+098. Menu ăn tối tiếng Thái (Dinner Menu TH) - Tách bằng dấu phẩy
+099. Địa điểm ngủ qua đêm tiếng Thái (Overnight TH)
+100. Chọn một ngày lịch trình để bắt đầu soạn thảo.
+101. Đồng bộ ngược lại Google Sheets
+102. Hệ thống này sẽ ghi đè trực tiếp toàn bộ dữ liệu mới của 23 tour lên các tab `Tours`, `Itineraries` và `Pricing` trên Google Sheet của anh.
+103. Cách thiết lập (Chỉ làm 1 lần đầu tiên):
+104. Mở Google Sheet của anh.
+105. Vào **Tiện ích mở rộng (Extensions) > Apps Script**.
+106. Xóa hết code hiện có, dán đoạn mã Apps Script nhận dữ liệu (ở phần hướng dẫn cài đặt) vào và lưu lại.
+107. Nhấn nút **Triển khai (Deploy) > Tùy chọn triển khai mới (New deployment)**.
+108. Chọn loại triển khai là **Ứng dụng web (Web app)**.
+109. Cấu hình:
+110. Triển khai dưới dạng: **Tôi (Me)**.
+111. Ai có quyền truy cập: **Bất kỳ ai (Anyone)**.
+112. Nhấn **Triển khai**, cấp quyền truy cập tài khoản Google nếu được hỏi, và copy lấy **URL ứng dụng web (Web App URL)**.
+113. Spreadsheet ID (Để tham chiếu hiển thị)
+114. Đang đồng bộ dữ liệu...
+115. Đồng bộ ngay lên Google Sheets
+116. Thành công!
+117. Thất bại!
+118. Nhập mật khẩu để truy cập trang quản trị
+119. Mật khẩu quản trị
+120. Đăng nhập
+121. Quay lại trang chính
+122. Gửi yêu cầu khác
+123. 01 • VẬN HÀNH DMC
+124. Vận Hành Trực Tiếp Tại Việt Nam
+125. Green Sea Tour trực tiếp điều hành tại Đà Nẵng: đón tiễn xe VIP, khách sạn 4 sao, nhà hàng chuẩn vị và hướng dẫn viên tiếng Thái.
+126. Xem biểu phí NET gốc ↓
+127. Văn phòng điều hành Đà Nẵng
+128. HDV tiếng Thái & Ăn chuẩn vị
+129. Phản hồi nhanh qua LINE
+130. Linh hoạt nâng hạng xe & phòng
+131. Bộ Công Cụ Bán Hàng Đại Lý
+132. Trang bị bảng giá NET minh bạch cho từng nhóm 2-14 khách, PDF lịch trình song ngữ và xuất poster báo giá 1 chạm.
+133. Tạo link White-Label riêng →
+134. Bảng giá NET 2 - 14 pax
+135. PDF lịch trình song ngữ
+136. Sao chép báo giá 1 chạm
+137. Link White-Label giấu giá NET
+138. 03 • PHẢN HỒI 15 PHÚT
+139. Báo Giá Nhanh & Đội Ngũ Riêng
+140. Chuyên viên Ms. Kim & Mr. Khanh hỗ trợ kiểm tra phòng, báo giá đoàn FIT / Incentive và gửi Confirmation Slip trong 15 phút.
+141. Mở ngăn kéo yêu cầu báo giá →
+142. Báo giá chuẩn trong 15 phút
+143. Confirmation Slip chính thức
+144. Hệ Sinh Thái B2B DMC Việt Nam • Chuẩn Đối Tác Thái Lan
+145. 3 Trụ Cột Năng Lực Vận Hành & Công Cụ Bán Hàng
+146. 2-3 Khách
+147. Xe 16 chỗ VIP
+148. 4-5 Khách
+149. 6-7 Khách
+150. 8-9 Khách
+151. Xe 29 chỗ (Mini Bus)
+152. 10-11 Khách
+153. 12-14 Khách
+154. Đặc Quyền "Golden Hours" Bình Minh Cầu Vàng
+155. Đón chuyến cáp treo sớm chạm đỉnh Cầu Vàng trong sương mây bình minh. Với những ai yêu thích nhiếp ảnh, đây là một trong những thời điểm lý tưởng để ghi lại vẻ đẹp của Cầu Vàng.
+156. Cầu Vàng & Đỉnh Núi Chúa Bà Nà Hills
+157. Khám phá biểu tượng đôi bàn tay đá khổng lồ vươn giữa mây ngàn và quần thể giải trí Sun World đỉnh cao
+158. Mercure Làng Pháp Trên Đỉnh Bana Hills
+159. Nghỉ đêm bồng bềnh giữa không khí se lạnh tựa châu Âu
+160. Thuyền Thúng Rừng Dừa Bảy Mẫu
+161. Xem múa thúng giăng lưới đầy sôi động trên sông nước
+162. Phố Cổ Hội An Về Đêm
+163. Lung linh thả hoa đăng trên sông Hoài và phố đèn lồng
+164. Chùa Linh Ứng Bán Đảo Sơn Trà
+165. Tượng Phật Bà Quan Âm cao nhất Việt Nam ngắm biển
+166. Đại Tiệc Buffet Hải Sản & Tôm Hùm
+167. Thưởng thức hải sản tươi sống và lẩu đặc sắc
+168. MÃ: FITDAD01 • PRIVATE VIP TOUR
+169. ĐÀ NẴNG – BÀ NÀ HILLS – HỘI AN
+170. 3 NGÀY 2 ĐÊM • 1 ĐÊM MERCURE BÀ NÀ 4*
+171. ĐIỂM NHẤN ĐẶC QUYỀN TRONG HÀNH TRÌNH:
+172. 🌅 Đặc quyền "Golden Hours" đón bình minh Cầu Vàng (06:00 sáng)
+173. 🏰 1Đ Mercure Làng Pháp Bà Nà 4* + 1Đ Khách sạn 4* Đà Nẵng
+174. 🦞 2 Buffet thượng hạng (Beer Plaza + Buffet Hải sản Long Qiao TẶNG ½ TÔM HÙM)
+175. 🚣 Thuyền thúng Rừng dừa Bảy Mẫu Cẩm Thanh + Phố cổ Hội An
+176. 🚐 Xe riêng đời mới máy lạnh suốt tuyến + HDV tiếng Thái nhiệt tình
+177. 🛡️ Bao gồm Bảo hiểm du lịch quốc tế theo Luật Du lịch Việt Nam
+178. THÔNG TIN BÁO GIÁ ĐOÀN TÙY CHỈNH
+179. Số lượng khách:
+180. Phương tiện xe:
+181. Khách sạn:
+182. 4 Sao (Mercure Bà Nà + Đông Dương)
+183. Giai đoạn đi:
+184. Dịp Lễ cao điểm (+18 USD/khách)
+185. Mùa thường tiêu chuẩn
+186. Phụ thu phòng đơn:
+187. Không có
+188. 💰 TỔNG GIÁ TRỌN GÓI ĐỀ XUẤT / KHÁCH
+189. ✓ Đã bao gồm vé cáp treo, 2 buffet tôm hùm, xe riêng, HDV tiếng Thái và Bảo hiểm quốc tế
+190. ĐẠI LÝ PHỤ TRÁCH:
+191. 📍 514 - 516 Nguyễn Hữu Thọ, Đà Nẵng, Việt Nam
+192. GreenSeaTour - Land Tour Operator Chuyên Tuyến Thái Lan
+193. Về Danh Mục Tour
+194. ĐẠI LÝ DU LỊCH
+195. Đại Lý Du Lịch Chuyên Nghiệp
+196. DMC Inbound Việt Nam Cho Thị Trường Thái Lan
+197. Chế độ Đại lý (B2B)
+198. Tiếng Việt (Vietnamese)
+199. Đà Nẵng – Bà Nà Hills – Hội An
+200. (Nghỉ 1 Đêm Đỉnh Bà Nà Hills + 1 Đêm Khách Sạn 4 Sao Đà Nẵng)
+201. Tuyến điểm:
+202. Sân bay Đà Nẵng ➔ Cáp treo Bà Nà & Cầu Vàng ➔ Rừng dừa Bảy Mẫu ➔ Phố cổ Hội An ➔ Chùa Linh Ứng Sơn Trà
+203. 1Đ Mercure Bà Nà 4*
+204. ✨ Đặc quyền Golden Hours
+205. 2 Buffet + Tặng ½ Tôm Hùm
+206. Beer Plaza + Hải sản Long Qiao
+207. Xe Riêng VIP Đời Mới
+208. 16-29 chỗ / Limousine
+209. HDV nói tiếng Thái Lan
+210. Chăm sóc chu đáo suốt tuyến
+211. Xem Báo Giá Tour Trọn Gói
+212. Xem Bảng Giá & Tính Báo Giá
+213. Tải PDF B2B
+214. Đã sao chép!
+215. Sao chép báo giá
+216. Giá trọn gói từ
+217. Giá NET B2B từ
+218. khách
+219. Bộ Sưu Tập Hình Ảnh Điểm Đến Thực Tế
+220. Khám Phá 7 Trải Nghiệm Độc Quyền Trong Hành Trình
+221. HÀNH TRÌNH 3 NGÀY 2 ĐÊM CHI TIẾT
+222. Lịch Trình Độc Quyền & Trải Nghiệm Ẩm Thực
+223. Mỗi ngày đều được thiết kế tối ưu thời gian di chuyển, dịch vụ ăn uống và trải nghiệm trọn vẹn nhất:
+224. Ngày 1: Chạm Đỉnh Bà Nà Hills
+225. Lên cáp treo • Đêm Làng Pháp • Nghỉ đêm Mercure
+226. Ngày 2: Rừng Dừa & Phố Cổ Hội An
+227. Golden Hours Cầu Vàng • Rừng Dừa • Phố Cổ
+228. Ngày 3: Sơn Trà & Tiễn Sân Bay
+229. Chùa Linh Ứng • Chợ Hàn • Madam Lân
+230. NGÀY 01
+231. ĐÀ NẴNG – BÀ NÀ HILLS (Nghỉ đêm đỉnh Bà Nà)
+232. Hoạt động & Lịch trình chi tiết trong ngày:
+233. Đón khách tại Sân bay Đà Nẵng:
+234. Hướng dẫn viên nói tiếng Thái Lan và xe du lịch đón đoàn tại sân bay Đà Nẵng.
+235. Lên Cáp treo Bà Nà Hills:
+236. Trải nghiệm tuyến cáp treo đạt nhiều kỷ lục thế giới, ngắm toàn cảnh núi rừng hùng vĩ.
+237. Check-in Cầu Vàng (Golden Bridge):
+238. Biểu tượng bàn tay khổng lồ vươn giữa mây trời nổi tiếng thế giới.
+239. Khu vui chơi Fantasy Park:
+240. Thỏa sức trải nghiệm hơn 105 trò chơi hấp dẫn miễn phí.
+241. Vườn hoa Le Jardin D'Amour & Làng Pháp:
+242. Chụp ảnh cùng các khu vườn hoa phong cách châu Âu cổ kính.
+243. Nghỉ đêm Mercure Danang French Village 4*:
+244. Nhận phòng khách sạn, tận hưởng không khí Làng Pháp se lạnh, lãng mạn về đêm và sẵn sàng cho đặc quyền Golden Hours sáng sớm hôm sau.
+245. Bữa trưa (Lunch 11$): Nhà hàng Ngon Thị Hoa
+246. มื้อกลางวัน (Lunch 11$): Nhà hàng Ngon Thi Hoa
+247. 1. Phở gà • 2. Chả giò tôm thịt tươi • 3. Nem nướng Nha Trang • 4. Bánh hỏi heo quay giòn da • 5. Cơm chiên trứng • 6. Trái cây tươi tráng miệng
+248. 1. เฝอไก่ (Phở gà) • 2. เปาะเปี๊ยะกุ้งหมูสด • 3. แหนมเนือง • 4. ขนมฮอยหมูย่าง (Bánh hỏi heo quay) • 5. ข้าวผัดไข่ • 6. ผลไม้สดตามฤดูกาล
+249. Bữa tối (Dinner): Beer Plaza Buffet Bà Nà Hills
+250. Đại tiệc buffet quốc tế hơn 100 món thượng hạng kèm bia tươi Đức trên đỉnh Bà Nà Hills.
+251. Khách sạn nghỉ đêm: Mercure Danang French Village Bana Hills 4*
+252. *Trường hợp chọn phòng Family Bunk (3 khách/phòng): phụ thu +25$/phòng/đêm
+253. NGÀY 02
+254. BÀ NÀ HILLS – HỘI AN – ĐÀ NẴNG (Rừng Dừa & Phố Cổ Hội An)
+255. ĐẶC QUYỀN VIP MERCURE
+256. 06:00 – 07:15 SÁNG
+257. Trải Nghiệm "Golden Hours" Đón Bình Minh Cầu Vàng
+258. 🌅 Bình minh Cầu Vàng vắng người
+259. 🚡 Tuyến cáp treo sớm Ga Louvre ➔ Bordeaux
+260. Lịch 3 chuyến cáp treo sớm độc quyền (Ga Louvre ➔ Ga Bordeaux):
+261. Chuyến 1 (Đón bình minh)
+262. Chuyến 2 (Săn biển mây)
+263. Chuyến 3 (Nắng mai dịu mát)
+264. 06:00 – 07:00: Trải nghiệm "Golden Hours" Cầu Vàng:
+265. Thức dậy giữa mây ngàn, đón tuyến cáp treo sớm đến Cầu Vàng ngắm bình minh và chụp ảnh vắng người tuyệt đối.
+266. 07:30 – 08:30: Ăn sáng buffet thịnh soạn:
+267. Thưởng thức bữa sáng quốc tế tại nhà hàng khách sạn Mercure Bà Nà Hills.
+268. 09:00: Xuống cáp treo đi Hội An:
+269. Rời Bà Nà Hills, xe đưa đoàn di chuyển đến Phố cổ Hội An.
+270. Trải nghiệm Thuyền thúng Rừng dừa Bảy Mẫu Cẩm Thanh:
+271. Khám phá nét đẹp sông nước miền Trung, xem nghệ nhân biểu diễn múa thúng giăng lưới.
+272. Khám phá Phố cổ Hội An:
+273. Đi bộ tham quan Chùa Cầu Nhật Bản, Nhà cổ Tấn Ký, Hội quán Phúc Kiến.
+274. Quán cà phê có góc ban công ngắm toàn cảnh mái ngói rêu phong Hội An (tự túc đồ uống).
+275. Về Đà Nẵng:
+276. Nhận phòng khách sạn 4 sao tại trung tâm thành phố Đà Nẵng, tự do dạo biển Mỹ Khê về đêm.
+277. Bữa trưa (Lunch 11$): Nhà hàng Chic Chillax Hội An
+278. มื้อกลางวัน (Lunch 11$): Nhà hàng Chic Chillax Hoi An
+279. 1. Chả giò chiên giòn • 2. Gỏi bắp chuối tôm thịt • 3. Súp nấm hương • 4. Cá diêu hồng hấp cuốn nấm & bắp cải • 5. Gà xào gừng • 6. Cải ngọt xào tỏi • 7. Cơm chiên rau củ • 8. Dưa hấu tráng miệng
+280. Bữa tối (Dinner): Long Qiao Seafood Buffet + TÔM HÙM
+281. Buffet hải sản tươi sống hấp, lẩu hải sản đặc sắc + ĐẶC BIỆT TẶNG KÈM ½ TÔM HÙM NƯỚNG BƠ TỎI / KHÁCH.
+282. Khách sạn nghỉ đêm: Khách sạn Đông Dương (Dong Duong Hotel 4*) hoặc tương đương tại Đà Nẵng
+283. NGÀY 03
+284. ĐÀ NẴNG CITY TOUR – TIỄN SÂN BAY (Chùa Linh Ứng & Chợ Hàn)
+285. Ăn sáng:
+286. Thưởng thức bữa sáng tại khách sạn, làm thủ tục trả phòng.
+287. Viếng Chùa Linh Ứng Bán đảo Sơn Trà:
+288. Chiêm bái Tượng Phật Bà Quan Âm cao 67m hướng biển, ngắm toàn cảnh bờ biển Đà Nẵng.
+289. Check-in Sơn Trà Marina Café:
+290. Quán cà phê phong cách Địa Trung Hải trắng xanh tựa Santorini (tự túc đồ uống).
+291. Chụp ảnh Cầu Rồng & Công viên APEC:
+292. Biểu tượng kiến trúc hiện đại của thành phố Đà Nẵng.
+293. Mua sắm đặc sản Chợ Hàn (Han Market):
+294. Mua quà lưu niệm, bánh kẹo đặc sản, hạt sen sấy, cà phê...
+295. Tiễn sân bay Đà Nẵng:
+296. Xe đưa đoàn ra sân bay làm thủ tục xuất cảnh về lại Thái Lan. Kết thúc tour tốt đẹp.
+297. เช็คอิน Son Tra Marina Café:
+298. Bữa trưa (Lunch 12$): Nhà hàng Madam Lân
+299. มื้อกลางวัน (Lunch 12$): Nhà hàng Madam Lan
+300. 1. Gỏi cuốn tôm thịt • 2. Chả giò hải sản • 3. Cá kho tộ đậm đà • 4. Rau muống xào tỏi • 5. Cơm trắng • 6. Canh cua đồng trứng cà • 7. Trái cây tươi
+301. 1. เปาะเปี๊ยะสดกุ้งหมู • 2. เปาะเปี๊ยะทะเลทอด • 3. ปลาต้มเค็มหม้อดิน (Cá kho tộ) • 4. ผัดผักบุ้ง • 5. ข้าวสวย • 6. แกงจืดไข่ปู • 7. ผลไม้สด
+302. Bữa tối (Dinner): Bánh Mì Đà Nẵng
+303. Bánh mì kẹp thịt truyền thống giòn ngon phục vụ đoàn dùng trước khi lên máy bay.
+304. BẢNG TÍNH GIÁ TOUR TRỌN GÓI
+305. BẢNG GIÁ NET B2B & BỘ CÔNG CỤ BÁO GIÁ ĐẠI LÝ
+306. Công Cụ Tính Giá Tour Theo Số Lượng Khách
+307. Biểu Phí NET Đại Lý & Hệ Thống Tính Toán Lợi Nhuận
+308. Áp dụng từ 01/04 - 30/12/2026 • Đã bao gồm khách sạn 4 sao, ăn uống trọn gói, xe VIP, HDV, cáp treo Bà Nà & toàn bộ vé tham quan
+309. Bảng Giá Tour Trọn Gói Theo Số Lượng Khách
+310. Biểu Phí NET Gốc Theo Đoàn
+311. Phổ biến
+312. Quy định phụ thu & tùy chọn xe:
+313. Phụ thu phòng đơn (Single Supplement):
+314. phòng
+315. Limousine VIP 7–9 chỗ (+89$/trọn tour):
+316. trọn tour
+317. Limousine VIP 14–15 chỗ (+168$/trọn tour):
+318. Phụ thu Lễ (29/04 – 02/05/2026):
+319. Phụ thu Giáng Sinh (24/12 – 25/12/2026):
+320. Tùy Chỉnh Lựa Chọn Cho Đoàn Của Bạn
+321. Mô Phỏng Báo Giá & Biên Lợi Nhuận
+322. 1. Chọn nhóm & số khách đoàn:
+323. Tối thiểu 2 khách
+324. Tối đa 14 khách cho tour này
+325. 2. Phòng đơn (+70$):
+326. 3. Nâng cấp Limousine:
+327. Xe tiêu chuẩn theo đoàn
+328. Đi vào giai đoạn Lễ (29/04–02/05 & 24–25/12)
+329. 4. Tỷ giá quy đổi (USD ➔ THB):
+330. Nhập tỷ giá USD / THB
+331. 5. Mức lợi nhuận mong muốn (% Margin):
+332. 🌟 TỔNG GIÁ TOUR TRỌN GÓI ĐỀ XUẤT
+333. Tổng tiền NET trả Green Sea:
+334. Giá BÁN đề xuất khách lẻ:
+335. phòng đơn
+336. 💰 LỢI NHUẬN ĐẠI LÝ THU VỀ:
+337. ĐÃ SAO CHÉP!
+338. SAO CHÉP BÁO GIÁ
+339. ĐANG TẠO...
+340. XUẤT POSTER ẢNH
+341. 🏷️ Tạo Link Gửi Khách (Gắn Thương Hiệu & Ẩn Giá NET)
+342. ĐIỀU KHOẢN & DỊCH VỤ TOUR TRỌN GÓI
+343. ĐIỀU KHOẢN DỊCH VỤ & QUY ĐỊNH B2B
+344. Giá Tour Bao Gồm (Inclusions)
+345. Khách sạn 4 sao tiêu chuẩn (2-3 khách/phòng): 1 đêm Mercure Bà Nà Hills + 1 đêm Đông Dương Đà Nẵng.
+346. 2 bữa sáng buffet tại khách sạn + 3 bữa chính set menu tại các nhà hàng nổi tiếng (Ngon Thị Hoa, Chic Chillax, Madam Lân).
+347. Đặc biệt: 2 bữa buffet thượng hạng (Beer Plaza Bà Nà + Buffet Hải sản Long Qiao TẶNG ½ TÔM HÙM NƯỚNG BƠ)
+348. + Bánh mì.
+349. Xe du lịch máy lạnh đời mới chất lượng cao phục vụ theo suốt hành trình.
+350. Hướng dẫn viên tiếng Thái / tiếng Anh chuyên nghiệp phục vụ đoàn.
+351. Vé cáp treo Bà Nà Hills khứ hồi + Toàn bộ vé tham quan và vé thuyền thúng Rừng dừa theo chương trình.
+352. Bảo hiểm du lịch quốc tế trọn gói theo quy định hiện hành của Luật Du lịch Việt Nam.
+353. Giá Tour Không Bao Gồm (Exclusions)
+354. Tiền Tip cho Hướng dẫn viên và Lái xe:
+355. 600 THB/khách/tour
+356. (với đoàn từ 8 khách trở lên:
+357. 300 THB/khách/tour
+358. Vé máy bay quốc tế khứ hồi Thái Lan - Việt Nam.
+359. Chi phí cá nhân ngoài chương trình (đồ uống phát sinh, giặt ủi, điện thoại...).
+360. 👶 Chính Sách Trẻ Em (Child Policy)
+361. Trẻ em 0 - 2 tuổi:
+362. Miễn phí 100%.
+363. Trẻ em 3 - 6 tuổi:
+364. Tính 50% giá tour người lớn (ngủ chung giường với bố mẹ; nếu yêu cầu kê giường phụ tính thêm phí phòng đơn).
+365. Trẻ em từ 7 tuổi trở lên:
+366. Tính 100% giá tour như người lớn.
+367. 💳 Điều Kiện Thanh Toán & Hủy Phạt
+368. Đặt cọc:
+369. 30% tổng giá trị tour ngay khi xác nhận đặt đoàn.
+370. Thanh toán phần còn lại:
+371. 14 ngày trước ngày khởi hành.
+372. Hủy trước 21 ngày:
+373. Không phạt phí (Miễn phí 100%).
+374. Hủy từ 20 đến 07 ngày trước ngày đi:
+375. Phạt 50% tổng giá trị tour.
+376. Hủy trong vòng 06 ngày trước ngày đi:
+377. Phạt 90% tổng giá trị tour.
+378. DMC Inbound Land Tour Việt Nam
+379. Đơn vị cung cấp tour du lịch chất lượng cao, phục vụ tận tâm chu đáo từng hành trình của quý khách.
+380. “Your Trusted DMC Vietnam for Thailand Market - Easy to Work, Ready to Support”. Đối tác lữ hành tin cậy chuyên cung cấp land tour trọn gói chất lượng cao cho các đại lý du lịch.
+381. 514 - 516 Nguyễn Hữu Thọ, Đà Nẵng, Việt Nam
+382. Tuyến Điểm Tour
+383. Đà Nẵng – Bà Nà – Hội An
+384. Miền Bắc (Hà Nội – Sa Pa – Ninh Bình)
+385. Miền Nam (Sài Gòn – Mũi Né – Đà Lạt)
+386. Đảo Ngọc Phú Quốc
+387. Chính Sách Đại Lý
+388. Bảng Giá 2 - 14 Khách
+389. Bảng Giá NET 2 - 14 Pax
+390. Công Cụ Tính Lợi Nhuận
+391. Quy Định Đặt Cọc & Hủy Phạt
+392. Chính Sách Giá Trẻ Em
+393. Tùy Chọn Limousine VIP
+394. Đại Lý Tư Vấn Tour
+395. Hỗ Trợ Đại Lý Thái Lan
+396. Bảo lưu mọi quyền.
+397. Chính Sách Bảo Mật
+398. Điều Khoản Dịch Vụ
+399. Chương Trình Tour Độc Quyền
+400. DMC Đối Tác Thái Lan
+401. Tư Vấn Tour
+402. Báo Giá B2B
+403. Phản Hồi Trong 15 Phút
+404. Yêu Cầu Báo Giá & Đặt Đoàn B2B
+405. Đêm
+406. Đà Nẵng - Bà Nà Hills - Phố Cổ Hội An
+407. Quy mô đoàn:
+408. Giá trọn gói:
+409. Giá NET B2B:
+410. Đã gửi yêu cầu thành công!
+411. Bộ phận kinh doanh Green Sea Tour sẽ liên hệ lại quý đối tác ngay qua LINE / WhatsApp.
+412. Đóng Ngăn Kéo
+413. Họ và Tên Quý Khách
+414. Tên Công Ty / Đại Lý
+415. Ví dụ: Somchai Prasert
+416. Ví dụ: Siam Travel Co.
+417. Người liên hệ
+418. Tên người liên hệ
+419. Số điện thoại / LINE
+420. Ngày dự kiến khởi hành
+421. Yêu cầu đặc biệt (Nâng cấp xe, phòng Family, ăn kiêng...)
+422. Nhập ghi chú yêu cầu thêm nếu có...
+423. Phụ trách thị trường Thái Lan:
+424. GỬI YÊU CẦU TƯ VẤN
+425. GỬI YÊU CẦU BÁO GIÁ B2B
+426. Cài Đặt Thương Hiệu Đại Lý (White-Label)
+427. Tùy chỉnh thông tin để gửi link hoặc xuất poster cho khách lẻ
+428. 🏢 Tên Công Ty / Đại Lý Của Bạn:
+429. Ví dụ: Siam Travel Co., Ltd
+430. 📞 Số Điện Thoại / Hotline:
+431. 🔒 Ẩn Cột Giá Gốc (Hide B2B Net Rates)
+432. Chỉ hiển thị giá bán cuối cùng kèm mức lời Margin cho khách xem
+433. ĐƯỜNG LINK GỬI KHÁCH HÀNG (ĐÃ GẮN THƯƠNG HIỆU):
+434. Đã sao chép link!
+435. Sao chép Link gửi khách
+436. Mở thử link
+437. ✕ Xóa cài đặt đại lý (về mặc định)
+438. Áp Dụng Ngay

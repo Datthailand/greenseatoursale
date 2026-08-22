@@ -1517,3 +1517,105 @@ td:not(:first-child) {
   color: #3d7a4f;
   line-height: 1.4;
 }
+
+
+/* ==========================================================================
+   6. INTERACTIVE HIGHLIGHTS & MICRO-INTERACTIONS
+   ========================================================================== */
+.flight-card-interactive {
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.flight-card-interactive:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px -8px rgba(0, 83, 61, 0.15), 0 0 0 1.5px #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+.flight-segment-box {
+  transition: all 0.2s ease !important;
+}
+.flight-card-interactive:hover .flight-segment-box {
+  background: #f0fdf4 !important;
+  border-color: #a7f3d0 !important;
+}
+
+.qr-card-interactive {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+}
+.qr-card-interactive:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 12px 24px -4px rgba(6, 199, 85, 0.25) !important;
+  border-color: #06c755 !important;
+  background: #f0fdf4 !important;
+}
+.qr-card-interactive:hover img {
+  transform: scale(1.06);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.itinerary-day-tab-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.itinerary-day-tab-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 83, 61, 0.12) !important;
+}
+
+.culinary-card-interactive {
+  transition: all 0.25s ease !important;
+}
+.culinary-card-interactive:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 20px -4px rgba(0, 0, 0, 0.08) !important;
+  border-color: #059669 !important;
+}
+
+.faq-card-interactive {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.faq-card-interactive:hover {
+  box-shadow: 0 8px 20px -4px rgba(0, 83, 61, 0.08) !important;
+  border-color: #059669 !important;
+}
+
+/* Partners Infinite Marquee Track */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partners-track {
+  animation: marqueeScroll 25s linear infinite !important;
+}
+
+.partners-track:hover {
+  animation-play-state: paused !important;
+}
+
+.footer-nav-link {
+  color: #64748b !important;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 0.875rem !important;
+  text-align: left !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+}
+
+.footer-nav-link:hover {
+  color: #059669 !important;
+  font-weight: 700 !important;
+  transform: translateX(4px) !important;
+}
+
+

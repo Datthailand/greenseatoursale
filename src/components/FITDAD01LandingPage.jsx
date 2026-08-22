@@ -6,8 +6,10 @@ import {
   ExternalLink, Copy, Check, Info, Calculator, Coffee, Compass, CheckCircle,
   Camera, ChevronRight, Layers, Eye, Tag, Plus, Minus, Zap, Sliders,
   Share2, Image as ImageIcon, UserCheck, Link2, X, FileText, CheckCheck,
-  Mail
+  Mail, Plane, Bed, SlidersHorizontal, Trash2
 } from 'lucide-react';
+import { FITDAD01_FAQS } from '../data/faqs.js';
+import { ScrollSplitCard } from './ui/ScrollSplitCard';
 
 const EXCHANGE_RATE = 35; // 1 USD = 35 THB
 
@@ -186,6 +188,212 @@ function Magnet({ children, padding = 35, magnetStrength = 0.3, active = true, s
     </div>
   );
 }
+
+
+// 100% Real-world Flight Matching for Thailand <-> Da Nang (DAD)
+const FLIGHT_SCHEDULES = {
+  BKK: {
+    originCityVi: 'Bangkok (Suvarnabhumi - BKK)',
+    originCityTh: 'กรุงเทพฯ (สุวรรณภูมิ - BKK)',
+    originCityEn: 'Bangkok (Suvarnabhumi - BKK)',
+    flights: [
+      {
+        airline: 'VietJet Air',
+        flightNo: 'VZ960',
+        depTime: '10:50',
+        arrTime: '12:30',
+        tagVi: 'Khuyên Dùng: Lên Bà Nà Ngay',
+        tagTh: 'แนะนำ: ขึ้นบานาฮิลล์ทันที',
+        tagEn: 'Recommended: Direct Ba Na Hills',
+        noteVi: 'Đón sân bay lúc 12:30, di chuyển thẳng lên Bà Nà Hills ăn trưa buffet và nhận phòng Mercure 4* trọn vẹn.',
+        noteTh: 'รับจากสนามบิน 12:30 น. เดินทางตรงสู่บานาฮิลล์ ทานบุฟเฟ่ต์และเช็คอิน Mercure 4* เต็มวัน',
+        noteEn: '12:30 airport pickup, direct transfer to Ba Na Hills for lunch buffet and full Mercure 4* stay.',
+        isLate: false
+      },
+      {
+        airline: 'Bangkok Airways',
+        flightNo: 'PG947',
+        depTime: '11:00',
+        arrTime: '12:40',
+        tagVi: 'Khuyên Dùng: Lên Bà Nà Ngay',
+        tagTh: 'แนะนำ: ขึ้นบานาฮิลล์ทันที',
+        tagEn: 'Recommended: Direct Ba Na Hills',
+        noteVi: 'Đón sân bay lúc 12:40, xe riêng đưa thẳng lên chân núi Bà Nà, trải nghiệm trọn vẹn hoàng hôn đỉnh núi.',
+        noteTh: 'รับจากสนามบิน 12:40 น. รถรับส่งส่วนตัวตรงสู่บานาฮิลล์ สัมผัสบรรยากาศยามเย็นบนยอดเขา',
+        noteEn: '12:40 pickup, private transfer to Ba Na Hills, enjoy stunning sunset on the peak.',
+        isLate: false
+      },
+      {
+        airline: 'Vietnam Airlines',
+        flightNo: 'VN606',
+        depTime: '19:30',
+        arrTime: '21:10',
+        tagVi: 'Chuyến Tối: Đổi Lịch Đêm 1',
+        tagTh: 'ไฟลท์ค่ำ: ปรับพักในเมืองคืนแรก',
+        tagEn: 'Evening Flight: Flexible Night 1',
+        noteVi: 'Chuyến tối cáp treo đóng cửa: Xe đón về nhận phòng khách sạn 4* trung tâm Đà Nẵng, chuyển lịch Bà Nà sang Ngày 2 trọn vẹn.',
+        noteTh: 'กระเช้าปิดช่วงค่ำ: รถรับเช็คอินโรงแรม 4* ดานัง แล้วปรับโปรแกรมขึ้นบานาฮิลล์เต็มวันในวันที่ 2',
+        noteEn: 'Cable car closes in evening: Pickup to 4* Da Nang hotel, full Ba Na Hills day moves to Day 2.',
+        isLate: true
+      }
+    ],
+    inboundFlight: {
+      airline: 'VietJet / Bangkok Airways',
+      flightNo: 'VZ961 / PG948',
+      depTime: '13:15 / 13:35',
+      arrTime: '15:00 / 15:15',
+      noteVi: 'Đón tại khách sạn sau bữa trưa Ngày 3, tiễn sân bay Đà Nẵng trước 2 tiếng làm thủ tục thuận tiện.',
+      noteTh: 'รับจากโรงแรมหลังมื้อเที่ยงวันที่ 3 ส่งสนามบินดานังล่วงหน้า 2 ชั่วโมงก่อนเวลาบิน',
+      noteEn: 'Pickup after Day 3 lunch, transfer to DAD airport 2 hours prior to flight departure.'
+    }
+  },
+  DMK: {
+    originCityVi: 'Bangkok (Don Mueang - DMK)',
+    originCityTh: 'กรุงเทพฯ (ดอนเมือง - DMK)',
+    originCityEn: 'Bangkok (Don Mueang - DMK)',
+    flights: [
+      {
+        airline: 'Thai AirAsia',
+        flightNo: 'FD636',
+        depTime: '10:00',
+        arrTime: '11:40',
+        tagVi: 'Giờ Vàng: Tối Ưu Nhất',
+        tagTh: 'เวลาทอง: สมบูรณ์แบบที่สุด',
+        tagEn: 'Golden Hour: Most Optimal',
+        noteVi: 'Hạ cánh 11:40: Xe đưa đoàn thưởng thức bữa trưa đặc sản Ngon Thị Hoa trước khi lên cáp treo nhận phòng Bà Nà.',
+        noteTh: 'ลงจอด 11:40 น. ทานอาหารพื้นเมือง Ngon Thi Hoa ก่อนขึ้นกระเช้าเช็คอิน Mercure บานาฮิลล์',
+        noteEn: 'Land at 11:40: Enjoy Ngon Thi Hoa lunch before ascending Ba Na Hills to check in Mercure.',
+        isLate: false
+      },
+      {
+        airline: 'Thai AirAsia',
+        flightNo: 'FD638',
+        depTime: '16:45',
+        arrTime: '18:25',
+        tagVi: 'Chuyến Chiều: Đổi Lịch Đêm 1',
+        tagTh: 'ไฟลท์เย็น: ปรับพักในเมืองคืนแรก',
+        tagEn: 'Afternoon Flight: Flexible Night 1',
+        noteVi: 'Hạ cánh chiều tối: Xe đón về ăn tối và nhận phòng khách sạn 4* Đà Nẵng, chuyển tham quan Bà Nà sang Ngày 2.',
+        noteTh: 'ถึงช่วงเย็น: รถรับทานมื้อค่ำและพักโรงแรม 4* ดานัง ปรับเที่ยวบานาฮิลล์เต็มวันในวันที่ 2',
+        noteEn: 'Arrive evening: Pickup for dinner and 4* Da Nang hotel, full Ba Na tour moves to Day 2.',
+        isLate: true
+      }
+    ],
+    inboundFlight: {
+      airline: 'Thai AirAsia',
+      flightNo: 'FD637 / FD639',
+      depTime: '12:10 / 18:55',
+      arrTime: '13:50 / 20:40',
+      noteVi: 'Linh hoạt tiễn sân bay theo giờ bay khứ hồi của quý khách, bảo đảm đúng giờ và thoải mái.',
+      noteTh: 'ส่งสนามบินอย่างตรงเวลาตามตารางบินขากลับ สะดวกสบายไร้กังวล',
+      noteEn: 'Flexible return airport transfer matching your flight schedule.'
+    }
+  },
+  CNX: {
+    originCityVi: 'Chiang Mai (CNX)',
+    originCityTh: 'เชียงใหม่ (CNX)',
+    originCityEn: 'Chiang Mai (CNX)',
+    flights: [
+      {
+        airline: 'Thai AirAsia',
+        flightNo: 'FD648',
+        depTime: '12:35',
+        arrTime: '14:15',
+        tagVi: 'Bay Thẳng Tiện Lợi',
+        tagTh: 'บินตรงสะดวกสบาย',
+        tagEn: 'Direct Flight Convenience',
+        noteVi: 'Bay thẳng Chiang Mai - Đà Nẵng: Đón sân bay 14:15, đưa thẳng lên cáp treo Bà Nà nhận phòng và ngắm hoàng hôn.',
+        noteTh: 'บินตรงเชียงใหม่-ดานัง: รับจากสนามบิน 14:15 น. ขึ้นกระเช้าบานาฮิลล์ เช็คอินและชมวิวพระอาทิตย์ตก',
+        noteEn: 'Direct flight Chiang Mai - Da Nang: 14:15 pickup, direct to Ba Na Hills for sunset.',
+        isLate: false
+      }
+    ],
+    inboundFlight: {
+      airline: 'Thai AirAsia',
+      flightNo: 'FD649',
+      depTime: '14:45',
+      arrTime: '16:35',
+      noteVi: 'Đón tại trung tâm Đà Nẵng lúc 12:30 sau bữa trưa Madam Lân, đưa ra sân bay quốc tế Đà Nẵng.',
+      noteTh: 'รับจากในเมือง 12:30 น. หลังมื้อเที่ยง Madam Lan ส่งถึงสนามบินดานังตรงเวลา',
+      noteEn: 'Pickup at 12:30 after Madam Lan lunch, transfer to Da Nang International Airport.'
+    }
+  }
+};
+
+const THAI_PARTNERS = [
+  'Quality Express', 'CompaxWorld', 'Merryland Travel', 'Avenue Inter Travel',
+  'Go Holiday Tour', 'Regal Travel', 'Siam Orchard Group', 'World Explorer',
+  'Best International', 'TTN Plus Tour'
+];
+
+const OPTIONAL_ACTIVITIES = [
+  {
+    id: 'lantern-shore',
+    category: 'hoian',
+    nameVi: 'Thả hoa đăng trên bờ sông Hoài',
+    nameTh: 'ลอยกระทงกระดาษริมแม่น้ำฮว่าย',
+    nameEn: 'On-shore Lantern Floating on Hoai River',
+    priceUsd: 1,
+    descVi: 'Mỗi khách 1 hoa đăng truyền thống thả cầu may mắn bên bờ sông Hoài lung linh',
+    descTh: 'กระทงกระดาษพื้นเมือง 1 ชิ้น/ท่าน ลอยริมแม่น้ำฮว่ายเพื่อความเป็นสิริมงคล',
+    descEn: '1 traditional paper lantern per guest floated from the riverbank for good fortune'
+  },
+  {
+    id: 'lantern-boat',
+    category: 'hoian',
+    nameVi: 'Thuyền gỗ du ngoạn + Thả hoa đăng dưới nước',
+    nameTh: 'นั่งเรือไม้ล่องแม่น้ำฮว่าย + ลอยกระทงกลางน้ำ',
+    nameEn: 'Wooden Boat Cruise + Water Lantern Floating',
+    priceUsd: 5,
+    descVi: 'Du ngoạn thuyền gỗ ngắm phố cổ về đêm 20 phút và thả hoa đăng trực tiếp giữa dòng sông',
+    descTh: 'ล่องเรือไม้ชมเมืองโบราณยามค่ำคืน 20 นาที พร้อมลอยกระทงกลางสายน้ำ',
+    descEn: '20-minute wooden boat cruise along ancient town with lantern floating on water'
+  },
+  {
+    id: 'cyclo-tour',
+    category: 'hoian',
+    nameVi: 'Trải nghiệm Xích lô Phố cổ Hội An',
+    nameTh: 'นั่งรถสามล้อซิโคล่ชมเมืองโบราณฮอยอัน',
+    nameEn: 'Hoi An Ancient Town Vintage Cyclo Ride',
+    priceUsd: 6,
+    descVi: 'Hành trình 30 phút dạo quanh các góc phố đèn lồng cổ kính bằng xích lô truyền thống',
+    descTh: 'สัมผัสบรรยากาศย้อนยุค 30 นาที นั่งรถซิโคล่ชมบ้านโบราณและโคมไฟหลากสี',
+    descEn: '30-minute authentic cyclo tour through lantern-lit ancient streets and heritage alleys'
+  },
+  {
+    id: 'electric-cart',
+    category: 'hoian',
+    nameVi: 'Xe điện dạo Phố cổ & Làng nghề Hội An',
+    nameTh: 'รถรางไฟฟ้านำเที่ยวเมืองเก่าและหมู่บ้านหัตถกรรม',
+    nameEn: 'Eco Electric Cart Tour in Hoi An',
+    priceUsd: 4,
+    descVi: 'Xe điện êm ái thoáng mát tham quan các tuyến phố di sản và khu làng nghề truyền thống',
+    descTh: 'รถรางไฟฟ้าพลังงานสะอาด นั่งสบายชมรอบเขตเมืองมรดกและวิถีชีวิตท้องถิ่น',
+    descEn: 'Eco-friendly electric shuttle exploring heritage perimeter and craft quarters'
+  },
+  {
+    id: 'marble-mountains',
+    category: 'danang',
+    nameVi: 'Vé tham quan & Thang máy Ngũ Hành Sơn',
+    nameTh: 'บัตรเข้าชมเขาหินอ่อนงูฮัญเซิน + ลิฟต์แก้ว',
+    nameEn: 'Marble Mountains Sightseeing & Glass Elevator',
+    priceUsd: 5,
+    descVi: 'Bao gồm vé thắng cảnh Ngũ Hành Sơn, vé thang máy 2 chiều và khám phá Động Tàng Chơn, Động Huyền Không',
+    descTh: 'รวมค่าเข้าชมเขาหินอ่อน ลิฟต์แก้วขึ้น-ลง 2 ขา ชมถ้ำเหวียนคงและเจดีย์ศักดิ์สิทธิ์',
+    descEn: 'Includes entrance ticket, 2-way glass elevator, Huyen Khong Cave & pagodas'
+  },
+  {
+    id: 'cham-museum',
+    category: 'danang',
+    nameVi: 'Vé Bảo tàng Điêu khắc Chăm Đà Nẵng',
+    nameTh: 'บัตรเข้าชมพิพิธภัณฑ์ประติมากรรมจาม ดานัง',
+    nameEn: 'Da Nang Museum of Cham Sculpture Ticket',
+    priceUsd: 4,
+    descVi: 'Chiêm ngưỡng bộ sưu tập cổ vật điêu khắc văn hóa Champa độc bản lớn nhất thế giới',
+    descTh: 'ชมคอลเลกชันโบราณวัตถุประติมากรรมอาณาจักรจามปาที่ใหญ่และสมบูรณ์ที่สุดในโลก',
+    descEn: 'Admission to the world\'s largest collection of Cham sandstone sculpture treasures'
+  }
+];
 
 // Exact pricing matrix from PDF
 const PRICE_GRID = [
@@ -490,7 +698,7 @@ async function generateAndDownloadPoster({
     ctx.font = '22px system-ui, -apple-system, sans-serif';
     ctx.fillText('📞 Hotline / WhatsApp: (+84) 987.43.43.43  •  💬 LINE OA: @greenseatour', 540, 1640);
     ctx.fillText('🌐 Website: www.greensealandtourvietnam.com', 540, 1685);
-    ctx.fillText('📍 516 Nguyễn Hữu Thọ, Đà Nẵng, Việt Nam', 540, 1730);
+    ctx.fillText('📍 514 - 516 Nguyễn Hữu Thọ, Q. Cẩm Lệ, TP. Đà Nẵng, Việt Nam', 540, 1730);
   }
 
   const today = new Date().toLocaleDateString('vi-VN');
@@ -517,6 +725,12 @@ export default function FITDAD01LandingPage({ onBack, defaultLang = 'VI' }) {
   }, [exchangeRate]);
   const [activeDayTab, setActiveDayTab] = useState(1);
   const [activeGalleryIdx, setActiveGalleryIdx] = useState(0); // Interactive Accordion Gallery
+  const [activeFlightOrigin, setActiveFlightOrigin] = useState('BKK'); // 'BKK', 'DMK', 'CNX'
+  const [expandedFaqId, setExpandedFaqId] = useState(null);
+  const [selectedAddons, setSelectedAddons] = useState([]);
+  const [showAddonsModal, setShowAddonsModal] = useState(false);
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
+
   
   // Auto scroll to target section if URL hash present
   useEffect(() => {
@@ -622,13 +836,24 @@ export default function FITDAD01LandingPage({ onBack, defaultLang = 'VI' }) {
     const validPax = Math.max(2, Math.min(14, newPax));
     setPaxCount(validPax);
     setSelectedBandIdx(getBandIdxForPax(validPax));
+    if (validPax % 2 !== 0) {
+      setSingleRooms(1);
+    } else {
+      setSingleRooms(0);
+    }
   };
 
   const handleBandChange = (newBandIdx) => {
     const idx = Number(newBandIdx);
     setSelectedBandIdx(idx);
     const defaultPaxPerBand = [2, 4, 6, 8, 10, 12];
-    setPaxCount(defaultPaxPerBand[idx] || 2);
+    const newCount = defaultPaxPerBand[idx] || 2;
+    setPaxCount(newCount);
+    if (newCount % 2 !== 0) {
+      setSingleRooms(1);
+    } else {
+      setSingleRooms(0);
+    }
   };
   
   // UI states
@@ -649,29 +874,35 @@ export default function FITDAD01LandingPage({ onBack, defaultLang = 'VI' }) {
   const isTh = language === 'TH';
   const isVi = language === 'VI';
 
-  // Calculate Prices (Consistent & Transparent Surcharge Math)
+  // Calculate Prices (Consistent & Transparent Surcharge Math + Optional Excursions)
   const calculation = useMemo(() => {
     const baseNetPerPax = selectedBand ? selectedBand.usd : 230;
     const holidaySurchargePerPax = isHoliday ? 18 : 0;
     const singleSupp = isHoliday ? 88 : 70;
     const singleRoomsTotal = singleRooms * singleSupp;
     
+    // Optional Excursions calculation
+    const addonsPerPaxTotal = selectedAddons.reduce((sum, id) => {
+      const item = OPTIONAL_ACTIVITIES.find(a => a.id === id);
+      return sum + (item ? item.priceUsd : 0);
+    }, 0);
+    const selectedAddonsList = selectedAddons.map(id => OPTIONAL_ACTIVITIES.find(a => a.id === id)).filter(Boolean);
+    const addonsTotalGroup = addonsPerPaxTotal * paxCount;
+
     let limoExtra = 0;
     if (upgradeLimousine === 'limo9') limoExtra = 89;
     if (upgradeLimousine === 'limo15') limoExtra = 168;
 
     // Total Net for the whole group (Green Sea receives)
-    const netPerPax = baseNetPerPax + holidaySurchargePerPax;
+    const netPerPax = baseNetPerPax + holidaySurchargePerPax + addonsPerPaxTotal;
     const totalNetGroup = (netPerPax * paxCount) + singleRoomsTotal + limoExtra;
     const netPerPaxAvg = totalNetGroup / paxCount;
     
     // Base Tour Selling Price per pax (Twin/Double sharing standard):
     const marginMultiplier = 1 + (agentMarginPercent / 100);
-    const baseSellPerPax = baseNetPerPax * marginMultiplier;
+    const baseSellPerPax = (baseNetPerPax * marginMultiplier) + addonsPerPaxTotal;
     const limoSellPerPax = limoExtra / paxCount;
     
-    // Per-pax tour rate stays constant (e.g. $218 / pax for 10 pax at 10% margin)
-    // Single room supplement is treated as an individual add-on option, NOT divided into the base per-pax price!
     const suggestedSellPerPax = Math.round(baseSellPerPax + holidaySurchargePerPax + limoSellPerPax);
     
     // Total retail group price = (Base per pax * paxCount) + single room add-ons
@@ -683,13 +914,16 @@ export default function FITDAD01LandingPage({ onBack, defaultLang = 'VI' }) {
       singleSupp,
       singleRoomsTotal,
       limoExtra,
+      addonsPerPaxTotal,
+      selectedAddonsList,
+      addonsTotalGroup,
       totalNetGroup,
       netPerPaxAvg: Math.round(netPerPaxAvg),
       suggestedSellPerPax,
       totalSellGroup,
       agentProfit: Math.max(0, Math.round(agentProfit))
     };
-  }, [selectedBand, paxCount, singleRooms, upgradeLimousine, isHoliday, agentMarginPercent]);
+  }, [selectedBand, paxCount, singleRooms, upgradeLimousine, isHoliday, agentMarginPercent, selectedAddons]);
 
   const formatPrice = (usdAmount) => {
     if (currency === 'THB') {
@@ -726,7 +960,7 @@ export default function FITDAD01LandingPage({ onBack, defaultLang = 'VI' }) {
 
 👥 Số lượng khách: ${paxCount} khách (${getBandLabel(selectedBand)})
 💰 Giá báo đề xuất: ${currency === 'THB' ? `฿${Math.round(calculation.suggestedSellPerPax * effectiveRate).toLocaleString('en-US')}` : `${calculation.suggestedSellPerPax} USD`} / khách (Tỷ giá: 1 USD = ${effectiveRate} THB)
-🏨 Phụ thu phòng đơn: ${singleRooms > 0 ? `${singleRooms} phòng (+${formatPrice(calculation.singleSupp)}/phòng)` : 'Không có'}
+🏨 Phụ thu phòng đơn: ${singleRooms > 0 ? `${singleRooms} phòng (+${formatPrice(calculation.singleSupp)}/phòng)` : 'Không có'}${calculation.selectedAddonsList.length > 0 ? `\n🎯 Dịch vụ tham quan mở rộng: ${calculation.selectedAddonsList.map(a => `${a.nameVi} (+${a.priceUsd})`).join(', ')}` : ''}
 📄 Xem chi tiết hình ảnh & lịch trình: ${agentConfig?.isAgent ? clientShareUrl : 'https://greenseatour.vn/?tour=fitdad01&mode=landing'}
 🏢 ${agentConfig?.isAgent && agentConfig?.name ? `Đại lý: ${agentConfig.name}` : 'GreenSeaTour - Land Tour Operator Chuyên Tuyến Thái Lan'}
 ${agentConfig?.isAgent ? (agentConfig.tel ? `📞 Hotline: ${agentConfig.tel}` : '') : '📞 Phone / WhatsApp: (+84) 987.43.43.43'}
@@ -746,7 +980,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
 
 👥 จำนวนผู้เดินทาง: ${paxCount} ท่าน (${selectedBand.paxLabelTh})
 💰 ราคาเสนอพิเศษ: ${currency === 'THB' ? `฿${Math.round(calculation.suggestedSellPerPax * effectiveRate).toLocaleString('en-US')}` : `${calculation.suggestedSellPerPax} USD`} / ท่าน (อัตราแลกเปลี่ยน: 1 USD = ${effectiveRate} THB)
-🏨 ห้องพักเดี่ยว: ${singleRooms > 0 ? `${singleRooms} ห้อง (+${formatPrice(calculation.singleSupp)}/ห้อง)` : 'ไม่มี'}
+🏨 ห้องพักเดี่ยว: ${singleRooms > 0 ? `${singleRooms} ห้อง (+${formatPrice(calculation.singleSupp)}/ห้อง)` : 'ไม่มี'}${calculation.selectedAddonsList.length > 0 ? `\n🎯 บริการท่องเที่ยวเสริม: ${calculation.selectedAddonsList.map(a => `${a.nameTh} (+${a.priceUsd})`).join(', ')}` : ''}
 📄 ดูโปรแกรมและรูปภาพเต็ม: ${agentConfig?.isAgent ? clientShareUrl : 'https://greenseatour.vn/?tour=fitdad01&mode=landing'}
 🏢 ${agentConfig?.isAgent && agentConfig?.name ? `ตัวแทนจำหน่าย: ${agentConfig.name}` : 'GreenSeaTour - บริษัทแลนด์เวียดนาม สำหรับกรุ๊ปไทย'}
 ${agentConfig?.isAgent ? (agentConfig.tel ? `📞 เบอร์โทร / Hotline: ${agentConfig.tel}` : '') : '📞 Phone / WhatsApp: (+84) 987.43.43.43'}
@@ -770,171 +1004,237 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
       WebkitFontSmoothing: 'antialiased'
     }}>
       
-      {/* 1. LUXURY GLASS TOPBAR */}
-      <header style={{
-        position: 'sticky', top: 0, zIndex: 100,
-        background: 'rgba(255, 255, 255, 0.92)',
-        backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
-        padding: '0.75rem 2rem',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        flexWrap: 'wrap', gap: '1rem',
-        boxShadow: '0 4px 20px -5px rgba(0,0,0,0.03)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-          {!agentConfig.isAgent && (
-            <button 
-              onClick={() => {
-                if (onBack) {
-                  onBack();
-                } else {
-                  window.location.href = '/';
-                }
-              }}
-              style={{
-                display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.5rem 0.95rem',
-                borderRadius: '0.6rem', border: '1px solid #e2e8f0', background: '#f8fafc',
-                fontSize: '0.85rem', fontWeight: 700, color: '#334155', cursor: 'pointer',
-                transition: 'all 0.2s'
-              }}
-            >
-              <ArrowLeft size={16} />
-              {isVi ? 'Về Danh Mục Tour' : isTh ? 'กลับสู่ Catalog B2B' : 'Back to Catalog'}
-            </button>
-          )}
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            {agentConfig.isAgent ? (
-              <div style={{
-                width: '38px', height: '38px', borderRadius: '10px',
-                background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: '#ffffff', fontWeight: 900, fontSize: '1.2rem',
-                boxShadow: '0 2px 8px rgba(5,150,105,0.3)', flexShrink: 0
-              }}>
-                {agentConfig.name ? agentConfig.name.charAt(0).toUpperCase() : '✈️'}
-              </div>
-            ) : (
-              <img src="/assets/logo-transparent.png" alt="Logo" style={{ height: '36px', width: '36px', objectFit: 'contain' }} />
+      {/* 1. REACTBITS FLOATING GLASS NAVBAR */}
+      <div style={{ position: 'sticky', top: '0.75rem', zIndex: 1000, maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+        <header style={{
+          background: 'rgba(255, 255, 255, 0.88)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(226, 232, 240, 0.85)',
+          borderRadius: '9999px',
+          padding: '0.45rem 1rem 0.45rem 0.65rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.75rem',
+          boxShadow: '0 10px 35px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset'
+        }}>
+          {/* Left: Catalog Pill + Logo */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            {!agentConfig.isAgent && (
+              <button
+                onClick={() => {
+                  if (onBack) onBack();
+                  else window.location.href = '/';
+                }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  padding: '0.38rem 0.85rem',
+                  borderRadius: '9999px',
+                  border: '1px solid #cbd5e1',
+                  background: '#ffffff',
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
+                  color: '#334155',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#059669'; e.currentTarget.style.color = '#00533d'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.color = '#334155'; }}
+              >
+                <ArrowLeft size={13} />
+                <span>{isVi ? 'Catalog' : isTh ? 'แคตตาล็อก' : 'Catalog'}</span>
+              </button>
             )}
-            <div>
-              <div style={{ fontWeight: 900, fontSize: '1.2rem', color: '#00533d', letterSpacing: '-0.4px', lineHeight: 1.1, fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
-                {agentConfig.isAgent ? (agentConfig.name ? agentConfig.name.toUpperCase() : (isVi ? 'ĐẠI LÝ DU LỊCH' : isTh ? 'ตัวแทนท่องเที่ยว' : 'TRAVEL AGENCY')) : 'GREEN SEA TOUR'}
-              </div>
-              <div style={{ fontSize: '0.68rem', color: '#059669', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.6px' }}>
-                {agentConfig.isAgent 
-                  ? (isVi ? 'Đại Lý Du Lịch Chuyên Nghiệp' : isTh ? 'ตัวแทนท่องเที่ยวอย่างเป็นทางการ' : 'Authorized Travel Partner')
-                  : (isVi ? 'DMC Inbound Việt Nam Cho Thị Trường Thái Lan' : isTh ? 'DMC เวียดนาม สำหรับตลาดไทย • B2B Wholesaler' : 'Vietnam Inbound DMC • Thailand Market')}
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              {agentConfig.isAgent ? (
+                <div style={{
+                  width: '32px', height: '32px', borderRadius: '8px',
+                  background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#ffffff', fontWeight: 900, fontSize: '1rem',
+                  boxShadow: '0 2px 6px rgba(5,150,105,0.3)', flexShrink: 0
+                }}>
+                  {agentConfig.name ? agentConfig.name.charAt(0).toUpperCase() : '✈️'}
+                </div>
+              ) : (
+                <img src="/assets/logo-transparent.png" alt="Logo" style={{ height: '30px', width: '30px', objectFit: 'contain' }} />
+              )}
+              <div className="hidden sm:block">
+                <div style={{ fontWeight: 900, fontSize: '0.95rem', color: '#00533d', letterSpacing: '-0.3px', lineHeight: 1.1, fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
+                  {agentConfig.isAgent ? (agentConfig.name ? agentConfig.name.toUpperCase() : 'TRAVEL AGENCY') : 'GREEN SEA TOUR'}
+                </div>
+                <div style={{ fontSize: '0.62rem', color: '#059669', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                  {agentConfig.isAgent ? (isVi ? 'Đại Lý Phân Phối' : 'ตัวแทนท่องเที่ยว') : (isVi ? 'Vietnam Inbound DMC' : 'Vietnam Land Tour')}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
-          {/* Agent Mode Trigger Button (Hidden in Client Share Mode) */}
-          {!agentConfig.isAgent && (
-            <button
-              onClick={() => setShowAgentModal(true)}
-              type="button"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                padding: '0.45rem 0.85rem', borderRadius: '0.55rem',
-                background: '#f1f5f9',
-                color: '#334155',
-                border: '1px solid #cbd5e1',
-                fontWeight: 800, fontSize: '0.8rem', cursor: 'pointer',
-                transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
-              }}
-            >
-              <UserCheck size={15} style={{ color: '#059669' }} />
-              <span>{isVi ? 'Chế độ Đại lý (B2B)' : isTh ? 'โหมดตัวแทน B2B' : 'Agent White-Label'}</span>
-            </button>
-          )}
-          
-          {/* Flag-only Language Selector with Crisp SVG Flags */}
-          <div style={{
-            display: 'flex', alignItems: 'center', background: '#f8fafc', padding: '3px 4px',
-            borderRadius: '0.65rem', border: '1.5px solid #cbd5e1', gap: '4px',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
+          {/* Center: Main Navigation Capsule */}
+          <nav className="hidden lg:flex" style={{
+            display: 'flex',
+            alignItems: 'center',
+            background: '#f1f5f9',
+            padding: '3px',
+            borderRadius: '9999px',
+            border: '1px solid #e2e8f0',
+            gap: '2px'
           }}>
-            <button
-              onClick={() => setLanguage('VI')}
-              title="Tiếng Việt (Vietnamese)"
-              style={{
-                padding: '4px 6px', borderRadius: '0.45rem', border: 'none',
-                background: language === 'VI' ? '#00533d' : 'transparent',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                transition: 'all 0.15s',
-                boxShadow: language === 'VI' ? '0 1px 3px rgba(0, 83, 61, 0.3)' : 'none',
-                opacity: language === 'VI' ? 1 : 0.65,
-                transform: language === 'VI' ? 'scale(1.05)' : 'scale(1)'
-              }}
+            <a
+              href="#scroll-split-section"
+              style={{ padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, color: '#475569', textDecoration: 'none', transition: 'all 0.15s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#00533d'; e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
             >
-              <VietnamFlag width={22} height={15} />
-            </button>
-            <button
-              onClick={() => setLanguage('TH')}
-              title="ภาษาไทย (Thai)"
-              style={{
-                padding: '4px 6px', borderRadius: '0.45rem', border: 'none',
-                background: language === 'TH' ? '#00533d' : 'transparent',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                transition: 'all 0.15s',
-                boxShadow: language === 'TH' ? '0 1px 3px rgba(0, 83, 61, 0.3)' : 'none',
-                opacity: language === 'TH' ? 1 : 0.65,
-                transform: language === 'TH' ? 'scale(1.05)' : 'scale(1)'
-              }}
+              {isVi ? '3 Thế Mạnh' : isTh ? '3 จุดเด่น' : '3 Advantages'}
+            </a>
+            <a
+              href="#itinerary"
+              style={{ padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, color: '#475569', textDecoration: 'none', transition: 'all 0.15s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#00533d'; e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
             >
-              <ThailandFlag width={22} height={15} />
-            </button>
-            <button
-              onClick={() => setLanguage('EN')}
-              title="English"
-              style={{
-                padding: '4px 6px', borderRadius: '0.45rem', border: 'none',
-                background: language === 'EN' ? '#00533d' : 'transparent',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                transition: 'all 0.15s',
-                boxShadow: language === 'EN' ? '0 1px 3px rgba(0, 83, 61, 0.3)' : 'none',
-                opacity: language === 'EN' ? 1 : 0.65,
-                transform: language === 'EN' ? 'scale(1.05)' : 'scale(1)'
-              }}
+              {isVi ? 'Lịch Trình' : isTh ? 'โปรแกรมทัวร์' : 'Itinerary'}
+            </a>
+            <a
+              href="#flight-schedule-matching"
+              style={{ padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, color: '#475569', textDecoration: 'none', transition: 'all 0.15s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#00533d'; e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
             >
-              <UKFlag width={22} height={15} />
-            </button>
+              {isVi ? 'Lịch Bay' : isTh ? 'ตารางเที่ยวบิน' : 'Flights'}
+            </a>
+            <a
+              href="#pricing-terminal"
+              style={{ padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, color: '#475569', textDecoration: 'none', transition: 'all 0.15s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#00533d'; e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
+            >
+              {isVi ? 'Bảng Giá B2B' : isTh ? 'ตารางราคา B2B' : 'B2B Rates'}
+            </a>
+            <a
+              href="#faq-section"
+              style={{ padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.78rem', fontWeight: 700, color: '#475569', textDecoration: 'none', transition: 'all 0.15s' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#00533d'; e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
+            >
+              {isVi ? 'FAQ' : isTh ? 'คำถามที่พบบ่อย' : 'FAQ'}
+            </a>
+          </nav>
+
+          {/* Right: Actions Island */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            {!agentConfig.isAgent && (
+              <button
+                onClick={() => setShowAgentModal(true)}
+                type="button"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+                  padding: '0.38rem 0.85rem', borderRadius: '9999px',
+                  background: '#f8fafc',
+                  color: '#334155',
+                  border: '1px solid #cbd5e1',
+                  fontWeight: 700, fontSize: '0.78rem', cursor: 'pointer',
+                  transition: 'all 0.2s', boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#ecfdf5'; e.currentTarget.style.borderColor = '#a7f3d0'; e.currentTarget.style.color = '#00533d'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#f8fafc'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.color = '#334155'; }}
+              >
+                <UserCheck size={14} style={{ color: '#059669' }} />
+                <span>{isVi ? 'Chế độ Đại lý' : isTh ? 'โหมดตัวแทน' : 'Agent Mode'}</span>
+              </button>
+            )}
+            
+            {/* 3-Flag Segmented Control */}
+            <div style={{
+              display: 'flex', alignItems: 'center', background: '#f1f5f9', padding: '2px',
+              borderRadius: '9999px', border: '1px solid #e2e8f0', gap: '2px'
+            }}>
+              <button
+                onClick={() => setLanguage('VI')}
+                title="Tiếng Việt"
+                style={{
+                  padding: '3px 6px', borderRadius: '9999px', border: 'none',
+                  background: language === 'VI' ? '#00533d' : 'transparent',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.15s',
+                  opacity: language === 'VI' ? 1 : 0.55
+                }}
+              >
+                <VietnamFlag width={18} height={12} />
+              </button>
+              <button
+                onClick={() => setLanguage('TH')}
+                title="ภาษาไทย"
+                style={{
+                  padding: '3px 6px', borderRadius: '9999px', border: 'none',
+                  background: language === 'TH' ? '#00533d' : 'transparent',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.15s',
+                  opacity: language === 'TH' ? 1 : 0.55
+                }}
+              >
+                <ThailandFlag width={18} height={12} />
+              </button>
+              <button
+                onClick={() => setLanguage('EN')}
+                title="English"
+                style={{
+                  padding: '3px 6px', borderRadius: '9999px', border: 'none',
+                  background: language === 'EN' ? '#00533d' : 'transparent',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.15s',
+                  opacity: language === 'EN' ? 1 : 0.55
+                }}
+              >
+                <UKFlag width={18} height={12} />
+              </button>
+            </div>
+
+            {/* WhatsApp / LINE Micro Pills */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <a
+                href={agentConfig.isAgent && agentConfig.tel ? `tel:${agentConfig.tel}` : "https://wa.me/84987434343"}
+                target={agentConfig.isAgent && agentConfig.tel ? "_self" : "_blank"}
+                rel="noreferrer"
+                title={agentConfig.isAgent && agentConfig.tel ? `Hotline: ${agentConfig.tel}` : 'WhatsApp (+84) 987.43.43.43'}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  width: '28px', height: '28px', borderRadius: '9999px',
+                  background: '#25D366', color: '#fff', textDecoration: 'none',
+                  boxShadow: '0 2px 6px rgba(37, 211, 102, 0.25)', transition: 'transform 0.15s'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <Phone size={13} />
+              </a>
+
+              <a
+                href={agentConfig.isAgent && agentConfig.line ? (agentConfig.line.startsWith('http') ? agentConfig.line : `https://line.me/ti/p/~${agentConfig.line.replace('@', '')}`) : "https://lin.ee/Pwro79k"}
+                target="_blank"
+                rel="noreferrer"
+                title={agentConfig.isAgent && agentConfig.line ? `LINE ID: ${agentConfig.line}` : 'LINE Official (Green Sea Tour)'}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  width: '28px', height: '28px', borderRadius: '9999px',
+                  background: '#00b900', color: '#fff', textDecoration: 'none',
+                  boxShadow: '0 2px 6px rgba(0, 185, 0, 0.25)', transition: 'transform 0.15s'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <MessageSquare size={13} />
+              </a>
+            </div>
           </div>
-
-          {/* Dynamic WhatsApp / Hotline */}
-          <a
-            href={agentConfig.isAgent && agentConfig.tel ? `tel:${agentConfig.tel}` : "https://wa.me/84987434343"}
-            target={agentConfig.isAgent && agentConfig.tel ? "_self" : "_blank"}
-            rel="noreferrer"
-            style={{
-              display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.45rem 0.95rem',
-              borderRadius: '0.55rem', background: '#25D366', color: '#fff', fontSize: '0.825rem',
-              fontWeight: 800, textDecoration: 'none', boxShadow: '0 2px 8px rgba(37, 211, 102, 0.25)'
-            }}
-          >
-            <Phone size={14} />
-            {agentConfig.isAgent && agentConfig.tel ? agentConfig.tel : '(+84) 987.43.43.43'}
-          </a>
-
-          {/* Dynamic LINE */}
-          <a
-            href={agentConfig.isAgent && agentConfig.line ? (agentConfig.line.startsWith('http') ? agentConfig.line : `https://line.me/ti/p/~${agentConfig.line.replace('@', '')}`) : "https://lin.ee/Pwro79k"}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.45rem 0.95rem',
-              borderRadius: '0.55rem', background: '#00b900', color: '#fff', fontSize: '0.825rem',
-              fontWeight: 800, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0, 185, 0, 0.25)'
-            }}
-          >
-            <MessageSquare size={14} />
-            {agentConfig.isAgent && agentConfig.line ? `LINE: ${agentConfig.line}` : 'LINE Official'}
-          </a>
-        </div>
-      </header>
+        </header>
+      </div>
 
       {/* 2. MAJESTIC CINEMATIC HERO SECTION */}
       <section style={{
@@ -1162,149 +1462,16 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
         </div>
       </section>
 
-      {/* 2.5 B2B DMC POSITIONING & AGENT SALES KIT (Option 2 - Hidden in White-Label Client Mode) */}
-      {!agentConfig.isAgent && !agentConfig.hideNet && (
-        <section style={{ maxWidth: '1240px', margin: '-2.5rem auto 2.5rem', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '1.25rem' }}>
-            
-            {/* Block 1: Operated by Green Sea Tour — Vietnam Inbound DMC */}
-            <div style={{
-              background: '#ffffff',
-              borderRadius: '1.25rem',
-              padding: '1.5rem 1.75rem',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 10px 30px -5px rgba(0,0,0,0.05)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: '0.85rem'
-            }}>
-              <div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#ecfdf5', color: '#00533d', padding: '0.3rem 0.75rem', borderRadius: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-                  <ShieldCheck size={14} style={{ color: '#059669' }} />
-                  {isVi ? 'Vận hành bởi Green Sea Tour' : isTh ? 'ดำเนินงานโดย Green Sea Tour' : 'Operated by Green Sea Tour'}
-                </div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', margin: '0 0 0.4rem', lineHeight: 1.3 }}>
-                  {isVi ? 'Vietnam Inbound DMC cho đối tác lữ hành Thái Lan' : isTh ? 'Vietnam Inbound DMC สำหรับบริษัททัวร์ไทย' : 'Vietnam Inbound DMC for Thai Travel Agencies'}
-                </h3>
-                <p style={{ color: '#475569', fontSize: '0.825rem', lineHeight: 1.5, margin: 0 }}>
-                  {isVi 
-                    ? 'Chương trình FITDAD01 được vận hành trực tiếp bởi Green Sea Tour — đơn vị land operator tại Việt Nam, hỗ trợ công ty tour Thái từ đón tiễn, khách sạn 4 sao, xe VIP, HDV tiếng Thái, nhà hàng, vé cáp treo đến chăm sóc đoàn trọn tuyến.'
-                    : isTh 
-                      ? 'โปรแกรมนี้ดำเนินงานโดย Green Sea Tour ทีมแลนด์โอเปอเรเตอร์ในเวียดนาม ดูแลครบตั้งแต่รับสนามบิน โรงแรม รถ ไกด์ ร้านอาหาร ตั๋วเข้าชม และการดูแลกรุ๊ประหว่างเดินทาง'
-                      : 'This FITDAD01 program is operated by Green Sea Tour, a Vietnam-based inbound land operator supporting Thai travel partners with airport transfers, 4-star hotels, transport, Thai guides, meals, tickets and on-trip care.'}
-                </p>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '0.25rem' }}>
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
-                    📍 Local Vietnam Operation
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Vận hành trực tiếp tại Đà Nẵng & Miền Trung' : 'ทีมงานประจำเวียดนาม ประสานงานตรง'}
-                  </div>
-                </div>
-
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
-                    🇹🇭 Thai Market Support
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'HDV tiếng Thái & thực đơn chuẩn vị' : 'ไกด์ภาษาไทย & อาหารรสชาติถูกปาก'}
-                  </div>
-                </div>
-
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
-                    💬 LINE-first Response
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Phản hồi báo giá & điều chỉnh nhanh qua LINE' : 'ตอบกลับและปรับโปรแกรมรวดเร็วผ่าน LINE'}
-                  </div>
-                </div>
-
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#00533d', marginBottom: '2px' }}>
-                    ⚡ Flexible Handling
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Linh hoạt xe, khách sạn, bữa ăn theo đoàn' : 'ปรับรถ โรงแรม อาหารตามต้องการ'}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Block 2: B2B Agent Sales Kit */}
-            <div style={{
-              background: '#ffffff',
-              borderRadius: '1.25rem',
-              padding: '1.5rem 1.75rem',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 10px 30px -5px rgba(0,0,0,0.05)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: '0.85rem'
-            }}>
-              <div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#eff6ff', color: '#1d4ed8', padding: '0.3rem 0.75rem', borderRadius: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-                  <Sparkles size={14} style={{ color: '#2563eb' }} />
-                  {isVi ? 'Tài liệu Sales Kit B2B' : isTh ? 'B2B Agent Sales Kit' : 'B2B Agent Sales Kit'}
-                </div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', margin: '0 0 0.4rem', lineHeight: 1.3 }}>
-                  {isVi ? 'Sales kit B2B cho đại lý và công ty tour' : isTh ? 'Sales Kit สำหรับบริษัททัวร์และเอเจนซี่' : 'B2B Sales Kit for Travel Partners'}
-                </h3>
-                <p style={{ color: '#475569', fontSize: '0.825rem', lineHeight: 1.5, margin: 0 }}>
-                  {isVi 
-                    ? 'Thiết kế riêng cho đội ngũ sales và đối tác lữ hành tư vấn khách FIT / đoàn gia đình / incentive. Toàn bộ giá NET, tài liệu PDF và công cụ xuất poster báo giá đã sẵn sàng sử dụng.'
-                    : isTh 
-                      ? 'หน้านี้ออกแบบสำหรับทีมขายและพาร์ทเนอร์ทัวร์ ใช้เสนอโปรแกรมให้ลูกค้า FIT / กรุ๊ปเล็ก / ครอบครัว / Incentive พร้อมข้อมูลราคา NET และรายละเอียดบริการสำหรับการทำใบเสนอราคา B2B'
-                      : 'Designed for travel agents and sales teams to present the FITDAD01 itinerary with transparent B2B NET rates, instant profit calculators and ready-to-share posters.'}
-                </p>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '0.25rem' }}>
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
-                    💰 NET Rate for Agents
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Bảng giá NET minh bạch theo từng mốc đoàn' : 'ราคา NET ชัดเจนตามจำนวนผู้เดินทาง'}
-                  </div>
-                </div>
-
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
-                    📄 Ready-to-Send PDF
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Lịch trình song ngữ định dạng chuẩn gửi khách' : 'โปรแกรมพร้อมส่งต่อให้ทีมขายและลูกค้า'}
-                  </div>
-                </div>
-
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
-                    📱 1-Click LINE Quote
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Sao chép văn bản báo giá hoặc xuất ảnh Poster' : 'คัดลอกข้อความหรือสร้างโปสเตอร์ส่ง LINE'}
-                  </div>
-                </div>
-
-                <div style={{ background: '#f8fafc', padding: '0.55rem 0.7rem', borderRadius: '0.55rem', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontWeight: 800, fontSize: '0.78rem', color: '#1e40af', marginBottom: '2px' }}>
-                    🏷️ White-Label Share
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.3 }}>
-                    {isVi ? 'Tạo link gắn thương hiệu đại lý & ẩn giá NET' : 'สร้างลิงก์ใส่แบรนด์ตัวแทน & ซ่อนราคา NET'}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
+      {/* 2.5 SCROLL SPLIT CARD — 3 Thế Mạnh Khi Hợp Tác Với Green Sea Tour */}
+      <div id="scroll-split-section" />
+      {!agentConfig.isAgent && (
+        <ScrollSplitCard
+          imageSrc="/assets/golden-bridge.jpg"
+          isVi={isVi}
+          isTh={isTh}
+          onOpenWhiteLabel={() => setShowAgentModal(true)}
+          onOpenQuote={() => setShowQuoteModal(true)}
+        />
       )}
 
       {/* 3. INTERACTIVE EXPANDING DESTINATION HIGHLIGHTS ACCORDION */}
@@ -1572,7 +1739,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                   gap: '1.25rem', background: '#f8fafc', padding: '1.5rem', borderRadius: '1rem',
                   border: '1px solid #e2e8f0'
                 }}>
-                  <div style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1' }}>
+                  <div className="culinary-card-interactive" style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
                     <div style={{ fontWeight: 900, color: '#065f46', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Utensils size={17} />
                       {isVi ? 'Bữa trưa (Lunch 11$): Nhà hàng Ngon Thị Hoa' : 'มื้อกลางวัน (Lunch 11$): Nhà hàng Ngon Thi Hoa'}
@@ -1584,7 +1751,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     </div>
                   </div>
 
-                  <div style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1' }}>
+                  <div className="culinary-card-interactive" style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
                     <div style={{ fontWeight: 900, color: '#1e40af', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Utensils size={17} />
                       {isVi ? 'Bữa tối (Dinner): Beer Plaza Buffet Bà Nà Hills' : 'มื้อค่ำ (Dinner): Beer Plaza Buffet Bana Hills'}
@@ -1742,8 +1909,8 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     <>
                       <li><strong>06:00 – 07:00: Trải nghiệm "Golden Hours" Cầu Vàng:</strong> Thức dậy giữa mây ngàn, đón tuyến cáp treo sớm đến Cầu Vàng ngắm bình minh và chụp ảnh vắng người tuyệt đối.</li>
                       <li><strong>07:30 – 08:30: Ăn sáng buffet thịnh soạn:</strong> Thưởng thức bữa sáng quốc tế tại nhà hàng khách sạn Mercure Bà Nà Hills.</li>
-                      <li><strong>09:00: Xuống cáp treo đi Hội An:</strong> Rời Bà Nà Hills, xe đưa đoàn di chuyển đến Đô thị cổ Hội An.</li>
-                      <li><strong>Trải nghiệm Thuyền thúng Rừng dừa Bảy Mẫu Cẩm Thanh:</strong> Khám phá nét đẹp sông nước miền Trung, xem nghệ nhân biểu diễn múa thúng giăng lưới.</li>
+                      <li><strong>09:00: Xuống cáp treo đi Hội An:</strong> Rời Bà Nà Hills, xe đưa đoàn di chuyển đến Phố cổ Hội An.</li>
+                      <li><strong>Thuyền thúng Rừng dừa Bảy Mẫu Cẩm Thanh:</strong> xem nghệ nhân biểu diễn múa thúng giăng lưới.</li>
                       <li><strong>Khám phá Phố cổ Hội An:</strong> Đi bộ tham quan Chùa Cầu Nhật Bản, Nhà cổ Tấn Ký, Hội quán Phúc Kiến.</li>
                       <li><strong>Check-in Faifo Coffee Rooftop:</strong> Quán cà phê có góc ban công ngắm toàn cảnh mái ngói rêu phong Hội An (tự túc đồ uống).</li>
                       <li><strong>Về Đà Nẵng:</strong> Nhận phòng khách sạn 4 sao tại trung tâm thành phố Đà Nẵng, tự do dạo biển Mỹ Khê về đêm.</li>
@@ -1767,7 +1934,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                   gap: '1.25rem', background: '#f8fafc', padding: '1.5rem', borderRadius: '1rem',
                   border: '1px solid #e2e8f0'
                 }}>
-                  <div style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1' }}>
+                  <div className="culinary-card-interactive" style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
                     <div style={{ fontWeight: 900, color: '#065f46', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Utensils size={17} />
                       {isVi ? 'Bữa trưa (Lunch 11$): Nhà hàng Chic Chillax Hội An' : 'มื้อกลางวัน (Lunch 11$): Nhà hàng Chic Chillax Hoi An'}
@@ -1779,7 +1946,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     </div>
                   </div>
 
-                  <div style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1' }}>
+                  <div className="culinary-card-interactive" style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
                     <div style={{ fontWeight: 900, color: '#1e40af', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Utensils size={17} />
                       {isVi ? 'Bữa tối (Dinner): Long Qiao Seafood Buffet + TÔM HÙM' : 'มื้อค่ำ (Dinner): Long Qiao Seafood Buffet + กุ้งมังกร'}
@@ -1859,7 +2026,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                   gap: '1.25rem', background: '#f8fafc', padding: '1.5rem', borderRadius: '1rem',
                   border: '1px solid #e2e8f0'
                 }}>
-                  <div style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1' }}>
+                  <div className="culinary-card-interactive" style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
                     <div style={{ fontWeight: 900, color: '#065f46', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Utensils size={17} />
                       {isVi ? 'Bữa trưa (Lunch 12$): Nhà hàng Madam Lân' : 'มื้อกลางวัน (Lunch 12$): Nhà hàng Madam Lan'}
@@ -1871,7 +2038,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     </div>
                   </div>
 
-                  <div style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1' }}>
+                  <div className="culinary-card-interactive" style={{ background: '#fff', padding: '1.25rem', borderRadius: '0.75rem', border: '1px solid #cbd5e1', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
                     <div style={{ fontWeight: 900, color: '#1e40af', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Utensils size={17} />
                       {isVi ? 'Bữa tối (Dinner): Bánh Mì Đà Nẵng' : 'มื้อเย็น (Dinner): Banh Mi Vietnam'}
@@ -1891,6 +2058,178 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
       </section>
 
       {/* 5. B2B EXECUTIVE PRICING TERMINAL & MARGIN SIMULATOR (DUAL COLUMN SPLIT-SCREEN) */}
+      
+      {/* 4.5 REAL FLIGHT SCHEDULE MATCHING & AIRPORT TRANSFERS */}
+      <section id="flight-schedule-matching" style={{ maxWidth: '1240px', margin: '0 auto 4.5rem', padding: '0 2rem' }}>
+        <div style={{
+          background: '#ffffff',
+          borderRadius: '1.5rem',
+          padding: '2.5rem',
+          border: '1px solid #e2e8f0',
+          boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.05)'
+        }}>
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: '1.95rem',
+              fontWeight: 800,
+              color: '#0f172a',
+              marginBottom: '0.6rem'
+            }}>
+              {isVi ? 'Lịch Bay Thái Lan ↔ Đà Nẵng & Khớp Giờ Đón Tiễn' : isTh ? 'ตารางเที่ยวบินไทย ↔ ดานัง & การรับส่งสนามบิน' : 'Thailand ↔ Da Nang Flight Schedule & VIP Transfers'}
+            </h2>
+            <p style={{ color: '#64748b', fontSize: '0.95rem', maxWidth: '750px', margin: '0 auto', lineHeight: 1.6 }}>
+              {isVi ? 'Green Sea Tour phục vụ xe riêng VIP đón tiễn 24/7 theo giờ hạ cánh thực tế của từng đoàn. Tự động điều chỉnh thứ tự tham quan Bà Nà linh hoạt cho chuyến bay chiều/tối.' : isTh ? 'กรีนซีทัวร์ให้บริการรถตู้ VIP ส่วนตัวรับส่ง 24 ชม. ตามเวลาบินจริง ปรับสลับโปรแกรมบานาฮิลล์อย่างยืดหยุ่นสำหรับเที่ยวบินช่วงเย็น/ค่ำ' : 'Private VIP transfers 24/7 matching real flight landing times. Flexible Ba Na Hills schedule adjustments for afternoon/evening flights.'}
+            </p>
+
+            {/* Airport Origin Selector Tabs */}
+            <div style={{ display: 'inline-flex', background: '#f1f5f9', padding: '0.35rem', borderRadius: '1rem', marginTop: '1.5rem', gap: '0.35rem' }}>
+              {[
+                { key: 'BKK', label: isVi ? 'Bangkok (BKK - Suvarnabhumi)' : isTh ? 'กรุงเทพฯ (BKK สุวรรณภูมิ)' : 'Bangkok (BKK)' },
+                { key: 'DMK', label: isVi ? 'Bangkok (DMK - Don Mueang)' : isTh ? 'กรุงเทพฯ (DMK ดอนเมือง)' : 'Bangkok (DMK)' },
+                { key: 'CNX', label: isVi ? 'Chiang Mai (CNX)' : isTh ? 'เชียงใหม่ (CNX)' : 'Chiang Mai (CNX)' }
+              ].map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveFlightOrigin(tab.key)}
+                  style={{
+                    padding: '0.65rem 1.25rem',
+                    borderRadius: '0.75rem',
+                    border: 'none',
+                    background: activeFlightOrigin === tab.key ? '#0f172a' : 'transparent',
+                    color: activeFlightOrigin === tab.key ? '#ffffff' : '#64748b',
+                    fontWeight: 700,
+                    fontSize: '0.88rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    boxShadow: activeFlightOrigin === tab.key ? '0 4px 12px rgba(15, 23, 42, 0.2)' : 'none'
+                  }}
+                >
+                  <Plane size={14} style={{ display: 'inline', marginRight: '0.4rem', verticalAlign: 'middle' }} />
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Active Flight Schedule Showcase */}
+          {(() => {
+            const currentSchedule = FLIGHT_SCHEDULES[activeFlightOrigin];
+            if (!currentSchedule) return null;
+
+            return (
+              <div>
+                {/* Flight Cards Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.25rem', marginBottom: '2rem' }}>
+                  {currentSchedule.flights.map((flight, fIdx) => (
+                    <div
+                      key={fIdx}
+                      className="flight-card-interactive"
+                      style={{
+                        borderRadius: '1.25rem',
+                        padding: '1.5rem',
+                        background: flight.isLate ? '#fffbeb' : '#ffffff',
+                        border: flight.isLate ? '1.5px solid #fde68a' : '1px solid #e2e8f0',
+                        position: 'relative',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
+                      }}
+                    >
+                      <div>
+                        {/* Header: Airline & Tag */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                          <div>
+                            <span style={{ fontWeight: 800, color: '#0f172a', fontSize: '1.05rem' }}>{flight.airline}</span>
+                            <span style={{ marginLeft: '0.5rem', background: '#0284c7', color: '#ffffff', padding: '0.15rem 0.5rem', borderRadius: '0.35rem', fontSize: '0.75rem', fontWeight: 800 }}>{flight.flightNo}</span>
+                          </div>
+                          <span style={{
+                            padding: '0.25rem 0.65rem',
+                            borderRadius: '2rem',
+                            fontSize: '0.72rem',
+                            fontWeight: 800,
+                            background: flight.isLate ? '#fef3c7' : '#ecfdf5',
+                            color: flight.isLate ? '#b45309' : '#047857',
+                            border: flight.isLate ? '1px solid #fde68a' : '1px solid #a7f3d0'
+                          }}>
+                            {isVi ? flight.tagVi : isTh ? flight.tagTh : flight.tagEn}
+                          </span>
+                        </div>
+
+                        {/* Timing Block */}
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          background: flight.isLate ? 'rgba(255,255,255,0.8)' : '#f8fafc',
+                          padding: '0.85rem 1.25rem',
+                          borderRadius: '0.85rem',
+                          marginBottom: '1rem',
+                          border: '1px solid #e2e8f0'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a' }}>{flight.depTime}</div>
+                            <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 700 }}>{activeFlightOrigin}</div>
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, padding: '0 1rem' }}>
+                            <div style={{ fontSize: '0.7rem', color: '#0284c7', fontWeight: 700, marginBottom: '0.2rem' }}>1h 40m</div>
+                            <div style={{ width: '100%', height: '2px', background: '#cbd5e1', position: 'relative' }}>
+                              <Plane size={12} style={{ position: 'absolute', top: '-5px', left: '50%', transform: 'translateX(-50%) rotate(90deg)', color: '#0284c7' }} />
+                            </div>
+                            <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '0.2rem' }}>Bay thẳng / Direct</div>
+                          </div>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#059669' }}>{flight.arrTime}</div>
+                            <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 700 }}>DAD (Đà Nẵng)</div>
+                          </div>
+                        </div>
+
+                        {/* Note Description */}
+                        <p style={{ color: '#475569', fontSize: '0.83rem', lineHeight: 1.5, margin: 0 }}>
+                          {isVi ? flight.noteVi : isTh ? flight.noteTh : flight.noteEn}
+                        </p>
+                      </div>
+
+                      {/* Inbound summary */}
+                      <div style={{ marginTop: '1.25rem', paddingTop: '0.85rem', borderTop: '1px dashed #e2e8f0', fontSize: '0.75rem', color: '#64748b' }}>
+                        <span style={{ fontWeight: 700, color: '#0f172a' }}>{isVi ? 'Chặng về đề xuất:' : isTh ? 'ไฟลท์ขากลับแนะนำ:' : 'Return Flight:'} </span>
+                        {currentSchedule.inboundFlight.flightNo} ({currentSchedule.inboundFlight.depTime} - {currentSchedule.inboundFlight.arrTime})
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* DMC Guarantee Banner */}
+                <div style={{
+                  background: 'linear-gradient(135deg, #047857 0%, #065f46 100%)',
+                  borderRadius: '1rem',
+                  padding: '1.25rem 1.75rem',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1.25rem',
+                  flexWrap: 'wrap'
+                }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <ShieldCheck size={24} color="#ffffff" />
+                  </div>
+                  <div style={{ flex: 1, minWidth: '240px' }}>
+                    <div style={{ fontWeight: 800, fontSize: '0.95rem', marginBottom: '0.2rem' }}>
+                      {isVi ? 'Cam Kết Đón Tiễn Riêng & Linh Hoạt 100% Theo Radar Thực Tế' : isTh ? 'การันตีรถรับส่ง VIP ส่วนตัว 100% ติดตามสถานะเที่ยวบินเรียลไทม์' : '100% Private VIP Transfers with Real-Time Flight Tracking'}
+                    </div>
+                    <div style={{ fontSize: '0.82rem', opacity: 0.9, lineHeight: 1.4 }}>
+                      {isVi ? 'Xe VIP và HDV tiếng Thái luôn túc trực đợi sẵn tại sân bay quốc tế Đà Nẵng, miễn phí chờ đợi tuyệt đối khi chuyến bay bị delay.' : isTh ? 'รถตู้ VIP และไกด์ภาษาไทยรอต้อนรับที่สนามบินดานังเสมอ ไม่มีค่าใช้จ่ายเพิ่มเติมกรณีเที่ยวบินดีเลย์' : 'Private VIP vehicle and Thai-speaking tour guide waiting at DAD airport with zero extra waiting fee during delays.'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </section>
+
       <section id="pricing-terminal" style={{ maxWidth: '1280px', margin: '0 auto 4rem', padding: '0 2rem' }}>
         
         {/* Main Section Header */}
@@ -2534,7 +2873,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
 
 
       {/* 6. B2B TERMS, INCLUSIONS & EXCLUSIONS */}
-      <section style={{ maxWidth: '1240px', margin: '0 auto 4rem', padding: '0 2rem' }}>
+      <section id="terms-section" style={{ maxWidth: '1240px', margin: '0 auto 4rem', padding: '0 2rem' }}>
         <div style={{
           background: '#fff', borderRadius: '1.5rem', padding: '2.5rem',
           border: '1px solid #e2e8f0', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.06)'
@@ -2557,7 +2896,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
               <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.9rem', color: '#14532d', lineHeight: 1.8 }}>
                 {isVi ? (
                   <>
-                    <li>Khách sạn 4 sao tiêu chuẩn (2-3 khách/phòng): 1 đêm Mercure Bà Nà Hills + 1 đêm Đông Dương Đà Nẵng.</li>
+                    <li>Khách sạn 4 sao tiêu chuẩn (2 khách/phòng): 1 đêm Mercure Bà Nà Hills + 1 đêm Đông Dương Đà Nẵng.</li>
                     <li>2 bữa sáng buffet tại khách sạn + 3 bữa chính set menu tại các nhà hàng nổi tiếng (Ngon Thị Hoa, Chic Chillax, Madam Lân).</li>
                     <li><strong>Đặc biệt: 2 bữa buffet thượng hạng (Beer Plaza Bà Nà + Buffet Hải sản Long Qiao TẶNG ½ TÔM HÙM NƯỚNG BƠ)</strong> + Bánh mì.</li>
                     <li>Xe du lịch máy lạnh đời mới chất lượng cao phục vụ theo suốt hành trình.</li>
@@ -2567,7 +2906,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                   </>
                 ) : (
                   <>
-                    <li>โรงแรมที่พักมาตรฐาน 4 ดาว (ห้องละ 2-3 ท่าน) ทุกคืนที่ระบุในโปรแกรม (Mercure Bana Hills 1N + Dong Duong 1N)</li>
+                    <li>โรงแรมที่พักมาตรฐาน 4 ดาว (ห้องละ 2 ท่าน) ทุกคืนที่ระบุในโปรแกรม (Mercure Bana Hills 1N + Dong Duong 1N)</li>
                     <li>อาหารเช้าที่โรงแรม 2 มื้อ + อาหารมื้อหลัก 3 มื้อ (Ngon Thi Hoa, Chic Chillax, Madam Lan)</li>
                     <li><strong>พิเศษ: บุฟเฟ่ต์ 2 มื้อดัง (Beer Plaza Bana Hills + Long Qiao รวมกุ้งมังกรอบเนย ½ ตัว/ท่าน)</strong> + ขนมปัง Banh Mi</li>
                     <li>รถตู้ปรับอากาศคุณภาพดีนำเที่ยวตามโปรแกรมตลอดการเดินทาง</li>
@@ -2655,302 +2994,201 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
         </div>
       </section>
 
-      {/* 7. B2B AGENT RESERVATION & DIRECT LINE FAST CONNECT */}
-      <section style={{ maxWidth: '1240px', margin: '0 auto 5rem', padding: '0 2rem' }}>
+      
+      {/* 6.5 B2B FREQUENTLY ASKED QUESTIONS (FAQ) */}
+      <section id="faq-section" style={{ maxWidth: '1240px', margin: '0 auto 4.5rem', padding: '0 2rem' }}>
         <div style={{
           background: '#ffffff',
-          borderRadius: '1.75rem',
+          borderRadius: '1.5rem',
           padding: '2.5rem',
           border: '1px solid #e2e8f0',
-          boxShadow: '0 20px 50px -10px rgba(0, 83, 61, 0.08)'
+          boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.05)'
         }}>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '2.5rem', alignItems: 'stretch' }}>
-            
-            {/* Left: Modern Form Side */}
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#ecfdf5', color: '#00533d', padding: '0.35rem 0.85rem', borderRadius: '2rem', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-                  <Send size={13} style={{ color: '#059669' }} />
-                  {isVi ? 'Nhận Báo Giá B2B Nhanh Trong 15 Phút' : isTh ? 'ขอใบเสนอราคา B2B ด่วนภายใน 15 นาที' : 'Fast 15-Minute B2B Quotation'}
-                </div>
-
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 900, color: '#0f172a', margin: '0 0 0.5rem', lineHeight: 1.25, fontFamily: isTh ? "'Prompt', sans-serif" : "'Plus Jakarta Sans', sans-serif" }}>
-                  {agentConfig.isAgent && agentConfig.name 
-                    ? (isVi ? `Gửi Yêu Cầu Tư Vấn Đến ${agentConfig.name}` : isTh ? `ส่งคำขอข้อมูลการเดินทางถึง ${agentConfig.name}` : `Submit Tour Inquiry to ${agentConfig.name}`)
-                    : (isVi ? 'Gửi Yêu Cầu Báo Giá B2B Cho Đại Lý' : isTh ? 'ขอใบเสนอราคา B2B สำหรับตัวแทน' : 'Request B2B Quotation & Allotment')}
-                </h3>
-                <p style={{ color: '#64748b', fontSize: '0.9rem', margin: '0 0 1.5rem', lineHeight: 1.55 }}>
-                  {agentConfig.isAgent && agentConfig.name
-                    ? (isVi ? `Điền thông tin liên hệ để chuyên viên tư vấn của ${agentConfig.name} liên hệ và hỗ trợ quý khách chi tiết nhất:` : `กรอกข้อมูลการเดินทางเพื่อให้เจ้าหน้าที่ของ ${agentConfig.name} ติดต่อกลับและดูแลท่านอย่างดีที่สุด:`)
-                    : (isVi ? 'Điền thông tin đoàn của quý đối tác để nhận báo giá chính thức B2B và xác nhận lịch trình nhanh chóng:' : 'กรอกข้อมูลเพื่อขอรับใบเสนอราคา B2B อย่างเป็นทางการ พร้อมตรวจสอบโควต้าห้องพักและบริการพิเศษ')}
-                </p>
-              </div>
-
-              {submitted ? (
-                <div style={{ background: '#ecfdf5', border: '1.5px solid #a7f3d0', borderRadius: '1rem', padding: '2.5rem 1.5rem', textAlign: 'center' }}>
-                  <CheckCircle2 size={48} style={{ color: '#059669', margin: '0 auto 0.75rem' }} />
-                  <h4 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#065f46', margin: '0 0 0.4rem' }}>
-                    {isVi ? 'Đã gửi yêu cầu thành công!' : isTh ? 'ส่งคำขอสำเร็จแล้ว!' : 'Request Sent Successfully!'}
-                  </h4>
-                  <p style={{ fontSize: '0.875rem', color: '#047857', margin: 0 }}>
-                    {isVi ? 'Bộ phận kinh doanh Green Sea Tour sẽ liên hệ lại quý đối tác ngay qua LINE / WhatsApp.' : 'เจ้าหน้าที่ฝ่ายขายจะติดต่อกลับผ่าน LINE / WhatsApp โดยเร็วที่สุด'}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
-                      {agentConfig.isAgent 
-                        ? (isVi ? 'Họ và Tên Quý Khách' : isTh ? 'ชื่อ-นามสกุล' : 'Full Name')
-                        : (isVi ? 'Tên Công Ty / Đại Lý' : isTh ? 'ชื่อบริษัททัวร์ / ตัวแทน' : 'Agency Name')} *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={agentConfig.isAgent ? (isVi ? 'Ví dụ: Somchai Prasert' : 'e.g. Somchai Prasert') : (isVi ? 'Ví dụ: Siam Travel Co.' : 'e.g. Siam Travel')}
-                      value={agentForm.agencyName}
-                      onChange={e => setAgentForm({ ...agentForm, agencyName: e.target.value })}
-                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
-                      {isVi ? 'Người liên hệ' : isTh ? 'ชื่อผู้ติดต่อ' : 'Contact Person'} *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={isVi ? 'Tên người liên hệ' : 'Contact Person'}
-                      value={agentForm.contactName}
-                      onChange={e => setAgentForm({ ...agentForm, contactName: e.target.value })}
-                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
-                      {isVi ? 'Số điện thoại / LINE ID' : isTh ? 'เบอร์โทร / LINE ID' : 'Phone / LINE ID'} *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="+66... / +84... / @line_id"
-                      value={agentForm.phoneLine}
-                      onChange={e => setAgentForm({ ...agentForm, phoneLine: e.target.value })}
-                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
-                      {isVi ? 'Ngày dự kiến khởi hành' : isTh ? 'วันเดินทางโดยประมาณ' : 'Estimated Date'} *
-                    </label>
-                    <input
-                      type="date"
-                      required
-                      value={agentForm.departureDate}
-                      onChange={e => setAgentForm({ ...agentForm, departureDate: e.target.value })}
-                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '0.35rem', color: '#334155' }}>
-                      {isVi ? 'Yêu cầu đặc biệt (Nâng cấp xe Limousine, phòng Family, ăn kiêng...)' : isTh ? 'ความต้องการเพิ่มเติม (เช่น อัปเกรด Limousine, ห้อง Family, เมนูอาหารพิเศษ)' : 'Special Requests'}
-                    </label>
-                    <textarea
-                      rows={2}
-                      placeholder={isVi ? 'Nhập ghi chú yêu cầu thêm nếu có...' : 'Additional notes...'}
-                      value={agentForm.specialRequests}
-                      onChange={e => setAgentForm({ ...agentForm, specialRequests: e.target.value })}
-                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.65rem', border: '1px solid #cbd5e1', fontSize: '0.875rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div style={{ gridColumn: '1 / -1', marginTop: '0.25rem' }}>
-                    <button
-                      type="submit"
-                      style={{
-                        width: '100%', padding: '0.9rem 1.25rem', borderRadius: '0.75rem',
-                        background: 'linear-gradient(135deg, #059669 0%, #00533d 100%)',
-                        color: '#ffffff', border: 'none', fontSize: '0.95rem', fontWeight: 900, cursor: 'pointer',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                        boxShadow: '0 4px 16px rgba(5, 150, 105, 0.3)', letterSpacing: '0.3px',
-                        transition: 'all 0.2s'
-                      }}
-                    >
-                      <Send size={16} />
-                      {isVi ? 'GỬI YÊU CẦU BÁO GIÁ B2B' : isTh ? 'ขอใบเสนอราคา B2B' : 'Request B2B Quotation'}
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
-
-            {/* Right: Modern Fast Connect / QR Hub Side */}
-            <div style={{
-              background: '#f8fafc',
-              borderRadius: '1.25rem',
-              padding: '1.75rem',
-              border: '1px solid #e2e8f0',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: '1.25rem'
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: '1.95rem',
+              fontWeight: 800,
+              color: '#0f172a',
+              marginBottom: '0.6rem'
             }}>
-              {agentConfig.isAgent && agentConfig.name ? (
-                <div>
-                  <div style={{
-                    width: '60px', height: '60px', borderRadius: '1rem',
-                    background: '#00533d', color: '#ffffff',
-                    fontWeight: 900, fontSize: '1.75rem',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    margin: '0 auto 0.75rem', boxShadow: '0 6px 18px rgba(0,83,61,0.2)'
-                  }}>
-                    {agentConfig.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div style={{ fontWeight: 900, fontSize: '1.25rem', color: '#0f172a', textAlign: 'center', marginBottom: '0.25rem' }}>
-                    {agentConfig.name.toUpperCase()}
-                  </div>
-                  <div style={{ color: '#059669', fontSize: '0.8rem', fontWeight: 800, textAlign: 'center', marginBottom: '1.25rem' }}>
-                    {isVi ? 'Đại Lý Du Lịch Chuyên Nghiệp' : isTh ? 'ตัวแทนท่องเที่ยวอย่างเป็นทางการ' : 'Authorized Travel Partner'}
-                  </div>
-
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                    {agentConfig.tel && (
-                      <a href={`tel:${agentConfig.tel}`} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.75rem 1rem', background: '#ffffff', borderRadius: '0.65rem', border: '1px solid #e2e8f0', color: '#00533d', textDecoration: 'none', fontWeight: 800, fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(0,0,0,0.03)' }}>
-                        <Phone size={16} style={{ color: '#059669' }} />
-                        <span>Hotline: <strong>{agentConfig.tel}</strong></span>
-                      </a>
-                    )}
-                    {agentConfig.line && (
-                      <a href={agentConfig.line.startsWith('http') ? agentConfig.line : `https://line.me/ti/p/~${agentConfig.line.replace('@', '')}`} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.75rem 1rem', background: '#ffffff', borderRadius: '0.65rem', border: '1px solid #e2e8f0', color: '#00533d', textDecoration: 'none', fontWeight: 800, fontSize: '0.9rem', boxShadow: '0 2px 6px rgba(0,0,0,0.03)' }}>
-                        <MessageSquare size={16} style={{ color: '#06c755' }} />
-                        <span>LINE ID: <strong>{agentConfig.line}</strong></span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                /* B2B Mode: Official LINE Connect Hub */
-                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', gap: '1rem' }}>
-                  
-                  {/* Top: LINE Official Box */}
-                  <div style={{ background: '#ffffff', padding: '1.25rem', borderRadius: '1rem', border: '1px solid #e2e8f0', textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                      <img 
-                        src="/assets/qr-line-oa.png" 
-                        alt="Green Sea Official LINE OA QR" 
-                        style={{ width: '95px', height: '95px', borderRadius: '0.6rem', border: '1px solid #e2e8f0', padding: '4px', background: '#fff' }}
-                      />
-                      <div style={{ textAlign: 'left' }}>
-                        <div style={{ fontSize: '0.725rem', fontWeight: 800, color: '#059669', textTransform: 'uppercase', marginBottom: '2px' }}>
-                          LINE Official 24/7
-                        </div>
-                        <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#0f172a', marginBottom: '6px' }}>
-                          GreenSea Vietnam
-                        </div>
-                        <a 
-                          href="https://lin.ee/Pwro79k" 
-                          target="_blank" 
-                          rel="noreferrer"
-                          style={{
-                            display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
-                            background: '#06c755', color: '#ffffff', padding: '0.45rem 0.85rem',
-                            borderRadius: '0.5rem', fontSize: '0.78rem', fontWeight: 800,
-                            textDecoration: 'none', boxShadow: '0 3px 10px rgba(6, 199, 85, 0.25)'
-                          }}
-                        >
-                          <MessageSquare size={13} />
-                          {isVi ? 'Kết Nối LINE Ngay' : 'แอด LINE ทันที'}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Middle: Fast Direct Support Specialists (Ms. Kim & Mr. Khanh) */}
-                  <div>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                      <span>🇹🇭 {isVi ? 'Phụ trách thị trường Thái Lan:' : 'ทีมงานดูแลตลาดไทยโดยตรง:'}</span>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
-                      {/* Specialist 1: Ms. Kim */}
-                      <a 
-                        href="https://line.me/ti/p/~0987434343" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        style={{
-                          background: '#ffffff',
-                          borderRadius: '0.75rem',
-                          padding: '0.65rem 0.75rem',
-                          border: '1px solid #e2e8f0',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          textDecoration: 'none',
-                          color: '#0f172a',
-                          transition: 'all 0.15s'
-                        }}
-                      >
-                        <img src="/assets/qr-kim.png" alt="Ms Kim QR" style={{ width: '42px', height: '42px', borderRadius: '0.35rem' }} />
-                        <div>
-                          <div style={{ fontWeight: 800, fontSize: '0.8rem', color: '#00533d' }}>Ms. Kim</div>
-                          <div style={{ fontSize: '0.7rem', color: '#06c755', fontWeight: 700 }}>LINE Direct →</div>
-                        </div>
-                      </a>
-
-                      {/* Specialist 2: Mr. Khanh */}
-                      <a 
-                        href="https://line.me/ti/p/~0987434343" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        style={{
-                          background: '#ffffff',
-                          borderRadius: '0.75rem',
-                          padding: '0.65rem 0.75rem',
-                          border: '1px solid #e2e8f0',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          textDecoration: 'none',
-                          color: '#0f172a',
-                          transition: 'all 0.15s'
-                        }}
-                      >
-                        <img src="/assets/qr-khanh.png" alt="Mr Khanh QR" style={{ width: '42px', height: '42px', borderRadius: '0.35rem' }} />
-                        <div>
-                          <div style={{ fontWeight: 800, fontSize: '0.8rem', color: '#00533d' }}>Mr. Khanh</div>
-                          <div style={{ fontSize: '0.7rem', color: '#06c755', fontWeight: 700 }}>LINE Direct →</div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Bottom: Contact Info Strip */}
-                  <div style={{ background: '#ffffff', borderRadius: '0.75rem', padding: '0.75rem 1rem', border: '1px solid #e2e8f0', fontSize: '0.78rem', color: '#475569', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Phone size={13} style={{ color: '#059669' }} />
-                      <span>Hotline: <strong>(+84) 987.43.43.43</strong></span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Mail size={13} style={{ color: '#059669' }} />
-                      <span>Email: <strong>sale1@greenseatour.vn</strong></span>
-                    </div>
-                  </div>
-
-                </div>
-              )}
-            </div>
-
+              {isVi ? 'Giải Đáp Thắc Mắc Thường Gặp B2B' : isTh ? 'คำถามที่พบบ่อยสำหรับตัวแทนท่องเที่ยว (FAQ)' : 'Frequently Asked Questions (B2B FAQ)'}
+            </h2>
+            <p style={{ color: '#64748b', fontSize: '0.95rem', maxWidth: '750px', margin: '0 auto', lineHeight: 1.6 }}>
+              {isVi ? 'Tổng hợp các quy định điều hành, xử lý giờ bay, cơ cấu phòng lẻ và quyền lợi dành riêng cho đối tác lữ hành Thái Lan.' : isTh ? 'สรุปข้อมูลการบริหารจัดการเที่ยวบิน การจัดห้องพัก และสิทธิประโยชน์พิเศษสำหรับพันธมิตรเอเจนซี่ไทย' : 'Operations guidelines, flight logistics, odd rooming policy, and DMC benefits for Thai travel partners.'}
+            </p>
           </div>
 
+          {/* FAQ Accordion List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+            {FITDAD01_FAQS.map((faq, fIdx) => {
+              const isExpanded = expandedFaqId === faq.id;
+              return (
+                <div
+                  key={faq.id}
+                  className="faq-card-interactive"
+                  style={{
+                    border: isExpanded ? '1.5px solid #059669' : '1px solid #e2e8f0',
+                    borderRadius: '1rem',
+                    overflow: 'hidden',
+                    transition: 'all 0.2s ease',
+                    background: isExpanded ? '#f0fdf4' : '#f8fafc'
+                  }}
+                >
+                  <button
+                    onClick={() => setExpandedFaqId(isExpanded ? null : faq.id)}
+                    style={{
+                      width: '100%',
+                      padding: '1.25rem 1.5rem',
+                      background: 'transparent',
+                      border: 'none',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      gap: '1rem'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                      <div style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '50%',
+                        background: isExpanded ? '#059669' : '#e2e8f0',
+                        color: isExpanded ? '#ffffff' : '#475569',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '0.8rem',
+                        fontWeight: 800,
+                        flexShrink: 0
+                      }}>
+                        {fIdx + 1}
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.72rem', color: isExpanded ? '#047857' : '#64748b', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                          {isVi ? faq.categoryVi : isTh ? faq.categoryTh : faq.categoryEn}
+                        </div>
+                        <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#0f172a', marginTop: '0.15rem' }}>
+                          {isVi ? faq.questionVi : isTh ? faq.questionTh : faq.questionEn}
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ color: isExpanded ? '#059669' : '#94a3b8', flexShrink: 0 }}>
+                      {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                    </div>
+                  </button>
+
+                  {isExpanded && (
+                    <div style={{
+                      padding: '0 1.5rem 1.35rem 3.65rem',
+                      color: '#334155',
+                      fontSize: '0.9rem',
+                      lineHeight: 1.65,
+                      borderTop: '1px dashed #dcfce7'
+                    }}>
+                      <div style={{ paddingTop: '0.85rem' }}>
+                        {isVi ? faq.answerVi : isTh ? faq.answerTh : faq.answerEn}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* 8. LUXURY EDITORIAL FOOTER WITH GHOST WATERMARK */}
+
+
+      {/* 7.5 THAI TRAVEL PARTNERS MARQUEE */}
+      <section style={{ maxWidth: '1240px', margin: '0 auto 4.5rem', padding: '0 2rem' }}>
+        <div style={{
+          background: '#ffffff',
+          borderRadius: '1.5rem',
+          padding: '2.5rem 2rem',
+          border: '1.5px solid #e2e8f0',
+          boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.04)',
+          overflow: 'hidden'
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#059669', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>
+              <span>🇹🇭 THAI OUTBOUND TRAVEL PARTNERS</span>
+            </div>
+            <h3 style={{ fontSize: '1.45rem', fontWeight: 900, color: '#0f172a', margin: 0, fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
+              {isVi ? 'Được Tin Chọn Bởi Các Doanh Nghiệp Lữ Hành Hàng Đầu Thái Lan' : isTh ? 'ได้รับความไว้วางใจจากบริษัทนำเที่ยวชั้นนำในประเทศไทย' : 'Trusted by Leading Outbound Travel Companies in Thailand'}
+            </h3>
+          </div>
+
+          <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: '60px', background: 'linear-gradient(to right, #ffffff, transparent)', zIndex: 2, pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', top: 0, bottom: 0, right: 0, width: '60px', background: 'linear-gradient(to left, #ffffff, transparent)', zIndex: 2, pointerEvents: 'none' }} />
+
+            <div className="partners-track" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', width: 'max-content' }}>
+              {[
+                { name: 'TTN Plus World', logo: '/images/partners/ttn-plus.png' },
+                { name: '2U Center Tour', logo: '/images/partners/2u-center.png' },
+                { name: 'Check-in Group', logo: '/images/partners/checkin-group-large.png' },
+                { name: 'Formosa Travel Group', logo: '/images/partners/formosa-group.png' },
+                { name: 'Go Holiday', logo: '/images/partners/go-holiday-icon.png' },
+                { name: 'GS25 Travel', logo: '/images/partners/gs25.png' },
+                { name: 'Pearl Outbound', logo: '/images/partners/pearl.png' },
+                { name: 'TTN Plus World', logo: '/images/partners/ttn-plus.png' },
+                { name: '2U Center Tour', logo: '/images/partners/2u-center.png' },
+                { name: 'Check-in Group', logo: '/images/partners/checkin-group-large.png' },
+                { name: 'Formosa Travel Group', logo: '/images/partners/formosa-group.png' },
+                { name: 'Go Holiday', logo: '/images/partners/go-holiday-icon.png' },
+                { name: 'GS25 Travel', logo: '/images/partners/gs25.png' },
+                { name: 'Pearl Outbound', logo: '/images/partners/pearl.png' }
+              ].map((p, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.85rem',
+                    padding: '0.85rem 1.35rem',
+                    background: '#f8fafc',
+                    borderRadius: '1rem',
+                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                    flexShrink: 0,
+                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    cursor: 'default'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = '#10b981';
+                    e.currentTarget.style.boxShadow = '0 8px 20px -4px rgba(16, 185, 129, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.03)';
+                  }}
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    style={{
+                      height: '36px',
+                      maxWidth: '110px',
+                      objectFit: 'contain',
+                      display: 'block'
+                    }}
+                  />
+                  <span style={{ fontWeight: 800, fontSize: '0.85rem', color: '#1e293b', whiteSpace: 'nowrap' }}>
+                    {p.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer style={{
         background: '#ffffff',
         color: '#334155',
@@ -3042,7 +3280,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                         onMouseEnter={(e) => e.currentTarget.style.color = '#059669'}
                         onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
                       >
-                        516 Nguyễn Hữu Thọ, Đà Nẵng, Việt Nam
+                        514 - 516 Nguyễn Hữu Thọ, Q. Cẩm Lệ, TP. Đà Nẵng, Việt Nam
                       </a>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
@@ -3075,22 +3313,22 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.875rem' }}>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <a href="#pricing-terminal" style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600 }}>
+                  <a href="#pricing-terminal" className="footer-nav-link">
                     {isVi ? 'Đà Nẵng – Bà Nà – Hội An' : isTh ? 'ดานัง – บานาฮิลล์ – ฮอยอัน' : 'Da Nang – Ba Na – Hoi An'}
                   </a>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} style={{ background: 'none', border: 'none', padding: 0, color: '#64748b', fontSize: '0.875rem', cursor: 'pointer', textAlign: 'left', whiteSpace: 'nowrap' }}>
+                  <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} className="footer-nav-link">
                     {isVi ? 'Miền Bắc (Hà Nội – Sa Pa – Ninh Bình)' : isTh ? 'ภาคเหนือ (ฮานอย – ซาปา – นิงห์บิงห์)' : 'North Vietnam Tours'}
                   </button>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} style={{ background: 'none', border: 'none', padding: 0, color: '#64748b', fontSize: '0.875rem', cursor: 'pointer', textAlign: 'left', whiteSpace: 'nowrap' }}>
+                  <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} className="footer-nav-link">
                     {isVi ? 'Miền Nam (Sài Gòn – Mũi Né – Đà Lạt)' : isTh ? 'ภาคใต้ (ไซ่ง่อน – มุยเน่ – ดาลัด)' : 'South Vietnam Tours'}
                   </button>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} style={{ background: 'none', border: 'none', padding: 0, color: '#64748b', fontSize: '0.875rem', cursor: 'pointer', textAlign: 'left', whiteSpace: 'nowrap' }}>
+                  <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} className="footer-nav-link">
                     {isVi ? 'Đảo Ngọc Phú Quốc' : isTh ? 'เกาะฟู้โกว๊ก (Phu Quoc)' : 'Phu Quoc Island'}
                   </button>
                 </li>
@@ -3104,31 +3342,31 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.875rem' }}>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <a href="#pricing-terminal" style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s', whiteSpace: 'nowrap' }}>
+                  <a href="#pricing-terminal" className="footer-nav-link">
                     {agentConfig.isAgent || agentConfig.hideNet
                       ? (isVi ? 'Bảng Giá 2 - 14 Khách' : isTh ? 'ตารางราคา 2-14 ท่าน' : 'Rate Grid 2-14 Pax')
                       : (isVi ? 'Bảng Giá NET 2 - 14 Pax' : isTh ? 'ตารางราคา NET 2-14 ท่าน' : 'B2B Net Rate Grid')}
                   </a>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <a href="#pricing-terminal" style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s', whiteSpace: 'nowrap' }}>
+                  <a href="#pricing-terminal" className="footer-nav-link">
                     {isVi ? 'Công Cụ Tính Lợi Nhuận' : isTh ? 'ระบบคำนวณกำไร Margin' : 'Margin Calculator'}
                   </a>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <span style={{ color: '#64748b', whiteSpace: 'nowrap' }}>
+                  <a href="#terms-section" className="footer-nav-link">
                     {isVi ? 'Quy Định Đặt Cọc & Hủy Phạt' : isTh ? 'เงื่อนไขมัดจำและยกเลิก' : 'Payment & Cancellation'}
-                  </span>
+                  </a>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <span style={{ color: '#64748b', whiteSpace: 'nowrap' }}>
+                  <a href="#terms-section" className="footer-nav-link">
                     {isVi ? 'Chính Sách Giá Trẻ Em' : isTh ? 'ราคาสาหรับเด็ก' : 'Child Policy'}
-                  </span>
+                  </a>
                 </li>
                 <li style={{ whiteSpace: 'nowrap' }}>
-                  <span style={{ color: '#64748b', whiteSpace: 'nowrap' }}>
+                  <a href="#pricing-terminal" className="footer-nav-link">
                     {isVi ? 'Tùy Chọn Limousine VIP' : isTh ? 'อัปเกรดรถ Limousine' : 'Limousine Upgrade'}
-                  </span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -3166,7 +3404,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
               }}>
                 
                 {/* Line OA QR */}
-                <div style={{
+                <div className="qr-card-interactive" style={{
                   background: '#f0fdf4',
                   border: '1px solid #bbf7d0',
                   borderRadius: '0.75rem',
@@ -3180,7 +3418,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     <img
                       src="/assets/qr-line-oa.png"
                       alt="GreenSea LINE OA QR"
-                      style={{ width: '64px', height: '64px', borderRadius: '0.4rem', background: '#fff', padding: '2px', border: '1px solid #86efac', display: 'block', margin: '0 auto' }}
+                      style={{ width: '64px', height: '64px', borderRadius: '0.4rem', background: '#fff', padding: '2px', border: '1px solid #86efac', display: 'block', margin: '0 auto', transition: 'transform 0.2s' }}
                     />
                     <div style={{ fontWeight: 800, fontSize: '0.72rem', color: '#14532d', marginTop: '4px', whiteSpace: 'nowrap' }}>
                       LINE OA
@@ -3192,7 +3430,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                 </div>
 
                 {/* Ms. Kim QR */}
-                <div style={{
+                <div className="qr-card-interactive" style={{
                   background: '#f8fafc',
                   border: '1px solid #e2e8f0',
                   borderRadius: '0.75rem',
@@ -3206,7 +3444,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     <img
                       src="/assets/qr-kim.png"
                       alt="Ms. Kim LINE QR"
-                      style={{ width: '64px', height: '64px', borderRadius: '0.4rem', background: '#fff', padding: '2px', border: '1px solid #cbd5e1', display: 'block', margin: '0 auto' }}
+                      style={{ width: '64px', height: '64px', borderRadius: '0.4rem', background: '#fff', padding: '2px', border: '1px solid #cbd5e1', display: 'block', margin: '0 auto', transition: 'transform 0.2s' }}
                     />
                     <div style={{ fontWeight: 800, fontSize: '0.72rem', color: '#0f172a', marginTop: '4px', whiteSpace: 'nowrap' }}>
                       Ms. Kim
@@ -3218,7 +3456,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                 </div>
 
                 {/* Mr. Khanh QR */}
-                <div style={{
+                <div className="qr-card-interactive" style={{
                   background: '#f8fafc',
                   border: '1px solid #e2e8f0',
                   borderRadius: '0.75rem',
@@ -3232,7 +3470,7 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
                     <img
                       src="/assets/qr-khanh.png"
                       alt="Mr. Khanh LINE QR"
-                      style={{ width: '64px', height: '64px', borderRadius: '0.4rem', background: '#fff', padding: '2px', border: '1px solid #cbd5e1', display: 'block', margin: '0 auto' }}
+                      style={{ width: '64px', height: '64px', borderRadius: '0.4rem', background: '#fff', padding: '2px', border: '1px solid #cbd5e1', display: 'block', margin: '0 auto', transition: 'transform 0.2s' }}
                     />
                     <div style={{ fontWeight: 800, fontSize: '0.72rem', color: '#0f172a', marginTop: '4px', whiteSpace: 'nowrap' }}>
                       Mr. Khanh
@@ -3307,6 +3545,147 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
 
     
       {/* 8. WHITE-LABEL AGENT CUSTOMIZER MODAL */}
+      
+      {/* OPTIONAL EXCURSIONS POPUP MODAL */}
+      {showAddonsModal && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            background: 'rgba(15, 23, 42, 0.65)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.5rem'
+          }}
+          onClick={() => setShowAddonsModal(false)}
+        >
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: '1.5rem',
+              width: '100%',
+              maxWidth: '680px',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              padding: '2rem',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1rem' }}>
+              <div>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', margin: '0 0 0.25rem' }}>
+                  {isVi ? 'Dịch Vụ Tham Quan Mở Rộng' : isTh ? 'เลือกบริการท่องเที่ยวเสริม (Option เสริม)' : 'Optional Excursions & Add-on Tours'}
+                </h3>
+                <p style={{ fontSize: '0.82rem', color: '#64748b', margin: 0 }}>
+                  {isVi ? 'Tick chọn các dịch vụ để tự động tính vào bảng giá B2B' : isTh ? 'คลิกเลือกเพื่อรวมในใบเสนอราคาและรายงานต้นทุน' : 'Select add-on services to include in B2B quotation'}
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAddonsModal(false)}
+                style={{ background: '#f1f5f9', border: 'none', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#64748b' }}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Activities List */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '1.75rem' }}>
+              {OPTIONAL_ACTIVITIES.map(activity => {
+                const isSelected = selectedAddons.includes(activity.id);
+                return (
+                  <div
+                    key={activity.id}
+                    onClick={() => {
+                      setSelectedAddons(prev => 
+                        isSelected ? prev.filter(id => id !== activity.id) : [...prev, activity.id]
+                      );
+                    }}
+                    style={{
+                      padding: '1rem 1.25rem',
+                      borderRadius: '1rem',
+                      border: isSelected ? '2px solid #059669' : '1px solid #e2e8f0',
+                      background: isSelected ? '#f0fdf4' : '#ffffff',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flex: 1 }}>
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        borderRadius: '6px',
+                        border: isSelected ? '2px solid #059669' : '2px solid #cbd5e1',
+                        background: isSelected ? '#059669' : '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
+                      }}>
+                        {isSelected && <Check size={14} color="#ffffff" strokeWidth={3} />}
+                      </div>
+                      <div>
+                        <div style={{ fontWeight: 800, fontSize: '0.92rem', color: '#0f172a' }}>
+                          {isVi ? activity.nameVi : isTh ? activity.nameTh : activity.nameEn}
+                        </div>
+                        <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.15rem' }}>
+                          {isVi ? activity.descVi : isTh ? activity.descTh : activity.descEn}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#059669' }}>
+                        +${activity.priceUsd}
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#64748b' }}>
+                        {isVi ? '/ khách' : isTh ? '/ ท่าน' : '/ pax'}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Modal Actions */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
+              <button
+                onClick={() => setSelectedAddons([])}
+                style={{ background: 'none', border: 'none', color: '#dc2626', fontSize: '0.82rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+              >
+                <Trash2 size={14} />
+                {isVi ? 'Bỏ chọn tất cả' : isTh ? 'ล้างการเลือกทั้งหมด' : 'Clear all'}
+              </button>
+
+              <button
+                onClick={() => setShowAddonsModal(false)}
+                style={{
+                  background: '#0f172a',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '0.75rem',
+                  padding: '0.65rem 1.5rem',
+                  fontWeight: 800,
+                  fontSize: '0.88rem',
+                  cursor: 'pointer'
+                }}
+              >
+                {isVi ? `Xác nhận (${selectedAddons.length} dịch vụ)` : isTh ? `ยืนยัน (${selectedAddons.length} รายการ)` : `Done (${selectedAddons.length} items)`}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showAgentModal && (
         <div style={{
           position: 'fixed', inset: 0, zIndex: 9999,
@@ -3467,6 +3846,370 @@ ${agentConfig?.isAgent ? '' : '🌐 Website: www.greensealandtourvietnam.com'}`;
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+    
+      {/* FLOATING ACTION BUBBLE BUTTON */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          zIndex: 9999
+        }}
+      >
+        <Magnet magnetStrength={0.35}>
+          <button
+            type="button"
+            onClick={() => setShowQuoteModal(true)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.65rem',
+              padding: '0.85rem 1.45rem',
+              borderRadius: '3rem',
+              background: 'linear-gradient(135deg, #059669 0%, #00533d 100%)',
+              color: '#ffffff',
+              fontSize: '0.9rem',
+              fontWeight: 800,
+              border: '1.5px solid rgba(255, 255, 255, 0.3)',
+              cursor: 'pointer',
+              boxShadow: '0 14px 35px -6px rgba(5, 150, 105, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.2) inset',
+              backdropFilter: 'blur(12px)',
+              letterSpacing: '0.3px',
+              transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
+            {/* Live radar dot */}
+            <span style={{ position: 'relative', display: 'flex', width: '9px', height: '9px' }}>
+              <span style={{
+                position: 'absolute', inset: 0, borderRadius: '50%',
+                background: '#4ade80', opacity: 0.75, animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite'
+              }} />
+              <span style={{
+                position: 'relative', display: 'inline-flex', borderRadius: '50%',
+                width: '9px', height: '9px', background: '#22c55e'
+              }} />
+            </span>
+
+            <Send size={16} style={{ color: '#fde047' }} />
+            <span style={{ fontFamily: isTh ? "'Prompt', sans-serif" : "'Be Vietnam Pro', sans-serif" }}>
+              {agentConfig.isAgent 
+                ? (isVi ? 'Tư Vấn Tour' : isTh ? 'สอบถามข้อมูล' : 'Inquire Now')
+                : (isVi ? 'Báo Giá B2B' : isTh ? 'ขอใบเสนอราคา B2B' : 'Request B2B Quote')}
+            </span>
+          </button>
+        </Magnet>
+      </div>
+
+      {/* SLIDE-OVER LUXURY DRAWER (RIGHT PANEL POPUP) */}
+      {showQuoteModal && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 10000, display: 'flex', justifyContent: 'flex-end' }}>
+          
+          {/* Backdrop Blur Overlay */}
+          <div
+            onClick={() => setShowQuoteModal(false)}
+            style={{
+              position: 'fixed', inset: 0,
+              background: 'rgba(15, 23, 42, 0.65)',
+              backdropFilter: 'blur(8px)',
+              animation: 'fadeIn 0.25s ease-out'
+            }}
+          />
+
+          {/* Slide-Over Drawer Container */}
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 10001,
+              width: '540px',
+              maxWidth: '100vw',
+              height: '100vh',
+              background: '#ffffff',
+              boxShadow: '-20px 0 60px rgba(0, 0, 0, 0.35)',
+              display: 'flex',
+              flexDirection: 'column',
+              animation: 'slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+          >
+            {/* Drawer Header */}
+            <div style={{
+              padding: '1.25rem 1.5rem',
+              borderBottom: '1px solid #e2e8f0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: '#f8fafc'
+            }}>
+              <div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', background: '#ecfdf5', color: '#00533d', padding: '0.25rem 0.75rem', borderRadius: '2rem', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.35rem', border: '1px solid #a7f3d0' }}>
+                  <Zap size={12} style={{ color: '#059669' }} />
+                  {isVi ? 'Phản Hồi Trong 15 Phút' : isTh ? 'ตอบกลับด่วนภายใน 15 นาที' : '15-Min Response'}
+                </div>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', margin: 0, lineHeight: 1.25, fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif" }}>
+                  {agentConfig.isAgent && agentConfig.name 
+                    ? (isVi ? `Tư Vấn Tour Cùng ${agentConfig.name}` : isTh ? `สอบถามข้อมูลกับ ${agentConfig.name}` : `Tour Inquiry with ${agentConfig.name}`)
+                    : (isVi ? 'Yêu Cầu Báo Giá & Đặt Đoàn B2B' : isTh ? 'ขอใบเสนอราคา B2B & ล็อคโควต้ากรุ๊ป' : 'Request B2B Quotation')}
+                </h3>
+              </div>
+
+              <button
+                onClick={() => setShowQuoteModal(false)}
+                style={{
+                  width: '34px', height: '34px', borderRadius: '50%',
+                  background: '#ffffff', border: '1px solid #cbd5e1',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', color: '#64748b', transition: 'all 0.15s'
+                }}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Drawer Body (Scrollable) */}
+            <div style={{ flex: 1, overflowY: 'auto', padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
+              
+              {/* Tour & Pricing Live Configuration Summary Card */}
+              <div style={{
+                background: 'linear-gradient(135deg, #003829 0%, #00533d 100%)',
+                color: '#ffffff', borderRadius: '1rem', padding: '1.15rem',
+                boxShadow: '0 8px 20px -4px rgba(0, 56, 41, 0.25)'
+              }}>
+                <div style={{ fontSize: '0.7rem', color: '#a7f3d0', fontWeight: 800, textTransform: 'uppercase', marginBottom: '2px' }}>
+                  FITDAD01 • 3 {isVi ? 'Ngày' : 'Days'} 2 {isVi ? 'Đêm' : 'Nights'}
+                </div>
+                <div style={{ fontSize: '0.95rem', fontWeight: 900, marginBottom: '0.65rem', color: '#ffffff' }}>
+                  {isVi ? 'Đà Nẵng - Bà Nà Hills - Phố Cổ Hội An' : 'ดานัง - บานาฮิลล์ - ฮอยอัน'}
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', background: 'rgba(0,0,0,0.25)', padding: '0.65rem', borderRadius: '0.6rem', fontSize: '0.78rem' }}>
+                  <div>
+                    <div style={{ color: '#cbd5e1' }}>{isVi ? 'Quy mô đoàn:' : isTh ? 'จำนวนผู้เดินทาง:' : 'Group Size:'}</div>
+                    <div style={{ fontWeight: 800, color: '#fde047' }}>
+                      {paxCount} {isVi ? 'khách' : isTh ? 'ท่าน' : 'pax'} ({selectedBand ? (isVi ? selectedBand.paxLabelVi : isTh ? selectedBand.paxLabelTh : selectedBand.paxLabelEn) : `${paxCount} pax`})
+                    </div>
+                  </div>
+                  <div>
+                    <div style={{ color: '#cbd5e1' }}>
+                      {agentConfig.isAgent || agentConfig.hideNet ? (isVi ? 'Giá trọn gói:' : isTh ? 'ราคาต่อท่าน:' : 'Tour Rate:') : (isVi ? 'Giá NET B2B:' : isTh ? 'ราคา NET B2B:' : 'NET Rate:')}
+                    </div>
+                    <div style={{ fontWeight: 800, color: '#fde047' }}>
+                      ${agentConfig.isAgent || agentConfig.hideNet ? calculation.suggestedSellPerPax : calculation.netPerPax} (฿{Math.round((agentConfig.isAgent || agentConfig.hideNet ? calculation.suggestedSellPerPax : calculation.netPerPax) * effectiveRate).toLocaleString('en-US')})
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {submitted ? (
+                <div style={{ background: '#ecfdf5', border: '1.5px solid #a7f3d0', borderRadius: '1.25rem', padding: '2.5rem 1.25rem', textAlign: 'center' }}>
+                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#d1fae5', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                    <CheckCircle2 size={32} style={{ color: '#059669' }} />
+                  </div>
+                  <h4 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#065f46', margin: '0 0 0.5rem' }}>
+                    {isVi ? 'Đã gửi yêu cầu thành công!' : isTh ? 'ส่งคำขอสำเร็จแล้ว!' : 'Request Sent Successfully!'}
+                  </h4>
+                  <p style={{ fontSize: '0.85rem', color: '#047857', margin: '0 0 1.25rem', lineHeight: 1.5 }}>
+                    {isVi ? 'Bộ phận kinh doanh Green Sea Tour sẽ liên hệ lại quý đối tác ngay qua LINE / WhatsApp.' : 'เจ้าหน้าที่ฝ่ายขายจะติดต่อกลับผ่าน LINE / WhatsApp โดยเร็วที่สุด'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => { setSubmitted(false); setShowQuoteModal(false); }}
+                    style={{
+                      padding: '0.65rem 1.75rem', borderRadius: '0.65rem', background: '#059669',
+                      color: '#fff', border: 'none', fontWeight: 800, fontSize: '0.875rem', cursor: 'pointer'
+                    }}
+                  >
+                    {isVi ? 'Đóng' : isTh ? 'ปิด' : 'Close'}
+                  </button>
+                </div>
+              ) : (
+                <form id="slideover-quote-form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  
+                  {/* Agency / Full Name */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, marginBottom: '0.3rem', color: '#334155' }}>
+                      {agentConfig.isAgent 
+                        ? (isVi ? 'Họ và Tên Quý Khách' : isTh ? 'ชื่อ-นามสกุลของคุณ' : 'Full Name')
+                        : (isVi ? 'Tên Công Ty / Đại Lý' : isTh ? 'ชื่อบริษัททัวร์ / ตัวแทน' : 'Agency Name')} <span style={{ color: '#ef4444' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder={agentConfig.isAgent ? (isVi ? 'Ví dụ: Somchai Prasert' : 'e.g. Somchai Prasert') : (isVi ? 'Ví dụ: Siam Travel Co.' : 'e.g. Siam Travel')}
+                      value={agentForm.agencyName}
+                      onChange={e => setAgentForm({ ...agentForm, agencyName: e.target.value })}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.6rem', border: '1.5px solid #cbd5e1', fontSize: '0.85rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
+                    />
+                  </div>
+
+                  {/* 2-Col: Contact Person & Phone */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, marginBottom: '0.3rem', color: '#334155' }}>
+                        {isVi ? 'Người liên hệ' : isTh ? 'ชื่อผู้ติดต่อ' : 'Contact Person'} <span style={{ color: '#ef4444' }}>*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder={isVi ? 'Tên người liên hệ' : 'Contact Person'}
+                        value={agentForm.contactName}
+                        onChange={e => setAgentForm({ ...agentForm, contactName: e.target.value })}
+                        style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.6rem', border: '1.5px solid #cbd5e1', fontSize: '0.85rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, marginBottom: '0.3rem', color: '#334155' }}>
+                        {isVi ? 'Số điện thoại / LINE' : isTh ? 'เบอร์โทร / LINE ID' : 'Phone / LINE ID'} <span style={{ color: '#ef4444' }}>*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="+66... / @line_id"
+                        value={agentForm.phoneLine}
+                        onChange={e => setAgentForm({ ...agentForm, phoneLine: e.target.value })}
+                        style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.6rem', border: '1.5px solid #cbd5e1', fontSize: '0.85rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Departure Date */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, marginBottom: '0.3rem', color: '#334155' }}>
+                      {isVi ? 'Ngày dự kiến khởi hành' : isTh ? 'วันเดินทางโดยประมาณ' : 'Estimated Date'} <span style={{ color: '#ef4444' }}>*</span>
+                    </label>
+                    <input
+                      type="date"
+                      required
+                      value={agentForm.departureDate}
+                      onChange={e => setAgentForm({ ...agentForm, departureDate: e.target.value })}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.6rem', border: '1.5px solid #cbd5e1', fontSize: '0.85rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', boxSizing: 'border-box' }}
+                    />
+                  </div>
+
+                  {/* Special Requests */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, marginBottom: '0.3rem', color: '#334155' }}>
+                      {isVi ? 'Yêu cầu đặc biệt (Nâng hạng xe, ăn kiêng...)' : isTh ? 'ความต้องการเพิ่มเติม (เช่น อัปเกรดรถ, อาหารพิเศษ)' : 'Special Requests'}
+                    </label>
+                    <textarea
+                      rows={2}
+                      placeholder={isVi ? 'Nhập ghi chú yêu cầu thêm nếu có...' : 'Additional notes...'}
+                      value={agentForm.specialRequests}
+                      onChange={e => setAgentForm({ ...agentForm, specialRequests: e.target.value })}
+                      style={{ width: '100%', padding: '0.75rem 0.85rem', borderRadius: '0.6rem', border: '1.5px solid #cbd5e1', fontSize: '0.85rem', fontWeight: 600, background: '#f8fafc', color: '#0f172a', outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
+                    />
+                  </div>
+
+                  {/* Thai Market Dedicated Specialists with QR Codes */}
+                  {!agentConfig.isAgent && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', marginTop: '0.25rem' }}>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                        <span>🇹🇭 {isVi ? 'Phụ trách thị trường Thái Lan:' : 'ทีมงานดูแลตลาดไทยโดยตรง:'}</span>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.55rem' }}>
+                        {/* Specialist 1: Ms. Kim */}
+                        <a 
+                          href="https://line.me/ti/p/~0987434343" 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="qr-card-interactive"
+                          style={{
+                            background: '#f8fafc',
+                            borderRadius: '0.75rem',
+                            padding: '0.55rem 0.7rem',
+                            border: '1.5px solid #e2e8f0',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.55rem',
+                            textDecoration: 'none',
+                            color: '#0f172a'
+                          }}
+                        >
+                          <img src="/assets/qr-kim.png" alt="Ms Kim QR" style={{ width: '38px', height: '38px', borderRadius: '0.35rem', border: '1px solid #cbd5e1', padding: '2px', background: '#fff' }} />
+                          <div>
+                            <div style={{ fontWeight: 800, fontSize: '0.8rem', color: '#00533d' }}>Ms. Kim</div>
+                            <div style={{ fontSize: '0.68rem', color: '#06c755', fontWeight: 800 }}>LINE Direct →</div>
+                          </div>
+                        </a>
+
+                        {/* Specialist 2: Mr. Khanh */}
+                        <a 
+                          href="https://line.me/ti/p/U1vOdylKTL" 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="qr-card-interactive"
+                          style={{
+                            background: '#f8fafc',
+                            borderRadius: '0.75rem',
+                            padding: '0.55rem 0.7rem',
+                            border: '1.5px solid #e2e8f0',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.55rem',
+                            textDecoration: 'none',
+                            color: '#0f172a'
+                          }}
+                        >
+                          <img src="/assets/qr-khanh.png" alt="Mr Khanh QR" style={{ width: '38px', height: '38px', borderRadius: '0.35rem', border: '1px solid #cbd5e1', padding: '2px', background: '#fff' }} />
+                          <div>
+                            <div style={{ fontWeight: 800, fontSize: '0.8rem', color: '#00533d' }}>Mr. Khanh</div>
+                            <div style={{ fontSize: '0.68rem', color: '#06c755', fontWeight: 800 }}>LINE Direct →</div>
+                          </div>
+                        </a>
+                      </div>
+
+                      {/* Hotline & Email Strip */}
+                      <div style={{ background: '#f8fafc', borderRadius: '0.6rem', padding: '0.5rem 0.75rem', border: '1px solid #e2e8f0', fontSize: '0.725rem', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.35rem' }}>
+                        <div>💬 Hotline: <strong style={{ color: '#0f172a' }}>(+84) 987.43.43.43</strong></div>
+                        <div>✉️ <strong style={{ color: '#0f172a' }}>sale1@greenseatour.vn</strong></div>
+                      </div>
+                    </div>
+                  )}
+
+                </form>
+              )}
+
+            </div>
+
+            {/* Drawer Sticky Footer */}
+            {!submitted && (
+              <div style={{ padding: '1rem 1.5rem', borderTop: '1px solid #e2e8f0', background: '#f8fafc', width: '100%', boxSizing: 'border-box' }}>
+                <Magnet magnetStrength={0.15} style={{ width: '100%', display: 'flex' }}>
+                  <button
+                    form="slideover-quote-form"
+                    type="submit"
+                    style={{
+                      width: '100%',
+                      padding: '0.9rem 1.5rem',
+                      borderRadius: '0.75rem',
+                      background: 'linear-gradient(135deg, #059669 0%, #00533d 100%)',
+                      color: '#ffffff',
+                      border: 'none',
+                      fontSize: '0.95rem',
+                      fontWeight: 900,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.55rem',
+                      boxShadow: '0 8px 24px -4px rgba(5, 150, 105, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      letterSpacing: '0.4px',
+                      transition: 'all 0.2s',
+                      fontFamily: isTh ? "'Prompt', sans-serif" : "'Be Vietnam Pro', sans-serif"
+                    }}
+                  >
+                    <Send size={16} style={{ color: '#fde047' }} />
+                    <span>{isVi ? 'GỬI YÊU CẦU BÁO GIÁ B2B' : isTh ? 'ขอใบเสนอราคา B2B' : 'Request B2B Quotation'}</span>
+                  </button>
+                </Magnet>
+              </div>
+            )}
+
+          </div>
+
         </div>
       )}
 
