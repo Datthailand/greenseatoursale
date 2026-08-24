@@ -1520,28 +1520,18 @@ td:not(:first-child) {
 }
 
 /* ── Direct Consultant QR Grid ── */
-.contact-section-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.contact-section-wrap .line-contact-block {
-  margin-top: 0;
-}
-
 .direct-contacts-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  margin-top: 20px;
 }
 
 .direct-qr-card {
   background: #f8fafc;
   border: 1.5px solid #e2e8f0;
   border-radius: 14px;
-  padding: 12px 10px;
+  padding: 14px 10px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1560,8 +1550,8 @@ td:not(:first-child) {
 }
 
 .direct-qr-img {
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
   border-radius: 8px;
   background: #ffffff;
   padding: 3px;
@@ -1578,18 +1568,10 @@ td:not(:first-child) {
 
 .direct-qr-name {
   font-weight: 800;
-  font-size: 13.5px;
+  font-size: 14px;
   color: #0f172a;
-  margin-top: 6px;
+  margin-top: 8px;
   white-space: nowrap;
-}
-
-.direct-qr-link {
-  font-size: 11.5px;
-  color: #00b900;
-  font-weight: 800;
-  white-space: nowrap;
-  margin-top: 2px;
 }
 
 
