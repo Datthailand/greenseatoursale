@@ -54,6 +54,36 @@ src/components/
 
 ---
 
+## 2.5. Kiến Trúc Modular Tour Catalog (`src/components/catalog/`)
+
+Trang chủ Tour Catalog (`/` hoặc `https://www.greenseatour.vn/`) đã được phân tách triệt để từ file `App.jsx` 1.079 dòng thành các Micro-Modules chuyên biệt:
+
+```text
+src/
+├── App.jsx                                  ← Orchestrator điều phối (~190 dòng: Router, State tập trung)
+│
+└── components/
+    └── catalog/                             ← Hệ thống Micro-Modules cho trang Catalog
+        ├── constants.js                     ← Từ điển ngôn ngữ TH/EN, tỷ giá USD/THB, hàm format giá
+        │
+        ├── ui/                              ← Micro-UI components
+        │   ├── Flags.jsx                    ← ThailandFlag & UKFlag SVG
+        │   ├── ListBlock.jsx                ← Khối danh sách Bao gồm / Không bao gồm
+        │   └── SmallInfoCard.jsx            ← Thẻ chính sách trẻ em, hủy phạt, thanh toán
+        │
+        ├── sections/                        ← Các phần giao diện chính của Catalog
+        │   ├── CatalogNavbar.jsx            ← Header topbar, logo, nút chuyển USD/THB & đổi cờ ngôn ngữ
+        │   ├── FilterBar.jsx                ← Bộ lọc FIT/GIT, lọc Vùng miền, thanh tìm kiếm & Sort
+        │   └── TourCard.jsx                 ← Thẻ hiển thị từng tour trong danh sách
+        │
+        └── detail/                          ← Khung xem chi tiết tour
+            ├── DetailPanel.jsx              ← Container chi tiết bên phải + nút mở Landing Page & LINE QR
+            ├── ItineraryTable.jsx           ← Bảng lịch trình theo ngày kèm thực đơn ăn uống
+            └── PricePreview.jsx             ← Bảng giá NET nhiều mùa, số khách 2-14 pax & loại xe
+```
+
+---
+
 ## 3. Quy Tắc Phát Triển Bắt Buộc Dành Cho AI Agent (Rules for AI Pair Programming)
 
 ### ⚠️ Nguyên Tắc Vàng: "Sai Đâu Sửa Đó — Không Đụng Chéo File"

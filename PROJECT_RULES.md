@@ -5,9 +5,20 @@
 ---
 
 ### 1. NGUYÊN TẮC BẤT BIẾN:
-- **THÊM MỚI**: Tạo file Module/Component riêng biệt trong `src/components/landing/` (hoặc thư mục tương ứng), rồi mới `import` vào giao diện chính.
+- **THÊM MỚI**: Tạo file Module/Component riêng biệt trong thư mục tương ứng (`src/components/catalog/` hoặc `src/components/landing/`), rồi mới `import` vào giao diện chính.
 - **SỬA LỖI**: Xác định chính xác 1 file liên quan đến lỗi để sửa (phẫu thuật đúng chỗ đau). Tuyệt đối không viết lại, không gom gộp, không làm thay đổi logic các file khác.
-- **FILE CHÍNH (Orchestrator)**: Chỉ đóng vai trò điều phối state và gắn kết các module (~300 dòng), cấm viết code UI tràn lan vào file chính.
+- **FILE CHÍNH (Orchestrator)**: Chỉ đóng vai trò điều phối state và gắn kết các module (`App.jsx` ~190 dòng, `FITDAD01LandingPage.jsx` ~300 dòng), cấm viết code UI tràn lan vào file chính.
+
+### 1.5. BẢN ĐỒ PHÂN ĐỊNH 2 PHÂN HỆ ĐỘC LẬP:
+Toàn bộ dự án đã được phân tách thành 2 không gian Micro-Modules hoàn toàn tách biệt:
+1. **Trang chủ Tour Catalog (`https://www.greenseatour.vn/` hoặc `/`)**:
+   - Thư mục phụ trách: `src/components/catalog/` (`CatalogNavbar.jsx`, `FilterBar.jsx`, `TourCard.jsx`, `DetailPanel.jsx`, `ItineraryTable.jsx`, `PricePreview.jsx`, `constants.js`).
+   - File điều phối: `src/App.jsx`.
+2. **Trang Landing Page FITDAD01 (`https://www.greenseatour.vn/?tour=fitdad01&mode=landing`)**:
+   - Thư mục phụ trách: `src/components/landing/` (`NavbarSection.jsx`, `HeroSection.jsx`, `DestinationAccordion.jsx`, `ItinerarySection.jsx`, `FlightScheduleSection.jsx`, `PricingTerminalSection.jsx`, `TermsSection.jsx`, `FaqSection.jsx`, `PartnersMarquee.jsx`, `FooterSection.jsx`, `AddonsModal.jsx`, `AgentWhiteLabelModal.jsx`, `QuoteDrawer.jsx`).
+   - File điều phối: `src/components/FITDAD01LandingPage.jsx`.
+
+> ⚠️ **TUYỆT ĐỐI KHÔNG SỬA NHẦM FILE GIỮA 2 PHÂN HỆ NÀY!**
 
 ### 2. THỦ TỤC TRƯỚC KHI THỰC HIỆN:
 Trước khi chỉnh sửa bất kỳ dòng code nào, AI bắt buộc phải thông báo rõ ràng cho người dùng:
