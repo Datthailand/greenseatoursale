@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { ShieldCheck, Sparkles, Zap, MapPin, DollarSign, FileText, Send, Tag, Clock, CheckCircle2, Phone, MessageSquare } from 'lucide-react';
 
 const ThailandFlag = ({ width = 20, height = 14 }) => (
@@ -18,43 +18,9 @@ export function ScrollSplitCard({
   onOpenQuote
 }) {
   const containerRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            const totalScrollDistance = rect.height - windowHeight;
-            if (totalScrollDistance > 0) {
-              const currentScroll = -rect.top;
-              const progress = Math.min(Math.max(currentScroll / totalScrollDistance, 0), 1);
-              setScrollProgress(progress);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Split calculations calibrated for smooth 60fps scrolling
-  // Phase 1 (0 to 0.3): Split horizontal cards apart
-  const splitProgress = Math.min(Math.max(scrollProgress / 0.3, 0), 1);
-  const gap = splitProgress * 24; // 0px to 24px gap
-
-  // Phase 2 (0.2 to 0.8): 3D Flip 180 degrees
-  const flipProgress = Math.min(Math.max((scrollProgress - 0.2) / 0.6, 0), 1);
-  const rotateY = flipProgress * 180;
+  const stageRef = useRef(null);
+  const cardRefs = useRef([]);
+  const frontRadiusRefs = useRef([]);
 
   // Thai Flag Tri-Color Palette System: 🔴 Red Ruby | ⚪ Platinum White | 🔵 Royal Navy Blue
   const cardData = cards.length === 3 ? cards : [
@@ -150,246 +116,347 @@ export function ScrollSplitCard({
     }
   ];
 
+  useEffect(() => {
+    let targetProgress = 0;
+    let currentProgress = 0;
+    let animationFrameId = null;
+    let isRunning = false;
+
+    const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
+    // Apply direct style updates without causing React re-renders (120fps hardware accelerated)
+    const updateTransforms = (p) => {
+      // 1. Horizontal Split Gap: 0px to 22px between 0.0 -> 0.18 progress
+      const splitProgress = clamp(p / 0.18, 0, 1);
+      const gapPx = splitProgress * 22;
+      if (stageRef.current) {
+        stageRef.current.style.gap = `${gapPx}px`;
+      }
+
+      // Update slice border radius smoothly
+      const isSplit = splitProgress > 0.25;
+      if (frontRadiusRefs.current[0]) {
+        frontRadiusRefs.current[0].style.borderRadius = isSplit ? '1.25rem' : '1.25rem 0 0 1.25rem';
+      }
+      if (frontRadiusRefs.current[1]) {
+        frontRadiusRefs.current[1].style.borderRadius = isSplit ? '1.25rem' : '0';
+      }
+      if (frontRadiusRefs.current[2]) {
+        frontRadiusRefs.current[2].style.borderRadius = isSplit ? '1.25rem' : '0 1.25rem 1.25rem 0';
+      }
+
+      // 2. Cascading 3D Staggered Flip: Cards flip with smooth wave offset
+      // Card 0: 0.08 -> 0.66
+      // Card 1: 0.15 -> 0.73
+      // Card 2: 0.22 -> 0.80
+      const cardStarts = [0.08, 0.15, 0.22];
+      const cardDuration = 0.58;
+
+      for (let i = 0; i < 3; i++) {
+        const cardEl = cardRefs.current[i];
+        if (!cardEl) continue;
+
+        const start = cardStarts[i];
+        const cardFlipProg = clamp((p - start) / cardDuration, 0, 1);
+        
+        // Cubic ease for ultra-smooth physical turnaround
+        const easeProg = cardFlipProg < 0.5
+          ? 2 * cardFlipProg * cardFlipProg
+          : 1 - Math.pow(-2 * cardFlipProg + 2, 2) / 2;
+
+        const deg = easeProg * 180;
+        cardEl.style.transform = `rotateY(${deg}deg) translateZ(0)`;
+      }
+    };
+
+    // Physics Lerp Loop for buttery-smooth inertia gliding
+    const tick = () => {
+      const delta = targetProgress - currentProgress;
+      currentProgress += delta * 0.16;
+
+      if (Math.abs(delta) < 0.0003) {
+        currentProgress = targetProgress;
+      }
+
+      updateTransforms(currentProgress);
+
+      if (Math.abs(targetProgress - currentProgress) >= 0.0003) {
+        animationFrameId = window.requestAnimationFrame(tick);
+        isRunning = true;
+      } else {
+        isRunning = false;
+      }
+    };
+
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const offsetTop = containerRef.current.offsetTop || (rect.top + window.scrollY);
+
+      // Start flip when user scrolls down towards this section (~100px past top)
+      // Complete 180° flip when this section reaches the reading focal zone
+      const startScroll = Math.max(0, offsetTop - windowHeight * 0.45);
+      const endScroll = Math.max(startScroll + 200, offsetTop - 60);
+      const totalDistance = endScroll - startScroll;
+
+      if (totalDistance > 0) {
+        targetProgress = clamp((window.scrollY - startScroll) / totalDistance, 0, 1);
+      } else {
+        targetProgress = 0;
+      }
+
+      if (!isRunning) {
+        isRunning = true;
+        animationFrameId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    
+    // Initial sync
+    handleScroll();
+    updateTransforms(0);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, []);
+
   return (
-    <div
+    <section
       ref={containerRef}
       style={{
         position: 'relative',
-        height: '220vh',
         width: '100%',
-        margin: '0 auto'
+        margin: '0 auto',
+        padding: '2.5rem 1.5rem 3.5rem',
+        boxSizing: 'border-box',
+        perspective: '1400px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
       }}
     >
-      {/* Sticky viewport frame */}
-      <div
-        style={{
-          position: 'sticky',
-          top: '75px',
-          height: 'calc(100vh - 85px)',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
+      {/* Section Header */}
+      <div style={{ textAlign: 'center', marginBottom: '1.75rem', userSelect: 'none' }}>
+        <div style={{
+          display: 'inline-flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          perspective: '1400px',
-          padding: '1rem 1.5rem',
-          boxSizing: 'border-box'
+          gap: '0.45rem',
+          background: '#ecfdf5',
+          color: '#00533d',
+          padding: '0.35rem 0.95rem',
+          borderRadius: '2rem',
+          fontSize: '0.72rem',
+          fontWeight: 800,
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px',
+          border: '1px solid #a7f3d0'
+        }}>
+          <ThailandFlag width={14} height={10} />
+          {isVi ? 'DMC Việt Nam dành cho đối tác Thái Lan' : isTh ? 'แลนด์โอเปอเรเตอร์เวียดนามสำหรับพันธมิตรไทย' : 'Vietnam Inbound DMC for Thai Partners'}
+        </div>
+        <h2 style={{
+          fontSize: '1.9rem',
+          fontWeight: 900,
+          color: '#0f172a',
+          margin: '0.35rem 0 0',
+          letterSpacing: '-0.02em',
+          fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif"
+        }}>
+          {isVi ? '3 điểm mạnh khi hợp tác với Green Sea Tour' : isTh ? '3 จุดเด่นสำคัญเมื่อร่วมงานกับ Green Sea Tour' : '3 Core Strengths of Green Sea Tour'}
+        </h2>
+      </div>
+
+      {/* 3-Panel Card Stage */}
+      <div
+        ref={stageRef}
+        style={{
+          display: 'flex',
+          width: '100%',
+          maxWidth: '1240px',
+          height: '460px',
+          position: 'relative',
+          transformStyle: 'preserve-3d',
+          gap: '0px',
+          willChange: 'gap'
         }}
       >
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.45rem',
-            background: '#ecfdf5',
-            color: '#00533d',
-            padding: '0.35rem 0.95rem',
-            borderRadius: '2rem',
-            fontSize: '0.72rem',
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            border: '1px solid #a7f3d0'
-          }}>
-            <ThailandFlag width={14} height={10} />
-            {isVi ? 'DMC Việt Nam dành cho đối tác Thái Lan' : isTh ? 'แลนด์โอเปอเรเตอร์เวียดนามสำหรับพันธมิตรไทย' : 'Vietnam Inbound DMC for Thai Partners'}
-          </div>
-          <h2 style={{
-            fontSize: '1.9rem',
-            fontWeight: 900,
-            color: '#0f172a',
-            margin: '0.35rem 0 0',
-            letterSpacing: '-0.02em',
-            fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif"
-          }}>
-            {isVi ? '3 điểm mạnh khi hợp tác với Green Sea Tour' : isTh ? '3 จุดเด่นสำคัญเมื่อร่วมงานกับ Green Sea Tour' : '3 Core Strengths of Green Sea Tour'}
-          </h2>
-        </div>
+        {[0, 1, 2].map((idx) => {
+          const data = cardData[idx];
+          const sliceLeft = `${-idx * 100}%`;
+          const initialRadius = idx === 0 
+            ? '1.25rem 0 0 1.25rem' 
+            : idx === 2 
+              ? '0 1.25rem 1.25rem 0' 
+              : '0';
 
-        {/* 3-Panel Card Stage */}
-        <div
-          style={{
-            display: 'flex',
-            width: '100%',
-            maxWidth: '1240px',
-            height: '460px',
-            position: 'relative',
-            transformStyle: 'preserve-3d',
-            gap: `${gap}px`
-          }}
-        >
-          {[0, 1, 2].map((idx) => {
-            const data = cardData[idx];
-            const sliceLeft = `${-idx * 100}%`;
-            const sliceRadius = idx === 0 
-              ? (splitProgress < 0.2 ? '1.25rem 0 0 1.25rem' : '1.25rem')
-              : idx === 2 
-                ? (splitProgress < 0.2 ? '0 1.25rem 1.25rem 0' : '1.25rem')
-                : (splitProgress < 0.2 ? '0' : '1.25rem');
-
-            return (
+          return (
+            <div
+              key={idx}
+              ref={(el) => (cardRefs.current[idx] = el)}
+              style={{
+                flex: 1,
+                height: '100%',
+                position: 'relative',
+                transformStyle: 'preserve-3d',
+                transform: 'rotateY(0deg) translateZ(0)',
+                willChange: 'transform',
+                borderRadius: '1.25rem',
+                boxShadow: data.boxShadow
+              }}
+            >
+              {/* FRONT FACE: Panoramic Image Slice */}
               <div
-                key={idx}
+                ref={(el) => (frontRadiusRefs.current[idx] = el)}
                 style={{
-                  flex: 1,
-                  height: '100%',
-                  position: 'relative',
-                  transformStyle: 'preserve-3d',
-                  transform: `rotateY(${rotateY}deg)`,
-                  borderRadius: '1.25rem',
-                  boxShadow: data.boxShadow
+                  position: 'absolute',
+                  inset: 0,
+                  overflow: 'hidden',
+                  borderRadius: initialRadius,
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  zIndex: 2,
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.15)',
+                  transform: 'translateZ(0)',
+                  willChange: 'border-radius, transform'
                 }}
               >
-                {/* FRONT FACE: Panoramic Image Slice */}
                 <div
                   style={{
                     position: 'absolute',
-                    inset: 0,
-                    overflow: 'hidden',
-                    borderRadius: sliceRadius,
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    zIndex: 2,
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1)'
+                    top: 0,
+                    bottom: 0,
+                    left: sliceLeft,
+                    width: '300%',
+                    backgroundImage: `url(${imageSrc})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    transform: 'translate3d(0,0,0)',
+                    imageRendering: '-webkit-optimize-contrast'
                   }}
-                >
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      left: sliceLeft,
-                      width: '300%',
-                      backgroundImage: `url(${imageSrc})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  />
-                  {/* Subtle glass reflection overlay */}
-                  <div style={{
-                    position: 'absolute', inset: 0,
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%, rgba(0,0,0,0.3) 100%)'
-                  }} />
-                  {/* Cover title badge */}
-                  <div style={{
-                    position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem',
-                    background: 'rgba(15, 23, 42, 0.82)', backdropFilter: 'blur(10px)',
-                    padding: '0.65rem 1rem', borderRadius: '0.75rem', color: '#fff',
-                    border: '1px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between'
-                  }}>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 800 }}>{data.badge}</span>
-                    <span style={{ fontSize: '0.7rem', color: '#cbd5e1' }}>Scroll to Flip ↺</span>
-                  </div>
-                </div>
-
-                {/* BACK FACE: Rich B2B Capability Pillar Card */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    overflow: 'hidden',
-                    borderRadius: '1.25rem',
-                    backgroundColor: data.bgColor,
-                    color: data.textColor,
-                    padding: '1.6rem',
-                    boxSizing: 'border-box',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)',
-                    zIndex: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    border: `1.5px solid ${data.borderColor}`,
-                    boxShadow: data.boxShadow
-                  }}
-                >
-                  {/* Card Header */}
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
-                      <div style={{
-                        display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-                        background: data.badgeBg, backdropFilter: 'blur(8px)',
-                        padding: '0.25rem 0.65rem', borderRadius: '2rem', fontSize: '0.68rem',
-                        fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px',
-                        border: `1px solid ${data.badgeBorder}`,
-                        color: data.isDark ? '#ffffff' : '#1d4ed8'
-                      }}>
-                        {data.icon}
-                        <span>{data.badge}</span>
-                      </div>
-                      <span style={{ fontSize: '0.9rem', fontWeight: 900, opacity: data.isDark ? 0.35 : 0.25, color: data.titleColor }}>0{idx + 1}</span>
-                    </div>
-
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: 900, margin: '0 0 0.4rem', lineHeight: 1.25, color: data.titleColor, fontFamily: isTh ? "'Prompt', sans-serif" : "'Be Vietnam Pro', sans-serif" }}>
-                      {data.title}
-                    </h3>
-                    <p style={{ fontSize: '0.76rem', lineHeight: 1.45, margin: '0 0 0.85rem', color: data.descColor }}>
-                      {data.description}
-                    </p>
-
-                    {/* Features List */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                      {data.features.map((feat, fIdx) => (
-                        <div
-                          key={fIdx}
-                          style={{
-                            background: data.featureBg,
-                            padding: '0.4rem 0.6rem',
-                            borderRadius: '0.5rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.45rem',
-                            fontSize: '0.72rem',
-                            fontWeight: 700,
-                            border: `1px solid ${data.featureBorder}`,
-                            color: data.featureText
-                          }}
-                        >
-                          {feat.icon}
-                          <span>{feat.text}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Card Bottom CTA */}
-                  <div style={{ paddingTop: '0.65rem', borderTop: data.isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid #e2e8f0' }}>
-                    {data.actionLink ? (
-                      <a
-                        href={data.actionLink}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
-                          color: data.ctaColor, fontSize: '0.8rem', fontWeight: 800, textDecoration: 'none'
-                        }}
-                      >
-                        <span>{data.actionText}</span>
-                      </a>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={data.onAction}
-                        style={{
-                          background: 'none', border: 'none', padding: 0,
-                          color: data.ctaColor, fontSize: '0.8rem', fontWeight: 800,
-                          cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.35rem'
-                        }}
-                      >
-                        <span>{data.actionText}</span>
-                      </button>
-                    )}
-                  </div>
-
-                </div>
+                />
+                {/* Subtle glass reflection overlay */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 60%, rgba(0,0,0,0.3) 100%)',
+                  pointerEvents: 'none'
+                }} />
               </div>
-            );
-          })}
-        </div>
 
+              {/* BACK FACE: Rich B2B Capability Pillar Card */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  overflow: 'hidden',
+                  borderRadius: '1.25rem',
+                  backgroundColor: data.bgColor,
+                  color: data.textColor,
+                  padding: '1.6rem',
+                  boxSizing: 'border-box',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg) translateZ(0)',
+                  zIndex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  border: `1.5px solid ${data.borderColor}`,
+                  boxShadow: data.boxShadow,
+                  willChange: 'transform'
+                }}
+              >
+                {/* Card Header */}
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                      background: data.badgeBg,
+                      padding: '0.25rem 0.65rem', borderRadius: '2rem', fontSize: '0.68rem',
+                      fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px',
+                      border: `1px solid ${data.badgeBorder}`,
+                      color: data.isDark ? '#ffffff' : '#1d4ed8'
+                    }}>
+                      {data.icon}
+                      <span>{data.badge}</span>
+                    </div>
+                    <span style={{ fontSize: '0.9rem', fontWeight: 900, opacity: data.isDark ? 0.35 : 0.25, color: data.titleColor }}>0{idx + 1}</span>
+                  </div>
+
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 900, margin: '0 0 0.4rem', lineHeight: 1.25, color: data.titleColor, fontFamily: isTh ? "'Prompt', sans-serif" : "'Be Vietnam Pro', sans-serif" }}>
+                    {data.title}
+                  </h3>
+                  <p style={{ fontSize: '0.76rem', lineHeight: 1.45, margin: '0 0 0.85rem', color: data.descColor }}>
+                    {data.description}
+                  </p>
+
+                  {/* Features List */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    {data.features.map((feat, fIdx) => (
+                      <div
+                        key={fIdx}
+                        style={{
+                          background: data.featureBg,
+                          padding: '0.4rem 0.6rem',
+                          borderRadius: '0.5rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.45rem',
+                          fontSize: '0.72rem',
+                          fontWeight: 700,
+                          border: `1px solid ${data.featureBorder}`,
+                          color: data.featureText
+                        }}
+                      >
+                        {feat.icon}
+                        <span>{feat.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card Bottom CTA */}
+                <div style={{ paddingTop: '0.65rem', borderTop: data.isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid #e2e8f0' }}>
+                  {data.actionLink ? (
+                    <a
+                      href={data.actionLink}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+                        color: data.ctaColor, fontSize: '0.8rem', fontWeight: 800, textDecoration: 'none'
+                      }}
+                    >
+                      <span>{data.actionText}</span>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={data.onAction}
+                      style={{
+                        background: 'none', border: 'none', padding: 0,
+                        color: data.ctaColor, fontSize: '0.8rem', fontWeight: 800,
+                        cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.35rem'
+                      }}
+                    >
+                      <span>{data.actionText}</span>
+                    </button>
+                  )}
+                </div>
+
+              </div>
+            </div>
+          );
+        })}
       </div>
-    </div>
+    </section>
   );
 }
+
+

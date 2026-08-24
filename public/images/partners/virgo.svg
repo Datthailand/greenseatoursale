@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 50" width="170" height="50">
+    <rect width="170" height="50" rx="8" fill="#faf5ff"/>
+    <circle cx="25" cy="25" r="15" fill="#7c3aed"/>
+    <path d="M25 16 L27 22 L33 25 L27 28 L25 34 L23 28 L17 25 L23 22 Z" fill="#e9d5ff"/>
+    <text x="48" y="23" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="12" font-weight="900" fill="#6d28d9">VIRGO CENTER</text>
+    <text x="48" y="37" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="9" font-weight="700" fill="#a855f7" letter-spacing="1.2">TOUR CO., LTD.</text>
+  </svg>

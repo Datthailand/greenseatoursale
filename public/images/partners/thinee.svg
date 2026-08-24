@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" width="160" height="50">
+    <rect width="160" height="50" rx="8" fill="#fafaf9"/>
+    <circle cx="25" cy="25" r="15" fill="#1c1917"/>
+    <path d="M18 28 L20 20 L25 24 L30 20 L32 28 Z" fill="#eab308"/>
+    <text x="48" y="24" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="12" font-weight="900" fill="#1c1917">THINEE VIP</text>
+    <text x="48" y="38" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="8.5" font-weight="700" fill="#78716c" letter-spacing="1">CO., LTD. (TTAA)</text>
+  </svg>

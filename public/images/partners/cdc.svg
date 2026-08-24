@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" width="160" height="50">
+    <rect width="160" height="50" rx="8" fill="#eff6ff"/>
+    <rect x="12" y="12" width="26" height="26" rx="6" fill="#2563eb"/>
+    <text x="25" y="29" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">CDC</text>
+    <text x="46" y="24" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="13" font-weight="900" fill="#1e40af">CDC TRAVEL</text>
+    <text x="46" y="38" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="1">THAILAND</text>
+  </svg>

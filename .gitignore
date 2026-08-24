@@ -7,3 +7,6 @@ tmp/
 
 qa/
 scratch_*
+*_screenshot.png
+extract_*
+*.backup.jsx
