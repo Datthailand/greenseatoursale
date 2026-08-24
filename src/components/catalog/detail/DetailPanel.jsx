@@ -173,23 +173,62 @@ export default function DetailPanel({
         )}
       </section>
 
-      {/* LINE Official Contact */}
-      <a
-        href="https://lin.ee/Pwro79k"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="line-contact-block"
-      >
-        <img
-          src="/assets/line-qr.png"
-          alt="GreenSea LINE Official QR Code"
-          className="line-qr-img"
-        />
-        <div className="line-contact-text">
-          <span className="line-contact-label">GreenSea LINE Official</span>
-          <span className="line-contact-sub">แสกน QR หรือคลิกเพื่อเพิ่มเพื่อน (ID: @greenseatour)</span>
+      {/* LINE Official & Direct Contacts */}
+      <div className="contact-section-wrap">
+        <a
+          href="https://lin.ee/Pwro79k"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="line-contact-block"
+        >
+          <img
+            src="/assets/line-qr.png"
+            alt="GreenSea LINE Official QR Code"
+            className="line-qr-img"
+          />
+          <div className="line-contact-text">
+            <span className="line-contact-label">GreenSea LINE Official</span>
+            <span className="line-contact-sub">
+              {language === 'TH' ? 'แสกน QR หรือคลิกเพื่อเพิ่มเพื่อน (ID: @greenseatour)' : 'Scan QR or click to add friend (ID: @greenseatour)'}
+            </span>
+          </div>
+        </a>
+
+        {/* Direct Consultant QR Grid */}
+        <div className="direct-contacts-grid">
+          {/* Ms. Kim */}
+          <a
+            href="https://line.me/ti/p/BSLZR5dyBa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="direct-qr-card"
+          >
+            <img
+              src="/assets/qr-kim.png"
+              alt="Ms. Kim LINE QR"
+              className="direct-qr-img"
+            />
+            <div className="direct-qr-name">Ms. Kim</div>
+            <div className="direct-qr-link">Direct →</div>
+          </a>
+
+          {/* Mr. Khanh */}
+          <a
+            href="https://line.me/ti/p/U1vOdylKTL"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="direct-qr-card"
+          >
+            <img
+              src="/assets/qr-khanh.png"
+              alt="Mr. Khanh LINE QR"
+              className="direct-qr-img"
+            />
+            <div className="direct-qr-name">Mr. Khanh</div>
+            <div className="direct-qr-link">Direct →</div>
+          </a>
         </div>
-      </a>
+      </div>
     </section>
   );
 }

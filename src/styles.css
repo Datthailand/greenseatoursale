@@ -1519,6 +1519,79 @@ td:not(:first-child) {
   line-height: 1.4;
 }
 
+/* ── Direct Consultant QR Grid ── */
+.contact-section-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.contact-section-wrap .line-contact-block {
+  margin-top: 0;
+}
+
+.direct-contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.direct-qr-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.direct-qr-card:hover {
+  transform: translateY(-2px);
+  border-color: #06C755;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(6, 199, 85, 0.15);
+}
+
+.direct-qr-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 3px;
+  border: 1px solid #cbd5e1;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.direct-qr-card:hover .direct-qr-img {
+  transform: scale(1.04);
+}
+
+.direct-qr-name {
+  font-weight: 800;
+  font-size: 13.5px;
+  color: #0f172a;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.direct-qr-link {
+  font-size: 11.5px;
+  color: #00b900;
+  font-weight: 800;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
 
 /* ==========================================================================
    6. INTERACTIVE HIGHLIGHTS & MICRO-INTERACTIONS
