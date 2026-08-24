@@ -16,6 +16,7 @@ export default function FaqSection({
   onOpenQuoteDrawer,
   onOpenWhiteLabel
 }) {
+  const [isSectionOpen, setIsSectionOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [copiedFaqId, setCopiedFaqId] = useState(null);
@@ -82,30 +83,74 @@ A: ${a}
       <div style={{
         background: '#ffffff',
         borderRadius: '1.25rem',
-        padding: '2rem',
+        padding: isSectionOpen ? '2rem' : '1.75rem 2rem',
         border: '1px solid #e2e8f0',
-        boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.05)'
+        boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.05)',
+        transition: 'all 0.25s ease'
       }}>
 
-        {/* 1. Header with Clean Typography */}
-        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        {/* 1. Header with Clean Typography - Centered */}
+        <div style={{
+          textAlign: 'center',
+          marginBottom: isSectionOpen ? '1.5rem' : '0'
+        }}>
           <h2 style={{
             fontFamily: isTh ? "'Prompt', sans-serif" : "'Playfair Display', serif",
             fontSize: '1.8rem',
             fontWeight: 800,
             color: '#0f172a',
-            marginBottom: '0.4rem'
+            marginBottom: '0.35rem'
           }}>
-            {isVi ? 'Giải Đáp Thắc Mắc Thường Gặp B2B' : isTh ? 'คำถามที่พบบ่อยสำหรับตัวแทนท่องเที่ยว (FAQ)' : 'Frequently Asked Questions (B2B FAQ)'}
+            {isVi ? 'Giải Đáp Thắc Mắc Thường Gặp' : isTh ? 'คำถามที่พบบ่อย (FAQ)' : 'Frequently Asked Questions (FAQ)'}
           </h2>
-          <p style={{ color: '#64748b', fontSize: '0.88rem', maxWidth: '780px', margin: '0 auto', lineHeight: 1.5 }}>
+          <p style={{
+            color: '#64748b',
+            fontSize: '0.88rem',
+            maxWidth: '780px',
+            margin: '0 auto',
+            lineHeight: 1.5
+          }}>
             {isVi
               ? 'Các quy định điều hành, xử lý giờ bay, cơ cấu phòng lẻ và quyền lợi dành riêng cho đối tác.'
               : isTh
               ? 'สรุปข้อมูลการบริหารจัดการเที่ยวบิน การจัดห้องพัก และสิทธิประโยชน์พิเศษสำหรับพันธมิตรเอเจนซี่'
               : 'Operations guidelines, flight logistics, odd rooming policy, and DMC benefits for travel partners.'}
           </p>
+
+          {/* Nút Xem tiếp / Thu gọn canh giữa */}
+          <div style={{ marginTop: '0.85rem', display: 'flex', justifyContent: 'center' }}>
+            <button
+              type="button"
+              onClick={() => setIsSectionOpen(!isSectionOpen)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.5rem 1.35rem',
+                borderRadius: '0.6rem',
+                background: isSectionOpen ? '#f1f5f9' : '#059669',
+                color: isSectionOpen ? '#334155' : '#ffffff',
+                fontSize: '0.875rem',
+                fontWeight: 700,
+                border: isSectionOpen ? '1px solid #cbd5e1' : 'none',
+                cursor: 'pointer',
+                boxShadow: isSectionOpen ? 'none' : '0 4px 12px rgba(5, 150, 105, 0.25)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <span>
+                {isSectionOpen
+                  ? (isVi ? 'Thu gọn' : isTh ? 'ย่อเนื้อหา' : 'Collapse')
+                  : (isVi ? 'Xem tiếp' : isTh ? 'ดูเพิ่มเติม' : 'Read more')}
+              </span>
+              {isSectionOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+            </button>
+          </div>
         </div>
+
+        {/* Nội dung FAQ đầy đủ - Chỉ mở khi isSectionOpen === true */}
+        {isSectionOpen && (
+          <div style={{ animation: 'fadeIn 0.2s ease forwards' }}>
 
         {/* 2. Search & Quick Filters Bar - 2 Clean Distinct Rows */}
         <div style={{
@@ -800,6 +845,37 @@ A: ${a}
             )}
           </div>
         </div>
+
+        {/* Nút thu gọn ở cuối danh sách khi đã đọc xong */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.25rem' }}>
+          <button
+            type="button"
+            onClick={() => {
+              setIsSectionOpen(false);
+              const el = document.getElementById('faq-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.45rem 1rem',
+              borderRadius: '0.55rem',
+              border: '1px solid #cbd5e1',
+              background: '#f8fafc',
+              color: '#475569',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <ChevronUp size={14} />
+            <span>{isVi ? 'Thu gọn danh sách câu hỏi' : isTh ? 'ย่อรายการคำถาม' : 'Collapse FAQ list'}</span>
+          </button>
+        </div>
+      </div>
+    )}
 
       </div>
     </section>
