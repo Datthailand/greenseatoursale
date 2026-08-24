@@ -25,7 +25,7 @@ export default function DetailPanel({
   const cancellationRows = language === 'TH' && tour.cancellationPolicyTh ? tour.cancellationPolicyTh : tour.cancellationRows;
 
   return (
-    <section className="detail-panel" ref={containerRef}>
+    <section className="detail-panel" ref={containerRef} id="detail-panel">
       <button className="close-button" type="button" aria-label="Close detail" onClick={onClose}>
         <X size={22} />
       </button>

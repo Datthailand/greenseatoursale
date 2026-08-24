@@ -487,6 +487,7 @@ button {
 .detail-panel {
   position: sticky;
   top: 16px;
+  scroll-margin-top: 16px;
   min-width: 0;
   max-height: calc(100vh - 32px);
   overflow-y: auto;

@@ -150,6 +150,23 @@ function App() {
   }, [filteredTours, selectedId]);
 
   useEffect(() => {
+    const tourParam = searchParams.get('tour') || searchParams.get('id') || searchParams.get('code');
+    if (tourParam) {
+      const scrollToDetail = () => {
+        if (window.innerWidth <= 1240 && detailRef.current) {
+          detailRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+      const timer1 = setTimeout(scrollToDetail, 100);
+      const timer2 = setTimeout(scrollToDetail, 400);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'a') {
         setIsAdminMode(prev => !prev);
