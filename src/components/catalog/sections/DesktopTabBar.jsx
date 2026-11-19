@@ -82,12 +82,12 @@ export default function DesktopTabBar({
             {isCompare ? (
               <>
                 <Square size={14} />
-                <span>{language === 'TH' ? 'ดูทีละทัวร์' : 'Single View'}</span>
+                <span>{language === 'TH' ? 'ดูทีละทัวร์' : (language === 'EN' ? 'Single View' : 'Xem từng tour')}</span>
               </>
             ) : (
               <>
                 <Columns2 size={15} />
-                <span>{language === 'TH' ? '◫ So sánh 2 tour song song' : '◫ Compare Side-by-Side'}</span>
+                <span>{language === 'TH' ? 'เปรียบเทียบ 2 ทัวร์' : (language === 'EN' ? 'Compare 2 Tours' : 'So sánh 2 tour')}</span>
               </>
             )}
           </button>

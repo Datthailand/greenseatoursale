@@ -2375,7 +2375,7 @@ td:not(:first-child) {
 }
 
 .desktop-tab-item.is-comparing {
-  border-color: #0284c7;
+  border-color: #006f52;
 }
 
 .tab-tour-code {
@@ -2437,29 +2437,39 @@ td:not(:first-child) {
   padding: 0 14px;
   border-radius: 6px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 650;
   cursor: pointer;
-  background: #0284c7;
-  border: 1px solid #0284c7;
-  color: #ffffff;
+  background: #ffffff;
+  border: 1.5px solid #006f52;
+  color: #006f52;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 111, 82, 0.08);
 }
 
 .desktop-compare-btn:hover {
-  background: #0369a1;
-  border-color: #0369a1;
+  background: #006f52;
+  border-color: #006f52;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 111, 82, 0.22);
+  transform: translateY(-1px);
+}
+
+.desktop-compare-btn:active {
+  transform: translateY(0);
 }
 
 .desktop-compare-btn.is-active {
-  background: #f0fdf4;
-  border: 1.5px solid #006f52;
-  color: #006f52;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
   box-shadow: none;
+  transform: none;
 }
 
 .desktop-compare-btn.is-active:hover {
-  background: #dcfce7;
+  background: #e2e8f0;
+  border-color: #006f52;
+  color: #006f52;
 }
 
 .tab-limit-pill {
@@ -2504,9 +2514,9 @@ td:not(:first-child) {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #e0f2fe;
-  color: #0369a1;
-  border: 1px solid #bae6fd;
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
   border-radius: 6px;
   padding: 4px 10px;
   font-size: 13px;
@@ -2584,9 +2594,9 @@ td:not(:first-child) {
 }
 
 .col-tag-2 {
-  background: #e0f2fe;
-  color: #0369a1;
-  border: 1px solid #bae6fd;
+  background: #f0fdf4;
+  color: #006f52;
+  border: 1px solid #bbf7d0;
 }
 
 .compare-tour-switcher {
@@ -2866,13 +2876,15 @@ td:not(:first-child) {
 }
 
 .btn-grid-compare {
-  background: #e0f2fe;
-  border: 1px solid #bae6fd;
-  color: #0369a1;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #006f52;
 }
 
 .btn-grid-compare:hover {
-  background: #bae6fd;
+  background: #006f52;
+  border-color: #006f52;
+  color: #ffffff;
 }
 
 .btn-grid-active {
