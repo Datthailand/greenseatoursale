@@ -16,8 +16,8 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # 2. Sync files to the VPS using SCP
-Write-Host "[2/2] Transferring built files to VPS (129.212.232.185)..." -ForegroundColor Yellow
-scp -r dist/* root@129.212.232.185:/var/www/greenseatour.vn/html/
+Write-Host "[2/2] Transferring built files to VPS (160.236.192.239)..." -ForegroundColor Yellow
+scp -o StrictHostKeyChecking=no -r dist/* root@160.236.192.239:/var/www/greenseatour.vn/html/
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""

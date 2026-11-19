@@ -494,6 +494,16 @@ async function main() {
         }
       }
 
+      if (vehicleRows && vehicleRows.length > 0) {
+        vehicleRows.forEach(vr => {
+          if (vr.cells) {
+            vr.cells.forEach(c => {
+              if (c.text === '35 seats (coach)') c.text = '35 seats\n(coach)';
+            });
+          }
+        });
+      }
+
       // Determine assets key string
       const pType = rTour.packageType.toLowerCase();
       let reg = 'Central';
@@ -542,6 +552,31 @@ async function main() {
         }
       }
 
+      const defaultTourImages = {
+        dad01: '/assets/golden-bridge.jpg',
+        dad02: '/assets/hoi-an-night.jpg',
+        dad03: '/assets/cable-car-sunrise.jpg',
+        dad04: '/assets/dragon-bridge-night.jpg',
+        dad05: '/assets/hue-citadel.jpg',
+        han01: '/assets/hanoi-turtle-tower.jpg',
+        han02: '/assets/sapa-fansipan-peak.jpg',
+        fithan02: '/assets/sapa-fansipan-peak.jpg',
+        han03: '/assets/tam-dao-castle.jpg',
+        fithan01: '/assets/tam-dao-castle.jpg',
+        cxr01: '/assets/nha-trang-tram-huong.jpg',
+        fitcxr01: '/assets/nha-trang-tram-huong.jpg',
+        sgn01: '/assets/mui-ne-sand-dunes.jpg',
+        sgn02: '/assets/sai-gon-notre-dame.jpg',
+        fitsgn01: '/assets/mui-ne-sand-dunes.jpg',
+        pqc01: '/assets/phu-quoc-sunset-town.jpg',
+        fitpqc01: '/assets/phu-quoc-sunset-town.jpg',
+        fitdad01: '/assets/golden-bridge.jpg',
+        fitdad02: '/assets/hoi-an-night.jpg',
+      };
+
+      const rawImage = rTour.image || rTour.Image || rTour.img || rTour.Img || rTour.thumbnail || rTour.Thumbnail || rTour.thumb || rTour.cover;
+      const tourImage = (rawImage && rawImage.trim() !== '') ? rawImage.trim() : (defaultTourImages[rTour.id] || undefined);
+
       const tourObj = {
         id: rTour.id,
         code: rTour.code,
@@ -556,6 +591,7 @@ async function main() {
         groupRange,
         vehicle,
         tip: rTour.tip,
+        image: tourImage || undefined,
         assets: assetsKey, // will be replaced with reference in final file write
         sourcePages: rTour.sourcePages || undefined,
         surcharges: parseLineList(rTour.surcharges),

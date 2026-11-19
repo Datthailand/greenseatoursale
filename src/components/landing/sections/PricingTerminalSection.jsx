@@ -13,6 +13,126 @@ export default function PricingTerminalSection({
 }) {
   return (
       <section id="pricing-terminal" style={{ maxWidth: '1280px', margin: '0 auto 4rem', padding: '0 2rem' }}>
+        <style>{`
+          /* 1. NET Price Tier Rows Hover Highlight */
+          .pricing-tier-item {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, background-color 0.2s ease;
+          }
+          .pricing-tier-item.is-unselected:hover {
+            background-color: #f0fdf4 !important;
+            border-color: #10b981 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px -2px rgba(5, 150, 105, 0.18) !important;
+          }
+          .pricing-tier-item.is-unselected:hover .tier-num {
+            background-color: #059669 !important;
+            color: #ffffff !important;
+          }
+          .pricing-tier-item.is-unselected:hover .tier-name {
+            color: #00533d !important;
+          }
+          .pricing-tier-item.is-unselected:hover .tier-price {
+            color: #00533d !important;
+          }
+          .pricing-tier-item.is-selected {
+            border: 2px solid #059669;
+            background-color: #ecfdf5;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.12);
+          }
+          .pricing-tier-item.is-selected:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(5, 150, 105, 0.22) !important;
+            border-color: #047857 !important;
+          }
+
+          /* 2. Margin Preset Pills Hover Highlight */
+          .pricing-margin-pill {
+            transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+          }
+          .pricing-margin-pill.is-unselected:hover {
+            background-color: #ecfdf5 !important;
+            border-color: #059669 !important;
+            color: #00533d !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(5, 150, 105, 0.18) !important;
+          }
+          .pricing-margin-pill.is-selected:hover {
+            background-color: #004432 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 83, 61, 0.35) !important;
+          }
+
+          /* 3. Action Buttons Hover Highlight */
+          .pricing-btn-copy {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, filter 0.2s ease;
+          }
+          .pricing-btn-copy:hover {
+            background-color: #00402f !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0, 83, 61, 0.35) !important;
+            filter: brightness(1.05);
+          }
+          .pricing-btn-copy:active {
+            transform: translateY(0);
+          }
+
+          .pricing-btn-poster {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), filter 0.2s ease;
+          }
+          .pricing-btn-poster:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(217, 119, 6, 0.42) !important;
+            filter: brightness(1.08);
+          }
+          .pricing-btn-poster:not(:disabled):active {
+            transform: translateY(0);
+          }
+
+          .pricing-btn-whitelabel {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+          }
+          .pricing-btn-whitelabel:hover {
+            background-color: #00533d !important;
+            color: #ffffff !important;
+            border: 1.5px solid #00533d !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 83, 61, 0.25) !important;
+          }
+          .pricing-btn-whitelabel:hover .pricing-whitelabel-icon {
+            color: #6ee7b7 !important;
+          }
+          .pricing-btn-whitelabel:active {
+            transform: translateY(0);
+          }
+
+          .pricing-rate-preset-btn {
+            transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+          }
+          .pricing-rate-preset-btn:hover {
+            border-color: #059669 !important;
+            background-color: #ecfdf5 !important;
+            color: #00533d !important;
+            transform: translateY(-1px);
+          }
+
+          .pricing-stepper-btn {
+            transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+          }
+          .pricing-stepper-btn:not(:disabled):hover {
+            background-color: #e2e8f0 !important;
+            color: #00533d !important;
+            transform: scale(1.06);
+          }
+
+          .pricing-holiday-toggle {
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+          }
+          .pricing-holiday-toggle:hover {
+            border-color: #d97706 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12) !important;
+          }
+        `}</style>
         
         {/* Main Section Header */}
         <div style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 2.5rem' }}>
@@ -79,6 +199,7 @@ export default function PricingTerminalSection({
                   <div
                     key={idx}
                     onClick={() => handleBandChange(idx)}
+                    className={`pricing-tier-item ${isSelected ? 'is-selected' : 'is-unselected'}`}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -87,22 +208,24 @@ export default function PricingTerminalSection({
                       borderRadius: '0.85rem',
                       border: isSelected ? '2px solid #059669' : '1px solid #e2e8f0',
                       background: isSelected ? '#ecfdf5' : '#f8fafc',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                      boxShadow: isSelected ? '0 4px 12px rgba(5, 150, 105, 0.12)' : 'none'
+                      cursor: 'pointer'
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <div style={{
-                        width: '28px', height: '28px', borderRadius: '50%',
-                        background: isSelected ? '#00533d' : '#cbd5e1',
-                        color: '#fff', fontSize: '0.75rem', fontWeight: 900,
-                        display: 'flex', alignItems: 'center', justifyContent: 'center'
-                      }}>
+                      <div
+                        className="tier-num"
+                        style={{
+                          width: '28px', height: '28px', borderRadius: '50%',
+                          background: isSelected ? '#00533d' : '#cbd5e1',
+                          color: '#fff', fontSize: '0.75rem', fontWeight: 900,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
                         {idx + 1}
                       </div>
                       <div>
-                        <div style={{ fontWeight: 800, fontSize: '0.95rem', color: isSelected ? '#00533d' : '#0f172a' }}>
+                        <div className="tier-name" style={{ fontWeight: 800, fontSize: '0.95rem', color: isSelected ? '#00533d' : '#0f172a', transition: 'color 0.2s ease' }}>
                           {getBandLabel(p)}
                           {idx === 2 && (
                             <span style={{ marginLeft: '6px', fontSize: '0.7rem', background: '#fef3c7', color: '#92400e', padding: '2px 6px', borderRadius: '4px', fontWeight: 800 }}>
@@ -118,7 +241,7 @@ export default function PricingTerminalSection({
                     </div>
 
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '1.25rem', fontWeight: 900, color: isSelected ? '#00533d' : '#0f172a' }}>
+                      <div className="tier-price" style={{ fontSize: '1.25rem', fontWeight: 900, color: isSelected ? '#00533d' : '#0f172a', transition: 'color 0.2s ease' }}>
                         {currency === 'THB' ? `฿${Math.round(retailUsd * effectiveRate).toLocaleString('en-US')}` : `${retailUsd}`} <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b' }}>/ {isVi ? 'khách' : isTh ? 'ท่าน' : 'pax'}</span>
                       </div>
                       <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#059669' }}>
@@ -258,6 +381,7 @@ export default function PricingTerminalSection({
                   <div style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '0.6rem', padding: '2px' }}>
                     <button
                       onClick={() => setSingleRooms(Math.max(0, singleRooms - 1))}
+                      className="pricing-stepper-btn"
                       style={{ width: '32px', height: '32px', border: 'none', background: '#fff', borderRadius: '0.4rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0f172a' }}
                     >
                       <Minus size={14} />
@@ -267,6 +391,7 @@ export default function PricingTerminalSection({
                     </span>
                     <button
                       onClick={() => setSingleRooms(Math.min(10, singleRooms + 1))}
+                      className="pricing-stepper-btn"
                       style={{ width: '32px', height: '32px', border: 'none', background: '#fff', borderRadius: '0.4rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0f172a' }}
                     >
                       <Plus size={14} />
@@ -293,6 +418,7 @@ export default function PricingTerminalSection({
               {/* Tùy chọn Giai đoạn Lễ (29/04-02/05 & 24-25/12) */}
               <div 
                 onClick={() => setIsHoliday(!isHoliday)}
+                className="pricing-holiday-toggle"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -367,6 +493,7 @@ export default function PricingTerminalSection({
                         key={rate}
                         type="button"
                         onClick={() => setExchangeRate(rate)}
+                        className="pricing-rate-preset-btn"
                         style={{
                           padding: '0.55rem 0.5rem',
                           borderRadius: '0.5rem',
@@ -375,8 +502,7 @@ export default function PricingTerminalSection({
                           color: Number(exchangeRate) === rate ? '#00533d' : '#64748b',
                           fontSize: '0.75rem',
                           fontWeight: 800,
-                          cursor: 'pointer',
-                          transition: 'all 0.15s'
+                          cursor: 'pointer'
                         }}
                       >
                         {rate}
@@ -410,17 +536,17 @@ export default function PricingTerminalSection({
                       <button
                         key={m.val}
                         onClick={() => setAgentMarginPercent(m.val)}
+                        className={`pricing-margin-pill ${isAct ? 'is-selected' : 'is-unselected'}`}
                         style={{
                           padding: '0.5rem 0.2rem',
                           borderRadius: '0.5rem',
-                          border: isAct ? '2px solid #059669' : '1px solid #cbd5e1',
+                          border: isAct ? '2px solid #059669' : '1.5px solid #cbd5e1',
                           background: isAct ? '#00533d' : '#f8fafc',
                           color: isAct ? '#fff' : '#334155',
                           fontWeight: 900,
                           fontSize: '0.8rem',
                           cursor: 'pointer',
-                          textAlign: 'center',
-                          transition: 'all 0.15s'
+                          textAlign: 'center'
                         }}
                       >
                         {m.label}
@@ -560,6 +686,7 @@ export default function PricingTerminalSection({
                 <button
                   onClick={handleCopyQuote}
                   type="button"
+                  className="pricing-btn-copy"
                   style={{
                     width: '100%',
                     padding: '0.7rem 0.6rem',
@@ -574,8 +701,7 @@ export default function PricingTerminalSection({
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '0.35rem',
-                    boxShadow: '0 3px 10px rgba(0, 83, 61, 0.18)',
-                    transition: 'all 0.2s'
+                    boxShadow: '0 3px 10px rgba(0, 83, 61, 0.18)'
                   }}
                 >
                   {copiedQuote ? <Check size={16} /> : <Copy size={16} />}
@@ -591,6 +717,7 @@ export default function PricingTerminalSection({
                   onClick={handleExportPoster}
                   disabled={isExportingPoster}
                   type="button"
+                  className="pricing-btn-poster"
                   style={{
                     width: '100%',
                     padding: '0.7rem 0.6rem',
@@ -606,7 +733,6 @@ export default function PricingTerminalSection({
                     justifyContent: 'center',
                     gap: '0.35rem',
                     boxShadow: '0 3px 10px rgba(217, 119, 6, 0.22)',
-                    transition: 'all 0.2s',
                     opacity: isExportingPoster ? 0.75 : 1
                   }}
                 >
@@ -624,6 +750,7 @@ export default function PricingTerminalSection({
                 <button
                   onClick={() => setShowAgentModal && setShowAgentModal(true)}
                   type="button"
+                  className="pricing-btn-whitelabel"
                   style={{
                     width: '100%',
                     padding: '0.55rem 0.75rem',
@@ -637,11 +764,10 @@ export default function PricingTerminalSection({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.35rem',
-                    transition: 'all 0.2s'
+                    gap: '0.35rem'
                   }}
                 >
-                  <Share2 size={14} style={{ color: '#059669' }} />
+                  <Share2 size={14} className="pricing-whitelabel-icon" style={{ color: '#059669', transition: 'color 0.2s ease' }} />
                   <span>{isVi ? '🏷️ Tạo Link Gửi Khách (Gắn Thương Hiệu & Ẩn Giá NET)' : isTh ? '🏷️ สร้างลิงก์ส่งลูกค้า (ใส่แบรนด์ & ซ่อนราคา NET)' : '🏷️ Generate Client Share Link'}</span>
                 </button>
               )}

@@ -14,6 +14,7 @@ export const landingTours = [
     "groupRange": "2-14 pax",
     "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
     "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+    "image": "/assets/golden-bridge.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-central-vietnam-2026.pdf",
       "cover": "/assets/covers/fit-central-vietnam-2026.png",
@@ -339,6 +340,7 @@ export const landingTours = [
     "groupRange": "2-14 pax",
     "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
     "tip": "800 THB/pax/trip, or 400 THB/pax/trip from 8 pax",
+    "image": "/assets/hoi-an-night.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-central-vietnam-2026.pdf",
       "cover": "/assets/covers/fit-central-vietnam-2026.png",
@@ -695,6 +697,7 @@ export const landingTours = [
     "groupRange": "4-14 pax",
     "vehicle": "16-seat or 29-seat mini bus",
     "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+    "image": "/assets/tam-dao-castle.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-north-vietnam-2026.pdf",
       "cover": "/assets/covers/fit-north-vietnam-2026.png",
@@ -1003,6 +1006,7 @@ export const landingTours = [
     "groupRange": "4-14 pax",
     "vehicle": "16-seat or 29-seat mini bus",
     "tip": "800 THB/pax/trip, or 400 THB/pax/trip from 8 pax",
+    "image": "/assets/sapa-fansipan-peak.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-north-vietnam-2026.pdf",
       "cover": "/assets/covers/fit-north-vietnam-2026.png",
@@ -1679,6 +1683,7 @@ export const landingTours = [
     "groupRange": "4-14 pax",
     "vehicle": "16-seat or 29-seat mini bus",
     "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+    "image": "/assets/phu-quoc-sunset-town.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-phu-quoc-2026.pdf",
       "cover": "/assets/covers/fit-phu-quoc-2026.png",
@@ -2306,6 +2311,7 @@ export const landingTours = [
     "groupRange": "2-14 pax",
     "vehicle": "16-seat or 29-seat mini bus; limousine upgrade for 7-9 pax",
     "tip": "800 THB/pax/trip, or 400 THB/pax/trip from 8 pax",
+    "image": "/assets/nha-trang-tram-huong.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-southern-vietnam-2026.pdf",
       "cover": "/assets/covers/fit-southern-vietnam-2026.png",
@@ -2648,6 +2654,7 @@ export const landingTours = [
     "groupRange": "2-14 pax",
     "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
     "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+    "image": "/assets/mui-ne-sand-dunes.jpg",
     "assets": {
       "pdf": "/sales-kits/fit-southern-vietnam-2026.pdf",
       "cover": "/assets/covers/fit-southern-vietnam-2026.png",
@@ -3015,6 +3022,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "300 THB/pax/trip",
+    "image": "/assets/golden-bridge.jpg",
     "assets": {
       "pdf": "/sales-kits/git-central-vietnam-2026.pdf",
       "cover": "/assets/covers/git-central-vietnam-2026.png",
@@ -3360,6 +3368,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "300 THB/pax/trip",
+    "image": "/assets/hoi-an-night.jpg",
     "assets": {
       "pdf": "/sales-kits/git-central-vietnam-2026.pdf",
       "cover": "/assets/covers/git-central-vietnam-2026.png",
@@ -3712,6 +3721,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/cable-car-sunrise.jpg",
     "assets": {
       "pdf": "/sales-kits/git-central-vietnam-2026.pdf",
       "cover": "/assets/covers/git-central-vietnam-2026.png",
@@ -4100,6 +4110,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/dragon-bridge-night.jpg",
     "assets": {
       "pdf": "/sales-kits/git-central-vietnam-2026.pdf",
       "cover": "/assets/covers/git-central-vietnam-2026.png",
@@ -4479,6 +4490,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/hue-citadel.jpg",
     "assets": {
       "pdf": "/sales-kits/git-central-vietnam-2026.pdf",
       "cover": "/assets/covers/git-central-vietnam-2026.png",
@@ -4550,7 +4562,7 @@ export const landingTours = [
             "colSpan": 2
           },
           {
-            "text": "35 seats (coach)",
+            "text": "35 seats\n(coach)",
             "colSpan": 1
           },
           {
@@ -4871,6 +4883,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/hanoi-turtle-tower.jpg",
     "assets": {
       "pdf": "/sales-kits/git-north-vietnam-2026.pdf",
       "cover": "/assets/covers/git-north-vietnam-2026.png",
@@ -5281,6 +5294,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/sapa-fansipan-peak.jpg",
     "assets": {
       "pdf": "/sales-kits/git-north-vietnam-2026.pdf",
       "cover": "/assets/covers/git-north-vietnam-2026.png",
@@ -5693,6 +5707,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/tam-dao-castle.jpg",
     "assets": {
       "pdf": "/sales-kits/git-north-vietnam-2026.pdf",
       "cover": "/assets/covers/git-north-vietnam-2026.png",
@@ -6106,6 +6121,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "300 THB/pax/trip",
+    "image": "/assets/phu-quoc-sunset-town.jpg",
     "assets": {
       "pdf": "/sales-kits/git-phu-quoc-vietnam-2026.pdf",
       "cover": "/assets/covers/git-phu-quoc-vietnam-2026.png",
@@ -6922,6 +6938,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "300 THB/pax/trip",
+    "image": "/assets/nha-trang-tram-huong.jpg",
     "assets": {
       "pdf": "/sales-kits/git-southern-vietnam-2026.pdf",
       "cover": "/assets/covers/git-southern-vietnam-2026.png",
@@ -6987,7 +7004,7 @@ export const landingTours = [
             "colSpan": 2
           },
           {
-            "text": "35 seats (coach)",
+            "text": "35 seats\n(coach)",
             "colSpan": 1
           },
           {
@@ -7319,7 +7336,7 @@ export const landingTours = [
             "colSpan": 2
           },
           {
-            "text": "35 seats (coach)",
+            "text": "35 seats\n(coach)",
             "colSpan": 1
           },
           {
@@ -7621,6 +7638,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "300 THB/pax/trip",
+    "image": "/assets/mui-ne-sand-dunes.jpg",
     "assets": {
       "pdf": "/sales-kits/git-southern-vietnam-2026.pdf",
       "cover": "/assets/covers/git-southern-vietnam-2026.png",
@@ -7980,6 +7998,7 @@ export const landingTours = [
     "groupRange": "8-42 pax",
     "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
     "tip": "400 THB/pax/trip",
+    "image": "/assets/sai-gon-notre-dame.jpg",
     "assets": {
       "pdf": "/sales-kits/git-southern-vietnam-2026.pdf",
       "cover": "/assets/covers/git-southern-vietnam-2026.png",

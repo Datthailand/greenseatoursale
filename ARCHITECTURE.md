@@ -84,6 +84,36 @@ src/
 
 ---
 
+## 2.6. Kiến Trúc Modular Landing Page Tour Đoàn GIT DAD02 (`src/components/gitdad02/`)
+
+Landing Page tour đoàn lớn GIT DAD02 (`?tour=gitdad02&mode=landing`) được xây dựng độc lập hoàn toàn:
+```text
+src/components/
+├── GITDAD02LandingPage.jsx                  ← Orchestrator điều phối Landing Page GITDAD02
+│
+└── gitdad02/
+    ├── constants.js                         ← Dữ liệu 7 band giá (8-42 pax), xe 29/35/45s, chính sách FOC
+    ├── sections/
+    │   ├── NavbarSection.jsx                ← Thanh điều hướng glass, cờ ngôn ngữ & Chế độ Đại lý
+    │   ├── HeroSection.jsx                  ← Hero banner đoàn lớn (Giá NET chỉ từ $160/khách)
+    │   ├── DestinationAccordion.jsx         ← 7 trải nghiệm điểm đến độc quyền cho đoàn
+    │   ├── ItinerarySection.jsx             ← Lịch trình 3N2Đ + Bữa tối Tôm Hùm Long Qiao & Beer Plaza
+    │   ├── FlightScheduleSection.jsx        ← Bảng khớp chuyến bay Thái Lan <-> DAD
+    │   ├── PricingTerminalSection.jsx       ← Bảng tính giá NET GIT (8-42 pax, xe 29/35/45s, toggle FOC TL)
+    │   ├── TermsSection.jsx                 ← Điều khoản đoàn GIT, chính sách Tour Leader & hủy phạt
+    │   ├── FaqSection.jsx                   ← FAQ B2B dành riêng cho khách đoàn lớn
+    │   ├── PartnersMarquee.jsx              ← Dải logo đối tác lữ hành Thái Lan
+    │   └── FooterSection.jsx                ← Chân trang có chứng nhận TTAA #E382 & 3 mã QR LINE
+    ├── modals/
+    │   ├── AddonsModal.jsx                  ← Modal nâng cấp tôm hùm (+7$) và set menu (+6$)
+    │   ├── AgentWhiteLabelModal.jsx         ← Modal cấu hình thương hiệu đại lý White-Label
+    │   └── QuoteDrawer.jsx                  ← Slide-over Drawer gửi yêu cầu báo giá GIT B2B
+    └── features/
+        └── posterGenerator.js               ← Canvas xuất Poster báo giá GIT đoàn lớn 1080x1920
+```
+
+---
+
 ## 3. Quy Tắc Phát Triển Bắt Buộc Dành Cho AI Agent (Rules for AI Pair Programming)
 
 ### ⚠️ Nguyên Tắc Vàng: "Sai Đâu Sửa Đó — Không Đụng Chéo File"

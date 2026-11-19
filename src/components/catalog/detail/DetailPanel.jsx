@@ -71,16 +71,17 @@ export default function DetailPanel({
       </div>
 
       <div className="detail-actions">
-        {tour.id?.toLowerCase() === 'fitdad01' && (
+        {(tour.id?.toLowerCase() === 'fitdad01' || tour.id?.toLowerCase() === 'dad02' || tour.id?.toLowerCase() === 'gitdad02') && (
           <a
-            href="/?tour=fitdad01&mode=landing#pricing-terminal"
+            href={`/?tour=${tour.id?.toLowerCase() === 'dad02' ? 'gitdad02' : tour.id?.toLowerCase()}&mode=landing#pricing-terminal`}
             className="reactbits-landing-btn"
             onClick={(e) => {
               e.preventDefault();
+              const targetId = tour.id?.toLowerCase() === 'dad02' ? 'gitdad02' : tour.id?.toLowerCase();
               if (onOpenLanding) {
-                onOpenLanding('fitdad01');
+                onOpenLanding(targetId);
               } else {
-                window.location.href = '/?tour=fitdad01&mode=landing#pricing-terminal';
+                window.location.href = `/?tour=${targetId}&mode=landing#pricing-terminal`;
               }
             }}
           >

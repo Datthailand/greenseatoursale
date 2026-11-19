@@ -57,7 +57,7 @@ wsl -d Ubuntu -- bash -lc "cd '/mnt/d/Dat/webapp greensea' && git push -u origin
 ```
 
 ### 2. Deploy Live to VPS:
-- **Server:** `129.212.232.185` (`https://greenseatour.vn`)
+- **Server:** `160.236.192.239` (`https://greenseatour.vn`)
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\deploy.ps1
 ```

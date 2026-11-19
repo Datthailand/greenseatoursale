@@ -5,7 +5,15 @@ import { formatMoney, getHotelStandard, t } from '../constants';
 export default function TourCard({ tour, active, onSelect, currency, language, hidePrice }) {
   return (
     <button className={`tour-card ${active ? 'is-active' : ''}`} type="button" onClick={onSelect}>
-      <img src={tour.assets.thumb || tour.assets.cover} alt="" />
+      <img 
+        src={tour.image || tour.thumb || tour.assets?.thumb || tour.assets?.cover} 
+        alt={tour.title}
+        onError={(e) => {
+          if (tour.assets?.thumb || tour.assets?.cover) {
+            e.target.src = tour.assets.thumb || tour.assets.cover;
+          }
+        }}
+      />
       <div className="tour-card-body">
         <div className="tour-card-title-row">
           <div>

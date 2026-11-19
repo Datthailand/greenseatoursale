@@ -16,8 +16,8 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
           {/* Top Row: Brand Info + 3 Nav Columns */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(280px, 1.15fr) minmax(230px, 1.1fr) minmax(200px, 0.95fr) minmax(290px, 1.35fr)',
-            gap: '2rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '2.5rem 1.75rem',
             marginBottom: '4rem'
           }}>
             
@@ -57,7 +57,7 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
                   : (isVi 
                       ? '“Your Trusted DMC Vietnam for Thailand Market - Easy to Work, Ready to Support”. Đối tác lữ hành tin cậy chuyên cung cấp land tour trọn gói chất lượng cao cho các đại lý du lịch.' 
                       : isTh 
-                        ? '“Your Trusted DMC Vietnam for Thailand Market - Easy to Work, Ready to Support” แลนด์เวียดนามมืออาชีพ บริการกรุ๊ปส่วนตัวและกรุ๊ปเหมาสำหรับบริษัททัวร์ไทย' 
+                        ? '“Your Trusted DMC Vietnam for Thailand Market - Easy to Work, Ready to Support” แลนด์เวียดนามมืออาชีพ บริการกรุ๊ปส่วนตัว và กรุ๊ปเหมาสำหรับบริษัททัวร์ไทย' 
                         : '“Your Trusted DMC Vietnam for Thailand Market - Easy to Work, Ready to Support”. Professional inbound land operator for Thailand travel agencies.')}
               </p>
 
@@ -66,7 +66,7 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
                 {agentConfig.isAgent ? (
                   <>
                     {agentConfig.tel && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <Phone size={16} style={{ color: '#059669', flexShrink: 0 }} />
                         <a href={`tel:${agentConfig.tel}`} style={{ color: '#64748b', textDecoration: 'none', fontWeight: 700 }}>
                           Hotline: {agentConfig.tel}
@@ -74,7 +74,7 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
                       </div>
                     )}
                     {agentConfig.line && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <MessageSquare size={16} style={{ color: '#059669', flexShrink: 0 }} />
                         <span style={{ color: '#64748b', fontWeight: 700 }}>
                           LINE ID: {agentConfig.line}
@@ -84,32 +84,32 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
                   </>
                 ) : (
                   <>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
-                      <MapPin size={16} style={{ color: '#059669', flexShrink: 0 }} />
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                      <MapPin size={16} style={{ color: '#059669', flexShrink: 0, marginTop: '3px' }} />
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=516+Nguy%E1%BB%85n+H%E1%BB%AFu+Th%E1%BB%8D,+%C4%90%C3%A0+N%E1%BA%B5ng,+Vi%E1%BB%87t+Nam"
                         target="_blank"
                         rel="noreferrer"
-                        style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s' }}
+                        style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600, transition: 'color 0.2s', lineHeight: 1.5 }}
                         onMouseEnter={(e) => e.currentTarget.style.color = '#059669'}
                         onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
                       >
                         514 - 516 Nguyễn Hữu Thọ, Q. Cẩm Lệ, TP. Đà Nẵng, Việt Nam
                       </a>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Globe2 size={16} style={{ color: '#059669', flexShrink: 0 }} />
                       <a href="https://www.greensealandtourvietnam.com" target="_blank" rel="noreferrer" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600 }}>
                         www.greensealandtourvietnam.com
                       </a>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Send size={16} style={{ color: '#059669', flexShrink: 0 }} />
                       <a href="mailto:sale1@greenseatour.vn" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600 }}>
                         sale1@greenseatour.vn
                       </a>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Phone size={16} style={{ color: '#059669', flexShrink: 0 }} />
                       <a href="https://wa.me/84987434343" target="_blank" rel="noreferrer" style={{ color: '#64748b', textDecoration: 'none', fontWeight: 600 }}>
                         (+84) 987.43.43.43
@@ -163,7 +163,7 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
                       {isVi ? 'Chứng nhận TTAA Thái Lan' : isTh ? 'สมาคมไทยบริการท่องเที่ยว' : 'TTAA Thailand Certified'}
                     </div>
                     <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <span>{isVi ? 'Thành viên TTAA #5299' : isTh ? 'สมาชิก TTAA รหัส 5299' : 'TTAA Member #5299'}</span>
+                      <span>{isVi ? 'Thành viên TTAA #E382' : isTh ? 'สมาชิก TTAA รหัส E382' : 'TTAA Member #E382'}</span>
                       <span style={{ color: '#059669', fontSize: '0.75rem' }}>↗</span>
                     </div>
                   </div>
@@ -173,26 +173,26 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
 
             {/* Column 1: Tuyến Tour B2B */}
             <div>
-              <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', marginBottom: '1.25rem', whiteSpace: 'nowrap' }}>
+              <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', marginBottom: '1.25rem' }}>
                 {isVi ? 'Tuyến Điểm Tour' : isTh ? 'โปรแกรมเส้นทาง' : 'Tour Routes'}
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.875rem' }}>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <a href="#pricing-terminal" className="footer-nav-link">
                     {isVi ? 'Đà Nẵng – Bà Nà – Hội An' : isTh ? 'ดานัง – บานาฮิลล์ – ฮอยอัน' : 'Da Nang – Ba Na – Hoi An'}
                   </a>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} className="footer-nav-link">
                     {isVi ? 'Miền Bắc (Hà Nội – Sa Pa – Ninh Bình)' : isTh ? 'ภาคเหนือ (ฮานอย – ซาปา – นิงห์บิงห์)' : 'North Vietnam Tours'}
                   </button>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} className="footer-nav-link">
                     {isVi ? 'Miền Nam (Sài Gòn – Mũi Né – Đà Lạt)' : isTh ? 'ภาคใต้ (ไซ่ง่อน – มุยเน่ – ดาลัด)' : 'South Vietnam Tours'}
                   </button>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <button onClick={() => { if (onBack) onBack(); else window.location.href = '/'; }} className="footer-nav-link">
                     {isVi ? 'Đảo Ngọc Phú Quốc' : isTh ? 'เกาะฟู้โกว๊ก (Phu Quoc)' : 'Phu Quoc Island'}
                   </button>
@@ -202,33 +202,33 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
 
             {/* Column 2: Chính Sách B2B */}
             <div>
-              <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', marginBottom: '1.25rem', whiteSpace: 'nowrap' }}>
+              <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#0f172a', marginBottom: '1.25rem' }}>
                 {isVi ? 'Chính Sách Đại Lý' : isTh ? 'นโยบายตัวแทน' : 'Agent Policies'}
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.875rem' }}>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <a href="#pricing-terminal" className="footer-nav-link">
                     {agentConfig.isAgent || agentConfig.hideNet
                       ? (isVi ? 'Bảng Giá 2 - 14 Khách' : isTh ? 'ตารางราคา 2-14 ท่าน' : 'Rate Grid 2-14 Pax')
                       : (isVi ? 'Bảng Giá NET 2 - 14 Pax' : isTh ? 'ตารางราคา NET 2-14 ท่าน' : 'B2B Net Rate Grid')}
                   </a>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <a href="#pricing-terminal" className="footer-nav-link">
                     {isVi ? 'Công Cụ Tính Lợi Nhuận' : isTh ? 'ระบบคำนวณกำไร Margin' : 'Margin Calculator'}
                   </a>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <a href="#terms-section" className="footer-nav-link">
                     {isVi ? 'Quy Định Đặt Cọc & Hủy Phạt' : isTh ? 'เงื่อนไขมัดจำและยกเลิก' : 'Payment & Cancellation'}
                   </a>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <a href="#terms-section" className="footer-nav-link">
                     {isVi ? 'Chính Sách Giá Trẻ Em' : isTh ? 'ราคาสาหรับเด็ก' : 'Child Policy'}
                   </a>
                 </li>
-                <li style={{ whiteSpace: 'nowrap' }}>
+                <li>
                   <a href="#pricing-terminal" className="footer-nav-link">
                     {isVi ? 'Tùy Chọn Limousine VIP' : isTh ? 'อัปเกรดรถ Limousine' : 'Limousine Upgrade'}
                   </a>
@@ -407,7 +407,7 @@ export default function FooterSection({ isVi, isTh, agentConfig = {}, onBack, on
                   style={{ color: '#059669', fontWeight: 800, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
                 >
                   <img src="/assets/ttaa-icon.png" alt="TTAA" style={{ height: '14px', width: 'auto', objectFit: 'contain', verticalAlign: 'middle' }} />
-                  <span>{isVi ? 'Hồ sơ TTAA No. 5299 ↗' : isTh ? 'ทะเบียน TTAA เลขที่ 5299 ↗' : 'TTAA Reg. No. 5299 ↗'}</span>
+                  <span>{isVi ? 'Hồ sơ TTAA No. E382 ↗' : isTh ? 'ทะเบียน TTAA เลขที่ E382 ↗' : 'TTAA Reg. No. E382 ↗'}</span>
                 </a>
               )}
               <span style={{ color: '#059669', fontWeight: 800 }}>

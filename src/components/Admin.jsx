@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   Search, Sliders, Database, ArrowLeft, LogOut, Plus, Trash2, 
   Save, AlertCircle, CheckCircle2, ChevronRight, Eye, RefreshCw,
-  Globe2, Menu, Info, ListPlus, ShieldCheck, MapPin, DollarSign, Calendar
+  Globe2, Menu, Info, ListPlus, ShieldCheck, MapPin, DollarSign, Calendar,
+  Image as ImageIcon
 } from 'lucide-react';
 import { tours as initialTours, config as initialConfig } from '../data/tours.js';
 
@@ -21,8 +22,19 @@ export default function Admin({ onBack }) {
   });
 
   const [tours, setTours] = useState(() => {
-    // Clone initial tours to prevent direct mutations
-    return JSON.parse(JSON.stringify(initialTours));
+    try {
+      const savedImages = JSON.parse(localStorage.getItem('greensea_tour_images') || '{}');
+      return initialTours.map(t => {
+        const cloned = JSON.parse(JSON.stringify(t));
+        if (savedImages[t.id]) {
+          cloned.image = savedImages[t.id];
+          cloned.thumb = savedImages[t.id];
+        }
+        return cloned;
+      });
+    } catch (e) {
+      return JSON.parse(JSON.stringify(initialTours));
+    }
   });
 
   const [selectedTourId, setSelectedTourId] = useState(initialTours[0]?.id || '');
@@ -134,6 +146,7 @@ export default function Admin({ onBack }) {
         groupRange: t.groupRange || '',
         vehicle: t.vehicle || '',
         tip: t.tip || '',
+        image: t.image || t.thumb || '',
         surcharges: t.surcharges || [],
         highlights: t.highlights || [],
         inclusionsTh: t.inclusionsTh || [],
@@ -1148,6 +1161,130 @@ export default function Admin({ onBack }) {
                         value={activeTour.tip}
                         onChange={e => updateActiveTour(t => t.tip = e.target.value)}
                       />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tour Thumbnail Image Editor Card */}
+                <div className="editor-card">
+                  <h3><ImageIcon size={16} /> Hình ảnh đại diện Tour (Thumbnail / Cover Image)</h3>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 220px', gap: '24px', alignItems: 'start' }}>
+                    <div>
+                      <div className="form-field">
+                        <label>Đường dẫn hình ảnh (URL hoặc đường dẫn file /assets/...)</label>
+                        <input 
+                          type="text" 
+                          placeholder="Ví dụ: /assets/golden-bridge.jpg hoặc link https://..."
+                          value={activeTour.image || activeTour.thumb || ''}
+                          onChange={e => {
+                            const val = e.target.value;
+                            updateActiveTour(t => {
+                              t.image = val;
+                              t.thumb = val;
+                            });
+                            try {
+                              const saved = JSON.parse(localStorage.getItem('greensea_tour_images') || '{}');
+                              saved[activeTour.id] = val;
+                              localStorage.setItem('greensea_tour_images', JSON.stringify(saved));
+                            } catch (err) {
+                              console.error(err);
+                            }
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ marginTop: '14px' }}>
+                        <label style={{ fontSize: '12px', fontWeight: 600, color: '#66736f', display: 'block', marginBottom: '8px' }}>
+                          ⚡ Hoặc chọn nhanh từ kho ảnh điểm đến có sẵn:
+                        </label>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                          {[
+                            { label: '🌉 Cầu Vàng Bà Nà', src: '/assets/golden-bridge.jpg' },
+                            { label: '🏮 Phố cổ Hội An', src: '/assets/hoi-an-night.jpg' },
+                            { label: '🚡 Cáp treo Bà Nà', src: '/assets/cable-car-sunrise.jpg' },
+                            { label: '🛶 Rừng dừa Bảy Mẫu', src: '/assets/coconut-basket-boat.jpg' },
+                            { label: '🛕 Chùa Linh Ứng', src: '/assets/linh-ung-pagoda.jpg' },
+                            { label: '🏰 Làng Pháp Mercure', src: '/assets/mercure-french-village.jpg' },
+                            { label: '🌊 Vịnh Hạ Long / Bắc Bộ', src: '/assets/thumbs/fit-north-vietnam-2026.jpg' },
+                            { label: '🏖️ Mũi Né / Nam Bộ', src: '/assets/thumbs/fit-southern-vietnam-2026.jpg' },
+                            { label: '🏝️ Thị trấn Hoàng Hôn Phú Quốc', src: '/assets/phu-quoc-sunset-town.jpg' },
+                            { label: '🏛️ Cố Đô Huế (Ngọ Môn)', src: '/assets/hue-citadel.jpg' },
+                            { label: '🏰 Lâu đài Tam Đảo', src: '/assets/tam-dao-castle.jpg' },
+                            { label: '🏖️ Tháp Trầm Hương Nha Trang', src: '/assets/nha-trang-tram-huong.jpg' },
+                            { label: '⛪ Nhà thờ Đức Bà Sài Gòn', src: '/assets/sai-gon-notre-dame.jpg' },
+                            { label: '🐉 Cầu Rồng Đà Nẵng', src: '/assets/dragon-bridge-night.jpg' },
+                            { label: '🏜️ Đồi cát Mũi Né', src: '/assets/mui-ne-sand-dunes.jpg' },
+                            { label: '⛰️ Đỉnh Fansipan Sapa', src: '/assets/sapa-fansipan-peak.jpg' },
+                            { label: '🐢 Tháp Rùa Hồ Gươm (Hà Nội)', src: '/assets/hanoi-turtle-tower.jpg' },
+                          ].map(preset => {
+                            const isSelected = (activeTour.image || activeTour.thumb) === preset.src;
+                            return (
+                              <button
+                                key={preset.src}
+                                type="button"
+                                onClick={() => {
+                                  updateActiveTour(t => {
+                                    t.image = preset.src;
+                                    t.thumb = preset.src;
+                                  });
+                                  try {
+                                    const saved = JSON.parse(localStorage.getItem('greensea_tour_images') || '{}');
+                                    saved[activeTour.id] = preset.src;
+                                    localStorage.setItem('greensea_tour_images', JSON.stringify(saved));
+                                  } catch (err) {
+                                    console.error(err);
+                                  }
+                                }}
+                                style={{
+                                  padding: '6px 12px',
+                                  borderRadius: '6px',
+                                  border: isSelected ? '2px solid #006f52' : '1px solid #dfe8e4',
+                                  background: isSelected ? '#edf7f2' : '#f8faf9',
+                                  color: isSelected ? '#004b3a' : '#334155',
+                                  fontSize: '12px',
+                                  fontWeight: 600,
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease'
+                                }}
+                              >
+                                {preset.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Live Preview */}
+                    <div style={{ textAlign: 'center' }}>
+                      <label style={{ fontSize: '12px', fontWeight: 600, color: '#66736f', display: 'block', marginBottom: '8px' }}>
+                        Xem trước hình ảnh (Preview)
+                      </label>
+                      <div style={{
+                        width: '100%',
+                        height: '130px',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        border: '2px solid #dfe8e4',
+                        background: '#f1f5f9',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <img 
+                          src={activeTour.image || activeTour.thumb || activeTour.assets?.thumb || activeTour.assets?.cover} 
+                          alt="Tour Preview"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          onError={(e) => {
+                            if (activeTour.assets?.thumb || activeTour.assets?.cover) {
+                              e.target.src = activeTour.assets.thumb || activeTour.assets.cover;
+                            }
+                          }}
+                        />
+                      </div>
+                      <span style={{ fontSize: '11px', color: '#64748b', marginTop: '6px', display: 'block' }}>
+                        Hiển thị trực tiếp trên Thẻ Tour
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -109,6 +109,7 @@ export const tours = [
   "groupRange": "2-14 pax",
   "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
   "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+  "image": "/assets/golden-bridge.jpg",
   "assets": kitAssets.fitCentral,
   "surcharges": [
     "29/04-02/05/2026 +18 USD/pax",
@@ -340,6 +341,7 @@ export const tours = [
   "groupRange": "2-14 pax",
   "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
   "tip": "800 THB/pax/trip, or 400 THB/pax/trip from 8 pax",
+  "image": "/assets/hoi-an-night.jpg",
   "assets": kitAssets.fitCentral,
   "surcharges": [
     "29/04-02/05/2026 +20 USD/pax",
@@ -601,6 +603,7 @@ export const tours = [
   "groupRange": "4-14 pax",
   "vehicle": "16-seat or 29-seat mini bus",
   "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+  "image": "/assets/tam-dao-castle.jpg",
   "assets": kitAssets.fitNorth,
   "surcharges": [
     "29/04-02/05/2026 +30 USD/pax",
@@ -815,6 +818,7 @@ export const tours = [
   "groupRange": "4-14 pax",
   "vehicle": "16-seat or 29-seat mini bus",
   "tip": "800 THB/pax/trip, or 400 THB/pax/trip from 8 pax",
+  "image": "/assets/sapa-fansipan-peak.jpg",
   "assets": kitAssets.fitNorth,
   "surcharges": [
     "29/04-02/05/2026 +30 USD/pax",
@@ -1301,6 +1305,7 @@ export const tours = [
   "groupRange": "4-14 pax",
   "vehicle": "16-seat or 29-seat mini bus",
   "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+  "image": "/assets/phu-quoc-sunset-town.jpg",
   "assets": kitAssets.fitPhuQuoc,
   "surcharges": [
     "29/04-02/05/2026 +25 USD/pax",
@@ -1739,6 +1744,7 @@ export const tours = [
   "groupRange": "2-14 pax",
   "vehicle": "16-seat or 29-seat mini bus; limousine upgrade for 7-9 pax",
   "tip": "800 THB/pax/trip, or 400 THB/pax/trip from 8 pax",
+  "image": "/assets/nha-trang-tram-huong.jpg",
   "assets": kitAssets.fitSouth,
   "surcharges": [
     "29/04-02/05/2026 +30 USD/pax",
@@ -1986,6 +1992,7 @@ export const tours = [
   "groupRange": "2-14 pax",
   "vehicle": "16-seat or 29-seat mini bus; limousine upgrade available",
   "tip": "600 THB/pax/trip, or 300 THB/pax/trip from 8 pax",
+  "image": "/assets/mui-ne-sand-dunes.jpg",
   "assets": kitAssets.fitSouth,
   "surcharges": [
     "29/04-02/05/2026 +35 USD/pax",
@@ -2258,6 +2265,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "300 THB/pax/trip",
+  "image": "/assets/golden-bridge.jpg",
   "assets": kitAssets.gitCentral,
   "surcharges": [
     "29/04-02/05/2026 +18 USD/pax for small bands",
@@ -2509,6 +2517,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "300 THB/pax/trip",
+  "image": "/assets/hoi-an-night.jpg",
   "assets": kitAssets.gitCentral,
   "surcharges": [
     "29/04-02/05/2026 +28/+25 USD by band",
@@ -2767,6 +2776,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/cable-car-sunrise.jpg",
   "assets": kitAssets.gitCentral,
   "surcharges": [
     "29/04-02/05/2026 +28/+25 USD by band",
@@ -3060,6 +3070,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/dragon-bridge-night.jpg",
   "assets": kitAssets.gitCentral,
   "surcharges": [
     "29/04-02/05/2026 +45/+40 USD by band",
@@ -3344,6 +3355,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/hue-citadel.jpg",
   "assets": kitAssets.gitCentral,
   "surcharges": [
     "29/04-02/05/2026 +27/+25 USD by band",
@@ -3410,7 +3422,7 @@ export const tours = [
           "colSpan": 2
         },
         {
-          "text": "35 seats (coach)",
+          "text": "35 seats\n(coach)",
           "colSpan": 1
         },
         {
@@ -3641,6 +3653,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/hanoi-turtle-tower.jpg",
   "assets": kitAssets.gitNorth,
   "surcharges": [
     "29/04-02/05/2026 +25/+22 USD by band",
@@ -3956,6 +3969,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/sapa-fansipan-peak.jpg",
   "assets": kitAssets.gitNorth,
   "surcharges": [
     "29/04-02/05/2026 +25/+22 USD by band",
@@ -4273,6 +4287,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/tam-dao-castle.jpg",
   "assets": kitAssets.gitNorth,
   "surcharges": [
     "29/04-02/05/2026 +25/+22 USD by band",
@@ -4591,6 +4606,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "300 THB/pax/trip",
+  "image": "/assets/phu-quoc-sunset-town.jpg",
   "assets": kitAssets.gitPhuQuoc,
   "surcharges": [
     "24/12/2026-02/01/2027 high-season row applies"
@@ -5218,6 +5234,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "300 THB/pax/trip",
+  "image": "/assets/nha-trang-tram-huong.jpg",
   "assets": kitAssets.gitSouth,
   "surcharges": [
     "29/04-03/05/2026 +10 USD/pax"
@@ -5278,7 +5295,7 @@ export const tours = [
           "colSpan": 2
         },
         {
-          "text": "35 seats (coach)",
+          "text": "35 seats\n(coach)",
           "colSpan": 1
         },
         {
@@ -5516,7 +5533,7 @@ export const tours = [
           "colSpan": 2
         },
         {
-          "text": "35 seats (coach)",
+          "text": "35 seats\n(coach)",
           "colSpan": 1
         },
         {
@@ -5728,6 +5745,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "300 THB/pax/trip",
+  "image": "/assets/mui-ne-sand-dunes.jpg",
   "assets": kitAssets.gitSouth,
   "surcharges": [
     "29/04-03/05/2026 +25 USD/pax"
@@ -5993,6 +6011,7 @@ export const tours = [
   "groupRange": "8-42 pax",
   "vehicle": "29-seat mini bus, 35-seat coach, or 45-seat bus",
   "tip": "400 THB/pax/trip",
+  "image": "/assets/sai-gon-notre-dame.jpg",
   "assets": kitAssets.gitSouth,
   "surcharges": [
     "29/04-03/05/2026 +30 USD/pax",

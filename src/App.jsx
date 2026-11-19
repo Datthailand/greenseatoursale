@@ -5,12 +5,16 @@ import { landingTours } from './data/landingTours.js';
 import Admin from './components/Admin.jsx';
 import TourLandingPage from './components/TourLandingPage.jsx';
 import FITDAD01LandingPage from './components/FITDAD01LandingPage.jsx';
+import GITDAD02LandingPage from './components/GITDAD02LandingPage.jsx';
 
 import { sortModes, t } from './components/catalog/constants.js';
 import CatalogNavbar from './components/catalog/sections/CatalogNavbar.jsx';
 import FilterBar from './components/catalog/sections/FilterBar.jsx';
 import TourCard from './components/catalog/sections/TourCard.jsx';
 import DetailPanel from './components/catalog/detail/DetailPanel.jsx';
+import DesktopTabBar from './components/catalog/sections/DesktopTabBar.jsx';
+import CompareWorkspace from './components/catalog/sections/CompareWorkspace.jsx';
+import DesktopCatalogFull from './components/catalog/sections/DesktopCatalogFull.jsx';
 
 function App() {
   const [isAdminMode, setIsAdminMode] = useState(() => {
@@ -61,18 +65,46 @@ function App() {
   const shouldHideMeals = isPublicMode || hideParam.includes('meals') || hideParam.includes('restaurant') || hideParam.includes('restaurants') || hideParam.includes('meal');
   const shouldHidePdf = isPublicMode || hideParam.includes('pdf') || hideParam.includes('link');
 
+  const [customImages] = useState(() => {
+    try {
+      const saved = localStorage.getItem('greensea_tour_images');
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) {
+      return {};
+    }
+  });
+
+  const allTours = useMemo(() => {
+    return tours.map(t => {
+      const customImg = customImages[t.id];
+      if (customImg) {
+        return {
+          ...t,
+          image: customImg,
+          thumb: customImg,
+          assets: {
+            ...t.assets,
+            thumb: customImg,
+            cover: customImg
+          }
+        };
+      }
+      return t;
+    });
+  }, [customImages]);
+
   const initialTour = useMemo(() => {
     const tourParam = searchParams.get('tour') || searchParams.get('id') || searchParams.get('code');
     if (tourParam) {
-      const match = tours.find(t => 
+      const match = allTours.find(t => 
         t.id.toLowerCase() === tourParam.toLowerCase() || 
         t.code.toLowerCase() === tourParam.toLowerCase() ||
         `${t.packageType}${t.code}`.toLowerCase() === tourParam.toLowerCase()
       );
       if (match) return match;
     }
-    return tours.find(t => t.packageType === 'GIT') || tours[0];
-  }, [searchParams]);
+    return allTours.find(t => t.packageType === 'GIT') || allTours[0];
+  }, [searchParams, allTours]);
 
   const [landingTourId, setLandingTourId] = useState(() => {
     if (searchParams.get('mode') === 'landing' || searchParams.get('page') === 'landing' || searchParams.get('landing') === 'true') {
@@ -96,22 +128,104 @@ function App() {
   const [regionFilter, setRegionFilter] = useState('All');
   const [query, setQuery] = useState('');
   const [sortMode, setSortMode] = useState('Popular');
-  const [selectedId, setSelectedId] = useState(initialTour?.id || tours.find(t => t.packageType === 'GIT')?.id || tours[0].id);
+  const [selectedId, setSelectedId] = useState(initialTour?.id || allTours.find(t => t.packageType === 'GIT')?.id || allTours[0].id);
   const [notice, setNotice] = useState('');
   const detailRef = useRef(null);
 
+  // Desktop Multi-Tab & Comparator State (Max 2 Tours)
+  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth > 1240);
+  const [openTourTabs, setOpenTourTabs] = useState(() => (initialTour ? [initialTour.id] : []));
+  const [activeTab, setActiveTab] = useState(() => (initialTour ? initialTour.id : 'catalog'));
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth > 1240);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleOpenTour = (tourId) => {
+    setSelectedId(tourId);
+    if (openTourTabs.includes(tourId)) {
+      setActiveTab(tourId);
+      return;
+    }
+    if (openTourTabs.length < 2) {
+      setOpenTourTabs(prev => [...prev, tourId]);
+      setActiveTab(tourId);
+    } else {
+      // Strictly enforce maximum 2 tours open at the same time
+      setOpenTourTabs(prev => {
+        if (activeTab && activeTab !== 'catalog' && activeTab !== 'compare' && prev.includes(activeTab)) {
+          return [activeTab, tourId];
+        }
+        return [prev[1] || prev[0], tourId];
+      });
+      setActiveTab(tourId);
+      showNotice(
+        language === 'TH'
+          ? 'เปิดได้สูงสุด 2 ทัวร์พร้อมกัน (แทนที่ทัวร์ก่อนหน้า)'
+          : 'Đã mở tối đa 2 tour để đối chiếu (thay thế tour cũ)'
+      );
+    }
+  };
+
+  const handleOpenAndCompare = (tourId) => {
+    setSelectedId(tourId);
+    if (openTourTabs.includes(tourId)) {
+      if (openTourTabs.length === 2) {
+        setActiveTab('compare');
+      } else {
+        setActiveTab(tourId);
+      }
+      return;
+    }
+    if (openTourTabs.length === 1) {
+      setOpenTourTabs([openTourTabs[0], tourId]);
+      setActiveTab('compare');
+    } else {
+      setOpenTourTabs([tourId]);
+      setActiveTab(tourId);
+    }
+  };
+
+  const handleCloseTourTab = (tourId, e) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const nextTabs = openTourTabs.filter(id => id !== tourId);
+    setOpenTourTabs(nextTabs);
+    if (activeTab === tourId || activeTab === 'compare') {
+      if (nextTabs.length > 0) {
+        setActiveTab(nextTabs[0]);
+        setSelectedId(nextTabs[0]);
+      } else {
+        setActiveTab('catalog');
+      }
+    }
+  };
+
+  const handleToggleCompare = () => {
+    if (activeTab === 'compare') {
+      setActiveTab(openTourTabs[0] || 'catalog');
+    } else if (openTourTabs.length === 2) {
+      setActiveTab('compare');
+    }
+  };
+
   const handleSelectTour = (id) => {
     setSelectedId(id);
-    setTimeout(() => {
-      if (window.innerWidth <= 1240 && detailRef.current) {
-        detailRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 50);
+    if (window.innerWidth > 1240) {
+      handleOpenTour(id);
+    } else {
+      setTimeout(() => {
+        if (detailRef.current) {
+          detailRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
   };
 
   const filteredTours = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    const matches = tours.filter((tour) => {
+    const matches = allTours.filter((tour) => {
       const matchesPackage = packageFilter === 'All' || tour.packageType === packageFilter;
       const matchesRegion = regionFilter === 'All' || tour.region === regionFilter;
       const haystack = `${tour.code} ${tour.title} ${tour.route} ${tour.region} ${tour.packageType}`.toLowerCase();
@@ -121,9 +235,9 @@ function App() {
     return [...matches].sort((a, b) => {
       if (sortMode === 'Price Low') return a.priceFrom - b.priceFrom;
       if (sortMode === 'Duration') return a.duration - b.duration || a.priceFrom - b.priceFrom;
-      return tours.findIndex((tour) => tour.id === a.id) - tours.findIndex((tour) => tour.id === b.id);
+      return allTours.findIndex((tour) => tour.id === a.id) - allTours.findIndex((tour) => tour.id === b.id);
     });
-  }, [packageFilter, query, regionFilter, sortMode]);
+  }, [allTours, packageFilter, query, regionFilter, sortMode]);
 
   useEffect(() => {
     // Clean up key and view agent parameters from address bar to prevent accidental sharing
@@ -190,6 +304,9 @@ function App() {
   }, [notice]);
 
   const selectedTour = filteredTours.find((tour) => tour.id === selectedId) || filteredTours[0] || null;
+  const displayedTour = (isDesktop && activeTab !== 'catalog' && activeTab !== 'compare')
+    ? (allTours.find(t => t.id === activeTab) || selectedTour)
+    : selectedTour;
 
   function showNotice(message) {
     setNotice(message);
@@ -241,6 +358,22 @@ function App() {
         />
       );
     }
+    if (landingTourId === 'gitdad02' || landingTourId === 'dad02') {
+      return (
+        <GITDAD02LandingPage
+          onBack={() => {
+            setLandingTourId(null);
+            const params = new URLSearchParams(window.location.search);
+            params.delete('mode');
+            params.delete('page');
+            params.delete('landing');
+            const newSearch = params.toString();
+            const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
+            window.history.replaceState({}, '', newUrl);
+          }}
+        />
+      );
+    }
     const currentLandingTour = landingTours.find(t => t.id === landingTourId) || landingTours[0];
     return (
       <TourLandingPage
@@ -271,86 +404,147 @@ function App() {
         cycleLanguage={cycleLanguage}
       />
 
-      <main className="workspace">
-        {/* Left Side: Catalog Tour Cards Panel */}
-        <section className="catalog-panel">
-          <FilterBar
-            packageFilter={packageFilter}
-            setPackageFilter={setPackageFilter}
-            regionFilter={regionFilter}
-            setRegionFilter={setRegionFilter}
-            query={query}
-            setQuery={setQuery}
-            sortMode={sortMode}
-            cycleSortMode={cycleSortMode}
-            language={language}
-            showNotice={showNotice}
-          />
+      {/* Desktop-only Tab Bar (Max 2 Tours + Comparison) */}
+      {isDesktop && (
+        <DesktopTabBar
+          openTourTabs={openTourTabs}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onCloseTab={handleCloseTourTab}
+          language={language}
+          onToggleCompare={handleToggleCompare}
+          allTours={allTours}
+        />
+      )}
 
-          <div className="tour-list">
-            {filteredTours.map((tour) => (
-              <TourCard
-                key={tour.id}
-                tour={tour}
-                currency={currency}
-                language={language}
-                active={tour.id === selectedTour?.id}
-                onSelect={() => handleSelectTour(tour.id)}
-                hidePrice={shouldHidePrice}
-              />
-            ))}
-            {!filteredTours.length && (
+      {/* Main Workspace: Compare Mode (Desktop) */}
+      {isDesktop && activeTab === 'compare' && openTourTabs.length === 2 ? (
+        <CompareWorkspace
+          tour1={allTours.find((t) => t.id === openTourTabs[0])}
+          tour2={allTours.find((t) => t.id === openTourTabs[1])}
+          allTours={allTours}
+          onSelectTour1={(newId) => setOpenTourTabs([newId, openTourTabs[1]])}
+          onSelectTour2={(newId) => setOpenTourTabs([openTourTabs[0], newId])}
+          onCloseTour={(closedId) => handleCloseTourTab(closedId)}
+          onExitCompare={() => setActiveTab(openTourTabs[0] || 'catalog')}
+          currency={currency}
+          language={language}
+          hidePrice={shouldHidePrice}
+          hideMeals={shouldHideMeals}
+          hidePdf={shouldHidePdf}
+          onOpenLanding={(tourId) => {
+            setLandingTourId(tourId.toLowerCase());
+            const params = new URLSearchParams(window.location.search);
+            params.set('mode', 'landing');
+            params.set('tour', tourId.toLowerCase());
+            const newUrl = window.location.pathname + `?${params.toString()}#pricing-terminal`;
+            window.history.pushState({}, '', newUrl);
+          }}
+        />
+      ) : isDesktop && activeTab === 'catalog' ? (
+        /* Main Workspace: Full Catalog Grid Mode (Desktop) */
+        <DesktopCatalogFull
+          filteredTours={filteredTours}
+          openTourTabs={openTourTabs}
+          onOpenTour={handleOpenTour}
+          onOpenAndCompare={handleOpenAndCompare}
+          packageFilter={packageFilter}
+          setPackageFilter={setPackageFilter}
+          regionFilter={regionFilter}
+          setRegionFilter={setRegionFilter}
+          query={query}
+          setQuery={setQuery}
+          sortMode={sortMode}
+          cycleSortMode={cycleSortMode}
+          currency={currency}
+          language={language}
+          hidePrice={shouldHidePrice}
+          resetFilters={resetFilters}
+          showNotice={showNotice}
+        />
+      ) : (
+        /* Main Workspace: Standard 2-Column Desktop Single View & 100% UNTOUCHED Mobile View */
+        <main className="workspace">
+          {/* Left Side: Catalog Tour Cards Panel */}
+          <section className="catalog-panel">
+            <FilterBar
+              packageFilter={packageFilter}
+              setPackageFilter={setPackageFilter}
+              regionFilter={regionFilter}
+              setRegionFilter={setRegionFilter}
+              query={query}
+              setQuery={setQuery}
+              sortMode={sortMode}
+              cycleSortMode={cycleSortMode}
+              language={language}
+              showNotice={showNotice}
+            />
+
+            <div className="tour-list">
+              {filteredTours.map((tour) => (
+                <TourCard
+                  key={tour.id}
+                  tour={tour}
+                  currency={currency}
+                  language={language}
+                  active={tour.id === (isDesktop && activeTab !== 'catalog' && activeTab !== 'compare' ? activeTab : selectedTour?.id)}
+                  onSelect={() => handleSelectTour(tour.id)}
+                  hidePrice={shouldHidePrice}
+                />
+              ))}
+              {!filteredTours.length && (
+                <div className="empty-state">
+                  <Search size={22} />
+                  <strong>{t('noMatching', language)}</strong>
+                  <span>{t('tryAnother', language)}</span>
+                  <button
+                    className="utility-button"
+                    type="button"
+                    onClick={resetFilters}
+                  >
+                    <Filter size={18} /> {t('resetFilters', language)}
+                  </button>
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* Right Side: Tour Detail Panel */}
+          {displayedTour ? (
+            <DetailPanel
+              tour={displayedTour}
+              currency={currency}
+              language={language}
+              onClose={() => showNotice('Detail panel stays open on desktop')}
+              onSave={() => showNotice(`Saved ${displayedTour.code} to shortlist`)}
+              onReset={resetFilters}
+              onOpenLanding={(tourId) => {
+                setLandingTourId(tourId.toLowerCase());
+                const params = new URLSearchParams(window.location.search);
+                params.set('mode', 'landing');
+                params.set('tour', tourId.toLowerCase());
+                const newUrl = window.location.pathname + `?${params.toString()}#pricing-terminal`;
+                window.history.pushState({}, '', newUrl);
+              }}
+              containerRef={detailRef}
+              hidePrice={shouldHidePrice}
+              hideMeals={shouldHideMeals}
+              hidePdf={shouldHidePdf}
+            />
+          ) : (
+            <section className="detail-panel detail-empty" ref={detailRef}>
               <div className="empty-state">
                 <Search size={22} />
                 <strong>{t('noMatching', language)}</strong>
                 <span>{t('tryAnother', language)}</span>
-                <button
-                  className="utility-button"
-                  type="button"
-                  onClick={resetFilters}
-                >
+                <button className="utility-button" type="button" onClick={resetFilters}>
                   <Filter size={18} /> {t('resetFilters', language)}
                 </button>
               </div>
-            )}
-          </div>
-        </section>
-
-        {/* Right Side: Tour Detail Panel */}
-        {selectedTour ? (
-          <DetailPanel
-            tour={selectedTour}
-            currency={currency}
-            language={language}
-            onClose={() => showNotice('Detail panel stays open on desktop')}
-            onSave={() => showNotice(`Saved ${selectedTour.code} to shortlist`)}
-            onReset={resetFilters}
-            onOpenLanding={(tourId) => {
-              setLandingTourId(tourId.toLowerCase());
-              const params = new URLSearchParams(window.location.search);
-              params.set('mode', 'landing');
-              params.set('tour', tourId.toLowerCase());
-              const newUrl = window.location.pathname + `?${params.toString()}#pricing-terminal`;
-              window.history.pushState({}, '', newUrl);
-            }}
-            containerRef={detailRef}
-            hidePrice={shouldHidePrice}
-            hideMeals={shouldHideMeals}
-            hidePdf={shouldHidePdf}
-          />
-        ) : (
-          <section className="detail-panel detail-empty" ref={detailRef}>
-            <div className="empty-state">
-              <Search size={22} />
-              <strong>{t('noMatching', language)}</strong>
-              <span>{t('tryAnother', language)}</span>
-              <button className="utility-button" type="button" onClick={resetFilters}>
-                <Filter size={18} /> {t('resetFilters', language)}
-              </button>
-            </div>
-          </section>
-        )}
-      </main>
+            </section>
+          )}
+        </main>
+      )}
 
       {notice && <div className="toast">{notice}</div>}
     </div>

@@ -43,3 +43,5 @@ export function AnimatedCountUp({ value, prefix = '', suffix = '', decimals = 0 
     </span>
   );
 }
+
+export default AnimatedCountUp;
