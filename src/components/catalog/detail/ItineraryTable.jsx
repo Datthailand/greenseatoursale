@@ -49,9 +49,9 @@ export default function ItineraryTable({ tour, language, hideMeals }) {
                 )
               ) : (
                 (lunch || dinner) && (
-                  <div className="meal-venues">
+                  <div className={`meal-venues ${hasL && hasD ? 'has-both' : 'has-single'}`}>
                     {lunch && (
-                      <div>
+                      <div className="meal-block meal-lunch">
                         <strong>{t('lunch', language)}: {lunch}</strong>
                         {!!lunchMenu?.length && (
                           <ol>
@@ -63,7 +63,7 @@ export default function ItineraryTable({ tour, language, hideMeals }) {
                       </div>
                     )}
                     {dinner && (
-                      <div>
+                      <div className="meal-block meal-dinner">
                         <strong>{t('dinner', language)}: {dinner}</strong>
                         {!!dinnerMenu?.length && (
                           <ol>
